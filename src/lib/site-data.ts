@@ -326,3 +326,15 @@ export const resourceCategories = [
     ],
   },
 ];
+
+
+// -----------------------------------------------------------------------------
+// 10. CREATOR CREDIT  ←  SMALL LINE AT THE VERY BOTTOM OF THE FOOTER
+// -----------------------------------------------------------------------------
+// Personal credit for the site builder. Replace the placeholder URLs below with
+// your full LinkedIn and Instagram links when ready.
+export const creatorCredit = {
+  name: "Jason Rivera-Hernandez",
+  linkedin: "PASTE_MY_LINKEDIN_URL_HERE",
+  instagram: "PASTE_MY_INSTAGRAM_URL_HERE",
+};
