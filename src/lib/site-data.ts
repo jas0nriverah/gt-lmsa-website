@@ -335,6 +335,6 @@ export const resourceCategories = [
 // your full LinkedIn and Instagram links when ready.
 export const creatorCredit = {
   name: "Jason Rivera-Hernandez",
-  linkedin: "PASTE_MY_LINKEDIN_URL_HERE",
-  instagram: "PASTE_MY_INSTAGRAM_URL_HERE",
+  linkedin: "https://www.linkedin.com/in/jas0nrivera/",
+  instagram: "https://www.instagram.com/jas0nrivera/",
 };
