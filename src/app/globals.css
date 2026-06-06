@@ -1,0 +1,38 @@
+@import "tailwindcss";
+
+@theme {
+  --color-gt-navy: #003057;
+  --color-gt-gold: #b3a369;
+  --color-gt-dark-gold: #857437;
+  --color-gt-cream: #f8f7f2;
+  --color-gt-cream-deep: #eee9dc;
+  --color-ink: #102033;
+  --font-sans: Arial, Helvetica, sans-serif;
+}
+
+:root {
+  color: #102033;
+  background: #f8f7f2;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at top left, rgba(179, 163, 105, 0.18), transparent 34rem),
+    linear-gradient(180deg, #ffffff 0%, #f8f7f2 42%, #ffffff 100%);
+  color: #102033;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+section {
+  scroll-margin-top: 6rem;
+}
+
+::selection {
+  background: #b3a369;
+  color: #003057;
+}
