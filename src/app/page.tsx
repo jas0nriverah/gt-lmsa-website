@@ -7,8 +7,11 @@ import {
   boardMembers,
   contactLinks,
   events,
+  heroStats,
   impactAreas,
-  resources,
+  mission,
+  resourceCategories,
+  whyItMatters,
 } from "@/lib/site-data";
 
 export default function Home() {
@@ -16,118 +19,162 @@ export default function Home() {
     <>
       <Navbar />
       <main>
-        <section id="home" className="px-6 pb-20 pt-14 sm:px-8 lg:pt-20">
-          <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
-            <div>
-              <p className="mb-4 inline-flex rounded-full border border-gt-gold/40 bg-white px-4 py-2 text-sm font-bold uppercase tracking-[0.18em] text-gt-dark-gold shadow-sm">
-                Georgia Tech Chapter
-              </p>
-              <h1 className="max-w-4xl text-5xl font-black tracking-tight text-gt-navy sm:text-6xl lg:text-7xl">
+        {/* ------------------------------------------------------------------ */}
+        {/* HERO                                                                */}
+        {/* ------------------------------------------------------------------ */}
+        <section
+          id="home"
+          className="relative overflow-hidden px-6 pb-20 pt-16 sm:px-8 lg:pb-28 lg:pt-24"
+        >
+          {/* Decorative brand glows */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -right-24 -top-24 -z-10 h-96 w-96 rounded-full bg-gt-gold/15 blur-3xl"
+          />
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -left-32 top-40 -z-10 h-96 w-96 rounded-full bg-gt-navy/10 blur-3xl"
+          />
+
+          <div className="mx-auto grid max-w-6xl items-center gap-14 lg:grid-cols-[1.05fr_0.95fr]">
+            <div className="text-center lg:text-left">
+              <p className="inline-flex items-center gap-2 rounded-full border border-gt-gold/40 bg-white/80 px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-gt-dark-gold shadow-sm">
+                <span className="h-2 w-2 rounded-full bg-gt-gold" />
                 Latino Medical Student Association
+              </p>
+
+              <h1 className="mt-6 text-4xl font-black leading-[1.05] tracking-tight text-gt-navy sm:text-5xl lg:text-6xl">
+                Latinos in medicine,
+                <span className="block text-gt-dark-gold">rising together.</span>
               </h1>
-              <p className="mt-5 text-2xl font-bold text-gt-dark-gold">
-                Georgia Tech Chapter
+
+              <p className="mt-5 text-lg font-semibold text-gt-navy/80">
+                The Georgia Tech Chapter
               </p>
-              <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-700">
-                A warm, mission-driven community for Latino/a/e and
-                underrepresented pre-health students pursuing medicine, service,
-                mentorship, and health equity.
+
+              <p className="mx-auto mt-5 max-w-xl text-lg leading-8 text-slate-600 lg:mx-0">
+                We support Latino/a/e and underrepresented pre-health students
+                with mentorship, medical school preparation, service, and a
+                community that feels like home on the road to medicine.
               </p>
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+
+              <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:justify-center lg:justify-start">
                 <a
                   href={contactLinks.joinForm}
-                  className="rounded-full bg-gt-navy px-7 py-3.5 text-center font-bold text-white shadow-lg shadow-gt-navy/20 transition hover:bg-slate-900"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-full bg-gt-navy px-8 py-4 text-center font-bold text-white shadow-lg shadow-gt-navy/25 transition hover:bg-gt-navy-deep"
                 >
-                  Join Us
+                  Join the Chapter
                 </a>
                 <a
                   href="#events"
-                  className="rounded-full border border-gt-navy/20 bg-white px-7 py-3.5 text-center font-bold text-gt-navy shadow-sm transition hover:border-gt-gold hover:bg-gt-cream"
+                  className="rounded-full border-2 border-gt-navy/15 bg-white px-8 py-4 text-center font-bold text-gt-navy shadow-sm transition hover:border-gt-gold hover:bg-gt-cream"
                 >
-                  View Events
+                  Explore Events
                 </a>
               </div>
-              <div className="mt-10 grid max-w-xl grid-cols-3 gap-3">
-                {["Mentorship", "Service", "Health Equity"].map((item) => (
+
+              {/* Quick facts */}
+              <dl className="mx-auto mt-12 grid max-w-lg grid-cols-3 gap-4 lg:mx-0">
+                {heroStats.map((stat) => (
                   <div
-                    key={item}
-                    className="rounded-2xl border border-white bg-white/75 px-4 py-3 text-center text-sm font-bold text-gt-navy shadow-sm"
+                    key={stat.label}
+                    className="rounded-2xl border border-slate-200/70 bg-white/80 px-3 py-4 text-center shadow-sm"
                   >
-                    {item}
+                    <dt className="sr-only">{stat.label}</dt>
+                    <dd className="text-2xl font-black text-gt-navy">
+                      {stat.value}
+                    </dd>
+                    <p className="mt-1 text-xs font-semibold leading-tight text-slate-500">
+                      {stat.label}
+                    </p>
                   </div>
                 ))}
-              </div>
+              </dl>
             </div>
 
+            {/* Logo showcase */}
             <div className="relative mx-auto w-full max-w-md">
-              <div className="absolute inset-0 -z-10 rounded-full bg-gt-gold/20 blur-3xl" />
-              <div className="rounded-[2rem] border border-gt-gold/35 bg-white p-6 shadow-2xl shadow-gt-navy/10">
+              <div
+                aria-hidden="true"
+                className="absolute inset-6 -z-10 rounded-full bg-gt-gold/20 blur-2xl"
+              />
+              <div className="rounded-[2.25rem] border border-gt-gold/30 bg-white/90 p-8 shadow-2xl shadow-gt-navy/15">
                 <Image
                   src="/lmsa-logo.png"
                   alt="Latino Medical Student Association logo"
                   width={720}
                   height={720}
-                  className="h-auto w-full rounded-[1.5rem]"
+                  className="h-auto w-full"
                   priority
                 />
               </div>
-              <div className="absolute -bottom-7 left-6 right-6 rounded-3xl bg-gt-navy p-5 text-white shadow-xl">
-                <p className="text-sm font-bold uppercase tracking-[0.22em] text-gt-gold">
-                  Built for pre-health students
+              <div className="absolute -bottom-6 left-6 right-6 rounded-2xl bg-gt-navy p-5 text-white shadow-xl">
+                <p className="text-xs font-bold uppercase tracking-[0.22em] text-gt-gold">
+                  Comunidad &middot; Mentorship &middot; Medicine
                 </p>
                 <p className="mt-2 text-sm leading-6 text-white/80">
-                  Mentorship, preparation, community, and service in one chapter.
+                  Open to all majors and all stages of the pre-health journey.
                 </p>
               </div>
             </div>
           </div>
         </section>
 
+        {/* ------------------------------------------------------------------ */}
+        {/* ABOUT / MISSION + WHY LMSA MATTERS                                  */}
+        {/* ------------------------------------------------------------------ */}
         <Section
           id="about"
-          eyebrow="About and Mission"
-          title="A supportive path toward medicine and health care."
-          description="LMSA at Georgia Tech supports Latino/a/e and underrepresented pre-health students through mentorship, community, service, and professional development."
+          eyebrow={mission.eyebrow}
+          title={mission.heading}
+          align="center"
         >
-          <div className="grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
-            <div className="rounded-3xl bg-gt-navy p-8 text-white shadow-xl">
-              <p className="text-sm font-bold uppercase tracking-[0.22em] text-gt-gold">
+          <div className="grid gap-6 lg:grid-cols-[1fr_1fr]">
+            <div className="flex flex-col justify-center rounded-3xl bg-gradient-to-br from-gt-navy to-gt-navy-deep p-8 text-white shadow-xl sm:p-10">
+              <p className="text-xs font-bold uppercase tracking-[0.24em] text-gt-gold">
                 Our Mission
               </p>
-              <h3 className="mt-4 text-3xl font-bold">
-                Make the pre-health journey more connected, informed, and
-                welcoming.
-              </h3>
-              <p className="mt-5 leading-8 text-white/80">
-                We create space for students to ask honest questions, find
-                mentors, develop leadership skills, and serve communities with a
-                focus on culturally responsive care.
-              </p>
-            </div>
-            <div className="grid gap-4 sm:grid-cols-2">
-              {[
-                "Peer and professional mentorship",
-                "Health equity and cultural advocacy",
-                "Clinical, service, and volunteer pathways",
-                "Medical school and MCAT preparation",
-              ].map((item) => (
-                <div
-                  key={item}
-                  className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm"
+              {mission.paragraphs.map((paragraph, index) => (
+                <p
+                  key={index}
+                  className={`leading-8 text-white/85 ${
+                    index === 0 ? "mt-5 text-lg" : "mt-4"
+                  }`}
                 >
-                  <div className="mb-4 h-1.5 w-14 rounded-full bg-gt-gold" />
-                  <p className="text-lg font-bold text-gt-navy">{item}</p>
+                  {paragraph}
+                </p>
+              ))}
+            </div>
+
+            <div className="grid gap-4 sm:grid-cols-2">
+              {whyItMatters.map((item) => (
+                <div
+                  key={item.title}
+                  className="rounded-3xl border border-slate-200/80 bg-white p-6 shadow-sm"
+                >
+                  <div className="mb-4 h-1.5 w-12 rounded-full bg-gt-gold" />
+                  <h3 className="text-lg font-bold text-gt-navy">
+                    {item.title}
+                  </h3>
+                  <p className="mt-2 leading-7 text-slate-600">
+                    {item.description}
+                  </p>
                 </div>
               ))}
             </div>
           </div>
         </Section>
 
+        {/* ------------------------------------------------------------------ */}
+        {/* WHAT WE DO                                                          */}
+        {/* ------------------------------------------------------------------ */}
         <Section
           id="what-we-do"
           eyebrow="What We Do"
-          title="Programs with purpose and community at the center."
-          description="Our chapter combines academic support, professional exposure, cultural connection, and service opportunities for future health professionals."
+          title="How we support our members."
+          description="From your first pre-med question to your medical school interviews, our programs meet you at every step of the journey."
           className="bg-gt-cream"
         >
           <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
@@ -142,25 +189,43 @@ export default function Home() {
           </div>
         </Section>
 
+        {/* ------------------------------------------------------------------ */}
+        {/* EVENTS                                                              */}
+        {/* ------------------------------------------------------------------ */}
         <Section
           id="events"
           eyebrow="Events"
-          title="Upcoming chapter events."
-          description="Use these placeholder cards as a starting point for general body meetings, study nights, speaker panels, and service opportunities."
+          title="What's coming up."
+          description="Meetings, study nights, panels, and service days. Dates and details are easy to update each semester."
         >
           <div className="grid gap-5 md:grid-cols-2">
             {events.map((event) => (
               <EventCard key={`${event.date}-${event.title}`} {...event} />
             ))}
           </div>
+          <p className="mt-8 text-center text-sm text-slate-500">
+            Want the latest schedule? Follow us on Instagram{" "}
+            <a
+              href={contactLinks.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-bold text-gt-dark-gold hover:text-gt-navy"
+            >
+              {contactLinks.instagramHandle}
+            </a>
+            .
+          </p>
         </Section>
 
+        {/* ------------------------------------------------------------------ */}
+        {/* EXECUTIVE BOARD                                                     */}
+        {/* ------------------------------------------------------------------ */}
         <Section
           id="board"
           eyebrow="Executive Board"
-          title="Meet the student leaders."
-          description="Update these placeholders with the chapter's current officers, photos, bios, or contact links whenever they are ready."
-          className="bg-white"
+          title="Meet the team leading the chapter."
+          description="Our student officers plan programming, build partnerships, and support members all year long."
+          className="bg-gt-cream"
         >
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {boardMembers.map((member) => (
@@ -169,74 +234,109 @@ export default function Home() {
           </div>
         </Section>
 
+        {/* ------------------------------------------------------------------ */}
+        {/* RESOURCES                                                           */}
+        {/* ------------------------------------------------------------------ */}
         <Section
           id="resources"
           eyebrow="Resources"
-          title="Helpful starting points for pre-health students."
-          description="A simple resource hub for MCAT prep, advising, clinical experience, mentorship, and the medical school application process."
-          className="bg-gt-cream"
+          title="Tools for your pre-health journey."
+          description="Curated starting points for medical school prep, advising, experience, and mentorship."
         >
-          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {resources.map((resource) => (
-              <ResourceCard key={resource.title} {...resource} />
+          <div className="space-y-12">
+            {resourceCategories.map((group) => (
+              <div key={group.category}>
+                <div className="mb-5 flex items-center gap-3">
+                  <h3 className="text-lg font-bold text-gt-navy">
+                    {group.category}
+                  </h3>
+                  <span className="h-px flex-1 bg-slate-200" />
+                </div>
+                <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+                  {group.items.map((item) => (
+                    <ResourceCard key={item.title} {...item} />
+                  ))}
+                </div>
+              </div>
             ))}
           </div>
         </Section>
 
-        <section id="contact" className="px-6 py-20 sm:px-8">
-          <div className="mx-auto grid max-w-6xl overflow-hidden rounded-[2rem] bg-gt-navy shadow-2xl lg:grid-cols-[1.1fr_0.9fr]">
+        {/* ------------------------------------------------------------------ */}
+        {/* CONTACT / JOIN                                                      */}
+        {/* ------------------------------------------------------------------ */}
+        <section id="contact" className="px-6 py-20 sm:px-8 lg:py-24">
+          <div className="mx-auto grid max-w-6xl overflow-hidden rounded-[2.25rem] bg-gradient-to-br from-gt-navy to-gt-navy-deep shadow-2xl lg:grid-cols-[1.1fr_0.9fr]">
             <div className="p-8 text-white sm:p-12">
-              <p className="text-sm font-bold uppercase tracking-[0.24em] text-gt-gold">
-                Contact and Join
+              <p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.24em] text-gt-gold">
+                <span className="h-px w-8 bg-gt-gold" />
+                Get Involved
               </p>
-              <h2 className="mt-4 text-4xl font-black tracking-tight sm:text-5xl">
-                Interested in joining LMSA?
+              <h2 className="mt-5 text-3xl font-black tracking-tight sm:text-4xl">
+                Ready to find your community in medicine?
               </h2>
-              <p className="mt-5 max-w-2xl leading-8 text-white/80">
-                Join the interest list, follow the chapter online, or reach out
-                by email. We welcome students exploring medicine, public health,
-                research, allied health, and other health professions.
+              <p className="mt-5 max-w-xl leading-8 text-white/80">
+                Whether you&apos;re just starting to explore the health
+                professions or deep into applications, there&apos;s a place for
+                you here. Join the interest list, reach out, or follow along.
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <a
                   href={contactLinks.joinForm}
-                  className="rounded-full bg-white px-7 py-3.5 text-center font-bold text-gt-navy transition hover:bg-gt-cream"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-full bg-gt-gold px-8 py-4 text-center font-bold text-gt-navy shadow-lg transition hover:bg-gt-dark-gold hover:text-white"
                 >
                   Join LMSA
                 </a>
                 <a
                   href={`mailto:${contactLinks.email}`}
-                  className="rounded-full border border-white/30 px-7 py-3.5 text-center font-bold text-white transition hover:bg-white/10"
+                  className="rounded-full border border-white/30 px-8 py-4 text-center font-bold text-white transition hover:bg-white/10"
                 >
-                  Email Us
+                  Email the Chapter
                 </a>
               </div>
             </div>
+
             <div className="bg-white p-8 sm:p-12">
-              <div className="rounded-3xl border border-slate-200 bg-gt-cream p-6">
-                <h3 className="text-2xl font-bold text-gt-navy">
-                  Chapter Contact
-                </h3>
-                <div className="mt-6 grid gap-4">
-                  <a
-                    href={`mailto:${contactLinks.email}`}
-                    className="rounded-2xl bg-white p-4 font-semibold text-slate-700 shadow-sm hover:text-gt-navy"
-                  >
-                    Email: {contactLinks.email}
-                  </a>
-                  <a
-                    href={contactLinks.instagram}
-                    className="rounded-2xl bg-white p-4 font-semibold text-slate-700 shadow-sm hover:text-gt-navy"
-                  >
-                    Instagram: {contactLinks.instagramHandle}
-                  </a>
-                  <a
-                    href={contactLinks.joinForm}
-                    className="rounded-2xl bg-white p-4 font-semibold text-slate-700 shadow-sm hover:text-gt-navy"
-                  >
-                    Google Form: membership interest
-                  </a>
-                </div>
+              <h3 className="text-xl font-bold text-gt-navy">
+                Chapter Contact
+              </h3>
+              <p className="mt-2 text-sm text-slate-500">
+                We&apos;d love to hear from you.
+              </p>
+              <div className="mt-6 grid gap-3">
+                <a
+                  href={`mailto:${contactLinks.email}`}
+                  className="flex items-center justify-between rounded-2xl border border-slate-200/80 bg-gt-cream/60 p-4 font-semibold text-gt-navy transition hover:border-gt-gold hover:bg-gt-cream"
+                >
+                  <span>Email</span>
+                  <span className="text-sm font-bold text-gt-dark-gold">
+                    {contactLinks.email}
+                  </span>
+                </a>
+                <a
+                  href={contactLinks.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-between rounded-2xl border border-slate-200/80 bg-gt-cream/60 p-4 font-semibold text-gt-navy transition hover:border-gt-gold hover:bg-gt-cream"
+                >
+                  <span>Instagram</span>
+                  <span className="text-sm font-bold text-gt-dark-gold">
+                    {contactLinks.instagramHandle}
+                  </span>
+                </a>
+                <a
+                  href={contactLinks.joinForm}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-between rounded-2xl border border-slate-200/80 bg-gt-cream/60 p-4 font-semibold text-gt-navy transition hover:border-gt-gold hover:bg-gt-cream"
+                >
+                  <span>Interest Form</span>
+                  <span className="text-sm font-bold text-gt-dark-gold">
+                    Sign up &rarr;
+                  </span>
+                </a>
               </div>
             </div>
           </div>

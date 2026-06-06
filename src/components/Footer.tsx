@@ -3,69 +3,90 @@ import { contactLinks, navLinks } from "@/lib/site-data";
 
 export function Footer() {
   return (
-    <footer className="bg-gt-navy px-6 py-12 text-white sm:px-8">
-      <div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-[1.4fr_1fr_1fr]">
-        <div>
-          <div className="flex items-center gap-3">
-            <Image
-              src="/lmsa-logo.png"
-              alt="Latino Medical Student Association logo"
-              width={52}
-              height={52}
-              className="rounded-full bg-white"
-            />
-            <div>
-              <p className="text-sm font-bold uppercase tracking-[0.2em] text-gt-gold">
-                Georgia Tech Chapter
-              </p>
-              <p className="text-xl font-black">LMSA</p>
+    <footer className="relative bg-gt-navy text-white">
+      {/* Gold accent bar across the very top of the footer. */}
+      <div className="h-1.5 w-full bg-gradient-to-r from-gt-gold via-gt-dark-gold to-gt-gold" />
+
+      <div className="px-6 py-14 sm:px-8">
+        <div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-[1.6fr_1fr_1fr]">
+          <div>
+            <div className="flex items-center gap-3">
+              <Image
+                src="/lmsa-logo.png"
+                alt="Latino Medical Student Association logo"
+                width={56}
+                height={56}
+                className="rounded-full bg-white p-0.5 ring-1 ring-gt-gold/40"
+              />
+              <div className="leading-tight">
+                <p className="text-xs font-bold uppercase tracking-[0.2em] text-gt-gold">
+                  Georgia Tech Chapter
+                </p>
+                <p className="text-xl font-black">LMSA</p>
+              </div>
+            </div>
+            <p className="mt-5 max-w-md leading-7 text-white/70">
+              The Latino Medical Student Association at Georgia Tech supports
+              Latino/a/e and underrepresented pre-health students through
+              mentorship, preparation, service, and community.
+            </p>
+          </div>
+
+          <div>
+            <h2 className="text-xs font-bold uppercase tracking-[0.22em] text-gt-gold">
+              Explore
+            </h2>
+            <div className="mt-4 grid gap-3">
+              {navLinks.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="w-fit text-white/70 transition hover:text-white"
+                >
+                  {link.label}
+                </a>
+              ))}
             </div>
           </div>
-          <p className="mt-5 max-w-md leading-7 text-white/75">
-            Supporting Latino/a/e and underrepresented pre-health students
-            through mentorship, community, service, and professional growth.
-          </p>
-        </div>
 
-        <div>
-          <h2 className="text-sm font-bold uppercase tracking-[0.22em] text-gt-gold">
-            Quick Links
-          </h2>
-          <div className="mt-4 grid gap-3">
-            {navLinks.map((link) => (
+          <div>
+            <h2 className="text-xs font-bold uppercase tracking-[0.22em] text-gt-gold">
+              Connect
+            </h2>
+            <div className="mt-4 grid gap-3 text-white/70">
               <a
-                key={link.href}
-                href={link.href}
-                className="text-white/75 transition hover:text-white"
+                href={`mailto:${contactLinks.email}`}
+                className="w-fit transition hover:text-white"
               >
-                {link.label}
+                {contactLinks.email}
               </a>
-            ))}
+              <a
+                href={contactLinks.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-fit transition hover:text-white"
+              >
+                Instagram {contactLinks.instagramHandle}
+              </a>
+              <a
+                href={contactLinks.joinForm}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-fit transition hover:text-white"
+              >
+                Join our interest form
+              </a>
+            </div>
           </div>
         </div>
 
-        <div>
-          <h2 className="text-sm font-bold uppercase tracking-[0.22em] text-gt-gold">
-            Contact
-          </h2>
-          <div className="mt-4 grid gap-3 text-white/75">
-            <a href={`mailto:${contactLinks.email}`} className="hover:text-white">
-              {contactLinks.email}
-            </a>
-            <a href={contactLinks.instagram} className="hover:text-white">
-              Instagram
-            </a>
-            <a href={contactLinks.joinForm} className="hover:text-white">
-              Join form
-            </a>
-          </div>
+        <div className="mx-auto mt-12 flex max-w-6xl flex-col gap-2 border-t border-white/15 pt-6 text-sm text-white/55 sm:flex-row sm:items-center sm:justify-between">
+          <p>
+            &copy; {new Date().getFullYear()} Georgia Tech LMSA. Built by
+            students, for students.
+          </p>
+          <p>Comunidad &middot; Mentorship &middot; Medicine</p>
         </div>
-      </div>
-      <div className="mx-auto mt-10 max-w-6xl border-t border-white/15 pt-6 text-sm text-white/60">
-        <p>
-          (c) {new Date().getFullYear()} Georgia Tech LMSA. Built for student
-          community, mentorship, and service.
-        </p>
       </div>
     </footer>
   );

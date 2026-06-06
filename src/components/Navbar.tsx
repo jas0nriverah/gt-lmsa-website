@@ -8,25 +8,25 @@ export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/40 bg-white/90 backdrop-blur">
+    <header className="sticky top-0 z-50 border-b border-slate-200/70 bg-white/85 shadow-sm backdrop-blur-md">
       <nav
-        className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4 sm:px-8"
+        className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3 sm:px-8"
         aria-label="Main navigation"
       >
         <a href="#home" className="flex items-center gap-3">
           <Image
             src="/lmsa-logo.png"
             alt="Latino Medical Student Association logo"
-            width={44}
-            height={44}
-            className="rounded-full"
+            width={46}
+            height={46}
+            className="rounded-full ring-1 ring-gt-gold/40"
             priority
           />
-          <div>
-            <p className="text-sm font-bold uppercase tracking-[0.2em] text-gt-dark-gold">
+          <div className="leading-tight">
+            <p className="text-[0.7rem] font-bold uppercase tracking-[0.2em] text-gt-dark-gold">
               Georgia Tech
             </p>
-            <p className="text-lg font-black leading-none text-gt-navy">LMSA</p>
+            <p className="text-lg font-black text-gt-navy">LMSA</p>
           </div>
         </a>
 
@@ -35,14 +35,16 @@ export function Navbar() {
             <a
               key={link.href}
               href={link.href}
-              className="text-sm font-semibold text-slate-700 transition hover:text-gt-navy"
+              className="text-sm font-semibold text-slate-600 transition hover:text-gt-navy"
             >
               {link.label}
             </a>
           ))}
           <a
             href={contactLinks.joinForm}
-            className="rounded-full bg-gt-navy px-5 py-2.5 text-sm font-bold text-white shadow-sm transition hover:bg-slate-900"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="rounded-full bg-gt-navy px-5 py-2.5 text-sm font-bold text-white shadow-md shadow-gt-navy/20 transition hover:bg-gt-navy-deep"
           >
             Join LMSA
           </a>
@@ -54,7 +56,7 @@ export function Navbar() {
           aria-controls="mobile-menu"
           aria-label="Toggle navigation menu"
           onClick={() => setIsOpen((value) => !value)}
-          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 text-gt-navy lg:hidden"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200 text-gt-navy transition hover:bg-gt-cream lg:hidden"
         >
           <span className="sr-only">Open menu</span>
           <span className="flex flex-col gap-1.5">
@@ -66,22 +68,27 @@ export function Navbar() {
       </nav>
 
       {isOpen ? (
-        <div id="mobile-menu" className="border-t border-slate-100 bg-white px-6 py-4 lg:hidden">
-          <div className="mx-auto grid max-w-6xl gap-2">
+        <div
+          id="mobile-menu"
+          className="border-t border-slate-100 bg-white px-6 py-4 lg:hidden"
+        >
+          <div className="mx-auto grid max-w-6xl gap-1.5">
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
                 onClick={() => setIsOpen(false)}
-                className="rounded-2xl px-4 py-3 font-semibold text-slate-700 hover:bg-gt-cream hover:text-gt-navy"
+                className="rounded-xl px-4 py-3 font-semibold text-slate-700 transition hover:bg-gt-cream hover:text-gt-navy"
               >
                 {link.label}
               </a>
             ))}
             <a
               href={contactLinks.joinForm}
+              target="_blank"
+              rel="noopener noreferrer"
               onClick={() => setIsOpen(false)}
-              className="mt-2 rounded-2xl bg-gt-navy px-4 py-3 text-center font-bold text-white"
+              className="mt-2 rounded-xl bg-gt-navy px-4 py-3 text-center font-bold text-white"
             >
               Join LMSA
             </a>

@@ -1,13 +1,20 @@
 @import "tailwindcss";
 
+/* ---------------------------------------------------------------------------
+   GEORGIA TECH / LMSA BRAND TOKENS
+   These colors map to Tailwind classes like text-gt-navy, bg-gt-gold, etc.
+--------------------------------------------------------------------------- */
 @theme {
   --color-gt-navy: #003057;
+  --color-gt-navy-deep: #00233f;
   --color-gt-gold: #b3a369;
   --color-gt-dark-gold: #857437;
   --color-gt-cream: #f8f7f2;
-  --color-gt-cream-deep: #eee9dc;
+  --color-gt-cream-deep: #efe9d9;
   --color-ink: #102033;
-  --font-sans: Arial, Helvetica, sans-serif;
+
+  --font-sans: var(--font-inter), Arial, Helvetica, sans-serif;
+  --font-display: var(--font-sora), var(--font-inter), Arial, sans-serif;
 }
 
 :root {
@@ -17,22 +24,49 @@
 
 html {
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
   margin: 0;
-  background:
-    radial-gradient(circle at top left, rgba(179, 163, 105, 0.18), transparent 34rem),
-    linear-gradient(180deg, #ffffff 0%, #f8f7f2 42%, #ffffff 100%);
+  background-color: #f8f7f2;
+  /* Soft brand gradient + faint medical "plus" texture for subtle identity. */
+  background-image:
+    radial-gradient(circle at 12% -10%, rgba(179, 163, 105, 0.16), transparent 42%),
+    radial-gradient(circle at 92% 0%, rgba(0, 48, 87, 0.08), transparent 38%),
+    linear-gradient(180deg, #ffffff 0%, #f8f7f2 50%, #ffffff 100%);
+  background-attachment: fixed;
   color: #102033;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
 }
 
 section {
-  scroll-margin-top: 6rem;
+  scroll-margin-top: 5.5rem;
 }
 
 ::selection {
-  background: #b3a369;
-  color: #003057;
+  background: #003057;
+  color: #ffffff;
+}
+
+/* Respect users who prefer reduced motion. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
 }
