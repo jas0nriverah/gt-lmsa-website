@@ -1,53 +1,69 @@
 // =============================================================================
-// LMSA WEBSITE CONTENT — THIS IS THE MAIN FILE OFFICERS SHOULD EDIT
+// LMSA PLUS WEBSITE CONTENT — THIS IS THE MAIN FILE STACY/OFFICERS SHOULD EDIT
 // =============================================================================
 //
-// You do NOT need coding experience to update the website. Almost all of the
-// text and links you see on the site live in this one file.
+// Most website updates happen in this file. You do not need to understand React
+// to update events, links, officers, resources, or chapter wording.
 //
 // HOW TO MAKE A CHANGE:
-//   1. Find the section below you want to update (events, board, etc.).
-//   2. Change the words inside the quotation marks "like this".
-//   3. Save the file, then commit and push to GitHub.
-//   4. Vercel automatically rebuilds and publishes the live site in ~1 minute.
+//   1. Find the clearly labeled section below.
+//   2. Edit the words inside quotation marks.
+//   3. Save the file.
+//   4. Commit and push to GitHub.
+//   5. Vercel automatically updates the live website online.
 //
-// TIPS:
-//   - Keep the quotation marks " " and commas , exactly where they are.
-//   - To add a new item, copy an existing { ... } block and edit it.
-//   - To remove an item, delete its full { ... } block (and the trailing comma).
+// IMPORTANT:
+//   - Keep quotation marks " " and commas , in place.
+//   - To add an event/officer/resource, copy an existing { ... } block.
+//   - To hide a link that is not ready, set comingSoon: true.
 //
 // =============================================================================
 
 
 // -----------------------------------------------------------------------------
-// 1. CONTACT LINKS  ←  EDIT YOUR EMAIL, INSTAGRAM, AND JOIN FORM HERE
+// 1. CHAPTER IDENTITY  ←  EDIT CHAPTER NAME, YEAR, AND STATUS HERE
 // -----------------------------------------------------------------------------
-// These links are used by the navbar button, the hero buttons, the contact
-// section, and the footer. Update them in one place and they change everywhere.
-export const contactLinks = {
-  // Chapter email address (shown and used for "Email Us" buttons).
-  email: "lmsa@example.edu",
-
-  // Full Instagram URL (where the Instagram links/buttons point to).
-  instagram: "https://instagram.com/placeholder",
-
-  // The handle shown as text on the page, e.g. "@gtlmsa".
-  instagramHandle: "@placeholder",
-
-  // Google Form (or other) link for the membership / interest form.
-  joinForm: "https://forms.gle/placeholder",
-
-  // Optional: a separate mentorship sign-up form. If you don't have one,
-  // you can leave it pointing to the same joinForm link above.
-  mentorshipForm: "https://forms.gle/placeholder",
+export const chapterInfo = {
+  shortName: "LMSA Plus Chapter at Georgia Tech",
+  fullName: "Latino Medical Student Association Plus Chapter at Georgia Tech",
+  campusName: "Georgia Tech",
+  foundingYear: "2026",
+  recognitionStatus: "Officially recognized student organization",
+  preferredCommunityWording: "Latino/Hispanic",
+  heroHeadline: "Latino/Hispanic pre-health students, supported together.",
+  heroSubheadline:
+    "An officially recognized Georgia Tech student organization building community, mentorship, service, and medical school preparation for future health professionals.",
 };
 
 
 // -----------------------------------------------------------------------------
-// 2. NAVIGATION LINKS  ←  THE MENU AT THE TOP OF THE PAGE
+// 2. CONTACT LINKS  ←  EDIT EMAIL, INSTAGRAM, GOOGLE FORMS, NEWSLETTER HERE
 // -----------------------------------------------------------------------------
-// Each link jumps to a section on the page. The "href" must match a section id
-// (the "#about", "#events", etc.). You usually won't need to change these.
+// membershipForm, mentorshipForm, and newsletterForm are placeholders for now.
+// When the real Google Form URLs are ready, replace "#" with the full URL and
+// change the related comingSoon value below from true to false.
+export const contactLinks = {
+  email: "lmsaplusgatech@gmail.com",
+  instagram: "https://www.instagram.com/lmsaplusgatech/",
+  instagramHandle: "@lmsaplusgatech",
+
+  membershipForm: "#contact",
+  membershipLabel: "Membership form coming soon",
+  membershipComingSoon: true,
+
+  mentorshipForm: "#contact",
+  mentorshipLabel: "Mentorship form coming soon",
+  mentorshipComingSoon: true,
+
+  newsletterForm: "#newsletter",
+  newsletterLabel: "Newsletter signup coming soon",
+  newsletterComingSoon: true,
+};
+
+
+// -----------------------------------------------------------------------------
+// 3. NAVIGATION LINKS  ←  TOP MENU LINKS
+// -----------------------------------------------------------------------------
 export const navLinks = [
   { label: "Home", href: "#home" },
   { label: "About", href: "#about" },
@@ -60,268 +76,250 @@ export const navLinks = [
 
 
 // -----------------------------------------------------------------------------
-// 3. CHAPTER QUICK FACTS  ←  SMALL STATS SHOWN IN THE HERO
+// 4. HERO QUICK FACTS  ←  SMALL FACT CARDS NEAR THE TOP
 // -----------------------------------------------------------------------------
-// These are short, eye-catching numbers near the top of the page. Update them
-// to reflect your chapter. If you are a new chapter, you can use words like
-// "New" or "2025" instead of numbers.
 export const heroStats = [
-  { value: "2025", label: "Chapter founded" },
-  { value: "6+", label: "Events each semester" },
-  { value: "100%", label: "Open to all majors" },
+  { value: "2026", label: "Founded at Georgia Tech" },
+  { value: "Official", label: "Recognized student organization" },
+  { value: "Latino/Hispanic", label: "Pre-health community" },
 ];
 
 
 // -----------------------------------------------------------------------------
-// 4. MISSION STATEMENT  ←  THE "ABOUT" SECTION TEXT
+// 5. MISSION / ABOUT TEXT  ←  EDIT MAIN CHAPTER DESCRIPTION HERE
 // -----------------------------------------------------------------------------
 export const mission = {
-  // Short label above the mission heading.
   eyebrow: "About the Chapter",
-
-  // The main heading for the About section.
-  heading: "A home for Latino/a/e students pursuing careers in medicine.",
-
-  // 1–2 paragraphs describing the chapter. Keep it warm and specific.
+  heading: "An official home for Latino/Hispanic pre-health students at Georgia Tech.",
   paragraphs: [
-    "The Latino Medical Student Association (LMSA) at Georgia Tech is a student-led community dedicated to supporting Latino/a/e and underrepresented students on the path to medicine and the health professions.",
-    "Through mentorship, medical school preparation, service, and cultural community, we help members grow into confident, well-prepared, and connected future physicians and health leaders who reflect the communities they hope to serve.",
+    "The Latino Medical Student Association Plus Chapter at Georgia Tech is an officially recognized student organization founded in 2026 to support Latino/Hispanic and underrepresented students pursuing medicine and the health professions.",
+    "Our chapter exists to make the pre-health journey more connected, informed, and welcoming through mentorship, service, professional development, medical school preparation, physician and medical student panels, and a strong cultural community.",
   ],
 };
 
 
 // -----------------------------------------------------------------------------
-// 5. WHY LMSA MATTERS  ←  "WHO WE SERVE" IMPACT POINTS
+// 6. WHY LMSA PLUS MATTERS  ←  ABOUT/IMPACT CARDS
 // -----------------------------------------------------------------------------
-// Short statements that explain the chapter's purpose and impact.
 export const whyItMatters = [
   {
     title: "Representation in medicine",
     description:
-      "Latino/a/e physicians remain underrepresented in the U.S. We help build the pipeline of future doctors who reflect their communities.",
+      "We help strengthen the pathway for Latino/Hispanic and underrepresented students who want to become physicians and health leaders.",
   },
   {
-    title: "Guidance that's hard to find alone",
+    title: "Guidance before the application",
     description:
-      "From the MCAT to applications, we share honest advice and lived experience so no member has to navigate the journey by themselves.",
+      "Members can learn from peers, mentors, physicians, and medical students before facing the process alone.",
   },
   {
-    title: "Community and belonging",
+    title: "Community at Georgia Tech",
     description:
-      "We create a space where culture is celebrated and students feel seen, supported, and encouraged to keep going.",
+      "The chapter creates a warm, culturally aware space for students to study, ask questions, and support one another.",
   },
   {
-    title: "Service to our communities",
+    title: "Service with purpose",
     description:
-      "We connect members with volunteering and outreach that puts culturally responsive care into practice.",
+      "We plan volunteer and outreach opportunities that connect pre-health preparation with community impact.",
   },
 ];
 
 
 // -----------------------------------------------------------------------------
-// 6. WHAT WE DO  ←  THE PROGRAM / FOCUS-AREA CARDS
+// 7. WHAT WE DO  ←  PROGRAM / FOCUS-AREA CARDS
 // -----------------------------------------------------------------------------
-// Each card has a title and a description. Keep descriptions to 1–2 sentences.
 export const impactAreas = [
   {
     title: "Mentorship",
     description:
-      "Near-peer and professional mentorship that pairs members with upperclassmen, medical students, and physicians who understand the journey.",
+      "Build relationships with peers, upperclassmen, alumni, medical students, and physicians who can help clarify the path ahead.",
   },
   {
     title: "Community Building",
     description:
-      "Socials, study groups, and cultural celebrations that create lasting friendships and a strong sense of belonging.",
+      "Create a welcoming Latino/Hispanic pre-health community through meetings, study sessions, socials, and cultural connection.",
   },
   {
     title: "Service & Outreach",
     description:
-      "Volunteering, health fairs, and community partnerships that serve Atlanta's Latino and underserved communities.",
+      "Organize volunteer opportunities and service partnerships that reflect the chapter's commitment to underserved communities.",
   },
   {
     title: "Professional Development",
     description:
-      "Physician panels, workshops, and networking that expose members to careers across medicine and the health professions.",
+      "Host physician talks, medical student panels, workshops, and networking opportunities for future health professionals.",
   },
   {
     title: "Medical School Preparation",
     description:
-      "MCAT support, application guidance, mock interviews, and personal statement feedback to help members apply with confidence.",
+      "Support students as they learn about prerequisite planning, clinical exposure, applications, interviews, and readiness.",
   },
   {
     title: "Cultural Advocacy",
     description:
-      "Conversations and programming that advance health equity, Latino health, and culturally responsive patient care.",
+      "Elevate conversations about Latino/Hispanic health, culturally responsive care, and representation in medicine.",
   },
 ];
 
 
 // -----------------------------------------------------------------------------
-// 7. EVENTS  ←  EDIT, ADD, OR REMOVE UPCOMING EVENTS HERE
+// 8. EVENTS  ←  EDIT EVENT TEMPLATES, DATES, TIMES, AND LOCATIONS HERE
 // -----------------------------------------------------------------------------
-// To ADD an event: copy one { ... } block and change its details.
-// To REMOVE an event: delete its { ... } block.
-// "tag" is a small category label (e.g. "Meeting", "Academic", "Service").
+// These are templates for now. Replace TBD details when real events are planned.
 export const events = [
   {
-    date: "Sep 12",
+    date: "TBD",
     tag: "Meeting",
     title: "General Body Meeting",
-    time: "6:30 PM",
-    location: "Georgia Tech Campus",
+    time: "Time TBD",
+    location: "Location TBD",
     description:
-      "Kick off the semester, meet the board, and learn about mentorship, events, and how to get involved this year.",
+      "Meet the chapter, learn about LMSA Plus at Georgia Tech, and hear how to get involved this semester.",
   },
   {
-    date: "Oct 03",
-    tag: "Academic",
-    title: "MCAT Study Night",
-    time: "7:00 PM",
-    location: "Campus Study Room (TBD)",
+    date: "TBD",
+    tag: "Resources",
+    title: "Pre-Health Resource Night",
+    time: "Time TBD",
+    location: "Location TBD",
     description:
-      "A focused, collaborative study session with peers. Bring your study plan and questions — snacks provided.",
+      "A guided introduction to Georgia Tech pre-health advising, campus resources, and next steps for new pre-health students.",
   },
   {
-    date: "Oct 24",
-    tag: "Speaker Panel",
-    title: "Physician Speaker Panel",
-    time: "6:00 PM",
-    location: "Lecture Hall (TBD)",
+    date: "TBD",
+    tag: "Panel",
+    title: "Physician / Medical Student Panel",
+    time: "Time TBD",
+    location: "Location TBD",
     description:
-      "Hear Latino/a/e physicians and medical students share their paths into medicine, advice, and lessons learned.",
+      "A conversation with physicians and medical students about mentorship, identity, service, and preparing for medicine.",
   },
   {
-    date: "Nov 09",
+    date: "TBD",
     tag: "Service",
-    title: "Community Volunteer Day",
-    time: "9:00 AM",
-    location: "Atlanta Community Partner",
+    title: "Volunteer Opportunity",
+    time: "Time TBD",
+    location: "Community partner TBD",
     description:
-      "Serve alongside fellow members at a local health-focused organization supporting underserved communities.",
+      "A service event template for future volunteer opportunities with Atlanta or Georgia Tech community partners.",
+  },
+  {
+    date: "TBD",
+    tag: "Mentorship",
+    title: "Mentorship Mixer",
+    time: "Time TBD",
+    location: "Location TBD",
+    description:
+      "A casual event to help members meet mentors, peers, and other students navigating the pre-health path.",
   },
 ];
 
 
 // -----------------------------------------------------------------------------
-// 8. EXECUTIVE BOARD  ←  EDIT OFFICER NAMES, ROLES, AND DETAILS HERE
+// 9. EXECUTIVE BOARD  ←  EDIT OFFICERS, BIOS, SOCIAL LINKS, HEADSHOTS HERE
 // -----------------------------------------------------------------------------
-// Replace "Your Name" with the real officer's name once elected.
-// "focus" is a short description of what the role does.
-// "email" is optional — leave it as "" to hide the contact link on a card.
+// Add future officers here when roles are confirmed. Headshots can be added
+// later under public/board/ and referenced with image: "/board/file-name.jpg".
 export const boardMembers = [
   {
-    name: "Your Name",
-    role: "President",
-    focus: "Leads chapter vision, partnerships, and overall member support.",
+    name: "Stacy Lomeli",
+    role: "President & Founder",
+    focus:
+      "Founded LMSA Plus at Georgia Tech and leads the chapter's vision, recognition, community-building, and early programming.",
     email: "",
+    linkedin: "https://www.linkedin.com/in/stacylomeli/?skipRedirect=true",
+    instagram: "https://www.instagram.com/sta.acyy_/",
+    image: "",
   },
   {
-    name: "Your Name",
-    role: "Vice President",
-    focus: "Oversees programming, internal operations, and officer coordination.",
+    name: "Coming Soon",
+    role: "Additional Executive Board",
+    focus:
+      "More officer names, roles, bios, emails, and headshots will be added as the chapter leadership team is finalized.",
     email: "",
+    linkedin: "",
+    instagram: "",
+    image: "",
   },
   {
-    name: "Your Name",
-    role: "Secretary",
-    focus: "Manages communications, meeting notes, and member newsletters.",
+    name: "Role to be Announced",
+    role: "Future Officer Position",
+    focus:
+      "This placeholder keeps the board layout ready for vice president, secretary, treasurer, outreach, events, or mentorship roles.",
     email: "",
-  },
-  {
-    name: "Your Name",
-    role: "Treasurer",
-    focus: "Handles budgeting, fundraising, and financial planning.",
-    email: "",
-  },
-  {
-    name: "Your Name",
-    role: "Events Chair",
-    focus: "Plans speaker panels, socials, workshops, and event logistics.",
-    email: "",
-  },
-  {
-    name: "Your Name",
-    role: "Outreach Chair",
-    focus: "Builds service partnerships, campus collaborations, and recruitment.",
-    email: "",
+    linkedin: "",
+    instagram: "",
+    image: "",
   },
 ];
 
 
 // -----------------------------------------------------------------------------
-// 9. RESOURCES  ←  EDIT LINKS AND DESCRIPTIONS FOR PRE-HEALTH STUDENTS
+// 10. OFFICIAL RESOURCES  ←  EDIT RESOURCE LINKS HERE
 // -----------------------------------------------------------------------------
-// Resources are organized into categories. Each category has a title and a list
-// of items. Each item has a title, description, and a link (href).
-//   - Use a full URL (e.g. "https://...") to link to an outside website.
-//   - Use "#contact" to point members to the contact section instead.
+// Only official/relevant links are listed. Do not add scholarships or MCAT links
+// until the chapter is ready to curate them.
 export const resourceCategories = [
   {
-    category: "Medical School Prep",
+    category: "Georgia Tech Pre-Health",
     items: [
       {
-        title: "MCAT Planning & Study Tips",
+        title: "Georgia Tech Pre-Health Advising",
         description:
-          "Sample study timelines, recommended materials, and peer accountability for the MCAT.",
-        href: "#contact",
+          "Official Georgia Tech pre-health advising home for appointments, Canvas resources, workshops, and preparation support.",
+        href: "https://www.prehealth.gatech.edu/",
       },
       {
-        title: "Application Guidance (AMCAS)",
+        title: "Academic Success & Advising",
         description:
-          "Personal statements, activity descriptions, and timelines for the medical school application.",
-        href: "#contact",
+          "Georgia Tech's advising hub for academic planning, major advising, and pre-professional support.",
+        href: "https://www.success.gatech.edu/advising-at-tech/",
       },
       {
-        title: "Mock Interviews",
+        title: "Find Your Advisor",
         description:
-          "Practice interviews and feedback to help members prepare for admissions interviews.",
-        href: "#contact",
+          "Official Georgia Tech directory for finding major advisors and pre-health advising contacts.",
+        href: "https://advising.gatech.edu/find-your-advisor",
       },
     ],
   },
   {
-    category: "Advising & Experience",
+    category: "LMSA National",
     items: [
-      {
-        title: "Pre-Health Advising",
-        description:
-          "Connect with campus advising for course planning and application readiness.",
-        href: "#contact",
-      },
-      {
-        title: "Shadowing & Clinical Hours",
-        description:
-          "Find clinical exposure, shadowing, and patient-facing experiences.",
-        href: "#contact",
-      },
-      {
-        title: "Volunteering & Service",
-        description:
-          "Community partners and service opportunities aligned with our mission.",
-        href: "#contact",
-      },
-    ],
-  },
-  {
-    category: "Mentorship & Community",
-    items: [
-      {
-        title: "Mentorship Program",
-        description:
-          "Sign up as a mentor or mentee and get matched with someone on a similar path.",
-        href: contactLinks.mentorshipForm,
-      },
       {
         title: "LMSA National",
         description:
-          "Scholarships, conferences, and a national network of Latino/a/e trainees.",
+          "Official national organization for Latino/Hispanic and allied health professions trainees.",
         href: "https://national.lmsa.net/",
       },
       {
-        title: "Join the Chapter",
+        title: "Join LMSA National",
         description:
-          "Not a member yet? Fill out our interest form to get connected.",
-        href: contactLinks.joinForm,
+          "Official LMSA National membership page for students and health professions trainees.",
+        href: "https://national.lmsa.net/join/",
+      },
+    ],
+  },
+  {
+    category: "LMSA Southeast",
+    items: [
+      {
+        title: "LMSA Southeast",
+        description:
+          "Official regional LMSA site for chapters and members in the Southeast region.",
+        href: "https://southeast.lmsa.net/",
+      },
+      {
+        title: "LMSA Southeast Events",
+        description:
+          "Official Southeast region events page for regional programming and announcements.",
+        href: "https://southeast.lmsa.net/events/",
+      },
+      {
+        title: "LMSA Southeast Regional Conference",
+        description:
+          "Official information page for the Southeast Regional Conference when details are available.",
+        href: "https://southeast.lmsa.net/events/regional-conference/",
       },
     ],
   },
@@ -329,10 +327,94 @@ export const resourceCategories = [
 
 
 // -----------------------------------------------------------------------------
-// 10. CREATOR CREDIT  ←  SMALL LINE AT THE VERY BOTTOM OF THE FOOTER
+// 11. NEWSLETTER  ←  EDIT NEWSLETTER SIGNUP FORM HERE
 // -----------------------------------------------------------------------------
-// Personal credit for the site builder. Replace the placeholder URLs below with
-// your full LinkedIn and Instagram links when ready.
+export const newsletter = {
+  heading: "Stay connected with LMSA Plus at Georgia Tech.",
+  description:
+    "A newsletter signup will be added here once the chapter has a final form. For now, follow Instagram or email the chapter for updates.",
+  href: contactLinks.newsletterForm,
+  label: contactLinks.newsletterLabel,
+  comingSoon: contactLinks.newsletterComingSoon,
+};
+
+
+// -----------------------------------------------------------------------------
+// 12. LINKTREE-STYLE /links PAGE  ←  EDIT BUTTONS ON THE LINKS PAGE HERE
+// -----------------------------------------------------------------------------
+// This controls the simple mobile-friendly links page at /links.
+export const linktreeLinks = [
+  {
+    label: "Instagram",
+    href: contactLinks.instagram,
+    description: "Follow chapter updates and announcements.",
+  },
+  {
+    label: "Email",
+    href: `mailto:${contactLinks.email}`,
+    description: contactLinks.email,
+  },
+  {
+    label: "Main Website",
+    href: "/",
+    description: chapterInfo.shortName,
+  },
+  {
+    label: "Join / Membership Form",
+    href: contactLinks.membershipForm,
+    description: contactLinks.membershipLabel,
+    comingSoon: contactLinks.membershipComingSoon,
+  },
+  {
+    label: "Mentorship Form",
+    href: contactLinks.mentorshipForm,
+    description: contactLinks.mentorshipLabel,
+    comingSoon: contactLinks.mentorshipComingSoon,
+  },
+  {
+    label: "Newsletter Signup",
+    href: contactLinks.newsletterForm,
+    description: contactLinks.newsletterLabel,
+    comingSoon: contactLinks.newsletterComingSoon,
+  },
+  {
+    label: "GT Pre-Health Advising",
+    href: "https://www.prehealth.gatech.edu/",
+    description: "Official Georgia Tech pre-health advising resources.",
+  },
+  {
+    label: "LMSA National",
+    href: "https://national.lmsa.net/",
+    description: "Official LMSA National website.",
+  },
+  {
+    label: "LMSA Southeast",
+    href: "https://southeast.lmsa.net/",
+    description: "Official LMSA Southeast regional website.",
+  },
+];
+
+
+// -----------------------------------------------------------------------------
+// 13. IMAGE PLACEHOLDERS  ←  FUTURE APPROVED PHOTOS CAN BE ADDED HERE
+// -----------------------------------------------------------------------------
+// Do not use random images from Google. Add approved chapter/event photos to
+// public/images/ or officer headshots to public/board/ later.
+export const photoPlaceholders = [
+  {
+    title: "Chapter photo coming soon",
+    description: "Future approved group or event photo can go in public/images/.",
+  },
+  {
+    title: "Officer headshots coming soon",
+    description: "Future board headshots can go in public/board/.",
+  },
+];
+
+
+// -----------------------------------------------------------------------------
+// 14. CREATOR CREDIT  ←  SMALL LINE AT THE VERY BOTTOM OF THE FOOTER
+// -----------------------------------------------------------------------------
 export const creatorCredit = {
   name: "Jason Rivera-Hernandez",
   linkedin: "https://www.linkedin.com/in/jas0nrivera/",

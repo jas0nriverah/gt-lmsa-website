@@ -5,11 +5,14 @@ import { Navbar } from "@/components/Navbar";
 import { Section } from "@/components/Section";
 import {
   boardMembers,
+  chapterInfo,
   contactLinks,
   events,
   heroStats,
   impactAreas,
   mission,
+  newsletter,
+  photoPlaceholders,
   resourceCategories,
   whyItMatters,
 } from "@/lib/site-data";
@@ -40,32 +43,31 @@ export default function Home() {
             <div className="text-center lg:text-left">
               <p className="inline-flex items-center gap-2 rounded-full border border-gt-gold/40 bg-white/80 px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-gt-dark-gold shadow-sm">
                 <span className="h-2 w-2 rounded-full bg-gt-gold" />
-                Latino Medical Student Association
+                {chapterInfo.fullName}
               </p>
 
               <h1 className="mt-6 text-4xl font-black leading-[1.05] tracking-tight text-gt-navy sm:text-5xl lg:text-6xl">
-                Latinos in medicine,
-                <span className="block text-gt-dark-gold">rising together.</span>
+                LMSA Plus at Georgia Tech,
+                <span className="block text-gt-dark-gold">founded for community.</span>
               </h1>
 
               <p className="mt-5 text-lg font-semibold text-gt-navy/80">
-                The Georgia Tech Chapter
+                {chapterInfo.heroHeadline}
               </p>
 
               <p className="mx-auto mt-5 max-w-xl text-lg leading-8 text-slate-600 lg:mx-0">
-                We support Latino/a/e and underrepresented pre-health students
-                with mentorship, medical school preparation, service, and a
-                community that feels like home on the road to medicine.
+                {chapterInfo.heroSubheadline}
               </p>
 
               <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:justify-center lg:justify-start">
                 <a
-                  href={contactLinks.joinForm}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href={contactLinks.membershipForm}
+                  aria-disabled={contactLinks.membershipComingSoon}
                   className="rounded-full bg-gt-navy px-8 py-4 text-center font-bold text-white shadow-lg shadow-gt-navy/25 transition hover:bg-gt-navy-deep"
                 >
-                  Join the Chapter
+                  {contactLinks.membershipComingSoon
+                    ? "Membership Coming Soon"
+                    : "Join the Chapter"}
                 </a>
                 <a
                   href="#events"
@@ -112,10 +114,10 @@ export default function Home() {
               </div>
               <div className="absolute -bottom-6 left-6 right-6 rounded-2xl bg-gt-navy p-5 text-white shadow-xl">
                 <p className="text-xs font-bold uppercase tracking-[0.22em] text-gt-gold">
-                  Comunidad &middot; Mentorship &middot; Medicine
+                  Founded in {chapterInfo.foundingYear}
                 </p>
                 <p className="mt-2 text-sm leading-6 text-white/80">
-                  Open to all majors and all stages of the pre-health journey.
+                  {chapterInfo.recognitionStatus}
                 </p>
               </div>
             </div>
@@ -168,6 +170,45 @@ export default function Home() {
         </Section>
 
         {/* ------------------------------------------------------------------ */}
+        {/* FUTURE PHOTOS / BRAND ASSETS                                        */}
+        {/* ------------------------------------------------------------------ */}
+        <section className="px-6 pb-20 sm:px-8 lg:pb-24">
+          <div className="mx-auto max-w-6xl rounded-[2rem] border border-gt-gold/25 bg-white/85 p-6 shadow-sm sm:p-8">
+            <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+              <div>
+                <p className="text-xs font-bold uppercase tracking-[0.24em] text-gt-dark-gold">
+                  Chapter media
+                </p>
+                <h2 className="mt-3 text-2xl font-bold text-gt-navy sm:text-3xl">
+                  Approved photos can be added later.
+                </h2>
+                <p className="mt-4 leading-7 text-slate-600">
+                  For now, the site uses polished placeholders and the existing
+                  LMSA logo. Future approved chapter photos, event photos, and
+                  officer headshots can be added without using random web images.
+                </p>
+              </div>
+              <div className="grid gap-4 sm:grid-cols-2">
+                {photoPlaceholders.map((item) => (
+                  <div
+                    key={item.title}
+                    className="rounded-3xl border border-slate-200 bg-gt-cream p-6"
+                  >
+                    <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-white text-gt-navy shadow-sm">
+                      <span className="text-2xl font-black">+</span>
+                    </div>
+                    <h3 className="font-bold text-gt-navy">{item.title}</h3>
+                    <p className="mt-2 text-sm leading-6 text-slate-600">
+                      {item.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ------------------------------------------------------------------ */}
         {/* WHAT WE DO                                                          */}
         {/* ------------------------------------------------------------------ */}
         <Section
@@ -195,8 +236,8 @@ export default function Home() {
         <Section
           id="events"
           eyebrow="Events"
-          title="What's coming up."
-          description="Meetings, study nights, panels, and service days. Dates and details are easy to update each semester."
+          title="Event templates for the first chapter calendar."
+          description="These are realistic placeholders for the first LMSA Plus events. Dates, times, and locations are marked TBD until the chapter schedule is finalized."
         >
           <div className="grid gap-5 md:grid-cols-2">
             {events.map((event) => (
@@ -223,8 +264,8 @@ export default function Home() {
         <Section
           id="board"
           eyebrow="Executive Board"
-          title="Meet the team leading the chapter."
-          description="Our student officers plan programming, build partnerships, and support members all year long."
+          title="Meet the founding leadership."
+          description="Stacy Lomeli is currently listed as President & Founder. Additional executive board members, bios, emails, and headshots can be added as the chapter grows."
           className="bg-gt-cream"
         >
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -240,8 +281,8 @@ export default function Home() {
         <Section
           id="resources"
           eyebrow="Resources"
-          title="Tools for your pre-health journey."
-          description="Curated starting points for medical school prep, advising, experience, and mentorship."
+          title="Official resources for pre-health students."
+          description="A curated set of official Georgia Tech, LMSA National, and LMSA Southeast links. More chapter-specific resources can be added later."
         >
           <div className="space-y-12">
             {resourceCategories.map((group) => (
@@ -263,6 +304,34 @@ export default function Home() {
         </Section>
 
         {/* ------------------------------------------------------------------ */}
+        {/* NEWSLETTER                                                          */}
+        {/* ------------------------------------------------------------------ */}
+        <section id="newsletter" className="bg-gt-cream px-6 py-20 sm:px-8">
+          <div className="mx-auto max-w-6xl rounded-[2rem] bg-white p-8 shadow-sm ring-1 ring-slate-200/80 sm:p-10">
+            <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
+              <div>
+                <p className="text-xs font-bold uppercase tracking-[0.24em] text-gt-dark-gold">
+                  Newsletter
+                </p>
+                <h2 className="mt-3 text-3xl font-black text-gt-navy">
+                  {newsletter.heading}
+                </h2>
+                <p className="mt-4 max-w-2xl leading-8 text-slate-600">
+                  {newsletter.description}
+                </p>
+              </div>
+              <a
+                href={newsletter.href}
+                aria-disabled={newsletter.comingSoon}
+                className="rounded-full border-2 border-gt-navy/15 bg-gt-cream px-8 py-4 text-center font-bold text-gt-navy transition hover:border-gt-gold hover:bg-white"
+              >
+                {newsletter.label}
+              </a>
+            </div>
+          </div>
+        </section>
+
+        {/* ------------------------------------------------------------------ */}
         {/* CONTACT / JOIN                                                      */}
         {/* ------------------------------------------------------------------ */}
         <section id="contact" className="px-6 py-20 sm:px-8 lg:py-24">
@@ -273,21 +342,20 @@ export default function Home() {
                 Get Involved
               </p>
               <h2 className="mt-5 text-3xl font-black tracking-tight sm:text-4xl">
-                Ready to find your community in medicine?
+                Connect with {chapterInfo.shortName}.
               </h2>
               <p className="mt-5 max-w-xl leading-8 text-white/80">
-                Whether you&apos;re just starting to explore the health
-                professions or deep into applications, there&apos;s a place for
-                you here. Join the interest list, reach out, or follow along.
+                Membership and mentorship forms are coming soon. Until then,
+                students can follow the official Instagram or email the chapter
+                directly for updates.
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <a
-                  href={contactLinks.joinForm}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href={contactLinks.membershipForm}
+                  aria-disabled={contactLinks.membershipComingSoon}
                   className="rounded-full bg-gt-gold px-8 py-4 text-center font-bold text-gt-navy shadow-lg transition hover:bg-gt-dark-gold hover:text-white"
                 >
-                  Join LMSA
+                  {contactLinks.membershipLabel}
                 </a>
                 <a
                   href={`mailto:${contactLinks.email}`}
@@ -327,14 +395,23 @@ export default function Home() {
                   </span>
                 </a>
                 <a
-                  href={contactLinks.joinForm}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href={contactLinks.membershipForm}
+                  aria-disabled={contactLinks.membershipComingSoon}
                   className="flex items-center justify-between rounded-2xl border border-slate-200/80 bg-gt-cream/60 p-4 font-semibold text-gt-navy transition hover:border-gt-gold hover:bg-gt-cream"
                 >
                   <span>Interest Form</span>
                   <span className="text-sm font-bold text-gt-dark-gold">
-                    Sign up &rarr;
+                    {contactLinks.membershipLabel}
+                  </span>
+                </a>
+                <a
+                  href={contactLinks.mentorshipForm}
+                  aria-disabled={contactLinks.mentorshipComingSoon}
+                  className="flex items-center justify-between rounded-2xl border border-slate-200/80 bg-gt-cream/60 p-4 font-semibold text-gt-navy transition hover:border-gt-gold hover:bg-gt-cream"
+                >
+                  <span>Mentorship Form</span>
+                  <span className="text-sm font-bold text-gt-dark-gold">
+                    {contactLinks.mentorshipLabel}
                   </span>
                 </a>
               </div>

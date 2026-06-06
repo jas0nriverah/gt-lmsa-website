@@ -19,24 +19,28 @@ const sora = Sora({
 
 export const metadata: Metadata = {
   title: {
-    default: "Georgia Tech LMSA | Latino Medical Student Association",
-    template: "%s | Georgia Tech LMSA",
+    default:
+      "LMSA Plus Chapter at Georgia Tech | Latino Medical Student Association",
+    template: "%s | LMSA Plus at Georgia Tech",
   },
   description:
-    "The Latino Medical Student Association at Georgia Tech supports Latino/a/e and underrepresented pre-health students through mentorship, medical school preparation, service, and community.",
+    "The Latino Medical Student Association Plus Chapter at Georgia Tech supports Latino/Hispanic and underrepresented pre-health students through mentorship, medical school preparation, service, and community.",
   keywords: [
     "LMSA",
+    "LMSA Plus",
     "Georgia Tech",
     "Latino Medical Student Association",
+    "Latino Hispanic pre-health",
     "pre-health",
     "pre-med",
     "mentorship",
     "medical school",
   ],
   openGraph: {
-    title: "Georgia Tech LMSA | Latino Medical Student Association",
+    title:
+      "LMSA Plus Chapter at Georgia Tech | Latino Medical Student Association",
     description:
-      "Supporting Latino/a/e and underrepresented pre-health students through mentorship, preparation, service, and community.",
+      "Supporting Latino/Hispanic and underrepresented pre-health students through mentorship, preparation, service, and community.",
     type: "website",
   },
   icons: {

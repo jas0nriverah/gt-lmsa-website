@@ -1,6 +1,7 @@
 // Reusable card components used across the site.
 // You normally won't need to edit this file — update content in
 // src/lib/site-data.ts instead. This file controls how cards look.
+import Image from "next/image";
 
 type ImpactCardProps = {
   index: number;
@@ -40,6 +41,7 @@ export function EventCard({
 }: EventCardProps) {
   // "Sep 12" -> month "Sep", day "12" for a clean calendar-style block.
   const [month, day] = date.split(" ");
+  const hasDay = Boolean(day);
 
   return (
     <article className="group flex gap-5 rounded-3xl border border-slate-200/80 bg-white p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-gt-gold/60 hover:shadow-xl sm:p-6">
@@ -47,7 +49,13 @@ export function EventCard({
         <span className="text-xs font-bold uppercase tracking-widest text-gt-gold">
           {month}
         </span>
-        <span className="text-2xl font-black leading-none">{day}</span>
+        {hasDay ? (
+          <span className="text-2xl font-black leading-none">{day}</span>
+        ) : (
+          <span className="mt-1 text-xs font-bold uppercase tracking-widest text-white/80">
+            Date
+          </span>
+        )}
       </div>
       <div className="min-w-0">
         {tag ? (
@@ -70,9 +78,20 @@ type BoardCardProps = {
   role: string;
   focus: string;
   email?: string;
+  linkedin?: string;
+  instagram?: string;
+  image?: string;
 };
 
-export function BoardCard({ name, role, focus, email }: BoardCardProps) {
+export function BoardCard({
+  name,
+  role,
+  focus,
+  email,
+  linkedin,
+  instagram,
+  image,
+}: BoardCardProps) {
   const initials = role
     .split(" ")
     .map((word) => word[0])
@@ -81,9 +100,19 @@ export function BoardCard({ name, role, focus, email }: BoardCardProps) {
 
   return (
     <article className="flex h-full flex-col rounded-3xl border border-slate-200/80 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl">
-      <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-gt-navy to-gt-navy-deep text-xl font-black text-gt-gold shadow-md shadow-gt-navy/20">
-        {initials}
-      </div>
+      {image ? (
+        <Image
+          src={image}
+          alt={`${name} headshot`}
+          width={80}
+          height={80}
+          className="mb-5 h-20 w-20 rounded-2xl object-cover shadow-md shadow-gt-navy/20"
+        />
+      ) : (
+        <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-gt-navy to-gt-navy-deep text-xl font-black text-gt-gold shadow-md shadow-gt-navy/20">
+          {initials}
+        </div>
+      )}
       <p className="text-xs font-bold uppercase tracking-[0.22em] text-gt-dark-gold">
         {role}
       </p>
@@ -96,6 +125,30 @@ export function BoardCard({ name, role, focus, email }: BoardCardProps) {
         >
           {email}
         </a>
+      ) : null}
+      {linkedin || instagram ? (
+        <div className="mt-4 flex flex-wrap gap-3 text-sm font-bold">
+          {linkedin ? (
+            <a
+              href={linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gt-dark-gold underline decoration-gt-gold/40 underline-offset-4 hover:text-gt-navy"
+            >
+              LinkedIn
+            </a>
+          ) : null}
+          {instagram ? (
+            <a
+              href={instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gt-dark-gold underline decoration-gt-gold/40 underline-offset-4 hover:text-gt-navy"
+            >
+              Instagram
+            </a>
+          ) : null}
+        </div>
       ) : null}
     </article>
   );

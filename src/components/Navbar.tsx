@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { contactLinks, navLinks } from "@/lib/site-data";
+import { chapterInfo, contactLinks, navLinks } from "@/lib/site-data";
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -26,7 +26,8 @@ export function Navbar() {
             <p className="text-[0.7rem] font-bold uppercase tracking-[0.2em] text-gt-dark-gold">
               Georgia Tech
             </p>
-            <p className="text-lg font-black text-gt-navy">LMSA</p>
+            <p className="text-lg font-black text-gt-navy">LMSA Plus</p>
+            <span className="sr-only">{chapterInfo.fullName}</span>
           </div>
         </a>
 
@@ -41,12 +42,11 @@ export function Navbar() {
             </a>
           ))}
           <a
-            href={contactLinks.joinForm}
-            target="_blank"
-            rel="noopener noreferrer"
+            href={contactLinks.membershipForm}
+            aria-disabled={contactLinks.membershipComingSoon}
             className="rounded-full bg-gt-navy px-5 py-2.5 text-sm font-bold text-white shadow-md shadow-gt-navy/20 transition hover:bg-gt-navy-deep"
           >
-            Join LMSA
+            {contactLinks.membershipComingSoon ? "Join Soon" : "Join LMSA Plus"}
           </a>
         </div>
 
@@ -84,13 +84,12 @@ export function Navbar() {
               </a>
             ))}
             <a
-              href={contactLinks.joinForm}
-              target="_blank"
-              rel="noopener noreferrer"
+              href={contactLinks.membershipForm}
+              aria-disabled={contactLinks.membershipComingSoon}
               onClick={() => setIsOpen(false)}
               className="mt-2 rounded-xl bg-gt-navy px-4 py-3 text-center font-bold text-white"
             >
-              Join LMSA
+              {contactLinks.membershipComingSoon ? "Join Soon" : "Join LMSA Plus"}
             </a>
           </div>
         </div>

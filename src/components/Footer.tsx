@@ -1,5 +1,10 @@
 import Image from "next/image";
-import { contactLinks, creatorCredit, navLinks } from "@/lib/site-data";
+import {
+  chapterInfo,
+  contactLinks,
+  creatorCredit,
+  navLinks,
+} from "@/lib/site-data";
 
 export function Footer() {
   return (
@@ -22,13 +27,13 @@ export function Footer() {
                 <p className="text-xs font-bold uppercase tracking-[0.2em] text-gt-gold">
                   Georgia Tech Chapter
                 </p>
-                <p className="text-xl font-black">LMSA</p>
+                <p className="text-xl font-black">LMSA Plus</p>
               </div>
             </div>
             <p className="mt-5 max-w-md leading-7 text-white/70">
-              The Latino Medical Student Association at Georgia Tech supports
-              Latino/a/e and underrepresented pre-health students through
-              mentorship, preparation, service, and community.
+              {chapterInfo.fullName} supports Latino/Hispanic and
+              underrepresented pre-health students through mentorship,
+              preparation, service, and community.
             </p>
           </div>
 
@@ -69,12 +74,16 @@ export function Footer() {
                 Instagram {contactLinks.instagramHandle}
               </a>
               <a
-                href={contactLinks.joinForm}
-                target="_blank"
-                rel="noopener noreferrer"
+                href={contactLinks.membershipForm}
                 className="w-fit transition hover:text-white"
               >
-                Join our interest form
+                {contactLinks.membershipLabel}
+              </a>
+              <a
+                href={contactLinks.newsletterForm}
+                className="w-fit transition hover:text-white"
+              >
+                {contactLinks.newsletterLabel}
               </a>
             </div>
           </div>
@@ -82,7 +91,7 @@ export function Footer() {
 
         <div className="mx-auto mt-12 flex max-w-6xl flex-col gap-2 border-t border-white/15 pt-6 text-sm text-white/55 sm:flex-row sm:items-center sm:justify-between">
           <p>
-            &copy; {new Date().getFullYear()} Georgia Tech LMSA. Built by
+            &copy; {new Date().getFullYear()} Georgia Tech LMSA Plus. Built by
             students, for students.
           </p>
           <p>Comunidad &middot; Mentorship &middot; Medicine</p>
