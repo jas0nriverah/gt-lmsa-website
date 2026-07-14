@@ -1064,7 +1064,8 @@ export const faqs: FAQ[] = [
 export const involvementActions: ActionLink[] = [
   {
     label: "Join the interest list",
-    description: "Prepare an email sharing the updates and programs that interest you.",
+    description:
+      "Fill out the chapter interest form so we can share launch updates and involvement opportunities.",
     href: contactLinks.interestForm.href,
     status: "active",
     category: "Membership",
@@ -1073,10 +1074,9 @@ export const involvementActions: ActionLink[] = [
   {
     label: "Apply for Fall board chairs",
     description:
-      "Applications for Events/Programming, Marketing/Communications, and Outreach/Partnerships are open through August 3, 2026. The Google Form link will appear here once published.",
+      "Events/Programming, Marketing/Communications, and Outreach/Partnerships applications are open through August 3, 2026. The Google Form link will appear here once published.",
     status: "coming-soon",
     category: "Leadership",
-    featured: true,
   },
   {
     label: "Follow chapter updates",
