@@ -111,16 +111,19 @@ export default function HomePage() {
       <Section
         eyebrow="Events"
         title="The first chapter calendar is taking shape"
-        description="Dates, times, locations, and registration links remain unavailable until they are formally confirmed."
+        description="Confirmed Fall Student Organizations Fair dates are on the calendar. Other launch activities remain planned until logistics are verified."
         className="bg-white"
       >
         <div className="grid gap-5 md:grid-cols-2">
-          {events.slice(0, 2).map((event) => (
-            <EventCard key={event.id} event={event} />
-          ))}
+          {events
+            .filter((event) => event.status === "confirmed")
+            .slice(0, 2)
+            .map((event) => (
+              <EventCard key={event.id} event={event} />
+            ))}
         </div>
         <Link href="/events" className="button button-secondary mt-8">
-          View the event roadmap
+          View the event calendar
         </Link>
       </Section>
 

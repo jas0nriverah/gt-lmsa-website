@@ -46,7 +46,7 @@ export function EventCard({ event }: { event: ChapterEvent }) {
     event.registrationStatus === "active" && Boolean(event.registrationUrl);
 
   return (
-    <article className="card flex h-full flex-col overflow-hidden">
+    <article id={event.id} className="card flex h-full flex-col overflow-hidden scroll-mt-28">
       {event.image ? (
         <Image
           src={event.image.src}

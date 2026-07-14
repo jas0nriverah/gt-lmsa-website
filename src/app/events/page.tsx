@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { EventCard } from "@/components/Cards";
 import { EmptyState } from "@/components/EmptyState";
+import { EventCalendar } from "@/components/EventCalendar";
 import { PageHero } from "@/components/PageHero";
 import { Section } from "@/components/Section";
 import { SitePage } from "@/components/SitePage";
@@ -9,7 +10,7 @@ import { events } from "@/lib/site-data";
 export const metadata: Metadata = {
   title: "Events",
   description:
-    "See planned LMSA Plus at Georgia Tech launch events and honest coming-soon states for dates, locations, and registration.",
+    "See confirmed LMSA Plus at Georgia Tech events on the calendar, plus planned launch activities still under development.",
 };
 
 export default function EventsPage() {
@@ -21,17 +22,23 @@ export default function EventsPage() {
     <SitePage>
       <PageHero
         eyebrow="Events"
-        title="The first chapter calendar is being built carefully."
-        description="An idea is not a confirmed event. Dates, times, locations, partners, speakers, and registration links will appear only after the board verifies them."
+        title="Confirmed dates appear on the calendar first."
+        description="Confirmed events include verified dates, times, and locations. Planning-board ideas stay separate until the founding board confirms them."
       />
       <Section
         eyebrow="Confirmed calendar"
         title="Upcoming confirmed events"
+        description="Use the calendar to scan dates, then read the full event cards below for times, location, and details."
         className="bg-white"
       >
         {confirmedEvents.length ? (
-          <div className="grid gap-5 md:grid-cols-2">
-            {confirmedEvents.map((event) => <EventCard key={event.id} event={event} />)}
+          <div className="grid gap-8">
+            <EventCalendar events={confirmedEvents} />
+            <div className="grid gap-5 md:grid-cols-2">
+              {confirmedEvents.map((event) => (
+                <EventCard key={event.id} event={event} />
+              ))}
+            </div>
           </div>
         ) : (
           <EmptyState
@@ -47,13 +54,17 @@ export default function EventsPage() {
         className="bg-gt-cream"
       >
         <div className="grid gap-5 md:grid-cols-2">
-          {plannedEvents.map((event) => <EventCard key={event.id} event={event} />)}
+          {plannedEvents.map((event) => (
+            <EventCard key={event.id} event={event} />
+          ))}
         </div>
       </Section>
       <Section eyebrow="Archive" title="Past chapter events" className="bg-white">
         {pastEvents.length ? (
           <div className="grid gap-5 md:grid-cols-2">
-            {pastEvents.map((event) => <EventCard key={event.id} event={event} />)}
+            {pastEvents.map((event) => (
+              <EventCard key={event.id} event={event} />
+            ))}
           </div>
         ) : (
           <EmptyState
