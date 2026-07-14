@@ -119,7 +119,9 @@ export function BoardCard({ member }: { member: BoardMember }) {
           {member.initials}
         </div>
       )}
-      <p className="eyebrow mt-6">{member.role}</p>
+      <p className="mt-6 text-sm font-bold tracking-wide text-gt-dark-gold">
+        {member.role}
+      </p>
       <h3 className="mt-2 text-xl font-bold text-gt-navy">{member.name}</h3>
       {member.openingNote ? (
         <p className="mt-2 inline-flex w-fit rounded-full bg-gt-cream px-3 py-1 text-xs font-bold uppercase tracking-wide text-gt-dark-gold ring-1 ring-gt-gold/30">

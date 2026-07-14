@@ -325,7 +325,7 @@ export const boardMembers: BoardMember[] = [
   },
   {
     name: "Ashley Diaz Duenas",
-    role: "Service Chair",
+    role: "Service/Community Chair",
     initials: "AD",
     description:
       "Plans and supports community service and outreach that aligns with LMSA's mission, including volunteer projects and partnerships that serve Hispanic/Latino and underserved communities.",
@@ -889,7 +889,7 @@ export const faqs: FAQ[] = [
   {
     question: "What is the Fall 2026 board structure?",
     answer:
-      "The founding Fall 2026 board includes President, Vice President, Service Chair, Events/Programming Chair, Marketing/Communications Chair, and Outreach/Partnerships Chair. Three roles are already filled. Applications for the remaining Fall chairs open August 3, 2026.",
+      "The founding Fall 2026 board includes President, Vice President, Service/Community Chair, Events/Programming Chair, Marketing/Communications Chair, and Outreach/Partnerships Chair. Three roles are already filled. Applications for the remaining Fall chairs open August 3, 2026.",
   },
   {
     question: "Will more board positions open later?",
