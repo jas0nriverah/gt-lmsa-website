@@ -3,7 +3,7 @@ import { ActionLink } from "@/components/ActionLink";
 import { PageHero } from "@/components/PageHero";
 import { Section } from "@/components/Section";
 import { SitePage } from "@/components/SitePage";
-import { contactLinks, involvementActions } from "@/lib/site-data";
+import { contactLinks, involvementActions, partners } from "@/lib/site-data";
 
 export const metadata: Metadata = {
   title: "Get Involved",
@@ -28,6 +28,39 @@ export default function GetInvolvedPage() {
         <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {involvementActions.map((action) => (
             <ActionLink key={action.label} action={action} />
+          ))}
+        </div>
+      </Section>
+      <Section
+        eyebrow="Community partners"
+        title="Organizations we are already working with"
+        description="These are confirmed partners. Additional collaborations are welcome and will be added after the board approves them."
+        className="bg-gt-cream"
+      >
+        <div className="grid gap-5 md:grid-cols-2">
+          {partners.map((partner) => (
+            <article key={partner.name} className="card flex h-full flex-col p-6">
+              <p className="text-sm font-bold tracking-wide text-gt-dark-gold">
+                {partner.focus}
+              </p>
+              <h3 className="mt-2 text-xl font-bold text-gt-navy">
+                {partner.shortName ?? partner.name}
+              </h3>
+              <p className="mt-1 text-sm font-semibold text-slate-500">
+                {partner.name}
+              </p>
+              <p className="mt-3 flex-1 leading-7 text-slate-600">
+                {partner.description}
+              </p>
+              <a
+                href={partner.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="button button-secondary mt-5 self-start"
+              >
+                Visit partner site
+              </a>
+            </article>
           ))}
         </div>
       </Section>

@@ -32,6 +32,14 @@ export interface Announcement {
   featured: boolean;
 }
 
+export interface Partner {
+  name: string;
+  shortName?: string;
+  description: string;
+  href: string;
+  focus: string;
+}
+
 export interface CoreValue {
   title: string;
   description: string;

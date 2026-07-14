@@ -18,6 +18,7 @@ import type {
   CoreValue,
   FAQ,
   NavLink,
+  Partner,
   Program,
   ResourceCategory,
   ScholarshipOpportunity,
@@ -240,8 +241,8 @@ export const programs: Program[] = [
   {
     title: "Campus and community collaboration",
     description:
-      "Planned collaboration with Georgia Tech groups, medical schools, and community organizations when a shared activity is formally confirmed.",
-    status: "planned",
+      "Build partnerships with campus groups, medical schools, and community organizations. Confirmed partners are listed on Get Involved.",
+    status: "available",
     category: "Partnerships",
   },
 ];
@@ -294,16 +295,6 @@ export const events: ChapterEvent[] = [
     displayDate: "Fall 2026 — date to be confirmed",
     description:
       "A planned first meeting for members to connect, review the semester direction, and learn how to participate in early chapter projects.",
-    registrationStatus: "coming-soon",
-  },
-  {
-    id: "pre-health-resource-night",
-    title: "Pre-Health Resource Night",
-    category: "Education",
-    status: "planned",
-    displayDate: "Concept for 2026–2027",
-    description:
-      "A planned guided tour of official Georgia Tech advising, academic support, application, research, and opportunity resources.",
     registrationStatus: "coming-soon",
   },
 ];
@@ -376,6 +367,18 @@ export const boardMembers: BoardMember[] = [
         : undefined,
     description:
       "Builds collaborations with campus groups, medical schools, community partners, and other LMSA chapters to expand mentorship, outreach, and shared programming.",
+  },
+];
+
+// Confirmed external partners only. Add organizations after the board approves them.
+export const partners: Partner[] = [
+  {
+    name: "Next Generation Men & Women",
+    shortName: "Next Gen Atl",
+    focus: "Community partnership",
+    description:
+      "Atlanta nonprofit that supports under-resourced high school students with mentorship, college and career exposure, and pathways after graduation. LMSA Plus at Georgia Tech is proud to partner with Next Gen Atl Men and Women.",
+    href: "https://nextgenatl.org/",
   },
 ];
 
@@ -918,6 +921,11 @@ export const faqs: FAQ[] = [
     question: "Will more board positions open later?",
     answer:
       "Yes. In Spring 2027, once the chapter has more members, the board plans to open Secretary, Treasurer/Fundraising Chair, Mentorship Chair, and First-Year Representative. Those are new positions for later in the year—not part of the current Fall chair application round.",
+  },
+  {
+    question: "Who has the chapter partnered with so far?",
+    answer:
+      "LMSA Plus at Georgia Tech has partnered with Next Generation Men & Women (Next Gen Atl), an Atlanta nonprofit supporting under-resourced high school students. Confirmed partners are listed on the Get Involved page.",
   },
   {
     question: "When will the first meeting occur?",
