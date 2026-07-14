@@ -330,6 +330,27 @@ export const boardMembers: BoardMember[] = [
     description:
       "Service Chair developing volunteer opportunities, community outreach, and service-focused programming for chapter members.",
   },
+  {
+    name: "Applications open August 3",
+    role: "Events/Programming Chair",
+    initials: "EP",
+    description:
+      "Fall 2026 founding board role. Plans chapter meetings, workshops, panels, and community events for the launch year. Applications open August 3, 2026.",
+  },
+  {
+    name: "Applications open August 3",
+    role: "Marketing/Communications Chair",
+    initials: "MC",
+    description:
+      "Fall 2026 founding board role. Leads Instagram, announcements, visuals, and chapter messaging so students know how to get involved. Applications open August 3, 2026.",
+  },
+  {
+    name: "Applications open August 3",
+    role: "Outreach/Partnerships Chair",
+    initials: "OP",
+    description:
+      "Fall 2026 founding board role. Builds connections with campus partners, medical schools, and community organizations. Applications open August 3, 2026.",
+  },
 ];
 
 export const resourceCategories: ResourceCategory[] = [
@@ -861,6 +882,16 @@ export const faqs: FAQ[] = [
       "How can physicians, medical students, campus groups, or community organizations collaborate?",
     answer:
       "Email the chapter with your organization, proposed topic or activity, intended audience, and preferred timeline. A message starts a conversation; it does not represent a confirmed partnership until the board approves it.",
+  },
+  {
+    question: "What is the Fall 2026 board structure?",
+    answer:
+      "The founding Fall 2026 board includes President, Vice President, Service Chair, Events/Programming Chair, Marketing/Communications Chair, and Outreach/Partnerships Chair. Three roles are already filled. Applications for the remaining Fall chairs open August 3, 2026.",
+  },
+  {
+    question: "Will more board positions open later?",
+    answer:
+      "Yes. In Spring 2027, once the chapter has more members, the board plans to open Secretary, Treasurer/Fundraising Chair, Mentorship Chair, and First-Year Representative. Those are new positions for later in the year—not part of the August 3 Fall application round.",
   },
   {
     question: "When will the first meeting occur?",

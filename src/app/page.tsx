@@ -127,12 +127,12 @@ export default function HomePage() {
       <Section
         eyebrow="Founding board"
         title="Meet the chapter leaders preparing the launch"
-        description="Only board information approved for public use is displayed."
+        description="Fall 2026 founding board roles. Three officers are confirmed; remaining chair applications open August 3, 2026. Only board information approved for public use is displayed."
         className="bg-gt-cream"
       >
         <div className="grid gap-5 md:grid-cols-3">
           {boardMembers.map((member) => (
-            <BoardCard key={member.name} member={member} />
+            <BoardCard key={`${member.role}-${member.name}`} member={member} />
           ))}
         </div>
       </Section>
