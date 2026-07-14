@@ -303,13 +303,13 @@ export const events: ChapterEvent[] = [
 export const boardMembers: BoardMember[] = [
   {
     name: "Stacy Lomeli",
-    role: "Founding President",
+    role: "President",
     initials: "SL",
     description:
-      "Founding President leading the chapter's Fall 2026 launch, organizational direction, campus presence, and founding member community.",
+      "President leading the chapter's Fall 2026 launch, organizational direction, campus presence, and founding member community.",
     image: {
       src: "/board/stacy-lomeli.png",
-      alt: "Headshot of Stacy Lomeli, Founding President of LMSA Plus at Georgia Tech",
+      alt: "Headshot of Stacy Lomeli, President of LMSA Plus at Georgia Tech",
     },
   },
   {
