@@ -121,6 +121,11 @@ export function BoardCard({ member }: { member: BoardMember }) {
       )}
       <p className="eyebrow mt-6">{member.role}</p>
       <h3 className="mt-2 text-xl font-bold text-gt-navy">{member.name}</h3>
+      {member.openingNote ? (
+        <p className="mt-2 inline-flex w-fit rounded-full bg-gt-cream px-3 py-1 text-xs font-bold uppercase tracking-wide text-gt-dark-gold ring-1 ring-gt-gold/30">
+          {member.openingNote}
+        </p>
+      ) : null}
       <p className="mt-3 flex-1 leading-7 text-slate-600">
         {member.description}
       </p>

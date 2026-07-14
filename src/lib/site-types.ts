@@ -66,6 +66,8 @@ export interface BoardMember {
   role: string;
   initials: string;
   description: string;
+  /** Optional note for open roles, shown as a small label under the name. */
+  openingNote?: string;
   image?: { src: string; alt: string };
   publicContacts?: Array<{
     label: string;

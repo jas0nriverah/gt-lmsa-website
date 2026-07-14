@@ -306,7 +306,7 @@ export const boardMembers: BoardMember[] = [
     role: "President",
     initials: "SL",
     description:
-      "President leading the chapter's Fall 2026 launch, organizational direction, campus presence, and founding member community.",
+      "Leads the Georgia Tech chapter's vision, launch timeline, campus presence, and coordination with LMSA National and Southeast leadership.",
     image: {
       src: "/board/stacy-lomeli.png",
       alt: "Headshot of Stacy Lomeli, President of LMSA Plus at Georgia Tech",
@@ -317,7 +317,7 @@ export const boardMembers: BoardMember[] = [
     role: "Vice President",
     initials: "AU",
     description:
-      "Vice President supporting chapter operations, programming, member engagement, and the development of the founding organization.",
+      "Supports day-to-day chapter operations, helps coordinate programming, and strengthens member engagement as the founding organization takes shape.",
     image: {
       src: "/board/amanda-ubera-corona.jpg",
       alt: "Headshot of Amanda Ubera-Corona, Vice President of LMSA Plus at Georgia Tech",
@@ -328,28 +328,31 @@ export const boardMembers: BoardMember[] = [
     role: "Service Chair",
     initials: "AD",
     description:
-      "Service Chair developing volunteer opportunities, community outreach, and service-focused programming for chapter members.",
+      "Plans and supports community service and outreach that aligns with LMSA's mission, including volunteer projects and partnerships that serve Hispanic/Latino and underserved communities.",
   },
   {
-    name: "Applications open August 3",
+    name: "Position open",
     role: "Events/Programming Chair",
     initials: "EP",
+    openingNote: "Applications open August 3",
     description:
-      "Fall 2026 founding board role. Plans chapter meetings, workshops, panels, and community events for the launch year. Applications open August 3, 2026.",
+      "Designs and runs chapter programming such as meetings, Q&A panels, workshops, networking nights, and social events that build community and professional development.",
   },
   {
-    name: "Applications open August 3",
+    name: "Position open",
     role: "Marketing/Communications Chair",
     initials: "MC",
+    openingNote: "Applications open August 3",
     description:
-      "Fall 2026 founding board role. Leads Instagram, announcements, visuals, and chapter messaging so students know how to get involved. Applications open August 3, 2026.",
+      "Manages Instagram and chapter messaging—announcements, visuals, and branding—so students stay informed about events, opportunities, and ways to get involved.",
   },
   {
-    name: "Applications open August 3",
+    name: "Position open",
     role: "Outreach/Partnerships Chair",
     initials: "OP",
+    openingNote: "Applications open August 3",
     description:
-      "Fall 2026 founding board role. Builds connections with campus partners, medical schools, and community organizations. Applications open August 3, 2026.",
+      "Builds collaborations with campus groups, medical schools, community partners, and other LMSA chapters to expand mentorship, outreach, and shared programming.",
   },
 ];
 
