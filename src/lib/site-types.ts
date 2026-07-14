@@ -1,4 +1,5 @@
 export type LinkStatus = "active" | "coming-soon";
+export type RegistrationStatus = LinkStatus | "not-required";
 export type ContentStatus = "planned" | "confirmed" | "past";
 export type OpportunityStatus =
   | "open"
@@ -63,7 +64,7 @@ export interface ChapterEvent {
   location?: string;
   description: string;
   registrationUrl?: string;
-  registrationStatus: LinkStatus;
+  registrationStatus: RegistrationStatus;
   featured?: boolean;
   image?: { src: string; alt: string };
   calendarUrl?: string;

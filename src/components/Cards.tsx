@@ -42,9 +42,6 @@ export function ProgramCard({ program }: { program: Program }) {
 }
 
 export function EventCard({ event }: { event: ChapterEvent }) {
-  const registrationAvailable =
-    event.registrationStatus === "active" && Boolean(event.registrationUrl);
-
   return (
     <article id={event.id} className="card flex h-full flex-col overflow-hidden scroll-mt-28">
       {event.image ? (
@@ -79,22 +76,25 @@ export function EventCard({ event }: { event: ChapterEvent }) {
           </div>
         </dl>
         <p className="mt-4 flex-1 leading-7 text-slate-600">{event.description}</p>
-        <div className="mt-6 flex flex-wrap gap-3">
-          {registrationAvailable ? (
-            <a className="button button-primary" href={event.registrationUrl}>
-              Register
-            </a>
-          ) : (
-            <span className="button button-disabled" aria-disabled="true">
-              Registration coming soon
-            </span>
-          )}
-          {event.calendarUrl && event.startDate ? (
-            <a className="button button-secondary" href={event.calendarUrl}>
-              Add to calendar
-            </a>
-          ) : null}
-        </div>
+        {event.registrationStatus !== "not-required" ||
+        (event.calendarUrl && event.startDate) ? (
+          <div className="mt-6 flex flex-wrap gap-3">
+            {event.registrationStatus === "active" && event.registrationUrl ? (
+              <a className="button button-primary" href={event.registrationUrl}>
+                Register
+              </a>
+            ) : event.registrationStatus === "coming-soon" ? (
+              <span className="button button-disabled" aria-disabled="true">
+                Registration coming soon
+              </span>
+            ) : null}
+            {event.calendarUrl && event.startDate ? (
+              <a className="button button-secondary" href={event.calendarUrl}>
+                Add to calendar
+              </a>
+            ) : null}
+          </div>
+        ) : null}
       </div>
     </article>
   );

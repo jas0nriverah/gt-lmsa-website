@@ -270,7 +270,7 @@ export const events: ChapterEvent[] = [
     location: "Tech Green and Surrounding Walkways",
     description:
       "Day 1 of Georgia Tech's Fall Student Organizations Fair, hosted by the Center for Student Engagement. Stop by the LMSA Plus table — we will be handing out brochures and some goodies! Meet organization leaders from a select group of 550+ RSOs and kick-start your involvement on campus. Each day features different RSO categories. RSOs that want to table must register on Engage. Contact: Engage@gatech.edu.",
-    registrationStatus: "coming-soon",
+    registrationStatus: "not-required",
     featured: true,
   },
   {
@@ -284,7 +284,7 @@ export const events: ChapterEvent[] = [
     location: "Tech Green and Surrounding Walkways",
     description:
       "Day 2 of Georgia Tech's Fall Student Organizations Fair, hosted by the Center for Student Engagement. Stop by the LMSA Plus table — we will be handing out brochures and some goodies! Meet organization leaders from a select group of 550+ RSOs and kick-start your involvement on campus. RSOs that want to table must register on Engage. Contact: Engage@gatech.edu.",
-    registrationStatus: "coming-soon",
+    registrationStatus: "not-required",
     featured: true,
   },
   {
