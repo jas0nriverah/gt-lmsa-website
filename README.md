@@ -12,6 +12,7 @@ Live site: [gt-lmsa-website.vercel.app](https://gt-lmsa-website.vercel.app)
 - Events page separating confirmed, planned, and past events
 - Resources page with official links and time-sensitive opportunity statuses
 - Get Involved page with active contact methods and non-clickable Coming Soon forms
+- Privacy-minimal chapter interest form at `/interest`
 - Mobile quick-links page at `/links`
 - Route metadata, sitemap, robots file, 404 page, keyboard focus styles, and reduced-motion support
 
@@ -43,17 +44,23 @@ In the `events` array:
 
 When an event is complete, change its status to `"past"` and keep only accurate, approved information.
 
-### Activate a form or action
+### How the chapter interest form works
+
+The `/interest` page gathers a minimal set of details in the visitor's browser and prepares an email addressed to the approved chapter account. The website does not transmit or store the response, and no third-party form vendor is involved. The visitor must review and send the prepared email from their own mail app.
+
+This approach can be replaced later with an approved Google Form or another reviewed service. Before changing it, document who owns the form, where responses are stored, who has access, how long data is retained, and which fields are actually necessary.
+
+### Activate another form or action
 
 Coming Soon actions intentionally have no URL. To activate one:
 
 ```ts
 {
-  label: "Join the interest list",
-  description: "Receive chapter launch updates.",
+  label: "Newsletter signup",
+  description: "Receive chapter announcements.",
   href: "https://approved-public-form.example",
   status: "active",
-  category: "Membership",
+  category: "Updates",
 }
 ```
 
@@ -141,7 +148,8 @@ After pushing, verify both the GitHub commit and the resulting Vercel deployment
 
 - Confirm the exact Fall 2026 interest-meeting date, time, location, and registration method
 - Confirm Georgia Tech Student Organization Fair participation and logistics
-- Approve the public interest, newsletter, mentorship, volunteer, and event-suggestion forms
+- Decide whether to keep the email-based interest form or replace it with an approved hosted form
+- Approve the public newsletter, mentorship, volunteer, and event-suggestion forms
 - Decide local membership and graduate-student participation policies
 - Approve any officer headshots or expanded public biographies
 - Confirm each program before changing its status from Planned

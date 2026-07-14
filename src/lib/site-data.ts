@@ -39,7 +39,7 @@ export const contactLinks = {
   email: "lmsaplusgatech@gmail.com",
   instagram: "https://www.instagram.com/lmsaplusgatech/",
   instagramHandle: "@lmsaplusgatech",
-  interestForm: { status: "coming-soon" as const },
+  interestForm: { status: "active" as const, href: "/interest" },
   newsletterForm: { status: "coming-soon" as const },
   mentorshipForm: { status: "coming-soon" as const },
   volunteerForm: { status: "coming-soon" as const },
@@ -794,7 +794,7 @@ export const faqs: FAQ[] = [
   {
     question: "Can first-year students participate?",
     answer:
-      "Yes. LMSA PLUS is designed to support students early in the journey, and first-year students are encouraged to attend launch events and join the interest list when it opens.",
+      "Yes. LMSA PLUS is designed to support students early in the journey, and first-year students are encouraged to complete the chapter interest form and attend launch events once details are confirmed.",
   },
   {
     question: "Can graduate students participate?",
@@ -847,8 +847,9 @@ export const faqs: FAQ[] = [
 export const involvementActions: ActionLink[] = [
   {
     label: "Join the interest list",
-    description: "Be the first to receive launch and first-meeting updates.",
-    status: "coming-soon",
+    description: "Prepare an email sharing the updates and programs that interest you.",
+    href: contactLinks.interestForm.href,
+    status: "active",
     category: "Membership",
     featured: true,
   },

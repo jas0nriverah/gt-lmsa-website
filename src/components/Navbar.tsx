@@ -63,9 +63,13 @@ export function Navbar() {
               </Link>
             );
           })}
-          <span className="button button-disabled text-sm" aria-disabled="true">
-            Interest list coming soon
-          </span>
+          <Link
+            href="/interest"
+            aria-current={pathname === "/interest" ? "page" : undefined}
+            className="button button-primary text-sm"
+          >
+            Join the interest list
+          </Link>
         </div>
 
         <button
@@ -99,9 +103,14 @@ export function Navbar() {
                 {link.label}
               </Link>
             ))}
-            <span className="button button-disabled mt-3 justify-center" aria-disabled="true">
-              Interest list coming soon
-            </span>
+            <Link
+              href="/interest"
+              aria-current={pathname === "/interest" ? "page" : undefined}
+              onClick={() => setIsOpen(false)}
+              className="button button-primary mt-3 justify-center"
+            >
+              Join the interest list
+            </Link>
           </div>
         </div>
       ) : null}

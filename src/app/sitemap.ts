@@ -1,7 +1,16 @@
 import type { MetadataRoute } from "next";
 
 const baseUrl = "https://gt-lmsa-website.vercel.app";
-const routes = ["", "/about", "/programs", "/events", "/resources", "/get-involved", "/links"];
+const routes = [
+  "",
+  "/about",
+  "/programs",
+  "/events",
+  "/resources",
+  "/get-involved",
+  "/interest",
+  "/links",
+];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return routes.map((route): MetadataRoute.Sitemap[number] => ({

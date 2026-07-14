@@ -36,11 +36,11 @@ export default function HomePage() {
               {chapterInfo.description} Public programming is planned to begin in Fall 2026.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Link href="/events" className="button button-primary">
-                View planned events <span aria-hidden="true">→</span>
+              <Link href="/interest" className="button button-primary">
+                Join the interest list <span aria-hidden="true">→</span>
               </Link>
-              <Link href="/get-involved" className="button button-secondary">
-                Get involved
+              <Link href="/events" className="button button-secondary">
+                View planned events
               </Link>
             </div>
             <p className="mt-5 text-sm font-semibold text-slate-500">
@@ -54,7 +54,7 @@ export default function HomePage() {
               alt="Latino Medical Student Association logo"
               width={280}
               height={280}
-              className="relative rounded-full bg-white shadow-xl ring-8 ring-white/10"
+              className="relative rounded-full bg-white shadow-xl"
               priority
             />
           </div>

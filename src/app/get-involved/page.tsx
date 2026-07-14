@@ -17,12 +17,12 @@ export default function GetInvolvedPage() {
       <PageHero
         eyebrow="Get involved"
         title="There is room to help shape the founding year."
-        description="Follow public updates, contact the chapter, and return as interest, mentorship, volunteer, and event forms are approved. Unfinished forms are visibly labeled and cannot collect information."
+        description="Complete the chapter interest form, follow public updates, contact the board, and return as mentorship, volunteer, and event forms are approved. Unfinished forms are visibly labeled and cannot collect information."
       />
       <Section
         eyebrow="Ways to participate"
         title="Choose the next step that fits you"
-        description="Active actions work now. Coming Soon cards are intentionally not clickable."
+        description="The chapter interest form and contact actions work now. Coming Soon cards are intentionally not clickable."
         className="bg-gt-cream"
       >
         <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
