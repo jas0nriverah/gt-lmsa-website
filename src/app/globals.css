@@ -1,18 +1,13 @@
 @import "tailwindcss";
 
-/* ---------------------------------------------------------------------------
-   GEORGIA TECH / LMSA BRAND TOKENS
-   These colors map to Tailwind classes like text-gt-navy, bg-gt-gold, etc.
---------------------------------------------------------------------------- */
 @theme {
   --color-gt-navy: #003057;
   --color-gt-navy-deep: #00233f;
   --color-gt-gold: #b3a369;
-  --color-gt-dark-gold: #857437;
+  --color-gt-dark-gold: #6f622f;
   --color-gt-cream: #f8f7f2;
   --color-gt-cream-deep: #efe9d9;
   --color-ink: #102033;
-
   --font-sans: var(--font-inter), Arial, Helvetica, sans-serif;
   --font-display: var(--font-sora), var(--font-inter), Arial, sans-serif;
 }
@@ -29,13 +24,11 @@ html {
 
 body {
   margin: 0;
-  background-color: #f8f7f2;
-  /* Soft brand gradient + faint medical "plus" texture for subtle identity. */
-  background-image:
-    radial-gradient(circle at 12% -10%, rgba(179, 163, 105, 0.16), transparent 42%),
-    radial-gradient(circle at 92% 0%, rgba(0, 48, 87, 0.08), transparent 38%),
-    linear-gradient(180deg, #ffffff 0%, #f8f7f2 50%, #ffffff 100%);
-  background-attachment: fixed;
+  background:
+    linear-gradient(rgba(0, 48, 87, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 48, 87, 0.025) 1px, transparent 1px),
+    #f8f7f2;
+  background-size: 32px 32px;
   color: #102033;
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
@@ -47,11 +40,18 @@ h2,
 h3,
 h4 {
   font-family: var(--font-display);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.025em;
 }
 
-section {
-  scroll-margin-top: 5.5rem;
+a,
+button,
+summary {
+  -webkit-tap-highlight-color: transparent;
+}
+
+:focus-visible {
+  outline: 3px solid #b3a369;
+  outline-offset: 3px;
 }
 
 ::selection {
@@ -59,14 +59,135 @@ section {
   color: #ffffff;
 }
 
-/* Respect users who prefer reduced motion. */
+.skip-link {
+  position: fixed;
+  left: 1rem;
+  top: 1rem;
+  z-index: 100;
+  transform: translateY(-200%);
+  border-radius: 0.75rem;
+  background: #ffffff;
+  padding: 0.75rem 1rem;
+  font-weight: 700;
+  color: #003057;
+  box-shadow: 0 10px 30px rgba(0, 48, 87, 0.2);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+.section-shell {
+  padding: 4.5rem 1.5rem;
+  scroll-margin-top: 5.5rem;
+}
+
+.card {
+  border: 1px solid rgb(226 232 240);
+  border-radius: 1.5rem;
+  background: #ffffff;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06);
+}
+
+.eyebrow {
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  line-height: 1.3;
+  text-transform: uppercase;
+  color: #6f622f;
+}
+
+.button {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  gap: 0.75rem;
+  border-radius: 999px;
+  padding: 0.75rem 1.25rem;
+  font-weight: 800;
+  line-height: 1.35;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease;
+}
+
+.button-primary {
+  background: #003057;
+  color: #ffffff;
+}
+
+.button-primary:hover {
+  background: #00233f;
+}
+
+.button-secondary {
+  border: 1px solid rgb(203 213 225);
+  background: #ffffff;
+  color: #003057;
+}
+
+.button-secondary:hover {
+  border-color: #b3a369;
+  background: #f8f7f2;
+}
+
+.button-disabled {
+  cursor: not-allowed;
+  border: 1px solid rgb(203 213 225);
+  background: rgb(241 245 249);
+  color: rgb(71 85 105);
+}
+
+.text-link {
+  color: #003057;
+  text-decoration-line: underline;
+  text-decoration-color: rgba(179, 163, 105, 0.8);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+.text-link:hover {
+  color: #6f622f;
+}
+
+.footer-link {
+  width: fit-content;
+  border-radius: 0.25rem;
+  color: rgba(255, 255, 255, 0.74);
+  transition: color 160ms ease;
+}
+
+.footer-link:hover {
+  color: #ffffff;
+}
+
+@media (min-width: 640px) {
+  .section-shell {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-shell {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
 
-  * {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
   }
 }

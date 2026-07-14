@@ -1,15 +1,5 @@
 import type { ReactNode } from "react";
 
-type SectionProps = {
-  id: string;
-  eyebrow?: string;
-  title: string;
-  description?: string;
-  children: ReactNode;
-  className?: string;
-  align?: "center" | "left";
-};
-
 export function Section({
   id,
   eyebrow,
@@ -17,38 +7,27 @@ export function Section({
   description,
   children,
   className = "",
-  align = "center",
-}: SectionProps) {
-  const isCenter = align === "center";
-
+  align = "left",
+}: {
+  id?: string;
+  eyebrow?: string;
+  title: string;
+  description?: string;
+  children: ReactNode;
+  className?: string;
+  align?: "center" | "left";
+}) {
+  const centered = align === "center";
   return (
-    <section id={id} className={`px-6 py-20 sm:px-8 lg:py-24 ${className}`}>
+    <section id={id} className={`section-shell ${className}`}>
       <div className="mx-auto max-w-6xl">
-        <div
-          className={`mb-12 max-w-3xl ${
-            isCenter ? "mx-auto text-center" : "text-left"
-          }`}
-        >
-          {eyebrow ? (
-            <div
-              className={`mb-4 flex items-center gap-3 ${
-                isCenter ? "justify-center" : ""
-              }`}
-            >
-              <span className="h-px w-8 bg-gt-gold" />
-              <span className="text-xs font-bold uppercase tracking-[0.28em] text-gt-dark-gold">
-                {eyebrow}
-              </span>
-              <span className="h-px w-8 bg-gt-gold" />
-            </div>
-          ) : null}
-          <h2 className="text-3xl font-bold tracking-tight text-gt-navy sm:text-4xl">
+        <div className={`mb-10 max-w-3xl ${centered ? "mx-auto text-center" : ""}`}>
+          {eyebrow ? <p className="eyebrow">{eyebrow}</p> : null}
+          <h2 className="mt-3 text-3xl font-bold text-gt-navy sm:text-4xl">
             {title}
           </h2>
           {description ? (
-            <p className="mt-4 text-base leading-8 text-slate-600 sm:text-lg">
-              {description}
-            </p>
+            <p className="mt-4 text-lg leading-8 text-slate-600">{description}</p>
           ) : null}
         </div>
         {children}

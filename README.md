@@ -1,264 +1,148 @@
-# LMSA Plus Chapter at Georgia Tech Website
+# LMSA Plus at Georgia Tech
 
-This is the website project for the **LMSA Plus Chapter at Georgia Tech**,
-formally written as the **Latino Medical Student Association Plus Chapter at
-Georgia Tech**.
+Public website for the Latino Medical Student Association Plus Chapter at Georgia Tech. The chapter is recognized by Georgia Tech and LMSA PLUS and is preparing public programming for Fall 2026.
 
-The site is designed to feel polished, official, warm, and easy for chapter
-officers to maintain. It uses Georgia Tech colors, the LMSA logo, and editable
-content files so Stacy and future officers can update the site through Cursor
-without needing to learn advanced web development.
+Live site: [gt-lmsa-website.vercel.app](https://gt-lmsa-website.vercel.app)
 
-## Very Important Warning
+## What is included
 
-Do **not** run `npm install` locally on Jason's Windows laptop unless the npm
-issue is fixed. Vercel handles installation and builds online after changes are
-pushed to GitHub.
+- Homepage with launch information and planned activities
+- About page with mission, values, LMSA history, board, and FAQ
+- Programs page with an honest planned-program roadmap
+- Events page separating confirmed, planned, and past events
+- Resources page with official links and time-sensitive opportunity statuses
+- Get Involved page with active contact methods and non-clickable Coming Soon forms
+- Mobile quick-links page at `/links`
+- Route metadata, sitemap, robots file, 404 page, keyboard focus styles, and reduced-motion support
 
-For regular website updates, Stacy/officers should only:
+## Routine officer updates
 
-1. Edit the needed content.
-2. Commit the change.
-3. Push to GitHub.
-4. Let Vercel automatically rebuild and publish the live site.
-
-## How the Website Is Structured
-
-The most important parts are:
-
-- `src/app/page.tsx` - the main homepage layout.
-- `src/app/links/page.tsx` - the mobile-friendly Linktree-style links page.
-- `src/lib/site-data.ts` - the main content file Stacy/officers should edit.
-- `src/components/` - reusable design pieces like cards, navbar, and footer.
-- `public/lmsa-logo.png` - the current LMSA logo.
-- `public/images/` - future approved chapter/event photos.
-- `public/board/` - future officer headshots.
-
-Most normal edits should happen in **one file**:
+Most public content is maintained in one file:
 
 ```text
 src/lib/site-data.ts
 ```
 
-That file has numbered sections and comments explaining what to edit.
+That file contains chapter identity, approved contact accounts, announcements, programs, events, board members, resources, opportunities, FAQs, involvement actions, and quick links. Its opening privacy warning applies to every update.
 
-## Simple Editing Workflow for Stacy
-
-1. Open the project in Cursor.
-2. Ask Cursor something specific, like:
-   - "Update the next General Body Meeting date to September 12 at 6 PM."
-   - "Replace the membership form coming soon link with this Google Form URL."
-   - "Add a new board member named ___ with the role ___."
-3. Review the changes in `src/lib/site-data.ts`.
-4. Commit and push to GitHub:
-
-```bash
-git add .
-git commit -m "Update LMSA Plus website content"
-git push
-```
-
-5. Vercel automatically updates the live website after the push.
-
-## Where To Edit Main Chapter Information
-
-Open `src/lib/site-data.ts` and edit:
+Research citations and review dates are maintained separately in:
 
 ```text
-1. CHAPTER IDENTITY
+src/lib/source-registry.ts
 ```
 
-This controls the short chapter name, full chapter name, founding year,
-recognition status, hero headline, and preferred wording.
+### Publish a confirmed event
 
-## Where To Edit Email, Instagram, and Forms
+In the `events` array:
 
-Open `src/lib/site-data.ts` and edit:
+1. Replace the planned display date with confirmed information.
+2. Add `time` and `location` only when verified.
+3. Change `status` from `"planned"` to `"confirmed"`.
+4. Add a public registration URL and change `registrationStatus` to `"active"` only when the form is approved and tested.
+5. Never name a speaker, partner, or venue before confirmation.
 
-```text
-2. CONTACT LINKS
+When an event is complete, change its status to `"past"` and keep only accurate, approved information.
+
+### Activate a form or action
+
+Coming Soon actions intentionally have no URL. To activate one:
+
+```ts
+{
+  label: "Join the interest list",
+  description: "Receive chapter launch updates.",
+  href: "https://approved-public-form.example",
+  status: "active",
+  category: "Membership",
+}
 ```
 
-This controls:
+Test the form in a private browser window before publishing. Confirm that its owner, permissions, data-request fields, privacy language, and response destination are appropriate for public use.
+
+### Update the board
+
+Edit `boardMembers` only after the officer approves their public name, role, description, image, and any optional contact link. Personal contact details are omitted by default.
+
+If an approved headshot is added, place it in `public/board/` and include meaningful alt text. Do not upload contact screenshots, private messages, ID cards, class schedules, or unapproved images.
+
+### Update resources or opportunities
+
+For every time-sensitive item:
+
+1. Open the official source.
+2. Confirm the current cycle, audience, eligibility, award or benefit, and deadline.
+3. Update the status and `lastVerified` date.
+4. Update the matching source record when necessary.
+5. Preserve the visible verification disclaimer.
+
+Use `"verify-current-cycle"` when an official page is ambiguous or between cycles. A closed or uncertain opportunity must never be presented as open.
+
+## Public contact policy
+
+The only approved chapter contact accounts currently published are:
 
 - Chapter email: `lmsaplusgatech@gmail.com`
-- Instagram URL: `https://www.instagram.com/lmsaplusgatech/`
-- Instagram handle: `@lmsaplusgatech`
-- Membership / Google Form link
-- Mentorship form link
-- Newsletter signup form link
+- Chapter Instagram: `@lmsaplusgatech`
 
-Right now, membership, mentorship, and newsletter links are marked as **Coming
-soon**. When the real forms are ready:
+The creator credit links the creator's name to the approved LinkedIn profile. It does not publish a separate personal Instagram link.
 
-1. Replace `"#contact"` or `"#newsletter"` with the full Google Form URL.
-2. Change the matching `comingSoon` value from `true` to `false`.
-3. Update the label text if needed.
+Never publish personal phone numbers, private conversations, student IDs, home addresses, medical or financial information, secrets, or unapproved personal emails and social accounts.
 
-Example:
-
-```ts
-membershipForm: "https://forms.gle/REAL_FORM_URL",
-membershipLabel: "Join LMSA Plus",
-membershipComingSoon: false,
-```
-
-## Where To Edit Events
-
-Open `src/lib/site-data.ts` and edit:
+## Page and component structure
 
 ```text
-8. EVENTS
+src/app/                 Next.js routes, metadata, sitemap, and global styles
+src/components/          Reusable navigation, footer, cards, statuses, and sections
+src/lib/site-data.ts     Officer-editable public content
+src/lib/source-registry.ts  Research and verification audit record
+src/lib/site-types.ts    Content data types
+public/lmsa-logo.png     Current LMSA logo asset
+public/board/            Future approved board images
+public/images/           Future approved chapter or event images
 ```
 
-Each event has `date`, `tag`, `title`, `time`, `location`, and `description`.
-Current events are templates with TBD details. Replace TBD values when events are
-confirmed.
+## Local validation
 
-## Where To Edit Officers / Board Members
+This project uses Next.js, TypeScript, Tailwind CSS, and ESLint. When dependencies already exist, run:
 
-Open `src/lib/site-data.ts` and edit:
-
-```text
-9. EXECUTIVE BOARD
+```bash
+npm run lint
+npx tsc --noEmit
+npm run build
 ```
 
-Current listed officer:
+Do not run `npm install` or regenerate a lockfile on the currently restricted maintenance machine. Vercel installs dependencies from `package.json` during deployment. Do not commit `.next`, `node_modules`, environment files, local logs, PDFs, or temporary attachments.
 
-- Stacy Lomeli - President & Founder
-- LinkedIn: `https://www.linkedin.com/in/stacylomeli/?skipRedirect=true`
-- Instagram: `https://www.instagram.com/sta.acyy_/`
+Before publishing, also review:
 
-Additional officers are placeholders. When more officers are ready, replace the
-placeholder cards with real names, roles, bios, optional emails, optional social
-links, and optional headshot paths.
-
-Headshots should go in:
-
-```text
-public/board/
-```
-
-Example future image path:
-
-```ts
-image: "/board/stacy-lomeli.jpg",
-```
-
-## Where To Edit Resources
-
-Open `src/lib/site-data.ts` and edit:
-
-```text
-10. OFFICIAL RESOURCES
-```
-
-Current resources use official/relevant links only:
-
-- Georgia Tech Pre-Health Advising
-- Georgia Tech Academic Success & Advising
-- Georgia Tech Find Your Advisor
-- LMSA National
-- LMSA National Join page
-- LMSA Southeast
-- LMSA Southeast Events
-- LMSA Southeast Regional Conference
-
-Do not add scholarships or MCAT links yet unless the chapter is ready to curate
-them carefully.
-
-## Where To Edit the Linktree-Style `/links` Page
-
-The `/links` page is a simple mobile-friendly page for Instagram bios.
-
-Open `src/lib/site-data.ts` and edit:
-
-```text
-12. LINKTREE-STYLE /links PAGE
-```
-
-Current buttons include Instagram, email, the main website, membership form
-coming soon, mentorship form coming soon, newsletter signup coming soon, GT
-Pre-Health Advising, LMSA National, and LMSA Southeast.
-
-The page itself lives at:
-
-```text
-src/app/links/page.tsx
-```
-
-Most updates should not require editing that page directly.
-
-## Where To Add Photos or Logos Later
-
-Use only approved chapter photos, approved event photos, officer headshots, or
-logos you have permission to use. Do not use random images from Google Images.
-
-Recommended folders:
-
-```text
-public/images/   future approved chapter/event photos
-public/board/    future officer headshots
-```
-
-Current logo:
-
-```text
-public/lmsa-logo.png
-```
-
-If you get a higher-resolution transparent LMSA logo, replace
-`public/lmsa-logo.png` with the new file using the same file name.
-
-## Information Still Needed
-
-The website is ready, but it will be stronger once the chapter has:
-
-- Final membership Google Form URL
-- Final mentorship form URL
-- Final newsletter signup form URL
-- Full executive board names and roles
-- Officer bios and headshots
-- Real event dates, times, and locations
-- Higher-resolution transparent LMSA logo
-- Approved chapter/event photos
-- Any official Georgia Tech LMSA Plus wording or constitution language
-- Any official chapter domain or preferred URL
-
-## Brand Colors
-
-The brand colors are defined in `src/app/globals.css`.
-
-- GT Navy: `#003057`
-- Tech Gold: `#B3A369`
-- Dark Gold: `#857437`
-- White: `#FFFFFF`
-- Soft off-white: `#F8F7F2`
-
-Use navy for important text and gold as an accent. Standard Tech Gold should not
-be used as small body text on white because it does not have enough contrast.
+- Desktop and mobile layouts
+- Keyboard navigation and visible focus
+- Heading hierarchy and image alt text
+- Reduced-motion behavior and color contrast
+- Internal and external links
+- Browser console and hydration warnings
+- Repository-wide privacy and secret scans
 
 ## Deployment
 
-The site deploys through Vercel.
+Pushing the tracked GitHub branch triggers the existing Vercel project. Normal publishing flow:
 
-Normal process:
+```bash
+git status
+git diff --check
+git add <intended-files>
+git commit -m "Describe the public content update"
+git push
+```
 
-1. Edit files in Cursor.
-2. Commit and push to GitHub.
-3. Vercel automatically installs dependencies and builds online.
-4. The live site updates after the deployment finishes.
+After pushing, verify both the GitHub commit and the resulting Vercel deployment before announcing that the update is live.
 
-No local dependency commands are needed for routine updates.
+## Remaining officer decisions
 
-## Technical Stack
-
-- Next.js App Router
-- TypeScript
-- Tailwind CSS
-- Vercel deployment
-
-Developers can edit layout/design in `src/app/page.tsx`,
-`src/app/links/page.tsx`, `src/components/`, and `src/app/globals.css`.
-
-Stacy/officers should usually edit `src/lib/site-data.ts`.
+- Confirm the exact Fall 2026 interest-meeting date, time, location, and registration method
+- Confirm Georgia Tech Student Organization Fair participation and logistics
+- Approve the public interest, newsletter, mentorship, volunteer, and event-suggestion forms
+- Decide local membership and graduate-student participation policies
+- Approve any officer headshots or expanded public biographies
+- Confirm each program before changing its status from Planned
+- Re-verify time-sensitive resources and opportunities on a regular schedule

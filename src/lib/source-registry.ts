@@ -1,0 +1,141 @@
+import type { SourceRecord } from "./site-types";
+
+export const LAST_CONTENT_REVIEW = "July 13, 2026";
+
+// Developer-maintained audit record. Re-check time-sensitive sources before
+// changing an opportunity to "open" or publishing a new deadline or price.
+export const sourceRegistry: SourceRecord[] = [
+  {
+    name: "LMSA National",
+    url: "https://national.lmsa.net/",
+    supports: ["LMSA history", "regions", "national programs"],
+    lastVerified: LAST_CONTENT_REVIEW,
+    timeSensitive: false,
+  },
+  {
+    name: "LMSA Organizing Principles",
+    url: "https://national.lmsa.net/about/organizing-principles/",
+    supports: ["mission", "vision", "inclusion", "core objectives"],
+    lastVerified: LAST_CONTENT_REVIEW,
+    timeSensitive: false,
+  },
+  {
+    name: "About LMSA PLUS",
+    url: "https://national.lmsa.net/about-lmsa-plus/",
+    supports: ["PLUS history", "chapter development", "pre-health programming"],
+    lastVerified: LAST_CONTENT_REVIEW,
+    timeSensitive: false,
+  },
+  {
+    name: "LMSA National Scholarships",
+    url: "https://national.lmsa.net/resources/awards/scholarships/",
+    supports: ["national scholarship cycles", "travel scholarship"],
+    lastVerified: LAST_CONTENT_REVIEW,
+    timeSensitive: true,
+  },
+  {
+    name: "LMSA PLUS National Scholarships",
+    url: "https://national.lmsa.net/resources/awards/lmsa-plus-national-scholarships/",
+    supports: ["Carmen Reyes MCAT Scholarship"],
+    lastVerified: LAST_CONTENT_REVIEW,
+    timeSensitive: true,
+  },
+  {
+    name: "LMSA Pre-Med Resources",
+    url: "https://national.lmsa.net/premed-resources/",
+    supports: ["research", "enrichment", "MCAT", "application resources"],
+    lastVerified: LAST_CONTENT_REVIEW,
+    timeSensitive: true,
+  },
+  {
+    name: "LMSA Southeast",
+    url: "https://southeast.lmsa.net/about-us/",
+    supports: ["Southeast mission", "Georgia regional placement"],
+    lastVerified: LAST_CONTENT_REVIEW,
+    timeSensitive: false,
+  },
+  {
+    name: "LMSA Southeast Programs",
+    url: "https://southeast.lmsa.net/mentor-program/",
+    supports: ["regional mentorship", "regional programming"],
+    lastVerified: LAST_CONTENT_REVIEW,
+    timeSensitive: true,
+  },
+  {
+    name: "Georgia Tech Pre-Health Advising",
+    url: "https://www.success.gatech.edu/pre-health/",
+    supports: ["advising", "appointments", "Canvas", "prerequisites", "workshops"],
+    lastVerified: LAST_CONTENT_REVIEW,
+    timeSensitive: true,
+  },
+  {
+    name: "Georgia Tech Student Engagement",
+    url: "https://studentengagement.gatech.edu/",
+    supports: ["registered student organizations", "service", "campus involvement"],
+    lastVerified: LAST_CONTENT_REVIEW,
+    timeSensitive: true,
+  },
+  {
+    name: "Georgia Tech Undergraduate Research Opportunities",
+    url: "https://experiential.learning.gatech.edu/urop/",
+    supports: ["undergraduate research", "PURA funding"],
+    lastVerified: LAST_CONTENT_REVIEW,
+    timeSensitive: true,
+  },
+  {
+    name: "Georgia Tech PURA Travel Awards",
+    url: "https://experiential.learning.gatech.edu/urop/pura-travel/",
+    supports: ["travel-award eligibility", "reimbursement amount", "application status"],
+    lastVerified: LAST_CONTENT_REVIEW,
+    timeSensitive: true,
+  },
+  {
+    name: "Georgia Tech PURA Salary Awards",
+    url: "https://experiential.learning.gatech.edu/urop/pura-salary/",
+    supports: ["salary-award eligibility", "award amount", "application status"],
+    lastVerified: LAST_CONTENT_REVIEW,
+    timeSensitive: true,
+  },
+  {
+    name: "AAMC Students & Residents",
+    url: "https://students-residents.aamc.org/",
+    supports: ["AMCAS", "MCAT", "MSAR", "fee assistance", "research programs"],
+    lastVerified: LAST_CONTENT_REVIEW,
+    timeSensitive: true,
+  },
+  {
+    name: "AACOM",
+    url: "https://www.aacom.org/become-a-doctor",
+    supports: ["osteopathic medicine", "AACOMAS", "DO school exploration"],
+    lastVerified: LAST_CONTENT_REVIEW,
+    timeSensitive: true,
+  },
+  {
+    name: "TMDSAS",
+    url: "https://www.tmdsas.com/",
+    supports: ["Texas application service"],
+    lastVerified: LAST_CONTENT_REVIEW,
+    timeSensitive: true,
+  },
+  {
+    name: "Hispanic Scholarship Fund",
+    url: "https://www.hsf.net/scholarship/",
+    supports: ["HSF Scholar Program"],
+    lastVerified: LAST_CONTENT_REVIEW,
+    timeSensitive: true,
+  },
+  {
+    name: "National Health Service Corps",
+    url: "https://nhsc.hrsa.gov/scholarships/how-to-apply",
+    supports: ["NHSC Scholarship Program"],
+    lastVerified: LAST_CONTENT_REVIEW,
+    timeSensitive: true,
+  },
+  {
+    name: "Summer Health Professions Education Program",
+    url: "https://www.shpep.org/",
+    supports: ["health professions summer enrichment"],
+    lastVerified: LAST_CONTENT_REVIEW,
+    timeSensitive: true,
+  },
+];

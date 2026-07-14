@@ -1,422 +1,965 @@
 // =============================================================================
-// LMSA PLUS WEBSITE CONTENT — THIS IS THE MAIN FILE STACY/OFFICERS SHOULD EDIT
+// LMSA PLUS AT GEORGIA TECH — OFFICER-EDITABLE PUBLIC CONTENT
 // =============================================================================
+// Routine updates belong here. Everything in this file is public in the built
+// website, even if a component does not currently display it.
 //
-// Most website updates happen in this file. You do not need to understand React
-// to update events, links, officers, resources, or chapter wording.
-//
-// HOW TO MAKE A CHANGE:
-//   1. Find the clearly labeled section below.
-//   2. Edit the words inside quotation marks.
-//   3. Save the file.
-//   4. Commit and push to GitHub.
-//   5. Vercel automatically updates the live website online.
-//
-// IMPORTANT:
-//   - Keep quotation marks " " and commas , in place.
-//   - To add an event/officer/resource, copy an existing { ... } block.
-//   - To hide a link that is not ready, set comingSoon: true.
-//
+// PRIVACY: Never add personal phone numbers, private messages, student IDs,
+// home addresses, unapproved personal email/social accounts, or internal forms.
+// Set unfinished actions to status: "coming-soon" and omit href entirely.
 // =============================================================================
 
+import type {
+  ActionLink,
+  Announcement,
+  BoardMember,
+  ChapterEvent,
+  ChapterInfo,
+  CoreValue,
+  FAQ,
+  NavLink,
+  Program,
+  ResourceCategory,
+  ScholarshipOpportunity,
+} from "./site-types";
+import { LAST_CONTENT_REVIEW } from "./source-registry";
 
-// -----------------------------------------------------------------------------
-// 1. CHAPTER IDENTITY  ←  EDIT CHAPTER NAME, YEAR, AND STATUS HERE
-// -----------------------------------------------------------------------------
-export const chapterInfo = {
-  shortName: "LMSA Plus Chapter at Georgia Tech",
+export const chapterInfo: ChapterInfo = {
+  shortName: "LMSA Plus at Georgia Tech",
   fullName: "Latino Medical Student Association Plus Chapter at Georgia Tech",
   campusName: "Georgia Tech",
   foundingYear: "2026",
-  recognitionStatus: "Officially recognized student organization",
-  preferredCommunityWording: "Latino/Hispanic",
-  heroHeadline: "Latino/Hispanic pre-health students, supported together.",
-  heroSubheadline:
-    "An officially recognized Georgia Tech student organization building community, mentorship, service, and medical school preparation for future health professionals.",
+  launchLabel: "Launching Fall 2026",
+  recognitionStatus: "Recognized by Georgia Tech and LMSA PLUS",
+  description:
+    "A student-led community for Georgia Tech students exploring medicine, health professions, mentorship, service, and Latino/Hispanic health.",
 };
 
-
-// -----------------------------------------------------------------------------
-// 2. CONTACT LINKS  ←  EDIT EMAIL, INSTAGRAM, GOOGLE FORMS, NEWSLETTER HERE
-// -----------------------------------------------------------------------------
-// membershipForm, mentorshipForm, and newsletterForm are placeholders for now.
-// When the real Google Form URLs are ready, replace "#" with the full URL and
-// change the related comingSoon value below from true to false.
 export const contactLinks = {
   email: "lmsaplusgatech@gmail.com",
   instagram: "https://www.instagram.com/lmsaplusgatech/",
   instagramHandle: "@lmsaplusgatech",
-
-  membershipForm: "#contact",
-  membershipLabel: "Membership form coming soon",
-  membershipComingSoon: true,
-
-  mentorshipForm: "#contact",
-  mentorshipLabel: "Mentorship form coming soon",
-  mentorshipComingSoon: true,
-
-  newsletterForm: "#newsletter",
-  newsletterLabel: "Newsletter signup coming soon",
-  newsletterComingSoon: true,
+  interestForm: { status: "coming-soon" as const },
+  newsletterForm: { status: "coming-soon" as const },
+  mentorshipForm: { status: "coming-soon" as const },
+  volunteerForm: { status: "coming-soon" as const },
+  eventSuggestionForm: { status: "coming-soon" as const },
+  partnershipForm: { status: "coming-soon" as const },
 };
 
-
-// -----------------------------------------------------------------------------
-// 3. NAVIGATION LINKS  ←  TOP MENU LINKS
-// -----------------------------------------------------------------------------
-export const navLinks = [
-  { label: "Home", href: "#home" },
-  { label: "About", href: "#about" },
-  { label: "What We Do", href: "#what-we-do" },
-  { label: "Events", href: "#events" },
-  { label: "Board", href: "#board" },
-  { label: "Resources", href: "#resources" },
-  { label: "Contact", href: "#contact" },
+export const navLinks: NavLink[] = [
+  { label: "About", href: "/about" },
+  { label: "Programs", href: "/programs" },
+  { label: "Events", href: "/events" },
+  { label: "Resources", href: "/resources" },
+  { label: "Get Involved", href: "/get-involved" },
 ];
 
-
-// -----------------------------------------------------------------------------
-// 4. HERO QUICK FACTS  ←  SMALL FACT CARDS NEAR THE TOP
-// -----------------------------------------------------------------------------
-export const heroStats = [
-  { value: "2026", label: "Founded at Georgia Tech" },
-  { value: "Official", label: "Recognized student organization" },
-  { value: "Latino/Hispanic", label: "Pre-health community" },
+export const announcements: Announcement[] = [
+  {
+    id: "interest-meeting-fall-2026",
+    title: "Fall 2026 Interest Meeting",
+    summary:
+      "Meet the founding board, learn how LMSA PLUS connects pre-health students, and help shape the chapter's first year.",
+    timing: "Mid-September 2026 — exact date, time, and location coming soon",
+    status: "planned",
+    href: "/events",
+    featured: true,
+  },
+  {
+    id: "student-org-fair-fall-2026",
+    title: "Student Organization Fair",
+    summary:
+      "The chapter intends to meet students at the Fall 2026 Student Organization Fair.",
+    timing: "Fall 2026 — official fair details coming soon",
+    status: "planned",
+    href: "/events",
+    featured: true,
+  },
 ];
 
-
-// -----------------------------------------------------------------------------
-// 5. MISSION / ABOUT TEXT  ←  EDIT MAIN CHAPTER DESCRIPTION HERE
-// -----------------------------------------------------------------------------
 export const mission = {
-  eyebrow: "About the Chapter",
-  heading: "An official home for Latino/Hispanic pre-health students at Georgia Tech.",
+  heading: "Community, guidance, and service for the path into healthcare.",
   paragraphs: [
-    "The Latino Medical Student Association Plus Chapter at Georgia Tech is an officially recognized student organization founded in 2026 to support Latino/Hispanic and underrepresented students pursuing medicine and the health professions.",
-    "Our chapter exists to make the pre-health journey more connected, informed, and welcoming through mentorship, service, professional development, medical school preparation, physician and medical student panels, and a strong cultural community.",
+    "LMSA National unites and empowers current and future physicians through service, mentorship, and education, with a commitment to improving health in Hispanic, Latino, and other historically marginalized communities.",
+    "At Georgia Tech, our chapter is building an inclusive starting point for students exploring medicine and other health professions. Local programming will connect cultural community with trustworthy pre-health information, service, mentorship, and opportunities to grow.",
   ],
+  sourceUrl: "https://national.lmsa.net/about/organizing-principles/",
 };
 
-
-// -----------------------------------------------------------------------------
-// 6. WHY LMSA PLUS MATTERS  ←  ABOUT/IMPACT CARDS
-// -----------------------------------------------------------------------------
-export const whyItMatters = [
+export const coreValues: CoreValue[] = [
   {
-    title: "Representation in medicine",
+    title: "Unity",
     description:
-      "We help strengthen the pathway for Latino/Hispanic and underrepresented students who want to become physicians and health leaders.",
+      "Build relationships across backgrounds, majors, health interests, and stages of the pre-health journey.",
   },
   {
-    title: "Guidance before the application",
+    title: "Service",
     description:
-      "Members can learn from peers, mentors, physicians, and medical students before facing the process alone.",
+      "Approach community engagement with humility, preparation, accountability, and respect.",
   },
-  {
-    title: "Community at Georgia Tech",
-    description:
-      "The chapter creates a warm, culturally aware space for students to study, ask questions, and support one another.",
-  },
-  {
-    title: "Service with purpose",
-    description:
-      "We plan volunteer and outreach opportunities that connect pre-health preparation with community impact.",
-  },
-];
-
-
-// -----------------------------------------------------------------------------
-// 7. WHAT WE DO  ←  PROGRAM / FOCUS-AREA CARDS
-// -----------------------------------------------------------------------------
-export const impactAreas = [
   {
     title: "Mentorship",
     description:
-      "Build relationships with peers, upperclassmen, alumni, medical students, and physicians who can help clarify the path ahead.",
+      "Help students find guidance from peers and, as programs develop, medical students and professionals.",
   },
   {
-    title: "Community Building",
+    title: "Education",
     description:
-      "Create a welcoming Latino/Hispanic pre-health community through meetings, study sessions, socials, and cultural connection.",
+      "Share verified resources that make academic planning and health-professions pathways easier to understand.",
   },
   {
-    title: "Service & Outreach",
+    title: "Advocacy",
     description:
-      "Organize volunteer opportunities and service partnerships that reflect the chapter's commitment to underserved communities.",
-  },
-  {
-    title: "Professional Development",
-    description:
-      "Host physician talks, medical student panels, workshops, and networking opportunities for future health professionals.",
-  },
-  {
-    title: "Medical School Preparation",
-    description:
-      "Support students as they learn about prerequisite planning, clinical exposure, applications, interviews, and readiness.",
-  },
-  {
-    title: "Cultural Advocacy",
-    description:
-      "Elevate conversations about Latino/Hispanic health, culturally responsive care, and representation in medicine.",
+      "Promote representation, culturally responsive care, and attention to disparities affecting underserved communities.",
   },
 ];
 
+export const lmsaHistory = {
+  heading: "A national network with regional and local roots.",
+  paragraphs: [
+    "LMSA grew from regional Latino medical-student organizations formed in the 1970s and 1980s. Five regions later joined a national consortium in 1998, and the organization adopted the Latino Medical Student Association name during the 2009–2010 academic year.",
+    "Today, LMSA organizes its work through the Midwest, Northeast, Southeast, Southwest, and West regions. Georgia belongs to the Southeast region.",
+    "LMSA PLUS was founded in 2012 to strengthen mentorship and support at the earliest stages of the health-professions journey. PLUS helps two- and four-year colleges establish chapters and connects pre-health students with peers, medical students, mentors, and regional and national programming.",
+  ],
+};
 
-// -----------------------------------------------------------------------------
-// 8. EVENTS  ←  EDIT EVENT TEMPLATES, DATES, TIMES, AND LOCATIONS HERE
-// -----------------------------------------------------------------------------
-// These are templates for now. Replace TBD details when real events are planned.
-export const events = [
+export const organizationLevels = [
   {
-    date: "TBD",
-    tag: "Meeting",
-    title: "General Body Meeting",
-    time: "Time TBD",
-    location: "Location TBD",
+    title: "LMSA National",
     description:
-      "Meet the chapter, learn about LMSA Plus at Georgia Tech, and hear how to get involved this semester.",
+      "Sets the national mission and connects members to national programming, leadership, scholarships, conferences, advocacy, and a five-region network.",
+    href: "https://national.lmsa.net/",
   },
   {
-    date: "TBD",
-    tag: "Resources",
+    title: "LMSA Southeast",
+    description:
+      "Connects chapters across Georgia and ten other states plus Puerto Rico and the Caribbean through regional programs, mentorship, service, and events.",
+    href: "https://southeast.lmsa.net/about-us/",
+  },
+  {
+    title: "LMSA PLUS",
+    description:
+      "Creates a chapter and programming framework for undergraduate and other pre-health students before medical school.",
+    href: "https://national.lmsa.net/about-lmsa-plus/",
+  },
+  {
+    title: "Georgia Tech chapter",
+    description:
+      "Builds local community and programming for Georgia Tech students. Fall 2026 events and forms remain planned until the board confirms details.",
+    href: "/programs",
+  },
+];
+
+export const programs: Program[] = [
+  {
+    title: "Peer mentorship",
+    description:
+      "A planned peer network for sharing campus knowledge, encouragement, study strategies, and responsible referrals to official advising.",
+    status: "planned",
+    category: "Mentorship",
+  },
+  {
+    title: "Medical-student mentorship",
+    description:
+      "A planned bridge to medical students who can discuss training, applications, identity, and lessons from their own paths.",
+    status: "planned",
+    category: "Mentorship",
+  },
+  {
+    title: "Physician and health-professional panels",
+    description:
+      "Planned conversations about specialties, patient care, representation, professional identity, and varied healthcare careers.",
+    status: "planned",
+    category: "Professional development",
+  },
+  {
+    title: "Pre-health planning workshops",
+    description:
+      "Planned sessions that point students to Georgia Tech Pre-Health Advising for prerequisites, timelines, workshops, and application guidance.",
+    status: "planned",
+    category: "Education",
+  },
+  {
+    title: "MCAT and application resource sessions",
+    description:
+      "Planned walkthroughs of official AAMC, AMCAS, AACOMAS, TMDSAS, fee-assistance, and preparation resources.",
+    status: "planned",
+    category: "Education",
+  },
+  {
+    title: "Medical Spanish programming",
+    description:
+      "Planned educational programming focused on language, communication, cultural humility, and the limits of student clinical roles.",
+    status: "planned",
+    category: "Culture and health",
+  },
+  {
+    title: "Latino/Hispanic health education",
+    description:
+      "Planned discussions about health disparities, culturally responsive care, representation, and community-informed advocacy.",
+    status: "planned",
+    category: "Culture and health",
+  },
+  {
+    title: "Community service",
+    description:
+      "Planned volunteer opportunities developed with attention to community priorities, appropriate training, safety, and Georgia Tech policies.",
+    status: "planned",
+    category: "Service",
+  },
+  {
+    title: "Culture and community",
+    description:
+      "Planned gatherings that create belonging, celebrate the breadth of Latino/Hispanic cultures, and welcome students and allies.",
+    status: "planned",
+    category: "Community",
+  },
+  {
+    title: "Research and clinical-exposure information",
+    description:
+      "Planned resource sessions highlighting official Georgia Tech research programs and responsible ways to explore clinical environments.",
+    status: "planned",
+    category: "Exploration",
+  },
+  {
+    title: "Scholarship and opportunity updates",
+    description:
+      "A planned rhythm of sharing time-sensitive opportunities while directing students to the official source for current requirements.",
+    status: "planned",
+    category: "Opportunities",
+  },
+  {
+    title: "Campus and community collaboration",
+    description:
+      "Planned collaboration with Georgia Tech groups, medical schools, and community organizations when a shared activity is formally confirmed.",
+    status: "planned",
+    category: "Partnerships",
+  },
+];
+
+export const events: ChapterEvent[] = [
+  {
+    id: "fall-2026-interest-meeting",
+    title: "Fall 2026 Interest Meeting",
+    category: "Chapter launch",
+    status: "planned",
+    displayDate: "Mid-September 2026",
+    description:
+      "Meet the founding executive board, learn what LMSA PLUS is, explore planned programming, and share what would make the chapter useful to you.",
+    registrationStatus: "coming-soon",
+    featured: true,
+  },
+  {
+    id: "fall-2026-student-organization-fair",
+    title: "Fall 2026 Student Organization Fair",
+    category: "Campus outreach",
+    status: "planned",
+    displayDate: "Fall 2026",
+    description:
+      "The chapter intends to participate in Georgia Tech's Fall 2026 Student Organization Fair. Official fair logistics have not yet been added.",
+    registrationStatus: "coming-soon",
+    featured: true,
+  },
+  {
+    id: "first-general-body-meeting",
+    title: "First General Body Meeting",
+    category: "Chapter meeting",
+    status: "planned",
+    displayDate: "Fall 2026 — date to be confirmed",
+    description:
+      "A planned first meeting for members to connect, review the semester direction, and learn how to participate in early chapter projects.",
+    registrationStatus: "coming-soon",
+  },
+  {
+    id: "pre-health-resource-night",
     title: "Pre-Health Resource Night",
-    time: "Time TBD",
-    location: "Location TBD",
+    category: "Education",
+    status: "planned",
+    displayDate: "Concept for 2026–2027",
     description:
-      "A guided introduction to Georgia Tech pre-health advising, campus resources, and next steps for new pre-health students.",
-  },
-  {
-    date: "TBD",
-    tag: "Panel",
-    title: "Physician / Medical Student Panel",
-    time: "Time TBD",
-    location: "Location TBD",
-    description:
-      "A conversation with physicians and medical students about mentorship, identity, service, and preparing for medicine.",
-  },
-  {
-    date: "TBD",
-    tag: "Service",
-    title: "Volunteer Opportunity",
-    time: "Time TBD",
-    location: "Community partner TBD",
-    description:
-      "A service event template for future volunteer opportunities with Atlanta or Georgia Tech community partners.",
-  },
-  {
-    date: "TBD",
-    tag: "Mentorship",
-    title: "Mentorship Mixer",
-    time: "Time TBD",
-    location: "Location TBD",
-    description:
-      "A casual event to help members meet mentors, peers, and other students navigating the pre-health path.",
+      "A planned guided tour of official Georgia Tech advising, academic support, application, research, and opportunity resources.",
+    registrationStatus: "coming-soon",
   },
 ];
 
-
-// -----------------------------------------------------------------------------
-// 9. EXECUTIVE BOARD  ←  EDIT OFFICERS, BIOS, SOCIAL LINKS, HEADSHOTS HERE
-// -----------------------------------------------------------------------------
-// Add future officers here when roles are confirmed. Headshots can be added
-// later under public/board/ and referenced with image: "/board/file-name.jpg".
-export const boardMembers = [
+export const boardMembers: BoardMember[] = [
   {
     name: "Stacy Lomeli",
-    role: "President & Founder",
-    focus:
-      "Founded LMSA Plus at Georgia Tech and leads the chapter's vision, recognition, community-building, and early programming.",
-    email: "",
-    linkedin: "https://www.linkedin.com/in/stacylomeli/?skipRedirect=true",
-    instagram: "https://www.instagram.com/sta.acyy_/",
-    image: "",
+    role: "Founding President",
+    initials: "SL",
+    description:
+      "Founding President leading the chapter's Fall 2026 launch, organizational direction, campus presence, and founding member community.",
   },
   {
-    name: "Coming Soon",
-    role: "Additional Executive Board",
-    focus:
-      "More officer names, roles, bios, emails, and headshots will be added as the chapter leadership team is finalized.",
-    email: "",
-    linkedin: "",
-    instagram: "",
-    image: "",
+    name: "Amanda Ubera-Corona",
+    role: "Vice President",
+    initials: "AU",
+    description:
+      "Vice President supporting chapter operations, programming, member engagement, and the development of the founding organization.",
   },
   {
-    name: "Role to be Announced",
-    role: "Future Officer Position",
-    focus:
-      "This placeholder keeps the board layout ready for vice president, secretary, treasurer, outreach, events, or mentorship roles.",
-    email: "",
-    linkedin: "",
-    instagram: "",
-    image: "",
+    name: "Ashley Diaz Duenas",
+    role: "Service Chair",
+    initials: "AD",
+    description:
+      "Service Chair developing volunteer opportunities, community outreach, and service-focused programming for chapter members.",
   },
 ];
 
-
-// -----------------------------------------------------------------------------
-// 10. OFFICIAL RESOURCES  ←  EDIT RESOURCE LINKS HERE
-// -----------------------------------------------------------------------------
-// Only official/relevant links are listed. Do not add scholarships or MCAT links
-// until the chapter is ready to curate them.
-export const resourceCategories = [
+export const resourceCategories: ResourceCategory[] = [
   {
-    category: "Georgia Tech Pre-Health",
+    category: "Georgia Tech pre-health essentials",
+    description:
+      "Start with Georgia Tech's own advisors and planning tools before relying on general advice elsewhere.",
     items: [
       {
-        title: "Georgia Tech Pre-Health Advising",
+        title: "Pre-Health Advising",
         description:
-          "Official Georgia Tech pre-health advising home for appointments, Canvas resources, workshops, and preparation support.",
-        href: "https://www.prehealth.gatech.edu/",
+          "Overview of professional and peer advising, workshops, Canvas resources, application preparation, and health-professions support.",
+        organization: "Georgia Tech Academic Success & Advising",
+        href: "https://www.success.gatech.edu/pre-health/",
+        category: "Advising",
+        timeSensitive: true,
       },
       {
-        title: "Academic Success & Advising",
+        title: "Schedule a Pre-Health appointment",
         description:
-          "Georgia Tech's advising hub for academic planning, major advising, and pre-professional support.",
-        href: "https://www.success.gatech.edu/advising-at-tech/",
+          "Use Navigate360 and choose Non-Major Specific Advising to request an appointment with a Pre-Health advisor.",
+        organization: "Georgia Tech",
+        href: "https://gatech.navigate.eab.com/",
+        category: "Advising",
+        timeSensitive: true,
       },
       {
-        title: "Find Your Advisor",
+        title: "Join the Pre-Health Canvas site",
         description:
-          "Official Georgia Tech directory for finding major advisors and pre-health advising contacts.",
+          "Register for the official Canvas resource with advising updates, self-guided materials, and current opportunities.",
+        organization: "Georgia Tech Pre-Health Advising",
+        href: "https://gatech.co1.qualtrics.com/jfe/form/SV_4NQyFrQ3lUv5vAF",
+        category: "Advising",
+        timeSensitive: true,
+      },
+      {
+        title: "Pre-health prerequisite guidance",
+        description:
+          "Review Georgia Tech's current common prerequisite guide, then confirm school-specific policies with advisors and individual programs.",
+        organization: "Georgia Tech Pre-Health Advising",
+        href: "https://www.success.gatech.edu/files/2025/06/Pre-Health-Prerequisites.pdf",
+        category: "Academic planning",
+        timeSensitive: true,
+      },
+      {
+        title: "Find your academic advisor",
+        description:
+          "Locate major-specific advising for degree planning alongside specialized pre-health guidance.",
+        organization: "Georgia Tech Advising",
         href: "https://advising.gatech.edu/find-your-advisor",
+        category: "Academic planning",
+      },
+      {
+        title: "Tutoring and academic support",
+        description:
+          "Explore one-to-one tutoring, drop-in help, learning assistants, and other academic support options.",
+        organization: "Georgia Tech Academic Success & Advising",
+        href: "https://www.success.gatech.edu/tutoring/",
+        category: "Academic support",
+        timeSensitive: true,
       },
     ],
   },
   {
-    category: "LMSA National",
+    category: "Georgia Tech exploration and involvement",
+    description:
+      "Use official campus programs to explore research, service, organizations, careers, and events.",
+    items: [
+      {
+        title: "Undergraduate Research Opportunities",
+        description:
+          "Learn how to find faculty-mentored research, register for research credit, and explore PURA funding.",
+        organization: "Georgia Tech UROP",
+        href: "https://experiential.learning.gatech.edu/urop/",
+        category: "Research",
+        timeSensitive: true,
+      },
+      {
+        title: "Career Center",
+        description:
+          "Access career advising, workshops, CareerBuzz, writing guides, and professional-development resources.",
+        organization: "Georgia Tech Career Center",
+        href: "https://career.gatech.edu/",
+        category: "Career development",
+        timeSensitive: true,
+      },
+      {
+        title: "Center for Student Engagement",
+        description:
+          "Find Georgia Tech's official hub for registered organizations, civic engagement, leadership, and involvement resources.",
+        organization: "Georgia Tech Student Engagement",
+        href: "https://studentengagement.gatech.edu/",
+        category: "Campus involvement",
+        timeSensitive: true,
+      },
+      {
+        title: "Student Organizations Directory",
+        description:
+          "Browse Georgia Tech's official Engage directory for registered student organizations and public campus events.",
+        organization: "Georgia Tech Engage",
+        href: "https://gatech.campuslabs.com/engage/organizations",
+        category: "Campus involvement",
+        timeSensitive: true,
+      },
+      {
+        title: "Georgia Tech events calendar",
+        description:
+          "Check current public lectures, workshops, campus programs, and other Institute events.",
+        organization: "Georgia Tech",
+        href: "https://calendar.gatech.edu/",
+        category: "Campus events",
+        timeSensitive: true,
+      },
+    ],
+  },
+  {
+    category: "LMSA network",
+    description:
+      "Understand the national, regional, and pre-health network beyond the Georgia Tech chapter.",
     items: [
       {
         title: "LMSA National",
         description:
-          "Official national organization for Latino/Hispanic and allied health professions trainees.",
+          "Explore the national mission, five regions, programs, leadership, scholarships, and events.",
+        organization: "LMSA National",
         href: "https://national.lmsa.net/",
+        category: "LMSA",
       },
       {
-        title: "Join LMSA National",
+        title: "About LMSA PLUS",
         description:
-          "Official LMSA National membership page for students and health professions trainees.",
-        href: "https://national.lmsa.net/join/",
+          "Learn how the undergraduate society supports pre-health chapter development, programming, community, and networking.",
+        organization: "LMSA National",
+        href: "https://national.lmsa.net/about-lmsa-plus/",
+        category: "LMSA PLUS",
       },
-    ],
-  },
-  {
-    category: "LMSA Southeast",
-    items: [
+      {
+        title: "LMSA National membership",
+        description:
+          "Review current membership categories, prices, and benefits directly with LMSA before deciding whether to join nationally.",
+        organization: "LMSA National",
+        href: "https://national.lmsa.net/join/",
+        category: "Membership",
+        timeSensitive: true,
+      },
+      {
+        title: "LMSA pre-med resources",
+        description:
+          "Browse LMSA's evolving collection of research, enrichment, MCAT, clinical-exposure, and financial-literacy resources.",
+        organization: "LMSA National",
+        href: "https://national.lmsa.net/premed-resources/",
+        category: "Pre-health resources",
+        timeSensitive: true,
+      },
       {
         title: "LMSA Southeast",
         description:
-          "Official regional LMSA site for chapters and members in the Southeast region.",
+          "Visit the regional hub serving Georgia and the broader Southeast network.",
+        organization: "LMSA Southeast",
         href: "https://southeast.lmsa.net/",
+        category: "Regional network",
+        timeSensitive: true,
       },
       {
-        title: "LMSA Southeast Events",
+        title: "Southeast mentorship",
         description:
-          "Official Southeast region events page for regional programming and announcements.",
+          "Review the regional mentorship page; confirm the current cycle before using any linked application form.",
+        organization: "LMSA Southeast",
+        href: "https://southeast.lmsa.net/mentor-program/",
+        category: "Mentorship",
+        timeSensitive: true,
+      },
+      {
+        title: "Southeast service programming",
+        description:
+          "Learn about the region's service focus, but verify the current award year and submission forms before participating.",
+        organization: "LMSA Southeast",
+        href: "https://southeast.lmsa.net/events/southeast-service/",
+        category: "Service",
+        timeSensitive: true,
+      },
+      {
+        title: "Southeast newsletter and events",
+        description:
+          "Use the regional newsletter page as a starting point for current announcements; older event listings may remain visible.",
+        organization: "LMSA Southeast",
         href: "https://southeast.lmsa.net/events/",
+        category: "Regional events",
+        timeSensitive: true,
+      },
+    ],
+  },
+  {
+    category: "Medical-school applications",
+    description:
+      "Use the application services and associations themselves for current instructions and requirements.",
+    items: [
+      {
+        title: "AAMC pre-med resources",
+        description:
+          "Explore official guidance for choosing medicine, gaining experience, preparing, applying, and paying for medical school.",
+        organization: "Association of American Medical Colleges",
+        href: "https://students-residents.aamc.org/",
+        category: "MD pathway",
+        timeSensitive: true,
       },
       {
-        title: "LMSA Southeast Regional Conference",
+        title: "AMCAS",
         description:
-          "Official information page for the Southeast Regional Conference when details are available.",
-        href: "https://southeast.lmsa.net/events/regional-conference/",
+          "Read current instructions for the centralized application used by most U.S. MD-granting medical schools.",
+        organization: "AAMC",
+        href: "https://students-residents.aamc.org/applying-medical-school-amcas/about-amcas-program",
+        category: "Application service",
+        timeSensitive: true,
+      },
+      {
+        title: "Medical School Admission Requirements (MSAR)",
+        description:
+          "Compare official school profiles and admissions information; some features require a paid subscription.",
+        organization: "AAMC",
+        href: "https://students-residents.aamc.org/medical-school-admission-requirements/medical-school-admission-requirements",
+        category: "School research",
+        timeSensitive: true,
+      },
+      {
+        title: "MCAT information and free study resources",
+        description:
+          "Review exam content, registration guidance, practice tools, study plans, and other official preparation materials.",
+        organization: "AAMC",
+        href: "https://students-residents.aamc.org/prepare-mcat-exam/free-planning-and-study-resources",
+        category: "MCAT",
+        timeSensitive: true,
+      },
+      {
+        title: "Explore osteopathic medicine",
+        description:
+          "Learn about the DO pathway, admissions expectations, accredited colleges, timelines, and osteopathic medical education.",
+        organization: "AACOM",
+        href: "https://www.aacom.org/become-a-doctor",
+        category: "DO pathway",
+        timeSensitive: true,
+      },
+      {
+        title: "AACOMAS",
+        description:
+          "Use the official centralized application information for U.S. osteopathic medical schools.",
+        organization: "AACOM",
+        href: "https://www.aacom.org/become-a-doctor/apply-to-medical-school",
+        category: "Application service",
+        timeSensitive: true,
+      },
+      {
+        title: "TMDSAS",
+        description:
+          "Review the official application service for participating public medical, dental, and veterinary schools in Texas.",
+        organization: "Texas Medical and Dental Schools Application Service",
+        href: "https://www.tmdsas.com/",
+        category: "Application service",
+        timeSensitive: true,
+      },
+    ],
+  },
+  {
+    category: "Research and enrichment",
+    description:
+      "Explore structured programs, then confirm each program's current dates and eligibility before applying.",
+    items: [
+      {
+        title: "AAMC summer undergraduate research programs",
+        description:
+          "Search AAMC's official collection of summer research opportunities for students interested in medicine and biomedical research.",
+        organization: "AAMC",
+        href: "https://students-residents.aamc.org/getting-experience/summer-undergraduate-research-programs",
+        category: "Research",
+        timeSensitive: true,
+      },
+      {
+        title: "MD-PhD summer research programs",
+        description:
+          "Explore research-intensive summer opportunities for students considering combined physician-scientist training.",
+        organization: "AAMC",
+        href: "https://students-residents.aamc.org/applying-mdphd-programs/md-phd-summer-undergraduate-research-programs",
+        category: "Physician-scientist",
+        timeSensitive: true,
+      },
+      {
+        title: "Summer Health Professions Education Program",
+        description:
+          "Learn about SHPEP's free multi-profession summer enrichment model and read its current notice about programming after the 2026 cohort.",
+        organization: "SHPEP",
+        href: "https://www.shpep.org/",
+        category: "Summer enrichment",
+        timeSensitive: true,
       },
     ],
   },
 ];
 
-
-// -----------------------------------------------------------------------------
-// 11. NEWSLETTER  ←  EDIT NEWSLETTER SIGNUP FORM HERE
-// -----------------------------------------------------------------------------
-export const newsletter = {
-  heading: "Stay connected with LMSA Plus at Georgia Tech.",
-  description:
-    "A newsletter signup will be added here once the chapter has a final form. For now, follow Instagram or email the chapter for updates.",
-  href: contactLinks.newsletterForm,
-  label: contactLinks.newsletterLabel,
-  comingSoon: contactLinks.newsletterComingSoon,
-};
-
-
-// -----------------------------------------------------------------------------
-// 12. LINKTREE-STYLE /links PAGE  ←  EDIT BUTTONS ON THE LINKS PAGE HERE
-// -----------------------------------------------------------------------------
-// This controls the simple mobile-friendly links page at /links.
-export const linktreeLinks = [
+export const scholarships: ScholarshipOpportunity[] = [
   {
-    label: "Instagram",
-    href: contactLinks.instagram,
-    description: "Follow chapter updates and announcements.",
+    name: "LMSA National Fall Scholarship Cycle",
+    organization: "LMSA National",
+    audience:
+      "Primarily medical students; the National Conference Travel Scholarship also includes eligible pre-med applicants",
+    description:
+      "The current fall cycle includes medical-student awards and an NC2026 travel scholarship that lists LMSA National or LMSA PLUS members planning to apply to medical school among eligible audiences.",
+    eligibility:
+      "Requirements differ by award. Review the official page and application before applying.",
+    benefit: "Varies by award; the listed NC2026 travel scholarship provides $500",
+    status: "open",
+    deadline: "August 2, 2026 at 11:59 p.m. ET",
+    sourceUrl: "https://national.lmsa.net/resources/awards/scholarships/",
+    category: "LMSA",
+    preMedRelevant: true,
+    lmsaMembershipRequired: true,
+    lastVerified: LAST_CONTENT_REVIEW,
+    timeSensitive: true,
+    featured: true,
   },
   {
-    label: "Email",
+    name: "Carmen Reyes MCAT Scholarship",
+    organization: "LMSA National",
+    audience: "Pre-medical students preparing to apply to medical school",
+    description:
+      "The 2026 award supported MCAT registration or preparation expenses for eligible pre-medical students.",
+    eligibility:
+      "The 2026 cycle required paid LMSA National membership, MCAT registration within the listed testing window, and a service or health-equity commitment.",
+    benefit: "2026 cycle: fifteen $350 awards",
+    status: "closed",
+    deadline: "March 31, 2026",
+    sourceUrl:
+      "https://national.lmsa.net/resources/awards/lmsa-plus-national-scholarships/",
+    category: "MCAT",
+    preMedRelevant: true,
+    lmsaMembershipRequired: true,
+    lastVerified: LAST_CONTENT_REVIEW,
+    timeSensitive: true,
+  },
+  {
+    name: "AAMC Fee Assistance Program",
+    organization: "AAMC",
+    audience: "Eligible students preparing to apply to medical school",
+    description:
+      "Fee assistance can reduce MCAT costs and provide official preparation products, MSAR access, and AMCAS benefits. Benefits are not retroactive.",
+    eligibility:
+      "The 2026 program uses address, household-income, parental-information, and application-stage requirements. Read the current Essentials before applying.",
+    benefit:
+      "Discounted MCAT registration, official prep products, MSAR access, and qualifying AMCAS fee benefits",
+    status: "open",
+    sourceUrl:
+      "https://students-residents.aamc.org/fee-assistance-program/fee-assistance-program",
+    category: "Application support",
+    preMedRelevant: true,
+    lmsaMembershipRequired: false,
+    lastVerified: LAST_CONTENT_REVIEW,
+    timeSensitive: true,
+    featured: true,
+  },
+  {
+    name: "Hispanic Scholarship Fund Scholar Program",
+    organization: "Hispanic Scholarship Fund",
+    audience: "Eligible high-school, undergraduate, and graduate students",
+    description:
+      "HSF Scholars receive support services and may be eligible for an award depending on available funds and need.",
+    eligibility:
+      "The 2026 cycle listed citizenship/status, GPA, full-time enrollment, FAFSA, and Hispanic-heritage requirements on the official page.",
+    benefit: "2026 cycle: potential awards of $500–$5,000 based on relative need",
+    status: "closed",
+    deadline: "February 15, 2026",
+    sourceUrl: "https://www.hsf.net/scholarship/",
+    category: "Undergraduate scholarship",
+    preMedRelevant: true,
+    lmsaMembershipRequired: false,
+    lastVerified: LAST_CONTENT_REVIEW,
+    timeSensitive: true,
+  },
+  {
+    name: "President's Undergraduate Research Award — Travel",
+    organization: "Georgia Tech UROP",
+    audience: "Georgia Tech undergraduates presenting faculty-mentored work",
+    description:
+      "PURA Travel Awards help reimburse eligible conference travel for undergraduates accepted to present research, scholarship, or creative work.",
+    eligibility:
+      "Applicants must meet current Georgia Tech undergraduate, academic-standing, faculty-mentor, presentation, and workshop requirements.",
+    benefit: "Up to $1,000 in eligible travel reimbursement",
+    status: "open",
+    sourceUrl: "https://experiential.learning.gatech.edu/urop/pura-travel/",
+    category: "Research funding",
+    preMedRelevant: true,
+    lmsaMembershipRequired: false,
+    lastVerified: LAST_CONTENT_REVIEW,
+    timeSensitive: true,
+    featured: true,
+  },
+  {
+    name: "President's Undergraduate Research Award — Salary",
+    organization: "Georgia Tech UROP",
+    audience: "Georgia Tech undergraduates conducting faculty-mentored research",
+    description:
+      "PURA Salary Awards fund eligible undergraduate research completed with a Georgia Tech or GTRI faculty mentor.",
+    eligibility:
+      "Current rules include undergraduate standing, a qualifying faculty mentor, research registration, and award-specific restrictions.",
+    benefit: "$2,000 salary award",
+    status: "closed",
+    sourceUrl: "https://experiential.learning.gatech.edu/urop/pura-salary/",
+    category: "Research funding",
+    preMedRelevant: true,
+    lmsaMembershipRequired: false,
+    lastVerified: LAST_CONTENT_REVIEW,
+    timeSensitive: true,
+  },
+  {
+    name: "Summer Health Professions Education Program",
+    organization: "SHPEP",
+    audience:
+      "Eligible college students exploring medicine, dentistry, nursing, public health, and other health professions",
+    description:
+      "A free summer enrichment program offering academic planning, exposure, networking, and preparation. SHPEP states that current core funding ends after the 2026 cohort and future plans are under review.",
+    eligibility:
+      "Review the official eligibility and program-future notices before planning a future application.",
+    benefit: "Free summer health-professions enrichment",
+    status: "verify-current-cycle",
+    sourceUrl: "https://www.shpep.org/",
+    category: "Summer program",
+    preMedRelevant: true,
+    lmsaMembershipRequired: false,
+    lastVerified: LAST_CONTENT_REVIEW,
+    timeSensitive: true,
+  },
+  {
+    name: "National Health Service Corps Scholarship Program",
+    organization: "U.S. Health Resources and Services Administration",
+    audience:
+      "Students accepted to or enrolled full time in eligible primary-care health-professions programs",
+    description:
+      "NHSC scholarships support eligible professional training in exchange for service at an approved site in a Health Professional Shortage Area.",
+    eligibility:
+      "Pre-professional students are not eligible. This is a future opportunity after acceptance into an eligible professional program.",
+    benefit: "Tuition and other support defined in the current program guidance",
+    status: "closed",
+    deadline: "April 16, 2026",
+    sourceUrl: "https://nhsc.hrsa.gov/scholarships/how-to-apply",
+    category: "Future opportunity after matriculation",
+    preMedRelevant: false,
+    lmsaMembershipRequired: false,
+    lastVerified: LAST_CONTENT_REVIEW,
+    timeSensitive: true,
+  },
+];
+
+export const faqs: FAQ[] = [
+  {
+    question: "What is LMSA?",
+    answer:
+      "The Latino Medical Student Association is a national nonprofit network that supports health-professions trainees and works to improve health in Hispanic, Latino, and other historically marginalized communities through service, mentorship, education, advocacy, and community.",
+  },
+  {
+    question: "What is LMSA PLUS?",
+    answer:
+      "LMSA PLUS is the pre-health and undergraduate chapter framework founded in 2012. It helps students connect earlier with peers, medical students, mentors, and regional and national programming.",
+  },
+  {
+    question: "What is the Georgia Tech chapter?",
+    answer:
+      "LMSA Plus at Georgia Tech is a recognized student organization and LMSA PLUS chapter preparing to launch public programming in Fall 2026. It is student-led and is not part of Georgia Tech itself; recognition does not mean that the Institute endorses every chapter statement or activity.",
+  },
+  {
+    question: "Who can participate?",
+    answer:
+      "The chapter is being built for Georgia Tech students interested in medicine, health professions, mentorship, service, and Latino/Hispanic health. The founding board is finalizing detailed participation policies; email the chapter for a situation not covered here.",
+  },
+  {
+    question: "Do I need to identify as Latino or Hispanic?",
+    answer:
+      "No. LMSA National's organizing principles explicitly include Latino, underrepresented, and allied students and state a commitment to inclusion. Students who respect the mission and want to learn, serve, and contribute are welcome to express interest.",
+  },
+  {
+    question: "Is this only for pre-med students?",
+    answer:
+      "No. Medicine is an important focus, but LMSA PLUS describes programming for pre-health students interested in MD, DO, and other healthcare fields.",
+  },
+  {
+    question: "Are allied-health students welcome?",
+    answer:
+      "Yes. Students exploring dentistry, nursing, public health, physician-assistant practice, pharmacy, physical therapy, and other health professions may participate. Some external opportunities on this site have narrower eligibility, so always read the official requirements.",
+  },
+  {
+    question: "Can first-year students participate?",
+    answer:
+      "Yes. LMSA PLUS is designed to support students early in the journey, and first-year students are encouraged to attend launch events and join the interest list when it opens.",
+  },
+  {
+    question: "Can graduate students participate?",
+    answer:
+      "The founding board is finalizing the local participation policy for graduate students. Email the chapter with your program and interests so the board can provide current guidance.",
+  },
+  {
+    question: "Is local participation the same as national LMSA membership?",
+    answer:
+      "No. Participating in a local chapter and purchasing an individual LMSA National membership are distinct. Some national scholarships, discounts, or other benefits require paid national membership; local Fall 2026 participation details are still being finalized.",
+  },
+  {
+    question: "Does national membership cost money?",
+    answer:
+      "LMSA National lists paid and free membership categories, and prices can change. Review the official Join page for the current pre-health option. The Georgia Tech chapter has not announced a local membership fee.",
+  },
+  {
+    question: "What benefits may national membership provide?",
+    answer:
+      "Depending on membership category and current offerings, National may provide access to networks, mentorship, programming, event pricing, scholarships, leadership, and member opportunities. Verify current benefits directly with LMSA National before purchasing.",
+  },
+  {
+    question: "How can students hear about scholarships?",
+    answer:
+      "Use the Opportunities section on the Resources page, join official Georgia Tech and LMSA communications, and check the sponsoring organization before every application. The chapter plans to share verified reminders without replacing the official source.",
+  },
+  {
+    question: "How can students find mentors?",
+    answer:
+      "The chapter plans peer and medical-student mentorship pathways. Local matching is not active yet. In the meantime, explore Georgia Tech Pre-Health Advising and review current regional or national mentorship information directly with LMSA.",
+  },
+  {
+    question: "How can students volunteer?",
+    answer:
+      "Local service opportunities are being developed. Follow the chapter accounts and check Get Involved for updates. Students can also explore Georgia Tech Civic Engagement resources while waiting for chapter-specific opportunities.",
+  },
+  {
+    question:
+      "How can physicians, medical students, campus groups, or community organizations collaborate?",
+    answer:
+      "Email the chapter with your organization, proposed topic or activity, intended audience, and preferred timeline. A message starts a conversation; it does not represent a confirmed partnership until the board approves it.",
+  },
+  {
+    question: "When will the first meeting occur?",
+    answer:
+      "The first Interest Meeting is intended for mid-September 2026. The exact date, time, location, and registration details have not been confirmed. Follow the chapter Instagram or email the chapter for updates.",
+  },
+];
+
+export const involvementActions: ActionLink[] = [
+  {
+    label: "Join the interest list",
+    description: "Be the first to receive launch and first-meeting updates.",
+    status: "coming-soon",
+    category: "Membership",
+    featured: true,
+  },
+  {
+    label: "Follow chapter updates",
+    description: `Follow ${contactLinks.instagramHandle} for public announcements.`,
+    href: contactLinks.instagram,
+    status: "active",
+    category: "Updates",
+  },
+  {
+    label: "Email the chapter",
+    description: "Ask a question or introduce a collaboration idea.",
     href: `mailto:${contactLinks.email}`,
-    description: contactLinks.email,
+    status: "active",
+    category: "Contact",
+  },
+  {
+    label: "Mentorship interest",
+    description: "The chapter-specific mentorship form is being developed.",
+    status: "coming-soon",
+    category: "Mentorship",
+  },
+  {
+    label: "Volunteer and service interest",
+    description: "The service-interest form will open after opportunities are confirmed.",
+    status: "coming-soon",
+    category: "Service",
+  },
+  {
+    label: "Suggest an event",
+    description: "A structured event-suggestion form is planned.",
+    status: "coming-soon",
+    category: "Programming",
+  },
+  {
+    label: "Partner with the chapter",
+    description: "Email the chapter now; a dedicated partnership form is planned.",
+    href: `mailto:${contactLinks.email}?subject=Collaboration%20with%20LMSA%20Plus%20at%20Georgia%20Tech`,
+    status: "active",
+    category: "Partnerships",
+  },
+];
+
+export const linktreeLinks: ActionLink[] = [
+  involvementActions[0],
+  {
+    label: "Upcoming Interest Meeting",
+    description: "Mid-September 2026; exact details coming soon.",
+    href: "/events",
+    status: "active",
+    category: "Events",
+    featured: true,
+  },
+  {
+    label: "Student Organization Fair",
+    description: "Fall 2026 fair details have not been announced here yet.",
+    status: "coming-soon",
+    category: "Events",
   },
   {
     label: "Main Website",
+    description: "Explore the full LMSA Plus at Georgia Tech site.",
     href: "/",
-    description: chapterInfo.shortName,
+    status: "active",
+    category: "Chapter",
   },
+  involvementActions[1],
+  involvementActions[2],
   {
-    label: "Join / Membership Form",
-    href: contactLinks.membershipForm,
-    description: contactLinks.membershipLabel,
-    comingSoon: contactLinks.membershipComingSoon,
+    label: "Newsletter and updates",
+    description: "A chapter signup form is being developed.",
+    status: "coming-soon",
+    category: "Updates",
   },
+  involvementActions[3],
+  involvementActions[4],
   {
-    label: "Mentorship Form",
-    href: contactLinks.mentorshipForm,
-    description: contactLinks.mentorshipLabel,
-    comingSoon: contactLinks.mentorshipComingSoon,
-  },
-  {
-    label: "Newsletter Signup",
-    href: contactLinks.newsletterForm,
-    description: contactLinks.newsletterLabel,
-    comingSoon: contactLinks.newsletterComingSoon,
-  },
-  {
-    label: "GT Pre-Health Advising",
-    href: "https://www.prehealth.gatech.edu/",
-    description: "Official Georgia Tech pre-health advising resources.",
+    label: "Georgia Tech Pre-Health Advising",
+    description: "Official advising, appointments, workshops, and Canvas resources.",
+    href: "https://www.success.gatech.edu/pre-health/",
+    status: "active",
+    category: "Resources",
   },
   {
     label: "LMSA National",
+    description: "Mission, programs, scholarships, events, and the national network.",
     href: "https://national.lmsa.net/",
-    description: "Official LMSA National website.",
+    status: "active",
+    category: "LMSA",
   },
   {
     label: "LMSA Southeast",
+    description: "Regional information for Georgia and the Southeast.",
     href: "https://southeast.lmsa.net/",
-    description: "Official LMSA Southeast regional website.",
+    status: "active",
+    category: "LMSA",
+  },
+  {
+    label: "LMSA National membership",
+    description: "Verify current categories, prices, and benefits before joining.",
+    href: "https://national.lmsa.net/join/",
+    status: "active",
+    category: "LMSA",
   },
 ];
 
-
-// -----------------------------------------------------------------------------
-// 13. IMAGE PLACEHOLDERS  ←  FUTURE APPROVED PHOTOS CAN BE ADDED HERE
-// -----------------------------------------------------------------------------
-// Do not use random images from Google. Add approved chapter/event photos to
-// public/images/ or officer headshots to public/board/ later.
-export const photoPlaceholders = [
-  {
-    title: "Chapter photo coming soon",
-    description: "Future approved group or event photo can go in public/images/.",
-  },
-  {
-    title: "Officer headshots coming soon",
-    description: "Future board headshots can go in public/board/.",
-  },
-];
-
-
-// -----------------------------------------------------------------------------
-// 14. CREATOR CREDIT  ←  SMALL LINE AT THE VERY BOTTOM OF THE FOOTER
-// -----------------------------------------------------------------------------
 export const creatorCredit = {
   name: "Jason Rivera-Hernandez",
   linkedin: "https://www.linkedin.com/in/jas0nrivera/",
-  instagram: "https://www.instagram.com/jas0nrivera/",
 };
+
+export const scholarshipDisclaimer =
+  "Scholarship availability, eligibility, award amounts, and deadlines may change. Always confirm current requirements on the official application page.";

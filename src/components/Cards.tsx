@@ -1,185 +1,244 @@
-// Reusable card components used across the site.
-// You normally won't need to edit this file — update content in
-// src/lib/site-data.ts instead. This file controls how cards look.
 import Image from "next/image";
+import type {
+  BoardMember,
+  ChapterEvent,
+  Program,
+  Resource,
+  ScholarshipOpportunity,
+} from "@/lib/site-types";
+import { StatusBadge } from "./StatusBadge";
 
-type ImpactCardProps = {
+export function ValueCard({
+  index,
+  title,
+  description,
+}: {
   index: number;
   title: string;
   description: string;
-};
-
-export function ImpactCard({ index, title, description }: ImpactCardProps) {
+}) {
   return (
-    <article className="group relative overflow-hidden rounded-3xl border border-slate-200/80 bg-white p-7 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-gt-gold/60 hover:shadow-xl">
-      <div className="absolute right-0 top-0 h-20 w-20 -translate-y-8 translate-x-8 rounded-full bg-gt-gold/10 transition group-hover:bg-gt-gold/20" />
-      <div className="relative mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-gt-navy text-sm font-bold text-white shadow-md shadow-gt-navy/20">
+    <article className="card h-full p-6 sm:p-7">
+      <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-2xl bg-gt-navy text-sm font-black text-white">
         {String(index).padStart(2, "0")}
       </div>
-      <h3 className="relative text-xl font-bold text-gt-navy">{title}</h3>
-      <p className="relative mt-3 leading-7 text-slate-600">{description}</p>
+      <h3 className="text-xl font-bold text-gt-navy">{title}</h3>
+      <p className="mt-3 leading-7 text-slate-600">{description}</p>
     </article>
   );
 }
 
-type EventCardProps = {
-  date: string;
-  tag?: string;
-  title: string;
-  time: string;
-  location: string;
-  description: string;
-};
-
-export function EventCard({
-  date,
-  tag,
-  title,
-  time,
-  location,
-  description,
-}: EventCardProps) {
-  // "Sep 12" -> month "Sep", day "12" for a clean calendar-style block.
-  const [month, day] = date.split(" ");
-  const hasDay = Boolean(day);
-
+export function ProgramCard({ program }: { program: Program }) {
   return (
-    <article className="group flex gap-5 rounded-3xl border border-slate-200/80 bg-white p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-gt-gold/60 hover:shadow-xl sm:p-6">
-      <div className="flex h-20 w-20 shrink-0 flex-col items-center justify-center rounded-2xl bg-gt-navy text-white shadow-md shadow-gt-navy/20">
-        <span className="text-xs font-bold uppercase tracking-widest text-gt-gold">
-          {month}
-        </span>
-        {hasDay ? (
-          <span className="text-2xl font-black leading-none">{day}</span>
-        ) : (
-          <span className="mt-1 text-xs font-bold uppercase tracking-widest text-white/80">
-            Date
-          </span>
-        )}
+    <article className="card flex h-full flex-col p-6">
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <span className="eyebrow">{program.category}</span>
+        <StatusBadge status={program.status} />
       </div>
-      <div className="min-w-0">
-        {tag ? (
-          <span className="inline-flex rounded-full bg-gt-cream px-3 py-1 text-xs font-bold uppercase tracking-wide text-gt-dark-gold ring-1 ring-gt-gold/30">
-            {tag}
-          </span>
-        ) : null}
-        <h3 className="mt-2 text-lg font-bold text-gt-navy">{title}</h3>
-        <p className="mt-1 text-sm font-semibold text-slate-500">
-          {time} &middot; {location}
-        </p>
-        <p className="mt-3 leading-7 text-slate-600">{description}</p>
-      </div>
+      <h3 className="mt-4 text-xl font-bold text-gt-navy">{program.title}</h3>
+      <p className="mt-3 flex-1 leading-7 text-slate-600">{program.description}</p>
     </article>
   );
 }
 
-type BoardCardProps = {
-  name: string;
-  role: string;
-  focus: string;
-  email?: string;
-  linkedin?: string;
-  instagram?: string;
-  image?: string;
-};
-
-export function BoardCard({
-  name,
-  role,
-  focus,
-  email,
-  linkedin,
-  instagram,
-  image,
-}: BoardCardProps) {
-  const initials = role
-    .split(" ")
-    .map((word) => word[0])
-    .join("")
-    .slice(0, 2);
+export function EventCard({ event }: { event: ChapterEvent }) {
+  const registrationAvailable =
+    event.registrationStatus === "active" && Boolean(event.registrationUrl);
 
   return (
-    <article className="flex h-full flex-col rounded-3xl border border-slate-200/80 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl">
-      {image ? (
+    <article className="card flex h-full flex-col overflow-hidden">
+      {event.image ? (
         <Image
-          src={image}
-          alt={`${name} headshot`}
-          width={80}
-          height={80}
-          className="mb-5 h-20 w-20 rounded-2xl object-cover shadow-md shadow-gt-navy/20"
+          src={event.image.src}
+          alt={event.image.alt}
+          width={720}
+          height={400}
+          className="aspect-[16/9] w-full object-cover"
+        />
+      ) : null}
+      <div className="flex flex-1 flex-col p-6">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <span className="eyebrow">{event.category}</span>
+          <StatusBadge status={event.status} />
+        </div>
+        <h3 className="mt-4 text-xl font-bold text-gt-navy">{event.title}</h3>
+        <dl className="mt-4 grid gap-2 text-sm">
+          <div className="flex gap-2">
+            <dt className="font-bold text-gt-navy">Date:</dt>
+            <dd className="text-slate-600">{event.displayDate}</dd>
+          </div>
+          <div className="flex gap-2">
+            <dt className="font-bold text-gt-navy">Time:</dt>
+            <dd className="text-slate-600">{event.time ?? "To be confirmed"}</dd>
+          </div>
+          <div className="flex gap-2">
+            <dt className="font-bold text-gt-navy">Location:</dt>
+            <dd className="text-slate-600">
+              {event.location ?? "To be confirmed"}
+            </dd>
+          </div>
+        </dl>
+        <p className="mt-4 flex-1 leading-7 text-slate-600">{event.description}</p>
+        <div className="mt-6 flex flex-wrap gap-3">
+          {registrationAvailable ? (
+            <a className="button button-primary" href={event.registrationUrl}>
+              Register
+            </a>
+          ) : (
+            <span className="button button-disabled" aria-disabled="true">
+              Registration coming soon
+            </span>
+          )}
+          {event.calendarUrl && event.startDate ? (
+            <a className="button button-secondary" href={event.calendarUrl}>
+              Add to calendar
+            </a>
+          ) : null}
+        </div>
+      </div>
+    </article>
+  );
+}
+
+export function BoardCard({ member }: { member: BoardMember }) {
+  return (
+    <article className="card flex h-full flex-col p-6">
+      {member.image ? (
+        <Image
+          src={member.image.src}
+          alt={member.image.alt}
+          width={96}
+          height={96}
+          className="h-24 w-24 rounded-3xl object-cover"
         />
       ) : (
-        <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-gt-navy to-gt-navy-deep text-xl font-black text-gt-gold shadow-md shadow-gt-navy/20">
-          {initials}
+        <div
+          className="flex h-20 w-20 items-center justify-center rounded-3xl bg-gt-navy text-2xl font-black text-white ring-4 ring-gt-gold/25"
+          aria-hidden="true"
+        >
+          {member.initials}
         </div>
       )}
-      <p className="text-xs font-bold uppercase tracking-[0.22em] text-gt-dark-gold">
-        {role}
+      <p className="eyebrow mt-6">{member.role}</p>
+      <h3 className="mt-2 text-xl font-bold text-gt-navy">{member.name}</h3>
+      <p className="mt-3 flex-1 leading-7 text-slate-600">
+        {member.description}
       </p>
-      <h3 className="mt-2 text-xl font-bold text-gt-navy">{name}</h3>
-      <p className="mt-3 flex-1 leading-7 text-slate-600">{focus}</p>
-      {email ? (
-        <a
-          href={`mailto:${email}`}
-          className="mt-4 inline-flex text-sm font-bold text-gt-dark-gold hover:text-gt-navy"
-        >
-          {email}
-        </a>
-      ) : null}
-      {linkedin || instagram ? (
-        <div className="mt-4 flex flex-wrap gap-3 text-sm font-bold">
-          {linkedin ? (
-            <a
-              href={linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gt-dark-gold underline decoration-gt-gold/40 underline-offset-4 hover:text-gt-navy"
-            >
-              LinkedIn
+      {member.publicContacts?.length ? (
+        <div className="mt-5 flex flex-wrap gap-4 text-sm font-bold">
+          {member.publicContacts.map((contact) => (
+            <a key={contact.href} href={contact.href} className="text-link">
+              {contact.label}
             </a>
-          ) : null}
-          {instagram ? (
-            <a
-              href={instagram}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gt-dark-gold underline decoration-gt-gold/40 underline-offset-4 hover:text-gt-navy"
-            >
-              Instagram
-            </a>
-          ) : null}
+          ))}
         </div>
       ) : null}
     </article>
   );
 }
 
-type ResourceCardProps = {
-  title: string;
-  description: string;
-  href: string;
+export function ResourceCard({ resource }: { resource: Resource }) {
+  return (
+    <article className="card flex h-full flex-col p-6">
+      <div className="flex flex-wrap items-center gap-2">
+        <span className="eyebrow">{resource.organization}</span>
+        {resource.timeSensitive ? (
+          <span className="rounded-full bg-amber-50 px-2.5 py-1 text-xs font-bold text-amber-800 ring-1 ring-amber-200">
+            Time-sensitive
+          </span>
+        ) : null}
+      </div>
+      <h3 className="mt-4 text-lg font-bold text-gt-navy">{resource.title}</h3>
+      <p className="mt-2 flex-1 leading-7 text-slate-600">
+        {resource.description}
+      </p>
+      <a
+        href={resource.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-link mt-5 inline-flex w-fit items-center gap-2 font-bold"
+      >
+        Visit official resource
+        <span aria-hidden="true">↗</span>
+        <span className="sr-only"> (opens in a new tab)</span>
+      </a>
+    </article>
+  );
+}
+
+const opportunityLabels: Record<ScholarshipOpportunity["status"], string> = {
+  open: "Open",
+  upcoming: "Upcoming",
+  recurring: "Recurring",
+  closed: "Closed",
+  "verify-current-cycle": "Verify current cycle",
 };
 
-export function ResourceCard({ title, description, href }: ResourceCardProps) {
-  const isExternal = href.startsWith("http");
-
+export function OpportunityCard({
+  opportunity,
+}: {
+  opportunity: ScholarshipOpportunity;
+}) {
   return (
-    <a
-      href={href}
-      target={isExternal ? "_blank" : undefined}
-      rel={isExternal ? "noopener noreferrer" : undefined}
-      className="group flex h-full flex-col rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-gt-gold/60 hover:shadow-lg"
-    >
-      <h3 className="text-lg font-bold text-gt-navy group-hover:text-gt-dark-gold">
-        {title}
+    <article className="card flex h-full flex-col p-6">
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <span className="eyebrow">{opportunity.organization}</span>
+        <StatusBadge
+          status={opportunity.status}
+          label={opportunityLabels[opportunity.status]}
+        />
+      </div>
+      <h3 className="mt-4 text-xl font-bold text-gt-navy">
+        {opportunity.name}
       </h3>
-      <p className="mt-2 flex-1 leading-7 text-slate-600">{description}</p>
-      <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-bold text-gt-dark-gold">
-        {isExternal ? "Visit resource" : "Learn more"}
-        <span aria-hidden="true" className="transition group-hover:translate-x-1">
-          &rarr;
-        </span>
-      </span>
-    </a>
+      <p className="mt-2 text-sm font-semibold text-slate-500">
+        {opportunity.audience}
+      </p>
+      <p className="mt-4 leading-7 text-slate-600">
+        {opportunity.description}
+      </p>
+      <dl className="mt-5 grid gap-3 border-t border-slate-200 pt-5 text-sm">
+        <div>
+          <dt className="font-bold text-gt-navy">Eligibility summary</dt>
+          <dd className="mt-1 leading-6 text-slate-600">
+            {opportunity.eligibility}
+          </dd>
+        </div>
+        {opportunity.benefit ? (
+          <div>
+            <dt className="font-bold text-gt-navy">Award or benefit</dt>
+            <dd className="mt-1 text-slate-600">{opportunity.benefit}</dd>
+          </div>
+        ) : null}
+        {opportunity.deadline ? (
+          <div>
+            <dt className="font-bold text-gt-navy">Deadline</dt>
+            <dd className="mt-1 text-slate-600">{opportunity.deadline}</dd>
+          </div>
+        ) : null}
+        <div>
+          <dt className="font-bold text-gt-navy">LMSA membership</dt>
+          <dd className="mt-1 text-slate-600">
+            {opportunity.lmsaMembershipRequired
+              ? "Required for the listed cycle"
+              : "Not listed as required"}
+          </dd>
+        </div>
+      </dl>
+      <div className="mt-6 flex flex-1 flex-col justify-end">
+        <p className="text-xs font-semibold text-slate-500">
+          Last verified {opportunity.lastVerified}
+        </p>
+        <a
+          href={opportunity.sourceUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="button button-secondary mt-3 w-fit"
+        >
+          Check official source <span aria-hidden="true">↗</span>
+          <span className="sr-only"> (opens in a new tab)</span>
+        </a>
+      </div>
+    </article>
   );
 }

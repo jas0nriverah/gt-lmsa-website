@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import { Inter, Sora } from "next/font/google";
 import "./globals.css";
@@ -18,6 +18,7 @@ const sora = Sora({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://gt-lmsa-website.vercel.app"),
   title: {
     default:
       "LMSA Plus Chapter at Georgia Tech | Latino Medical Student Association",
@@ -42,11 +43,33 @@ export const metadata: Metadata = {
     description:
       "Supporting Latino/Hispanic and underrepresented pre-health students through mentorship, preparation, service, and community.",
     type: "website",
+    url: "https://gt-lmsa-website.vercel.app",
+    siteName: "LMSA Plus at Georgia Tech",
+    images: [
+      {
+        url: "/lmsa-logo.png",
+        width: 1024,
+        height: 1024,
+        alt: "Latino Medical Student Association logo",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary",
+    title: "LMSA Plus at Georgia Tech",
+    description:
+      "A Georgia Tech pre-health community launching public programming in Fall 2026.",
+    images: ["/lmsa-logo.png"],
   },
   icons: {
     icon: "/lmsa-logo.png",
     apple: "/lmsa-logo.png",
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#003057",
+  colorScheme: "light",
 };
 
 export default function RootLayout({
@@ -56,7 +79,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} ${sora.variable}`}>
-      <body>{children}</body>
+      <body>
+        <a href="#main-content" className="skip-link">
+          Skip to main content
+        </a>
+        {children}
+      </body>
     </html>
   );
 }
