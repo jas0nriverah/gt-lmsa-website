@@ -39,7 +39,15 @@ export const contactLinks = {
   email: "lmsaplusgatech@gmail.com",
   instagram: "https://www.instagram.com/lmsaplusgatech/",
   instagramHandle: "@lmsaplusgatech",
+  // Chapter interest: currently the on-site /interest form. Paste a Google Form
+  // URL here later if you prefer spreadsheet responses instead of email.
   interestForm: { status: "active" as const, href: "/interest" },
+  // Fall chair applications (Events, Marketing, Outreach). When your Google Form
+  // is ready, set status to "active" and add href: "https://forms.gle/..."
+  boardApplicationForm: {
+    status: "coming-soon" as "coming-soon" | "active",
+    href: undefined as string | undefined,
+  },
   newsletterForm: { status: "coming-soon" as const },
   mentorshipForm: { status: "coming-soon" as const },
   volunteerForm: { status: "coming-soon" as const },
@@ -334,7 +342,12 @@ export const boardMembers: BoardMember[] = [
     name: "Position open",
     role: "Events/Programming Chair",
     initials: "EP",
-    openingNote: "Applications open August 3",
+    openingNote: "Apply by August 3",
+    applicationUrl:
+      contactLinks.boardApplicationForm.status === "active" &&
+      contactLinks.boardApplicationForm.href
+        ? contactLinks.boardApplicationForm.href
+        : undefined,
     description:
       "Designs and runs chapter programming such as meetings, Q&A panels, workshops, networking nights, and social events that build community and professional development.",
   },
@@ -342,7 +355,12 @@ export const boardMembers: BoardMember[] = [
     name: "Position open",
     role: "Marketing/Communications Chair",
     initials: "MC",
-    openingNote: "Applications open August 3",
+    openingNote: "Apply by August 3",
+    applicationUrl:
+      contactLinks.boardApplicationForm.status === "active" &&
+      contactLinks.boardApplicationForm.href
+        ? contactLinks.boardApplicationForm.href
+        : undefined,
     description:
       "Manages Instagram and chapter messaging—announcements, visuals, and branding—so students stay informed about events, opportunities, and ways to get involved.",
   },
@@ -350,7 +368,12 @@ export const boardMembers: BoardMember[] = [
     name: "Position open",
     role: "Outreach/Partnerships Chair",
     initials: "OP",
-    openingNote: "Applications open August 3",
+    openingNote: "Apply by August 3",
+    applicationUrl:
+      contactLinks.boardApplicationForm.status === "active" &&
+      contactLinks.boardApplicationForm.href
+        ? contactLinks.boardApplicationForm.href
+        : undefined,
     description:
       "Builds collaborations with campus groups, medical schools, community partners, and other LMSA chapters to expand mentorship, outreach, and shared programming.",
   },
@@ -889,12 +912,12 @@ export const faqs: FAQ[] = [
   {
     question: "What is the Fall 2026 board structure?",
     answer:
-      "The founding Fall 2026 board includes President, Vice President, Service/Community Chair, Events/Programming Chair, Marketing/Communications Chair, and Outreach/Partnerships Chair. Three roles are already filled. Applications for the remaining Fall chairs open August 3, 2026.",
+      "The founding Fall 2026 board includes President, Vice President, Service/Community Chair, Events/Programming Chair, Marketing/Communications Chair, and Outreach/Partnerships Chair. Three roles are already filled. Applications for the remaining Fall chairs are open through August 3, 2026.",
   },
   {
     question: "Will more board positions open later?",
     answer:
-      "Yes. In Spring 2027, once the chapter has more members, the board plans to open Secretary, Treasurer/Fundraising Chair, Mentorship Chair, and First-Year Representative. Those are new positions for later in the year—not part of the August 3 Fall application round.",
+      "Yes. In Spring 2027, once the chapter has more members, the board plans to open Secretary, Treasurer/Fundraising Chair, Mentorship Chair, and First-Year Representative. Those are new positions for later in the year—not part of the current Fall chair application round.",
   },
   {
     question: "When will the first meeting occur?",
@@ -910,6 +933,14 @@ export const involvementActions: ActionLink[] = [
     href: contactLinks.interestForm.href,
     status: "active",
     category: "Membership",
+    featured: true,
+  },
+  {
+    label: "Apply for Fall board chairs",
+    description:
+      "Applications for Events/Programming, Marketing/Communications, and Outreach/Partnerships are open through August 3, 2026. The Google Form link will appear here once published.",
+    status: "coming-soon",
+    category: "Leadership",
     featured: true,
   },
   {

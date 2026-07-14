@@ -68,6 +68,8 @@ export interface BoardMember {
   description: string;
   /** Optional note for open roles, shown as a small label under the name. */
   openingNote?: string;
+  /** Optional Google Form (or other) URL for applying to an open role. */
+  applicationUrl?: string;
   image?: { src: string; alt: string };
   publicContacts?: Array<{
     label: string;

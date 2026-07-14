@@ -131,6 +131,20 @@ export function BoardCard({ member }: { member: BoardMember }) {
       <p className="mt-3 flex-1 leading-7 text-slate-600">
         {member.description}
       </p>
+      {member.applicationUrl ? (
+        <a
+          href={member.applicationUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="button button-primary mt-5 self-start"
+        >
+          Apply for this role
+        </a>
+      ) : member.openingNote ? (
+        <span className="button button-disabled mt-5 self-start" aria-disabled="true">
+          Application form coming soon
+        </span>
+      ) : null}
       {member.publicContacts?.length ? (
         <div className="mt-5 flex flex-wrap gap-4 text-sm font-bold">
           {member.publicContacts.map((contact) => (
