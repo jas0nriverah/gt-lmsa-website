@@ -13,6 +13,7 @@ import type {
   ActionLink,
   Announcement,
   BoardMember,
+  CampusCalendarDate,
   ChapterEvent,
   ChapterInfo,
   CoreValue,
@@ -296,6 +297,128 @@ export const events: ChapterEvent[] = [
     description:
       "A planned first meeting for members to connect, review the semester direction, and learn how to participate in early chapter projects.",
     registrationStatus: "coming-soon",
+  },
+];
+
+// Georgia Tech academic dates from the Registrar tentative five-term calendar.
+// Verify against https://registrar.gatech.edu/info/tentative-five-term-school-calendar
+// before relying on these for planning. Dates may change.
+const GT_CALENDAR_SOURCE =
+  "https://registrar.gatech.edu/info/tentative-five-term-school-calendar";
+
+export const campusCalendarDates: CampusCalendarDate[] = [
+  {
+    id: "gt-fall-2026-first-day",
+    title: "GT First Day of Classes",
+    startDate: "2026-08-24",
+    term: "Fall 2026",
+    sourceUrl: GT_CALENDAR_SOURCE,
+  },
+  {
+    id: "gt-fall-2026-labor-day",
+    title: "Labor Day (no classes)",
+    startDate: "2026-09-07",
+    term: "Fall 2026",
+    sourceUrl: GT_CALENDAR_SOURCE,
+  },
+  {
+    id: "gt-fall-2026-recess",
+    title: "Fall Break (no classes)",
+    startDate: "2026-10-05",
+    endDate: "2026-10-06",
+    term: "Fall 2026",
+    sourceUrl: GT_CALENDAR_SOURCE,
+  },
+  {
+    id: "gt-fall-2026-thanksgiving-eve",
+    title: "Day before Thanksgiving (no classes)",
+    startDate: "2026-11-25",
+    term: "Fall 2026",
+    sourceUrl: GT_CALENDAR_SOURCE,
+  },
+  {
+    id: "gt-fall-2026-thanksgiving",
+    title: "Thanksgiving Break",
+    startDate: "2026-11-26",
+    endDate: "2026-11-27",
+    term: "Fall 2026",
+    sourceUrl: GT_CALENDAR_SOURCE,
+  },
+  {
+    id: "gt-fall-2026-final-instructional",
+    title: "Final Instructional Class Days",
+    startDate: "2026-12-07",
+    endDate: "2026-12-08",
+    term: "Fall 2026",
+    sourceUrl: GT_CALENDAR_SOURCE,
+  },
+  {
+    id: "gt-fall-2026-reading-day",
+    title: "Reading Day",
+    startDate: "2026-12-09",
+    term: "Fall 2026",
+    sourceUrl: GT_CALENDAR_SOURCE,
+  },
+  {
+    id: "gt-fall-2026-finals",
+    title: "Final Exams",
+    startDate: "2026-12-10",
+    endDate: "2026-12-17",
+    term: "Fall 2026",
+    sourceUrl: GT_CALENDAR_SOURCE,
+  },
+  {
+    id: "gt-fall-2026-commencement",
+    title: "Commencement",
+    startDate: "2026-12-17",
+    endDate: "2026-12-19",
+    term: "Fall 2026",
+    sourceUrl: GT_CALENDAR_SOURCE,
+  },
+  {
+    id: "gt-spring-2027-first-day",
+    title: "GT First Day of Classes",
+    startDate: "2027-01-11",
+    term: "Spring 2027",
+    sourceUrl: GT_CALENDAR_SOURCE,
+  },
+  {
+    id: "gt-spring-2027-mlk",
+    title: "MLK Day (no classes)",
+    startDate: "2027-01-18",
+    term: "Spring 2027",
+    sourceUrl: GT_CALENDAR_SOURCE,
+  },
+  {
+    id: "gt-spring-2027-break",
+    title: "Spring Break",
+    startDate: "2027-03-22",
+    endDate: "2027-03-26",
+    term: "Spring 2027",
+    sourceUrl: GT_CALENDAR_SOURCE,
+  },
+  {
+    id: "gt-spring-2027-final-instructional",
+    title: "Final Instructional Class Days",
+    startDate: "2027-04-26",
+    endDate: "2027-04-27",
+    term: "Spring 2027",
+    sourceUrl: GT_CALENDAR_SOURCE,
+  },
+  {
+    id: "gt-spring-2027-reading-day",
+    title: "Reading Day",
+    startDate: "2027-04-28",
+    term: "Spring 2027",
+    sourceUrl: GT_CALENDAR_SOURCE,
+  },
+  {
+    id: "gt-spring-2027-finals",
+    title: "Final Exams",
+    startDate: "2027-04-29",
+    endDate: "2027-05-06",
+    term: "Spring 2027",
+    sourceUrl: GT_CALENDAR_SOURCE,
   },
 ];
 

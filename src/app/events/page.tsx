@@ -5,7 +5,7 @@ import { EventCalendar } from "@/components/EventCalendar";
 import { PageHero } from "@/components/PageHero";
 import { Section } from "@/components/Section";
 import { SitePage } from "@/components/SitePage";
-import { events } from "@/lib/site-data";
+import { campusCalendarDates, events } from "@/lib/site-data";
 
 export const metadata: Metadata = {
   title: "Events",
@@ -27,25 +27,28 @@ export default function EventsPage() {
       />
       <Section
         eyebrow="Confirmed calendar"
-        title="Upcoming confirmed events"
-        description="Use the calendar to scan dates, then read the full event cards below for times, location, and details."
+        title="Chapter events and Georgia Tech academic dates"
+        description="Gold highlights LMSA Plus confirmed events. Navy labels show Georgia Tech academic dates such as first day of classes, breaks, and finals."
         className="bg-white"
       >
-        {confirmedEvents.length ? (
-          <div className="grid gap-8">
-            <EventCalendar events={confirmedEvents} />
+        <div className="grid gap-8">
+          <EventCalendar
+            events={confirmedEvents}
+            campusDates={campusCalendarDates}
+          />
+          {confirmedEvents.length ? (
             <div className="grid gap-5 md:grid-cols-2">
               {confirmedEvents.map((event) => (
                 <EventCard key={event.id} event={event} />
               ))}
             </div>
-          </div>
-        ) : (
-          <EmptyState
-            title="No events have been confirmed yet"
-            description="The first public dates, locations, and registration details will be posted after the founding board verifies them."
-          />
-        )}
+          ) : (
+            <EmptyState
+              title="No LMSA Plus events have been confirmed yet"
+              description="Chapter dates will appear here after the founding board verifies them. Georgia Tech academic dates still show on the calendar above."
+            />
+          )}
+        </div>
       </Section>
       <Section
         eyebrow="Planning board"

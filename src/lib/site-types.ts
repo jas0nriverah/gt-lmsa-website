@@ -70,6 +70,16 @@ export interface ChapterEvent {
   calendarUrl?: string;
 }
 
+/** Institute academic dates shown on the public calendar (not chapter programming). */
+export interface CampusCalendarDate {
+  id: string;
+  title: string;
+  startDate: string;
+  endDate?: string;
+  term: string;
+  sourceUrl: string;
+}
+
 export interface BoardMember {
   name: string;
   role: string;

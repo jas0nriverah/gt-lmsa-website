@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import type { ChapterEvent } from "@/lib/site-types";
+import type { CampusCalendarDate, ChapterEvent } from "@/lib/site-types";
 
 const WEEKDAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 const MONTH_NAMES = [
@@ -19,13 +19,37 @@ const MONTH_NAMES = [
   "December",
 ];
 
+type CalendarItem = {
+  id: string;
+  title: string;
+  kind: "chapter" | "campus";
+  href?: string;
+};
+
 function parseLocalDate(isoDate: string) {
   const [year, month, day] = isoDate.split("-").map(Number);
   return new Date(year, month - 1, day);
 }
 
-function initialView(events: ChapterEvent[]) {
-  const dated = events
+function eachDayInRange(startIso: string, endIso?: string) {
+  const start = parseLocalDate(startIso);
+  const end = endIso ? parseLocalDate(endIso) : start;
+  const days: Date[] = [];
+  for (
+    let cursor = new Date(start.getFullYear(), start.getMonth(), start.getDate());
+    cursor.getTime() <= end.getTime();
+    cursor = new Date(cursor.getFullYear(), cursor.getMonth(), cursor.getDate() + 1)
+  ) {
+    days.push(new Date(cursor));
+  }
+  return days;
+}
+
+function initialView(
+  chapterEvents: ChapterEvent[],
+  campusDates: CampusCalendarDate[],
+) {
+  const dated = chapterEvents
     .filter((event) => event.startDate)
     .map((event) => parseLocalDate(event.startDate!))
     .sort((a, b) => a.getTime() - b.getTime());
@@ -34,29 +58,69 @@ function initialView(events: ChapterEvent[]) {
     return { year: dated[0].getFullYear(), monthIndex: dated[0].getMonth() };
   }
 
+  const campusDated = campusDates
+    .map((date) => parseLocalDate(date.startDate))
+    .sort((a, b) => a.getTime() - b.getTime());
+  if (campusDated.length) {
+    return {
+      year: campusDated[0].getFullYear(),
+      monthIndex: campusDated[0].getMonth(),
+    };
+  }
+
   const today = new Date();
   return { year: today.getFullYear(), monthIndex: today.getMonth() };
 }
 
-export function EventCalendar({ events }: { events: ChapterEvent[] }) {
-  const startingPoint = useMemo(() => initialView(events), [events]);
+export function EventCalendar({
+  events,
+  campusDates = [],
+}: {
+  events: ChapterEvent[];
+  campusDates?: CampusCalendarDate[];
+}) {
+  const startingPoint = useMemo(
+    () => initialView(events, campusDates),
+    [events, campusDates],
+  );
   const [year, setYear] = useState(startingPoint.year);
   const [monthIndex, setMonthIndex] = useState(startingPoint.monthIndex);
 
-  const eventsByDay = useMemo(() => {
-    const map = new Map<number, ChapterEvent[]>();
-    for (const event of events) {
-      if (!event.startDate) continue;
-      const date = parseLocalDate(event.startDate);
+  const itemsByDay = useMemo(() => {
+    const map = new Map<number, CalendarItem[]>();
+
+    function addItem(date: Date, item: CalendarItem) {
       if (date.getFullYear() !== year || date.getMonth() !== monthIndex) {
-        continue;
+        return;
       }
       const list = map.get(date.getDate()) ?? [];
-      list.push(event);
+      list.push(item);
       map.set(date.getDate(), list);
     }
+
+    for (const event of events) {
+      if (!event.startDate) continue;
+      addItem(parseLocalDate(event.startDate), {
+        id: event.id,
+        title: event.title,
+        kind: "chapter",
+        href: `#${event.id}`,
+      });
+    }
+
+    for (const campusDate of campusDates) {
+      for (const day of eachDayInRange(campusDate.startDate, campusDate.endDate)) {
+        addItem(day, {
+          id: `${campusDate.id}-${day.toISOString().slice(0, 10)}`,
+          title: campusDate.title,
+          kind: "campus",
+          href: campusDate.sourceUrl,
+        });
+      }
+    }
+
     return map;
-  }, [events, year, monthIndex]);
+  }, [events, campusDates, year, monthIndex]);
 
   const firstDay = new Date(year, monthIndex, 1).getDay();
   const daysInMonth = new Date(year, monthIndex + 1, 0).getDate();
@@ -80,7 +144,7 @@ export function EventCalendar({ events }: { events: ChapterEvent[] }) {
     setMonthIndex(today.getMonth());
   }
 
-  function goToNextEvent() {
+  function goToNextChapterEvent() {
     const upcoming = events
       .filter((event) => event.startDate)
       .map((event) => parseLocalDate(event.startDate!))
@@ -103,7 +167,7 @@ export function EventCalendar({ events }: { events: ChapterEvent[] }) {
               {MONTH_NAMES[monthIndex]} {year}
             </h3>
             <p className="mt-1 text-sm text-white/70">
-              Browse any month or year. Confirmed chapter events appear in gold.
+              Browse any month or year. Gold = chapter events · Navy = Georgia Tech academic dates.
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-2">
@@ -167,10 +231,10 @@ export function EventCalendar({ events }: { events: ChapterEvent[] }) {
           </button>
           <button
             type="button"
-            onClick={goToNextEvent}
+            onClick={goToNextChapterEvent}
             className="rounded-full border border-gt-gold/50 px-3 py-1.5 text-xs font-bold text-gt-gold transition hover:bg-white/10"
           >
-            Jump to next confirmed event
+            Jump to next chapter event
           </button>
         </div>
       </div>
@@ -185,35 +249,62 @@ export function EventCalendar({ events }: { events: ChapterEvent[] }) {
           </div>
         ))}
         {cells.map((day, index) => {
-          const dayEvents = day ? eventsByDay.get(day) : undefined;
-          const hasEvents = Boolean(dayEvents?.length);
+          const dayItems = day ? itemsByDay.get(day) : undefined;
+          const hasChapter = Boolean(
+            dayItems?.some((item) => item.kind === "chapter"),
+          );
+          const hasCampus = Boolean(
+            dayItems?.some((item) => item.kind === "campus"),
+          );
 
           return (
             <div
               key={`${year}-${monthIndex}-${index}`}
               className={`min-h-20 bg-white p-2 ${
-                hasEvents ? "ring-2 ring-inset ring-gt-gold" : ""
+                hasChapter
+                  ? "ring-2 ring-inset ring-gt-gold"
+                  : hasCampus
+                    ? "ring-1 ring-inset ring-gt-navy/30"
+                    : ""
               }`}
             >
               {day ? (
                 <>
                   <p
                     className={`text-sm font-bold ${
-                      hasEvents ? "text-gt-navy" : "text-slate-400"
+                      hasChapter || hasCampus ? "text-gt-navy" : "text-slate-400"
                     }`}
                   >
                     {day}
                   </p>
-                  {hasEvents ? (
+                  {dayItems?.length ? (
                     <ul className="mt-1 space-y-1">
-                      {dayEvents!.map((event) => (
-                        <li key={event.id}>
-                          <a
-                            href={`#${event.id}`}
-                            className="block rounded-md bg-gt-cream px-1.5 py-1 text-[0.65rem] font-bold leading-snug text-gt-navy hover:bg-gt-gold/30"
-                          >
-                            {event.title}
-                          </a>
+                      {dayItems.map((item) => (
+                        <li key={item.id}>
+                          {item.href ? (
+                            <a
+                              href={item.href}
+                              target={
+                                item.kind === "campus" ? "_blank" : undefined
+                              }
+                              rel={
+                                item.kind === "campus"
+                                  ? "noopener noreferrer"
+                                  : undefined
+                              }
+                              className={`block rounded-md px-1.5 py-1 text-[0.65rem] font-bold leading-snug ${
+                                item.kind === "chapter"
+                                  ? "bg-gt-cream text-gt-navy hover:bg-gt-gold/30"
+                                  : "bg-gt-navy/10 text-gt-navy hover:bg-gt-navy/15"
+                              }`}
+                            >
+                              {item.title}
+                            </a>
+                          ) : (
+                            <span className="block rounded-md bg-gt-navy/10 px-1.5 py-1 text-[0.65rem] font-bold leading-snug text-gt-navy">
+                              {item.title}
+                            </span>
+                          )}
                         </li>
                       ))}
                     </ul>
@@ -224,6 +315,19 @@ export function EventCalendar({ events }: { events: ChapterEvent[] }) {
           );
         })}
       </div>
+      <p className="border-t border-slate-200/80 bg-gt-cream px-5 py-3 text-xs leading-5 text-slate-600">
+        Georgia Tech dates come from the Registrar&apos;s tentative five-term
+        calendar and may change.{" "}
+        <a
+          href="https://registrar.gatech.edu/info/tentative-five-term-school-calendar"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-bold text-gt-dark-gold underline decoration-gt-gold/40 underline-offset-2 hover:text-gt-navy"
+        >
+          Verify on the official GT calendar
+        </a>
+        .
+      </p>
     </div>
   );
 }
