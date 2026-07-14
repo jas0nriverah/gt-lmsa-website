@@ -319,7 +319,7 @@ export const boardMembers: BoardMember[] = [
     description:
       "Supports day-to-day chapter operations, helps coordinate programming, and strengthens member engagement as the founding organization takes shape.",
     image: {
-      src: "/board/amanda-ubera-corona.jpg",
+      src: "/board/amanda-ubera-corona.png",
       alt: "Headshot of Amanda Ubera-Corona, Vice President of LMSA Plus at Georgia Tech",
     },
   },
