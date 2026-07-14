@@ -307,6 +307,10 @@ export const boardMembers: BoardMember[] = [
     initials: "SL",
     description:
       "Founding President leading the chapter's Fall 2026 launch, organizational direction, campus presence, and founding member community.",
+    image: {
+      src: "/board/stacy-lomeli.png",
+      alt: "Headshot of Stacy Lomeli, Founding President of LMSA Plus at Georgia Tech",
+    },
   },
   {
     name: "Amanda Ubera-Corona",
@@ -314,6 +318,10 @@ export const boardMembers: BoardMember[] = [
     initials: "AU",
     description:
       "Vice President supporting chapter operations, programming, member engagement, and the development of the founding organization.",
+    image: {
+      src: "/board/amanda-ubera-corona.jpg",
+      alt: "Headshot of Amanda Ubera-Corona, Vice President of LMSA Plus at Georgia Tech",
+    },
   },
   {
     name: "Ashley Diaz Duenas",
