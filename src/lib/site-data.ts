@@ -328,6 +328,10 @@ export const boardMembers: BoardMember[] = [
     initials: "AD",
     description:
       "Plans and supports community service and outreach that aligns with LMSA's mission, including volunteer projects and partnerships that serve Hispanic/Latino and underserved communities.",
+    image: {
+      src: "/board/ashley-diaz-duenas.png",
+      alt: "Headshot of Ashley Diaz Duenas, Service/Community Chair of LMSA Plus at Georgia Tech",
+    },
   },
   {
     name: "Position open",
