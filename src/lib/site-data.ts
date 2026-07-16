@@ -67,6 +67,16 @@ export const navLinks: NavLink[] = [
 
 export const announcements: Announcement[] = [
   {
+    id: "pre-health-fall-kickoff-2026",
+    title: "2026 Pre-Health Fall Kickoff",
+    summary:
+      "Discover the vast pre-health resources on campus and in the community, and visit the LMSA Plus table during tabling hour.",
+    timing: "Thursday, August 27, 2026 · 5:00–6:00 PM ET · Klaus Atrium",
+    status: "confirmed",
+    href: "/events",
+    featured: true,
+  },
+  {
     id: "interest-meeting-fall-2026",
     title: "Fall 2026 Interest Meeting",
     summary:
@@ -249,6 +259,20 @@ export const programs: Program[] = [
 ];
 
 export const events: ChapterEvent[] = [
+  {
+    id: "pre-health-fall-kickoff-2026",
+    title: "2026 Pre-Health Fall Kickoff",
+    category: "Campus outreach",
+    status: "confirmed",
+    displayDate: "Thursday, August 27, 2026",
+    startDate: "2026-08-27",
+    time: "5:00 PM - 6:00 PM",
+    location: "Georgia Tech Klaus Atrium",
+    description:
+      "An in-person kickoff where students can discover pre-health resources on campus and in the community. Stop by the LMSA Plus table during the 5:00–6:00 PM tabling hour at the Klaus Atrium to meet the chapter and learn how to get involved.",
+    registrationStatus: "not-required",
+    featured: true,
+  },
   {
     id: "fall-2026-interest-meeting",
     title: "Fall 2026 Interest Meeting",
