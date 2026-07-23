@@ -97,7 +97,7 @@ export default function AboutPage() {
       <Section
         eyebrow="Founding executive board"
         title="The students preparing the chapter launch"
-        description="Fall 2026 roles include President, Vice President, Service/Community Chair, Events/Programming Chair, Marketing/Communications Chair, and Outreach/Partnerships Chair. Open Fall chairs accept applications through August 3, 2026. Spring 2027 may add Secretary, Treasurer/Fundraising, Mentorship, and First-Year Representative. Roles and descriptions are intentionally limited to approved public chapter information."
+        description="Fall 2026 roles include Founder/President, Vice President, Service/Community Chair, Events/Programming Chair, Marketing/Communications Chair, and Outreach/Partnerships Chair. Open Fall chairs accept applications through August 3, 2026. Spring 2027 may add Secretary, Treasurer/Fundraising, Mentorship, and First-Year Representative. Roles and descriptions are intentionally limited to approved public chapter information."
         className="bg-gt-cream"
       >
         <div className="grid gap-5 md:grid-cols-3">

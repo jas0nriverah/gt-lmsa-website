@@ -449,13 +449,13 @@ export const campusCalendarDates: CampusCalendarDate[] = [
 export const boardMembers: BoardMember[] = [
   {
     name: "Stacy Lomeli",
-    role: "President",
+    role: "Founder/President",
     initials: "SL",
     description:
       "Leads the Georgia Tech chapter's vision, launch timeline, campus presence, and coordination with LMSA National and Southeast leadership.",
     image: {
       src: "/board/stacy-lomeli.png",
-      alt: "Headshot of Stacy Lomeli, President of LMSA Plus at Georgia Tech",
+      alt: "Headshot of Stacy Lomeli, Founder/President of LMSA Plus at Georgia Tech",
     },
   },
   {
@@ -1066,7 +1066,7 @@ export const faqs: FAQ[] = [
   {
     question: "What is the Fall 2026 board structure?",
     answer:
-      "The founding Fall 2026 board includes President, Vice President, Service/Community Chair, Events/Programming Chair, Marketing/Communications Chair, and Outreach/Partnerships Chair. Three roles are already filled. Applications for the remaining Fall chairs are open through August 3, 2026.",
+      "The founding Fall 2026 board includes Founder/President, Vice President, Service/Community Chair, Events/Programming Chair, Marketing/Communications Chair, and Outreach/Partnerships Chair. Three roles are already filled. Applications for the remaining Fall chairs are open through August 3, 2026.",
   },
   {
     question: "Will more board positions open later?",
