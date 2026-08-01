@@ -44,6 +44,16 @@ export const contactLinks = {
   // Chapter interest: currently the on-site /interest form. Paste a Google Form
   // URL here later if you prefer spreadsheet responses instead of email.
   interestForm: { status: "active" as const, href: "/interest" },
+  // Slack invite link (https://join.slack.com/...). Paste when the workspace is ready.
+  slackInvite: {
+    status: "coming-soon" as "coming-soon" | "active",
+    href: undefined as string | undefined,
+  },
+  // Private feedback Google Form. Paste forms.gle URL when ready.
+  feedbackForm: {
+    status: "coming-soon" as "coming-soon" | "active",
+    href: undefined as string | undefined,
+  },
   // Fall chair applications (Events, Marketing, Outreach). When your Google Form
   // is ready, set status to "active" and add href: "https://forms.gle/..."
   boardApplicationForm: {
@@ -63,6 +73,7 @@ export const navLinks: NavLink[] = [
   { label: "Events", href: "/events" },
   { label: "Resources", href: "/resources" },
   { label: "Get Involved", href: "/get-involved" },
+  { label: "Links", href: "/links" },
 ];
 
 export const announcements: Announcement[] = [
@@ -1096,6 +1107,30 @@ export const involvementActions: ActionLink[] = [
     featured: true,
   },
   {
+    label: "Join the chapter Slack",
+    description:
+      "Our shared space for reminders, opportunities, and chapter conversation—join for more information.",
+    href: contactLinks.slackInvite.href,
+    status: contactLinks.slackInvite.status,
+    category: "Community",
+    featured: true,
+  },
+  {
+    label: "Share private feedback",
+    description:
+      "Tell the board how programming feels. Responses are confidential and never tied to your name.",
+    href: contactLinks.feedbackForm.href,
+    status: contactLinks.feedbackForm.status,
+    category: "Feedback",
+  },
+  {
+    label: "All quick links",
+    description: "Open the chapter link hub—perfect for saving or sharing from Instagram.",
+    href: "/links",
+    status: "active",
+    category: "Chapter",
+  },
+  {
     label: "Apply for Fall board chairs",
     description:
       "Events/Programming, Marketing/Communications, and Outreach/Partnerships applications are open through August 3, 2026. The Google Form link will appear here once published.",
@@ -1151,6 +1186,21 @@ export const linktreeLinks: ActionLink[] = [
     status: "active",
     category: "Membership",
     featured: true,
+  },
+  {
+    label: "Join the chapter Slack",
+    description: "Reminders, opportunities, and conversation—join for more information.",
+    href: contactLinks.slackInvite.href,
+    status: contactLinks.slackInvite.status,
+    category: "Community",
+    featured: true,
+  },
+  {
+    label: "Share private feedback",
+    description: "Confidential notes for the board on meetings and programming.",
+    href: contactLinks.feedbackForm.href,
+    status: contactLinks.feedbackForm.status,
+    category: "Feedback",
   },
   {
     label: "Fall Board Chair Applications",

@@ -49,7 +49,6 @@ export function Footer() {
                 {link.label}
               </Link>
             ))}
-            <Link href="/links" className="footer-link">Quick links</Link>
             <Link href="/interest" className="footer-link">Chapter interest form</Link>
           </div>
         </div>

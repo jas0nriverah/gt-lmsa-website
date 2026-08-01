@@ -31,6 +31,28 @@ export function LinktreeButton({
     : "group flex w-full items-start gap-4 rounded-2xl border border-slate-200/90 bg-white px-4 py-3.5 text-left shadow-sm transition hover:-translate-y-0.5 hover:border-gt-gold/50 hover:shadow-md";
 
   if (isComingSoon) {
+    if (isFeatured) {
+      return (
+        <div
+          aria-disabled="true"
+          className="flex w-full items-start gap-4 rounded-2xl border border-gt-gold/35 bg-gt-navy/95 px-5 py-4 text-left opacity-95 shadow-lg shadow-gt-navy/20"
+        >
+          <span className="mt-1 h-8 w-1 shrink-0 rounded-full bg-gt-gold" aria-hidden="true" />
+          <span className="min-w-0 flex-1">
+            <span className="block font-extrabold text-white">{action.label}</span>
+            <span className="mt-1 inline-block rounded-md bg-gt-gold/20 px-2 py-0.5 text-[11px] font-extrabold uppercase tracking-[0.14em] text-gt-gold">
+              Coming soon
+            </span>
+            {action.description ? (
+              <span className="mt-1.5 block text-sm leading-5 text-white/70">
+                {action.description}
+              </span>
+            ) : null}
+          </span>
+        </div>
+      );
+    }
+
     return (
       <div
         aria-disabled="true"

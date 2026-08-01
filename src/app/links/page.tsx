@@ -31,7 +31,10 @@ const sections: { id: string; title: string; match: (link: ActionLink) => boolea
     id: "connect",
     title: "Connect",
     match: (link) =>
-      link.category === "Social" || link.category === "Contact",
+      link.category === "Social" ||
+      link.category === "Contact" ||
+      link.category === "Community" ||
+      link.category === "Feedback",
   },
   {
     id: "lmsa",
