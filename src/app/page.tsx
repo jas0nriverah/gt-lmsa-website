@@ -24,16 +24,28 @@ import {
 export default function HomePage() {
   return (
     <SitePage>
-      <section className="relative overflow-hidden border-b border-gt-gold/25 bg-white px-6 py-16 sm:px-8 sm:py-20 lg:py-28">
-        <div className="absolute inset-y-0 right-0 hidden w-[42%] bg-gt-navy lg:block" />
-        <div className="relative mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.25fr_0.75fr]">
+      <section className="relative overflow-hidden border-b border-gt-gold/25 bg-white px-6 py-16 sm:px-8 sm:py-20 lg:py-24">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -left-24 top-10 h-64 w-64 rounded-full bg-gt-navy/[0.04] blur-3xl"
+        />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -right-16 bottom-0 h-72 w-72 rounded-full bg-gt-gold/20 blur-3xl"
+        />
+
+        <div className="relative mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
           <div>
             <p className="eyebrow">{chapterInfo.launchLabel}</p>
-            <h1 className="mt-5 max-w-4xl text-4xl font-black leading-[1.08] text-gt-navy sm:text-6xl">
-              A new pre-health community, built to help students move forward together.
+            <h1 className="mt-4 max-w-3xl text-4xl font-black leading-[1.05] tracking-tight text-gt-navy sm:text-5xl lg:text-[3.35rem]">
+              Latino Medical Student Association Plus
             </h1>
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-600">
-              {chapterInfo.description} Public programming is planned to begin in Fall 2026.
+            <p className="mt-3 text-xl font-bold text-gt-dark-gold sm:text-2xl">
+              Georgia Tech Chapter
+            </p>
+            <p className="mt-5 max-w-xl text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">
+              Student-led pre-health community for mentorship, service, and
+              Latino/Hispanic health. Public programming begins Fall 2026.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link href="/interest" className="button button-primary">
@@ -47,16 +59,48 @@ export default function HomePage() {
               {chapterInfo.recognitionStatus}
             </p>
           </div>
-          <div className="relative mx-auto flex aspect-square w-full max-w-sm items-center justify-center rounded-[3rem] bg-gt-navy p-10 shadow-2xl shadow-gt-navy/20 ring-1 ring-white/15 lg:mx-0">
-            <div className="absolute inset-5 rounded-[2.3rem] border border-gt-gold/40" />
-            <Image
-              src="/lmsa-logo.png"
-              alt="Latino Medical Student Association logo"
-              width={280}
-              height={280}
-              className="relative rounded-full bg-white shadow-xl"
-              priority
+
+          <div className="relative mx-auto flex aspect-square w-full max-w-[22rem] items-center justify-center lg:mx-0 lg:max-w-none">
+            {/* Navy & gold rings circling the logo — white field, no split panel */}
+            <div
+              aria-hidden="true"
+              className="absolute inset-[2%] rounded-full border border-gt-navy/10"
             />
+            <div
+              aria-hidden="true"
+              className="absolute inset-[8%] rounded-full border-2 border-gt-navy/20"
+            />
+            <div
+              aria-hidden="true"
+              className="absolute inset-[14%] rounded-full border border-dashed border-gt-gold/70"
+            />
+            <div
+              aria-hidden="true"
+              className="absolute inset-[20%] rounded-full border border-gt-navy/15"
+            />
+            {/* Partial navy arcs for a braided/encircling feel */}
+            <div
+              aria-hidden="true"
+              className="absolute inset-[4%] rounded-full border-[3px] border-transparent border-t-gt-navy border-r-gt-navy/40"
+            />
+            <div
+              aria-hidden="true"
+              className="absolute inset-[10%] rotate-[160deg] rounded-full border-[3px] border-transparent border-t-gt-gold border-l-gt-navy/50"
+            />
+            <div
+              aria-hidden="true"
+              className="absolute inset-[16%] -rotate-45 rounded-full border-2 border-transparent border-b-gt-navy/35 border-r-gt-gold/80"
+            />
+            <div className="relative z-10 rounded-full bg-white p-2 shadow-[0_12px_40px_rgba(0,48,87,0.12)] ring-1 ring-gt-navy/10">
+              <Image
+                src="/lmsa-logo.png"
+                alt="Latino Medical Student Association logo"
+                width={280}
+                height={280}
+                className="rounded-full bg-white"
+                priority
+              />
+            </div>
           </div>
         </div>
       </section>
