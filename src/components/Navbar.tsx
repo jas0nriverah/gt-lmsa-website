@@ -42,7 +42,7 @@ export function Navbar() {
             <span className="block text-[0.68rem] font-bold uppercase tracking-[0.2em] text-gt-dark-gold">
               Georgia Tech
             </span>
-            <span className="block text-lg font-black text-gt-navy">LMSA Plus</span>
+            <span className="block text-lg font-black text-gt-navy">LMSA PLUS</span>
             <span className="sr-only">{chapterInfo.fullName}</span>
           </span>
         </Link>

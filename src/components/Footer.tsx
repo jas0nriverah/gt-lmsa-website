@@ -25,7 +25,7 @@ export function Footer() {
               <p className="text-xs font-bold uppercase tracking-[0.2em] text-gt-gold">
                 Georgia Tech
               </p>
-              <p className="text-xl font-black">LMSA Plus</p>
+              <p className="text-xl font-black">LMSA PLUS</p>
             </div>
           </div>
           <p className="mt-5 max-w-md leading-7 text-white/75">

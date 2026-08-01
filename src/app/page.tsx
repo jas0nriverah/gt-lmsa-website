@@ -38,7 +38,7 @@ export default function HomePage() {
           <div>
             <p className="eyebrow">{chapterInfo.launchLabel}</p>
             <h1 className="mt-4 max-w-3xl text-4xl font-black leading-[1.05] tracking-tight text-gt-navy sm:text-5xl lg:text-[3.35rem]">
-              Latino Medical Student Association Plus
+              LMSA PLUS
             </h1>
             <p className="mt-3 text-xl font-bold text-gt-dark-gold sm:text-2xl">
               Georgia Tech Chapter
@@ -55,9 +55,6 @@ export default function HomePage() {
                 View planned events
               </Link>
             </div>
-            <p className="mt-5 text-sm font-semibold text-slate-500">
-              {chapterInfo.recognitionStatus}
-            </p>
           </div>
 
           <div className="relative mx-auto flex aspect-square w-full max-w-[22rem] items-center justify-center lg:mx-0 lg:max-w-none">
