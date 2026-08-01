@@ -88,22 +88,22 @@ export const announcements: Announcement[] = [
     featured: true,
   },
   {
-    id: "interest-meeting-fall-2026",
-    title: "Fall 2026 Interest Meeting",
-    summary:
-      "Meet the founding board, learn how LMSA PLUS connects pre-health students, and help shape the chapter's first year.",
-    timing: "Mid-September 2026 — exact date, time, and location coming soon",
-    status: "planned",
-    href: "/events",
-    featured: true,
-  },
-  {
     id: "student-org-fair-fall-2026",
     title: "Fall Student Organizations Fair",
     summary:
       "Visit the LMSA Plus table on Tech Green for brochures and goodies during Georgia Tech's Fall Student Organizations Fair.",
     timing: "September 1–2, 2026 · 11:00 AM – 1:00 PM · Tech Green",
     status: "confirmed",
+    href: "/events",
+    featured: true,
+  },
+  {
+    id: "interest-meeting-fall-2026",
+    title: "Fall 2026 Interest Meeting",
+    summary:
+      "Meet the founding board, learn how LMSA PLUS connects pre-health students, and help shape the chapter's first year.",
+    timing: "Mid-September 2026 — exact date, time, and location coming soon",
+    status: "planned",
     href: "/events",
     featured: true,
   },
@@ -285,17 +285,6 @@ export const events: ChapterEvent[] = [
     featured: true,
   },
   {
-    id: "fall-2026-interest-meeting",
-    title: "Fall 2026 Interest Meeting",
-    category: "Chapter launch",
-    status: "planned",
-    displayDate: "Mid-September 2026",
-    description:
-      "Meet the founding executive board, learn what LMSA PLUS is, explore planned programming, and share what would make the chapter useful to you.",
-    registrationStatus: "coming-soon",
-    featured: true,
-  },
-  {
     id: "fall-2026-student-organization-fair-day-1",
     title: "Fall Student Organizations Fair: Day 1",
     category: "Campus outreach",
@@ -321,6 +310,17 @@ export const events: ChapterEvent[] = [
     description:
       "Day 2 of Georgia Tech's Fall Student Organizations Fair, hosted by the Center for Student Engagement. Stop by the LMSA Plus table — we will be handing out brochures and some goodies! Meet organization leaders from a select group of 550+ RSOs and kick-start your involvement on campus. RSOs that want to table must register on Engage. Contact: Engage@gatech.edu.",
     registrationStatus: "not-required",
+    featured: true,
+  },
+  {
+    id: "fall-2026-interest-meeting",
+    title: "Fall 2026 Interest Meeting",
+    category: "Chapter launch",
+    status: "planned",
+    displayDate: "Mid-September 2026",
+    description:
+      "Meet the founding executive board, learn what LMSA PLUS is, explore planned programming, and share what would make the chapter useful to you.",
+    registrationStatus: "coming-soon",
     featured: true,
   },
   {
@@ -460,13 +460,13 @@ export const campusCalendarDates: CampusCalendarDate[] = [
 export const boardMembers: BoardMember[] = [
   {
     name: "Stacy Lomeli",
-    role: "Founder/President",
+    role: "President",
     initials: "SL",
     description:
       "Leads the Georgia Tech chapter's vision, launch timeline, campus presence, and coordination with LMSA National and Southeast leadership.",
     image: {
       src: "/board/stacy-lomeli.png",
-      alt: "Headshot of Stacy Lomeli, Founder/President of LMSA Plus at Georgia Tech",
+      alt: "Headshot of Stacy Lomeli, President of LMSA Plus at Georgia Tech",
     },
   },
   {
@@ -1077,7 +1077,7 @@ export const faqs: FAQ[] = [
   {
     question: "What is the Fall 2026 board structure?",
     answer:
-      "The founding Fall 2026 board includes Founder/President, Vice President, Service/Community Chair, Events/Programming Chair, Marketing/Communications Chair, and Outreach/Partnerships Chair. Three roles are already filled. Applications for the remaining Fall chairs are open through August 3, 2026.",
+      "The founding Fall 2026 board includes President, Vice President, Service/Community Chair, Events/Programming Chair, Marketing/Communications Chair, and Outreach/Partnerships Chair. Three roles are already filled. Applications for the remaining Fall chairs are open through August 3, 2026.",
   },
   {
     question: "Will more board positions open later?",
