@@ -44,8 +44,8 @@ export const contactLinks = {
   // Chapter interest: currently the on-site /interest form. Paste a Google Form
   // URL here later if you prefer spreadsheet responses instead of email.
   interestForm: { status: "active" as const, href: "/interest" },
-  // Slack invite link (https://join.slack.com/...). Paste when the workspace is ready.
-  slackInvite: {
+  // WhatsApp community invite link. Paste when the group invite is ready.
+  whatsappInvite: {
     status: "coming-soon" as "coming-soon" | "active",
     href: undefined as string | undefined,
   },
@@ -238,6 +238,13 @@ export const programs: Program[] = [
       "Planned volunteer opportunities developed with attention to community priorities, appropriate training, safety, and Georgia Tech policies.",
     status: "planned",
     category: "Service",
+  },
+  {
+    title: "Digital confidence for families",
+    description:
+      "A Spring 2027 initiative being explored with local high schools to help Hispanic/Latino families—including first-generation households—build confidence with digital tools, understand responsible AI use, recognize misinformation and scams, and find trustworthy education and health resources.",
+    status: "planned",
+    category: "Community education",
   },
   {
     title: "Culture and community",
@@ -1116,11 +1123,11 @@ export const involvementActions: ActionLink[] = [
     featured: true,
   },
   {
-    label: "Join the chapter Slack",
+    label: "Join the chapter WhatsApp",
     description:
       "Our shared space for reminders, opportunities, and chapter conversation—join for more information.",
-    href: contactLinks.slackInvite.href,
-    status: contactLinks.slackInvite.status,
+    href: contactLinks.whatsappInvite.href,
+    status: contactLinks.whatsappInvite.status,
     category: "Community",
     featured: true,
   },
@@ -1197,10 +1204,10 @@ export const linktreeLinks: ActionLink[] = [
     featured: true,
   },
   {
-    label: "Join the chapter Slack",
+    label: "Join the chapter WhatsApp",
     description: "Reminders, opportunities, and conversation—join for more information.",
-    href: contactLinks.slackInvite.href,
-    status: contactLinks.slackInvite.status,
+    href: contactLinks.whatsappInvite.href,
+    status: contactLinks.whatsappInvite.status,
     category: "Community",
     featured: true,
   },
