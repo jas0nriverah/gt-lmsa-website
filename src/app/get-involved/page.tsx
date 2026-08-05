@@ -85,9 +85,16 @@ export default function GetInvolvedPage() {
               <h3 className="mt-2 text-xl font-bold text-gt-navy">
                 {partner.shortName ?? partner.name}
               </h3>
-              <p className="mt-1 text-sm font-semibold text-slate-500">
-                {partner.name}
-              </p>
+              {partner.shortName && partner.shortName !== partner.name ? (
+                <p className="mt-1 text-sm font-semibold text-slate-500">
+                  {partner.name}
+                </p>
+              ) : null}
+              {partner.contactName ? (
+                <p className="mt-1 text-sm text-slate-500">
+                  Contact: {partner.contactName}
+                </p>
+              ) : null}
               <p className="mt-3 flex-1 leading-7 text-slate-600">
                 {partner.description}
               </p>

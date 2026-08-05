@@ -482,13 +482,13 @@ export const boardMembers: BoardMember[] = [
   },
   {
     name: "Ashley Diaz Duenas",
-    role: "Service/Community Chair",
+    role: "Outreach/Partnerships Chair",
     initials: "AD",
     description:
-      "Plans and supports community service and outreach that aligns with LMSA's mission, including volunteer projects and partnerships that serve Hispanic/Latino and underserved communities.",
+      "Builds collaborations with campus groups, medical schools, community partners, and other LMSA chapters to expand mentorship, outreach, and shared programming.",
     image: {
       src: "/board/ashley-diaz-duenas.png",
-      alt: "Headshot of Ashley Diaz Duenas, Service/Community Chair of LMSA Plus at Georgia Tech",
+      alt: "Headshot of Ashley Diaz Duenas, Outreach/Partnerships Chair of LMSA Plus at Georgia Tech",
     },
   },
   {
@@ -519,8 +519,8 @@ export const boardMembers: BoardMember[] = [
   },
   {
     name: "Position open",
-    role: "Outreach/Partnerships Chair",
-    initials: "OP",
+    role: "Service/Community Chair",
+    initials: "SC",
     openingNote: "Opens August 6",
     applicationUrl:
       contactLinks.boardApplicationForm.status === "active" &&
@@ -528,7 +528,7 @@ export const boardMembers: BoardMember[] = [
         ? contactLinks.boardApplicationForm.href
         : undefined,
     description:
-      "Builds collaborations with campus groups, medical schools, community partners, and other LMSA chapters to expand mentorship, outreach, and shared programming.",
+      "Plans and supports community service and outreach that aligns with LMSA's mission, including volunteer projects and partnerships that serve Hispanic/Latino and underserved communities.",
   },
 ];
 
@@ -541,6 +541,15 @@ export const partners: Partner[] = [
     description:
       "Atlanta nonprofit that supports under-resourced high school students with mentorship, college and career exposure, and pathways after graduation. LMSA Plus at Georgia Tech is proud to partner with Next Gen Atl Men and Women.",
     href: "https://nextgenatl.org/",
+  },
+  {
+    name: "E-NABLE × Connect & Confident",
+    shortName: "E-NABLE × Connect & Confident",
+    contactName: "Niyati Chopra",
+    focus: "Nonprofit / Student Organization",
+    description:
+      "A nonprofit and student organization collaboration with LMSA PLUS at Georgia Tech. Partnership activities and opportunities will be shared as they are confirmed.",
+    href: "https://enablingthefuture.org/",
   },
 ];
 
@@ -1133,7 +1142,7 @@ export const involvementActions: ActionLink[] = [
   {
     label: "Apply for Fall board chairs",
     description:
-      "Events/Programming, Marketing/Communications, and Outreach/Partnerships applications open August 6, 2026. The Google Form link will appear here once published.",
+      "Events/Programming, Marketing/Communications, and Service/Community applications open August 6, 2026. The Google Form link will appear here once published.",
     status: "coming-soon",
     category: "Leadership",
   },
@@ -1204,7 +1213,7 @@ export const linktreeLinks: ActionLink[] = [
   },
   {
     label: "Fall Board Chair Applications",
-    description: "Events, Marketing & Outreach — applications open August 6.",
+    description: "Events, Marketing & Service — applications open August 6.",
     status: "coming-soon",
     category: "Leadership",
   },

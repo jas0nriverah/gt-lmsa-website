@@ -36,6 +36,7 @@ export interface Announcement {
 export interface Partner {
   name: string;
   shortName?: string;
+  contactName?: string;
   description: string;
   href: string;
   focus: string;
