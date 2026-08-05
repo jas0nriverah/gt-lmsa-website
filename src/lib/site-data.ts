@@ -552,7 +552,6 @@ export const partners: Partner[] = [
   {
     name: "E-NABLE × Connect & Confident",
     shortName: "E-NABLE × Connect & Confident",
-    contactName: "Niyati Chopra",
     focus: "Nonprofit / Student Organization",
     description:
       "A nonprofit and student organization collaboration with LMSA PLUS at Georgia Tech. Partnership activities and opportunities will be shared as they are confirmed.",
