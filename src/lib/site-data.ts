@@ -495,7 +495,7 @@ export const boardMembers: BoardMember[] = [
     name: "Position open",
     role: "Events/Programming Chair",
     initials: "EP",
-    openingNote: "Apply by August 3",
+    openingNote: "Opens August 6",
     applicationUrl:
       contactLinks.boardApplicationForm.status === "active" &&
       contactLinks.boardApplicationForm.href
@@ -508,7 +508,7 @@ export const boardMembers: BoardMember[] = [
     name: "Position open",
     role: "Marketing/Communications Chair",
     initials: "MC",
-    openingNote: "Apply by August 3",
+    openingNote: "Opens August 6",
     applicationUrl:
       contactLinks.boardApplicationForm.status === "active" &&
       contactLinks.boardApplicationForm.href
@@ -521,7 +521,7 @@ export const boardMembers: BoardMember[] = [
     name: "Position open",
     role: "Outreach/Partnerships Chair",
     initials: "OP",
-    openingNote: "Apply by August 3",
+    openingNote: "Opens August 6",
     applicationUrl:
       contactLinks.boardApplicationForm.status === "active" &&
       contactLinks.boardApplicationForm.href
@@ -1077,7 +1077,7 @@ export const faqs: FAQ[] = [
   {
     question: "What is the Fall 2026 board structure?",
     answer:
-      "The founding Fall 2026 board includes President, Vice President, Service/Community Chair, Events/Programming Chair, Marketing/Communications Chair, and Outreach/Partnerships Chair. Three roles are already filled. Applications for the remaining Fall chairs are open through August 3, 2026.",
+      "The founding Fall 2026 board includes President, Vice President, Service/Community Chair, Events/Programming Chair, Marketing/Communications Chair, and Outreach/Partnerships Chair. Three roles are already filled. Applications for the remaining Fall chairs open August 6, 2026.",
   },
   {
     question: "Will more board positions open later?",
@@ -1133,7 +1133,7 @@ export const involvementActions: ActionLink[] = [
   {
     label: "Apply for Fall board chairs",
     description:
-      "Events/Programming, Marketing/Communications, and Outreach/Partnerships applications are open through August 3, 2026. The Google Form link will appear here once published.",
+      "Events/Programming, Marketing/Communications, and Outreach/Partnerships applications open August 6, 2026. The Google Form link will appear here once published.",
     status: "coming-soon",
     category: "Leadership",
   },
@@ -1204,7 +1204,7 @@ export const linktreeLinks: ActionLink[] = [
   },
   {
     label: "Fall Board Chair Applications",
-    description: "Events, Marketing & Outreach — apply through August 3.",
+    description: "Events, Marketing & Outreach — applications open August 6.",
     status: "coming-soon",
     category: "Leadership",
   },
