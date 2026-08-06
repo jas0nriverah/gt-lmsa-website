@@ -54,11 +54,10 @@ export const contactLinks = {
     status: "coming-soon" as "coming-soon" | "active",
     href: undefined as string | undefined,
   },
-  // Fall chair applications (Events, Service, Marketing, Treasurer / Finance, Secretary). When your Google Form
-  // is ready, set status to "active" and add href: "https://forms.gle/..."
+  // Fall chair applications (Events, Service, Marketing, Treasurer / Finance, Secretary).
   boardApplicationForm: {
-    status: "coming-soon" as "coming-soon" | "active",
-    href: undefined as string | undefined,
+    status: "active" as "coming-soon" | "active",
+    href: "https://forms.gle/zvrUCM5XgP7Ac3og9" as string | undefined,
   },
   newsletterForm: { status: "coming-soon" as const },
   mentorshipForm: { status: "coming-soon" as const },
@@ -491,7 +490,7 @@ export const boardMembers: BoardMember[] = [
     name: "Position open",
     role: "Secretary",
     initials: "SE",
-    openingNote: "Opens August 6",
+    openingNote: "Apply now",
     applicationUrl:
       contactLinks.boardApplicationForm.status === "active" &&
       contactLinks.boardApplicationForm.href
@@ -504,7 +503,7 @@ export const boardMembers: BoardMember[] = [
     name: "Position open",
     role: "Treasurer / Finance",
     initials: "TR",
-    openingNote: "Opens August 6",
+    openingNote: "Apply now",
     applicationUrl:
       contactLinks.boardApplicationForm.status === "active" &&
       contactLinks.boardApplicationForm.href
@@ -528,7 +527,7 @@ export const boardMembers: BoardMember[] = [
     name: "Position open",
     role: "Service / Community Health Chair",
     initials: "SC",
-    openingNote: "Opens August 6",
+    openingNote: "Apply now",
     applicationUrl:
       contactLinks.boardApplicationForm.status === "active" &&
       contactLinks.boardApplicationForm.href
@@ -541,7 +540,7 @@ export const boardMembers: BoardMember[] = [
     name: "Position open",
     role: "Events / Programming Chair",
     initials: "EP",
-    openingNote: "Opens August 6",
+    openingNote: "Apply now",
     applicationUrl:
       contactLinks.boardApplicationForm.status === "active" &&
       contactLinks.boardApplicationForm.href
@@ -554,7 +553,7 @@ export const boardMembers: BoardMember[] = [
     name: "Position open",
     role: "Marketing / Communications Chair",
     initials: "MC",
-    openingNote: "Opens August 6",
+    openingNote: "Apply now",
     applicationUrl:
       contactLinks.boardApplicationForm.status === "active" &&
       contactLinks.boardApplicationForm.href
@@ -1194,8 +1193,9 @@ export const involvementActions: ActionLink[] = [
   {
     label: "Apply for Fall board chairs",
     description:
-      "Events / Programming, Service / Community Health, Marketing / Communications, Treasurer / Finance, and Secretary applications open August 6, 2026. The Google Form link will appear here once published.",
-    status: "coming-soon",
+      "Events / Programming, Service / Community Health, Marketing / Communications, Treasurer / Finance, and Secretary — apply through the Google Form.",
+    href: contactLinks.boardApplicationForm.href,
+    status: contactLinks.boardApplicationForm.status,
     category: "Leadership",
   },
   {
@@ -1265,8 +1265,9 @@ export const linktreeLinks: ActionLink[] = [
   },
   {
     label: "Fall Board Chair Applications",
-    description: "Events, Service, Marketing, Treasurer / Finance & Secretary — applications open August 6.",
-    status: "coming-soon",
+    description: "Events, Service, Marketing, Treasurer / Finance & Secretary — apply now.",
+    href: contactLinks.boardApplicationForm.href,
+    status: contactLinks.boardApplicationForm.status,
     category: "Leadership",
   },
   {
