@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { ActionLink } from "@/components/ActionLink";
 import { PageHero } from "@/components/PageHero";
 import { Section } from "@/components/Section";
@@ -82,14 +83,29 @@ export default function GetInvolvedPage() {
               <p className="text-sm font-bold tracking-wide text-gt-dark-gold">
                 {partner.focus}
               </p>
-              <h3 className="mt-2 text-xl font-bold text-gt-navy">
-                {partner.shortName ?? partner.name}
-              </h3>
-              {partner.shortName && partner.shortName !== partner.name ? (
-                <p className="mt-1 text-sm font-semibold text-slate-500">
-                  {partner.name}
-                </p>
-              ) : null}
+              <div className="mt-3 flex items-start gap-3">
+                {partner.logo ? (
+                  <div className="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-slate-200 bg-white p-1.5">
+                    <Image
+                      src={partner.logo.src}
+                      alt={partner.logo.alt}
+                      width={56}
+                      height={56}
+                      className="h-full w-full object-contain"
+                    />
+                  </div>
+                ) : null}
+                <div className="min-w-0">
+                  <h3 className="text-xl font-bold text-gt-navy">
+                    {partner.shortName ?? partner.name}
+                  </h3>
+                  {partner.shortName && partner.shortName !== partner.name ? (
+                    <p className="mt-1 text-sm font-semibold text-slate-500">
+                      {partner.name}
+                    </p>
+                  ) : null}
+                </div>
+              </div>
               {partner.contactName ? (
                 <p className="mt-1 text-sm text-slate-500">
                   Contact: {partner.contactName}

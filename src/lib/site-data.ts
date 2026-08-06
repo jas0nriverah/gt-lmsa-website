@@ -574,6 +574,10 @@ export const partners: Partner[] = [
     description:
       "Atlanta nonprofit that supports under-resourced high school students with mentorship, college and career exposure, and pathways after graduation. LMSA Plus at Georgia Tech is proud to partner with Next Gen Atl Men and Women.",
     href: "https://nextgenatl.org/",
+    logo: {
+      src: "/partners/next-gen-atl.png",
+      alt: "Next Generation Men & Women logo",
+    },
   },
   {
     name: "E-NABLE × Connect & Confident",
@@ -582,6 +586,10 @@ export const partners: Partner[] = [
     description:
       "A nonprofit and student organization collaboration with LMSA PLUS at Georgia Tech. Partnership activities and opportunities will be shared as they are confirmed.",
     href: "https://enablingthefuture.org/",
+    logo: {
+      src: "/partners/e-nable.png",
+      alt: "E-NABLE logo",
+    },
   },
   {
     name: "Latino Community Fund Georgia",
@@ -590,6 +598,10 @@ export const partners: Partner[] = [
     description:
       "Statewide Latino community foundation focused on collective strength, investment, and health and wellbeing. LMSA PLUS at Georgia Tech is collaborating with LCF Georgia; shared programming will be posted as it is confirmed.",
     href: "https://lcfgeorgia.org/",
+    logo: {
+      src: "/partners/lcf-georgia.png",
+      alt: "Latino Community Fund Georgia logo",
+    },
   },
 ];
 

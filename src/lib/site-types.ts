@@ -40,6 +40,7 @@ export interface Partner {
   description: string;
   href: string;
   focus: string;
+  logo?: { src: string; alt: string };
 }
 
 export interface CoreValue {
