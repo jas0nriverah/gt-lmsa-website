@@ -488,6 +488,32 @@ export const boardMembers: BoardMember[] = [
     },
   },
   {
+    name: "Position open",
+    role: "Secretary",
+    initials: "SE",
+    openingNote: "Opens August 6",
+    applicationUrl:
+      contactLinks.boardApplicationForm.status === "active" &&
+      contactLinks.boardApplicationForm.href
+        ? contactLinks.boardApplicationForm.href
+        : undefined,
+    description:
+      "Takes meeting notes, keeps chapter records organized, tracks attendance, and helps maintain shared documents and board communications.",
+  },
+  {
+    name: "Position open",
+    role: "Treasurer / Finance",
+    initials: "TR",
+    openingNote: "Opens August 6",
+    applicationUrl:
+      contactLinks.boardApplicationForm.status === "active" &&
+      contactLinks.boardApplicationForm.href
+        ? contactLinks.boardApplicationForm.href
+        : undefined,
+    description:
+      "Handles fundraising, dues, reimbursements, purchases, and Georgia Tech funding processes for the chapter.",
+  },
+  {
     name: "Ashley Diaz Duenas",
     role: "Outreach / Partnerships Chair",
     initials: "AD",
@@ -497,19 +523,6 @@ export const boardMembers: BoardMember[] = [
       src: "/board/ashley-diaz-duenas.png",
       alt: "Headshot of Ashley Diaz Duenas, Outreach / Partnerships Chair of LMSA Plus at Georgia Tech",
     },
-  },
-  {
-    name: "Position open",
-    role: "Events / Programming Chair",
-    initials: "EP",
-    openingNote: "Opens August 6",
-    applicationUrl:
-      contactLinks.boardApplicationForm.status === "active" &&
-      contactLinks.boardApplicationForm.href
-        ? contactLinks.boardApplicationForm.href
-        : undefined,
-    description:
-      "Runs programming primarily for members—speakers, panels, workshops, general body meetings, networking, and Medical Spanish programming.",
   },
   {
     name: "Position open",
@@ -526,6 +539,19 @@ export const boardMembers: BoardMember[] = [
   },
   {
     name: "Position open",
+    role: "Events / Programming Chair",
+    initials: "EP",
+    openingNote: "Opens August 6",
+    applicationUrl:
+      contactLinks.boardApplicationForm.status === "active" &&
+      contactLinks.boardApplicationForm.href
+        ? contactLinks.boardApplicationForm.href
+        : undefined,
+    description:
+      "Runs programming primarily for members—speakers, panels, workshops, general body meetings, networking, and Medical Spanish programming.",
+  },
+  {
+    name: "Position open",
     role: "Marketing / Communications Chair",
     initials: "MC",
     openingNote: "Opens August 6",
@@ -536,32 +562,6 @@ export const boardMembers: BoardMember[] = [
         : undefined,
     description:
       "Manages Instagram, graphics, announcements, website updates, promotion, and event recaps so students stay informed.",
-  },
-  {
-    name: "Position open",
-    role: "Treasurer / Finance",
-    initials: "TR",
-    openingNote: "Opens August 6",
-    applicationUrl:
-      contactLinks.boardApplicationForm.status === "active" &&
-      contactLinks.boardApplicationForm.href
-        ? contactLinks.boardApplicationForm.href
-        : undefined,
-    description:
-      "Handles fundraising, dues, reimbursements, purchases, and Georgia Tech funding processes for the chapter.",
-  },
-  {
-    name: "Position open",
-    role: "Secretary",
-    initials: "SE",
-    openingNote: "Opens August 6",
-    applicationUrl:
-      contactLinks.boardApplicationForm.status === "active" &&
-      contactLinks.boardApplicationForm.href
-        ? contactLinks.boardApplicationForm.href
-        : undefined,
-    description:
-      "Takes meeting notes, keeps chapter records organized, tracks attendance, and helps maintain shared documents and board communications.",
   },
 ];
 
