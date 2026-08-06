@@ -171,7 +171,7 @@ export default function HomePage() {
       <Section
         eyebrow="Founding board"
         title="Meet the chapter leaders preparing the launch"
-        description="Fall 2026 founding board roles. Three officers are confirmed; open chair applications open August 6, 2026 for Events / Programming, Service / Community Health, Marketing / Communications, Treasurer, and Secretary. Only board information approved for public use is displayed."
+        description="Fall 2026 founding board roles. Three officers are confirmed; open chair applications open August 6, 2026 for Events / Programming, Service / Community Health, Marketing / Communications, Treasurer / Finance, and Secretary. Only board information approved for public use is displayed."
         className="bg-gt-cream"
       >
         <div className="grid gap-5 md:grid-cols-3">

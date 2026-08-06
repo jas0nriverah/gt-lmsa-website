@@ -54,7 +54,7 @@ export const contactLinks = {
     status: "coming-soon" as "coming-soon" | "active",
     href: undefined as string | undefined,
   },
-  // Fall chair applications (Events, Service, Marketing, Treasurer, Secretary). When your Google Form
+  // Fall chair applications (Events, Service, Marketing, Treasurer / Finance, Secretary). When your Google Form
   // is ready, set status to "active" and add href: "https://forms.gle/..."
   boardApplicationForm: {
     status: "coming-soon" as "coming-soon" | "active",
@@ -539,7 +539,7 @@ export const boardMembers: BoardMember[] = [
   },
   {
     name: "Position open",
-    role: "Treasurer",
+    role: "Treasurer / Finance",
     initials: "TR",
     openingNote: "Opens August 6",
     applicationUrl:
@@ -1118,7 +1118,7 @@ export const faqs: FAQ[] = [
   {
     question: "What is the Fall 2026 board structure?",
     answer:
-      "The founding Fall 2026 board includes President, Vice President / Operations, Outreach / Partnerships Chair, Events / Programming Chair, Service / Community Health Chair, Marketing / Communications Chair, Treasurer, and Secretary. Three roles are already filled. Applications for the remaining Fall chairs open August 6, 2026. Membership / Mentorship is not opening yet—onboarding and member tracking start under Vice President / Operations.",
+      "The founding Fall 2026 board includes President, Vice President / Operations, Outreach / Partnerships Chair, Events / Programming Chair, Service / Community Health Chair, Marketing / Communications Chair, Treasurer / Finance, and Secretary. Three roles are already filled. Applications for the remaining Fall chairs open August 6, 2026. Membership / Mentorship is not opening yet—onboarding and member tracking start under Vice President / Operations.",
   },
   {
     question: "Will more board positions open later?",
@@ -1174,7 +1174,7 @@ export const involvementActions: ActionLink[] = [
   {
     label: "Apply for Fall board chairs",
     description:
-      "Events / Programming, Service / Community Health, Marketing / Communications, Treasurer, and Secretary applications open August 6, 2026. The Google Form link will appear here once published.",
+      "Events / Programming, Service / Community Health, Marketing / Communications, Treasurer / Finance, and Secretary applications open August 6, 2026. The Google Form link will appear here once published.",
     status: "coming-soon",
     category: "Leadership",
   },
@@ -1245,7 +1245,7 @@ export const linktreeLinks: ActionLink[] = [
   },
   {
     label: "Fall Board Chair Applications",
-    description: "Events, Service, Marketing, Treasurer & Secretary — applications open August 6.",
+    description: "Events, Service, Marketing, Treasurer / Finance & Secretary — applications open August 6.",
     status: "coming-soon",
     category: "Leadership",
   },
