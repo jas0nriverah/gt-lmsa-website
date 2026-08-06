@@ -583,6 +583,14 @@ export const partners: Partner[] = [
       "A nonprofit and student organization collaboration with LMSA PLUS at Georgia Tech. Partnership activities and opportunities will be shared as they are confirmed.",
     href: "https://enablingthefuture.org/",
   },
+  {
+    name: "Latino Community Fund Georgia",
+    shortName: "LCF Georgia",
+    focus: "Community partnership",
+    description:
+      "Statewide Latino community foundation focused on collective strength, investment, and health and wellbeing. LMSA PLUS at Georgia Tech is collaborating with LCF Georgia; shared programming will be posted as it is confirmed.",
+    href: "https://lcfgeorgia.org/",
+  },
 ];
 
 export const resourceCategories: ResourceCategory[] = [
