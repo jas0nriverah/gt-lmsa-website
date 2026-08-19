@@ -565,15 +565,27 @@ export const partners: Partner[] = [
     },
   },
   {
-    name: "E-NABLE × Connect & Confident",
-    shortName: "E-NABLE × Connect & Confident",
-    focus: "Nonprofit / Student Organization",
+    name: "e-NABLE",
+    shortName: "e-NABLE",
+    focus: "Nonprofit",
     description:
-      "A nonprofit and student organization collaboration with LMSA PLUS at Georgia Tech. Partnership activities and opportunities will be shared as they are confirmed.",
+      "A global volunteer network that designs and 3D-prints prosthetic devices for people who need them. LMSA PLUS at Georgia Tech is collaborating with e-NABLE; shared activities will be posted as they are confirmed.",
     href: "https://enablingthefuture.org/",
     logo: {
       src: "/partners/e-nable.png",
-      alt: "E-NABLE logo",
+      alt: "e-NABLE logo",
+    },
+  },
+  {
+    name: "Connect & Confident",
+    shortName: "Connect & Confident",
+    focus: "Student organization",
+    description:
+      "A student-led digital literacy initiative that helps older adults build communication confidence, cyber safety skills, and everyday tech independence. LMSA PLUS at Georgia Tech is collaborating with Connect & Confident; shared programming will be posted as it is confirmed.",
+    href: "https://connect-and-confident.org/",
+    logo: {
+      src: "/partners/connect-and-confident.png",
+      alt: "Connect & Confident logo",
     },
   },
   {
