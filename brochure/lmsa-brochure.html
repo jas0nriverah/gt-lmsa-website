@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>LMSA PLUS at Georgia Tech — Trifold Brochure</title>
+<style>
+  :root {
+    --navy: #003057;
+    --navy-deep: #00233f;
+    --gold: #b3a369;
+    --dark-gold: #6f622f;
+    --cream: #f8f7f2;
+    --cream-deep: #efe9d9;
+    --ink: #102033;
+  }
+
+  * { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #d9dde2;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    color: var(--ink);
+  }
+
+  /* ---- Screen-only help banner ---- */
+  .screen-note {
+    max-width: 1040px;
+    margin: 24px auto;
+    padding: 18px 22px;
+    background: var(--navy);
+    color: #fff;
+    border-radius: 12px;
+    line-height: 1.5;
+    font-size: 14px;
+  }
+  .screen-note b { color: var(--gold); }
+  .screen-note code {
+    background: rgba(255,255,255,0.12);
+    padding: 2px 6px;
+    border-radius: 5px;
+    font-size: 13px;
+  }
+
+  /* ---- Trifold sheet: US Letter landscape ---- */
+  .sheet {
+    width: 11in;
+    height: 8.5in;
+    margin: 20px auto;
+    background: var(--cream);
+    display: flex;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.18);
+    overflow: hidden;
+  }
+
+  .panel {
+    flex: 1 1 0;
+    padding: 0.42in 0.38in;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  /* Fold guide lines (screen only) */
+  .panel + .panel { border-left: 1px dashed rgba(0,48,87,0.25); }
+
+  .panel-tag {
+    position: absolute;
+    top: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(0,48,87,0.45);
+    font-weight: 700;
+  }
+
+  /* ---- Typography ---- */
+  h1, h2, h3 { margin: 0; line-height: 1.08; }
+  .eyebrow {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--dark-gold);
+    margin-bottom: 8px;
+  }
+  .body { font-size: 10.5px; line-height: 1.55; color: #35404d; }
+  .divider { height: 3px; width: 46px; background: var(--gold); border-radius: 3px; margin: 10px 0; }
+
+  /* ---- Front cover (navy) ---- */
+  .cover {
+    background: var(--navy);
+    color: #fff;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  .cover .logo-ring {
+    width: 2.1in; height: 2.1in;
+    border-radius: 50%;
+    background: #fff;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 8px 26px rgba(0,0,0,0.28);
+    border: 6px solid var(--gold);
+    margin-bottom: 22px;
+  }
+  .cover .logo-ring img { width: 1.75in; height: 1.75in; border-radius: 50%; object-fit: contain; }
+  .cover .kicker { font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold); font-weight: 800; }
+  .cover h1 { font-size: 40px; font-weight: 900; margin: 10px 0 6px; letter-spacing: -0.5px; }
+  .cover .sub { font-size: 15px; font-weight: 700; color: var(--gold); }
+  .cover .tag { font-size: 11.5px; line-height: 1.6; color: rgba(255,255,255,0.85); margin-top: 16px; max-width: 2.6in; }
+  .cover .launch {
+    margin-top: 20px;
+    font-size: 10px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase;
+    background: var(--gold); color: var(--navy);
+    padding: 7px 14px; border-radius: 999px;
+  }
+
+  /* ---- Back cover ---- */
+  .back { justify-content: space-between; }
+  .back .qr-box {
+    text-align: center;
+    background: #fff;
+    border: 1px solid var(--cream-deep);
+    border-radius: 14px;
+    padding: 14px;
+    box-shadow: 0 4px 14px rgba(0,48,87,0.06);
+  }
+  .back .qr-box img { width: 1.7in; height: 1.7in; display: block; margin: 0 auto 8px; }
+  .back .qr-box .qr-label { font-size: 10px; font-weight: 800; color: var(--navy); letter-spacing: 0.06em; }
+  .back .qr-box .qr-url { font-size: 9.5px; color: var(--dark-gold); margin-top: 2px; }
+
+  .contact-list { list-style: none; padding: 0; margin: 12px 0 0; }
+  .contact-list li { display: flex; gap: 8px; align-items: flex-start; font-size: 10.5px; margin-bottom: 8px; color: var(--ink); }
+  .contact-list .ic {
+    flex: 0 0 auto; width: 18px; height: 18px; border-radius: 50%;
+    background: var(--navy); color: #fff; font-size: 10px;
+    display: flex; align-items: center; justify-content: center; font-weight: 700;
+  }
+  .contact-list b { color: var(--navy); }
+
+  .back-footer { font-size: 8.5px; color: #8a8f97; line-height: 1.5; margin-top: 10px; }
+
+  /* ---- Inside panels ---- */
+  .card {
+    background: var(--cream-deep);
+    border-radius: 12px;
+    padding: 12px 13px;
+  }
+  .section-title { font-size: 17px; font-weight: 900; color: var(--navy); }
+
+  .offer { list-style: none; margin: 10px 0 0; padding: 0; }
+  .offer li { display: flex; gap: 9px; align-items: flex-start; margin-bottom: 11px; }
+  .offer .dot {
+    flex: 0 0 auto; width: 22px; height: 22px; border-radius: 7px;
+    background: var(--navy); color: var(--gold);
+    display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800;
+  }
+  .offer .t { font-size: 11px; font-weight: 800; color: var(--navy); }
+  .offer .d { font-size: 9.5px; color: #4a5560; line-height: 1.45; margin-top: 1px; }
+
+  .event {
+    border-left: 4px solid var(--gold);
+    padding: 4px 0 4px 10px;
+    margin-bottom: 12px;
+  }
+  .event .name { font-size: 11.5px; font-weight: 800; color: var(--navy); }
+  .event .when { font-size: 9.5px; color: var(--dark-gold); font-weight: 700; margin-top: 1px; }
+
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+  .chip {
+    font-size: 9px; font-weight: 800; letter-spacing: 0.04em;
+    background: var(--navy); color: #fff; padding: 5px 10px; border-radius: 999px;
+  }
+  .chip.alt { background: var(--gold); color: var(--navy); }
+
+  .quote {
+    background: var(--navy);
+    color: #fff;
+    border-radius: 12px;
+    padding: 16px 15px;
+    margin-top: auto;
+  }
+  .quote .mark { color: var(--gold); font-size: 28px; line-height: 0.6; font-weight: 900; }
+  .quote p { font-size: 11px; line-height: 1.5; margin: 6px 0 0; }
+
+  .flag {
+    display: inline-block;
+    font-size: 9px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--navy); background: var(--gold);
+    padding: 4px 9px; border-radius: 6px; margin-top: 8px;
+  }
+
+  @media print {
+    body { background: #fff; }
+    .screen-note { display: none; }
+    .panel + .panel { border-left: none; }
+    .panel-tag { display: none; }
+    .sheet { margin: 0; box-shadow: none; page-break-after: always; }
+    .sheet:last-of-type { page-break-after: auto; }
+    @page { size: 11in 8.5in; margin: 0; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="screen-note">
+    <b>How to print this brochure:</b> Press <code>Cmd/Ctrl + P</code> →
+    Destination: <b>Save as PDF</b> → Layout: <b>Landscape</b> → Paper size: <b>Letter</b> →
+    More settings → Margins: <b>None</b> → Scale: <b>100%</b> → turn <b>ON</b> "Background graphics".
+    Print <b>double-sided, flip on short edge</b>, then fold into thirds (right panel first, then left).
+    <br><br>
+    Page 1 below is the <b>outside</b> (front + back). Page 2 is the <b>inside</b> spread. The little gray labels on screen won't print.
+  </div>
+
+  <!-- ================= PAGE 1 : OUTSIDE ================= -->
+  <div class="sheet">
+
+    <!-- Panel: Back cover (left when flat) -->
+    <div class="panel back">
+      <span class="panel-tag">Back cover</span>
+      <div>
+        <p class="eyebrow">Scan to connect</p>
+        <div class="qr-box">
+          <img src="qr-links.png" alt="QR code to LMSA PLUS links page" />
+          <div class="qr-label">All our links</div>
+          <div class="qr-url">gt-lmsa-website.vercel.app/links</div>
+        </div>
+      </div>
+
+      <div>
+        <div class="divider"></div>
+        <ul class="contact-list">
+          <li><span class="ic">@</span><span><b>Instagram</b><br>@lmsaplusgatech</span></li>
+          <li><span class="ic">✉</span><span><b>Email</b><br>lmsaplusgatech@gmail.com</span></li>
+          <li><span class="ic">↗</span><span><b>Website</b><br>gt-lmsa-website.vercel.app</span></li>
+        </ul>
+        <p class="back-footer">
+          A registered student organization at Georgia Tech and an LMSA PLUS chapter.
+          Recognition does not constitute Georgia Tech endorsement of every statement or activity.
+        </p>
+      </div>
+    </div>
+
+    <!-- Panel: Get involved (middle when flat) -->
+    <div class="panel">
+      <span class="panel-tag">Outside middle</span>
+      <p class="eyebrow">Get involved</p>
+      <h2 class="section-title">There's room to help shape the founding year.</h2>
+      <div class="divider"></div>
+      <p class="body">
+        Whether you're exploring medicine, nursing, PA, dentistry, public health, or still deciding —
+        you belong here. Join the interest list, come to a launch event, and help build the community
+        from day one.
+      </p>
+
+      <ul class="offer" style="margin-top:12px;">
+        <li><span class="dot">1</span><span><span class="t">Join the interest list</span><span class="d">Scan the QR or visit our links page.</span></span></li>
+        <li><span class="dot">2</span><span><span class="t">Follow us on Instagram</span><span class="d">@lmsaplusgatech for updates &amp; events.</span></span></li>
+        <li><span class="dot">3</span><span><span class="t">Come to a fall event</span><span class="d">Kickoff, Org Fair, and Interest Meeting.</span></span></li>
+      </ul>
+
+      <span class="flag">Board chair applications open Aug 6</span>
+
+      <div class="quote">
+        <div class="mark">&#8220;</div>
+        <p>Healthy communities begin with students who support one another. Come grow with us.</p>
+      </div>
+    </div>
+
+    <!-- Panel: Front cover (right when flat) -->
+    <div class="panel cover">
+      <span class="panel-tag">Front cover</span>
+      <div class="logo-ring"><img src="lmsa-logo.png" alt="LMSA logo" /></div>
+      <div class="kicker">Georgia Tech Chapter</div>
+      <h1>LMSA PLUS</h1>
+      <div class="sub">Latino Medical Student Association</div>
+      <p class="tag">Mentorship, community, and pre-health support for Latino/Hispanic and underrepresented students.</p>
+      <div class="launch">Launching Fall 2026</div>
+    </div>
+
+  </div>
+
+  <!-- ================= PAGE 2 : INSIDE ================= -->
+  <div class="sheet">
+
+    <!-- Panel: Who we are -->
+    <div class="panel">
+      <span class="panel-tag">Inside left</span>
+      <p class="eyebrow">Who we are</p>
+      <h2 class="section-title">A pre-health home at Georgia Tech.</h2>
+      <div class="divider"></div>
+      <p class="body">
+        The Latino Medical Student Association Plus chapter at Georgia Tech is a student-led community
+        for students exploring medicine and the health professions. We connect cultural community with
+        trustworthy pre-health guidance, mentorship, service, and opportunities to grow.
+      </p>
+      <p class="body" style="margin-top:10px;">
+        LMSA National unites and empowers current and future health professionals through service,
+        mentorship, and education — with a commitment to improving health in Hispanic, Latino, and
+        other historically marginalized communities.
+      </p>
+
+      <div class="card" style="margin-top:14px;">
+        <p class="eyebrow" style="margin-bottom:6px;">What we value</p>
+        <div class="chips">
+          <span class="chip">Unity</span>
+          <span class="chip alt">Service</span>
+          <span class="chip">Mentorship</span>
+          <span class="chip alt">Education</span>
+          <span class="chip">Advocacy</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Panel: What we offer -->
+    <div class="panel">
+      <span class="panel-tag">Inside middle</span>
+      <p class="eyebrow">What we offer</p>
+      <h2 class="section-title">Programming for every step.</h2>
+      <div class="divider"></div>
+      <ul class="offer">
+        <li><span class="dot">&#9733;</span><span><span class="t">Peer &amp; medical-student mentorship</span><span class="d">Guidance from people a few steps ahead of you.</span></span></li>
+        <li><span class="dot">&#43;</span><span><span class="t">Pre-health workshops</span><span class="d">Timelines, prerequisites, and application prep resources.</span></span></li>
+        <li><span class="dot">&#9829;</span><span><span class="t">Community service</span><span class="d">Volunteer projects that serve local communities.</span></span></li>
+        <li><span class="dot">&#9788;</span><span><span class="t">Culture &amp; community events</span><span class="d">Gatherings that celebrate Latino/Hispanic cultures.</span></span></li>
+        <li><span class="dot">&#9993;</span><span><span class="t">Medical Spanish programming</span><span class="d">Language, communication, and cultural humility.</span></span></li>
+      </ul>
+
+      <div class="card" style="margin-top:6px;">
+        <p class="body" style="font-size:9.5px;">
+          <b style="color:var(--navy);">Coming Spring 2027 —</b> a digital-confidence initiative with local high schools,
+          helping Hispanic/Latino families build skills with everyday tech and responsible AI.
+        </p>
+      </div>
+    </div>
+
+    <!-- Panel: This fall -->
+    <div class="panel">
+      <span class="panel-tag">Inside right</span>
+      <p class="eyebrow">This fall</p>
+      <h2 class="section-title">Mark your calendar.</h2>
+      <div class="divider"></div>
+
+      <div class="event">
+        <div class="name">Pre-Health Fall Kickoff</div>
+        <div class="when">Thu Aug 27 · 5:00–6:00 PM · Klaus Atrium</div>
+      </div>
+      <div class="event">
+        <div class="name">Fall Student Organizations Fair</div>
+        <div class="when">Sep 1 · 11:00 AM–1:00 PM · Tech Green</div>
+      </div>
+      <div class="event">
+        <div class="name">Fall 2026 Interest Meeting</div>
+        <div class="when">Mid-September · details coming soon</div>
+      </div>
+
+      <div class="quote" style="margin-top:14px;">
+        <div class="mark">&#8220;</div>
+        <p>Stop by our table — we'd love to meet you and share how to get involved.</p>
+      </div>
+
+      <p class="back-footer" style="margin-top:12px;">
+        Event logistics are confirmed where dates are shown; planned items are marked and finalized
+        once details are verified.
+      </p>
+    </div>
+
+  </div>
+
+</body>
+</html>
