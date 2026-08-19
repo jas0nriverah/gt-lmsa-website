@@ -600,6 +600,42 @@ export const partners: Partner[] = [
       alt: "Latino Community Fund Georgia logo",
     },
   },
+  {
+    name: "LMSA PLUS at Emory",
+    shortName: "Emory LMSA PLUS",
+    focus: "LMSA chapter collaboration",
+    description:
+      "The LMSA PLUS undergraduate chapter at Emory. LMSA PLUS at Georgia Tech is collaborating with Emory LMSA PLUS on pre-health community and shared programming; details will be posted as they are confirmed.",
+    href: "https://southeast.lmsa.net/already-a-chapter/",
+    logo: {
+      src: "/lmsa-logo.png",
+      alt: "Latino Medical Student Association logo",
+    },
+  },
+  {
+    name: "LMSA at Emory School of Medicine",
+    shortName: "Emory LMSA Medical",
+    focus: "LMSA chapter collaboration",
+    description:
+      "The LMSA medical-student chapter at Emory School of Medicine. LMSA PLUS at Georgia Tech is collaborating with Emory LMSA on mentorship and shared Atlanta programming; details will be posted as they are confirmed.",
+    href: "https://med.emory.edu/education/programs/md/student-organizations-and-activities/index.html",
+    logo: {
+      src: "/lmsa-logo.png",
+      alt: "Latino Medical Student Association logo",
+    },
+  },
+  {
+    name: "LMSA at Morehouse School of Medicine",
+    shortName: "Morehouse LMSA Medical",
+    focus: "LMSA chapter collaboration",
+    description:
+      "The LMSA medical-student chapter at Morehouse School of Medicine. LMSA PLUS at Georgia Tech is collaborating with Morehouse LMSA on mentorship and shared Atlanta programming; details will be posted as they are confirmed.",
+    href: "https://southeast.lmsa.net/already-a-chapter/",
+    logo: {
+      src: "/lmsa-logo.png",
+      alt: "Latino Medical Student Association logo",
+    },
+  },
 ];
 
 export const resourceCategories: ResourceCategory[] = [
@@ -1145,7 +1181,7 @@ export const faqs: FAQ[] = [
   {
     question: "Who has the chapter partnered with so far?",
     answer:
-      "LMSA Plus at Georgia Tech has partnered with Next Generation Men & Women (Next Gen Atl), an Atlanta nonprofit supporting under-resourced high school students. Confirmed partners are listed on the Get Involved page.",
+      "LMSA Plus at Georgia Tech collaborates with LMSA PLUS at Emory, LMSA at Emory School of Medicine, LMSA at Morehouse School of Medicine, Next Generation Men & Women (Next Gen Atl), and other confirmed partners listed on the Get Involved page.",
   },
   {
     question: "When will the first meeting occur?",
