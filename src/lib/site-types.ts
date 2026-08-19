@@ -38,7 +38,7 @@ export interface Partner {
   shortName?: string;
   contactName?: string;
   description: string;
-  href: string;
+  href?: string;
   focus: string;
   logo?: { src: string; alt: string };
 }

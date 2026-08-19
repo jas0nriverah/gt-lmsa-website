@@ -114,14 +114,16 @@ export default function GetInvolvedPage() {
               <p className="mt-3 flex-1 leading-7 text-slate-600">
                 {partner.description}
               </p>
-              <a
-                href={partner.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="button button-secondary mt-5 self-start"
-              >
-                Visit partner site
-              </a>
+              {partner.href ? (
+                <a
+                  href={partner.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="button button-secondary mt-5 self-start"
+                >
+                  Visit partner site
+                </a>
+              ) : null}
             </article>
           ))}
         </div>

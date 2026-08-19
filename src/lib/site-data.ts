@@ -606,7 +606,6 @@ export const partners: Partner[] = [
     focus: "LMSA chapter collaboration",
     description:
       "The LMSA PLUS undergraduate chapter at Emory. LMSA PLUS at Georgia Tech is collaborating with Emory LMSA PLUS on pre-health community and shared programming; details will be posted as they are confirmed.",
-    href: "https://southeast.lmsa.net/already-a-chapter/",
     logo: {
       src: "/lmsa-logo.png",
       alt: "Latino Medical Student Association logo",
@@ -618,7 +617,6 @@ export const partners: Partner[] = [
     focus: "LMSA chapter collaboration",
     description:
       "The LMSA medical-student chapter at Emory School of Medicine. LMSA PLUS at Georgia Tech is collaborating with Emory LMSA on mentorship and shared Atlanta programming; details will be posted as they are confirmed.",
-    href: "https://med.emory.edu/education/programs/md/student-organizations-and-activities/index.html",
     logo: {
       src: "/lmsa-logo.png",
       alt: "Latino Medical Student Association logo",
@@ -630,7 +628,6 @@ export const partners: Partner[] = [
     focus: "LMSA chapter collaboration",
     description:
       "The LMSA medical-student chapter at Morehouse School of Medicine. LMSA PLUS at Georgia Tech is collaborating with Morehouse LMSA on mentorship and shared Atlanta programming; details will be posted as they are confirmed.",
-    href: "https://southeast.lmsa.net/already-a-chapter/",
     logo: {
       src: "/lmsa-logo.png",
       alt: "Latino Medical Student Association logo",
