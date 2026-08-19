@@ -44,10 +44,10 @@ export const contactLinks = {
   // Chapter interest: currently the on-site /interest form. Paste a Google Form
   // URL here later if you prefer spreadsheet responses instead of email.
   interestForm: { status: "active" as const, href: "/interest" },
-  // WhatsApp community invite link. Paste when the group invite is ready.
+  // WhatsApp community invite link.
   whatsappInvite: {
-    status: "coming-soon" as "coming-soon" | "active",
-    href: undefined as string | undefined,
+    status: "active" as "coming-soon" | "active",
+    href: "https://chat.whatsapp.com/IAZMENKqJ9lHofTVgz11vd" as string | undefined,
   },
   // Private feedback Google Form. Paste forms.gle URL when ready.
   feedbackForm: {
