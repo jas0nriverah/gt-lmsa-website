@@ -7,6 +7,7 @@ import {
   ProgramCard,
   ValueCard,
 } from "@/components/Cards";
+import { ThisWeekCard } from "@/components/ThisWeekCard";
 import { FAQList } from "@/components/FAQList";
 import { Section } from "@/components/Section";
 import { SitePage } from "@/components/SitePage";
@@ -18,6 +19,9 @@ import {
   programs,
 } from "@/lib/site-data";
 import { announcements, events, faqs } from "@/lib/stale-status-sep-14";
+import { getThisWeekItems } from "@/lib/external-events";
+
+const thisWeekItems = getThisWeekItems();
 
 export default function HomePage() {
   return (
@@ -114,10 +118,33 @@ export default function HomePage() {
       </Section>
 
       <Section
+        eyebrow="This week"
+        title="What is happening this week"
+        description="Upcoming items rebuilt from confirmed chapter/national listings and verified Georgia Tech or LMSA external sources for September 14–20, 2026. External items are recommendations only — not LMSA Plus partnerships."
+        className="bg-white"
+      >
+        {thisWeekItems.length ? (
+          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {thisWeekItems.map((item) => (
+              <ThisWeekCard key={item.id} item={item} />
+            ))}
+          </div>
+        ) : (
+          <p className="leading-7 text-slate-600">
+            No confirmed chapter or verified external items fall in this week&apos;s
+            window right now. Check Events for the full calendar.
+          </p>
+        )}
+        <Link href="/events" className="button button-secondary mt-8">
+          See all events and campus recommendations
+        </Link>
+      </Section>
+
+      <Section
         eyebrow="Our mission"
         title={mission.heading}
         description={mission.paragraphs.join(" ")}
-        className="bg-white"
+        className="bg-gt-cream"
       >
         <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-5">
           {coreValues.map((value, index) => (
@@ -135,7 +162,7 @@ export default function HomePage() {
         eyebrow="Programs"
         title="Programming designed around the pre-health journey"
         description="Every local program shown here is planned. The board will mark activities active only after confirming scope, support, and logistics."
-        className="bg-gt-cream"
+        className="bg-white"
       >
         <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {programs.slice(0, 6).map((program) => (
@@ -150,8 +177,8 @@ export default function HomePage() {
       <Section
         eyebrow="Events"
         title="The first chapter calendar is taking shape"
-        description="Confirmed upcoming dates appear below. Past outreach (Kickoff and Org Fair) is in the Events archive; other launch activities remain planned until logistics are verified."
-        className="bg-white"
+        description="Confirmed upcoming chapter and national dates appear below when available. Time-sensitive campus recommendations are listed under This Week and on the Events page."
+        className="bg-gt-cream"
       >
         <div className="grid gap-5 md:grid-cols-2">
           {events
@@ -170,7 +197,7 @@ export default function HomePage() {
         eyebrow="Founding board"
         title="Meet the chapter leaders preparing the launch"
         description="Fall 2026 founding board roles. Three officers are confirmed; open chair applications open August 6, 2026 for Events / Programming, Service / Community Health, Marketing / Communications, Treasurer / Finance, and Secretary. Only board information approved for public use is displayed."
-        className="bg-gt-cream"
+        className="bg-white"
       >
         <div className="grid gap-5 md:grid-cols-3">
           {boardMembers.map((member) => (
@@ -183,7 +210,7 @@ export default function HomePage() {
         eyebrow="Questions"
         title="Start with the essentials"
         description="Find clear answers about the chapter, participation, membership, and the launch."
-        className="bg-white"
+        className="bg-gt-cream"
       >
         <FAQList items={faqs.slice(0, 5)} />
         <Link href="/about#frequently-asked-questions" className="button button-secondary mt-8">

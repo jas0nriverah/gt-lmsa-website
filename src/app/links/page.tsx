@@ -6,7 +6,7 @@ import {
   chapterInfo,
   contactLinks,
 } from "@/lib/site-data";
-import { linktreeLinks } from "@/lib/sep-2026-refresh";
+import { linktreeLinks } from "@/lib/opportunities-linktree";
 import type { ActionLink } from "@/lib/site-types";
 
 export const metadata: Metadata = {
