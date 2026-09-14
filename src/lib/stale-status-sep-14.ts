@@ -90,5 +90,12 @@ export const faqs: FAQ[] = baseFaqs.map((faq) => {
         "The first Interest Meeting is planned for mid-to-late September 2026. Exact date, time, location, and registration details have not been confirmed. Follow the chapter Instagram or email the chapter for updates.",
     };
   }
+  if (faq.question === "How can students hear about scholarships?") {
+    return {
+      ...faq,
+      answer:
+        "Use the Opportunities page for scholarships, fee assistance, research funding, and enrichment programs; join official Georgia Tech and LMSA communications; and check the sponsoring organization before every application. The chapter plans to share verified reminders without replacing the official source.",
+    };
+  }
   return faq;
 });
