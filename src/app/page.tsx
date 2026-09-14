@@ -1,1 +1,237 @@
-PLACEHOLDER
+import Image from "next/image";
+import Link from "next/link";
+import { AnnouncementBanner } from "@/components/AnnouncementBanner";
+import {
+  BoardCard,
+  EventCard,
+  ProgramCard,
+  ValueCard,
+} from "@/components/Cards";
+import { ThisWeekCard } from "@/components/ThisWeekCard";
+import { FAQList } from "@/components/FAQList";
+import { Section } from "@/components/Section";
+import { SitePage } from "@/components/SitePage";
+import {
+  boardMembers,
+  chapterInfo,
+  coreValues,
+  faqs,
+  mission,
+  programs,
+} from "@/lib/site-data";
+import { announcements, events } from "@/lib/sep-2026-refresh";
+import { getThisWeekItems } from "@/lib/external-events";
+
+const thisWeekItems = getThisWeekItems();
+
+export default function HomePage() {
+  return (
+    <SitePage>
+      <section className="relative overflow-hidden border-b border-gt-gold/25 bg-white px-6 py-16 sm:px-8 sm:py-20 lg:py-24">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -left-24 top-10 h-64 w-64 rounded-full bg-gt-navy/[0.04] blur-3xl"
+        />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -right-16 bottom-0 h-72 w-72 rounded-full bg-gt-gold/20 blur-3xl"
+        />
+
+        <div className="relative mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
+          <div>
+            <p className="eyebrow">{chapterInfo.launchLabel}</p>
+            <h1 className="mt-4 max-w-3xl text-4xl font-black leading-[1.05] tracking-tight text-gt-navy sm:text-5xl lg:text-[3.35rem]">
+              LMSA PLUS
+            </h1>
+            <p className="mt-3 text-xl font-bold text-gt-dark-gold sm:text-2xl">
+              Georgia Tech Chapter
+            </p>
+            <p className="mt-5 max-w-xl text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">
+              Student-led pre-health community for mentorship, service, and
+              Latino/Hispanic health. Public programming begins Fall 2026.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link href="/interest" className="button button-primary">
+                Join the interest list <span aria-hidden="true">→</span>
+              </Link>
+              <Link href="/events" className="button button-secondary">
+                View planned events
+              </Link>
+            </div>
+          </div>
+
+          <div className="relative mx-auto flex aspect-square w-full max-w-[22rem] items-center justify-center lg:mx-0 lg:max-w-none">
+            {/* Navy & gold rings circling the logo — white field, no split panel */}
+            <div
+              aria-hidden="true"
+              className="absolute inset-[2%] rounded-full border border-gt-navy/10"
+            />
+            <div
+              aria-hidden="true"
+              className="absolute inset-[8%] rounded-full border-2 border-gt-navy/20"
+            />
+            <div
+              aria-hidden="true"
+              className="absolute inset-[14%] rounded-full border border-dashed border-gt-gold/70"
+            />
+            <div
+              aria-hidden="true"
+              className="absolute inset-[20%] rounded-full border border-gt-navy/15"
+            />
+            {/* Partial navy arcs for a braided/encircling feel */}
+            <div
+              aria-hidden="true"
+              className="absolute inset-[4%] rounded-full border-[3px] border-transparent border-t-gt-navy border-r-gt-navy/40"
+            />
+            <div
+              aria-hidden="true"
+              className="absolute inset-[10%] rotate-[160deg] rounded-full border-[3px] border-transparent border-t-gt-gold border-l-gt-navy/50"
+            />
+            <div
+              aria-hidden="true"
+              className="absolute inset-[16%] -rotate-45 rounded-full border-2 border-transparent border-b-gt-navy/35 border-r-gt-gold/80"
+            />
+            <div className="relative z-10 rounded-full bg-white p-2 shadow-[0_12px_40px_rgba(0,48,87,0.12)] ring-1 ring-gt-navy/10">
+              <Image
+                src="/lmsa-logo.png"
+                alt="Latino Medical Student Association logo"
+                width={280}
+                height={280}
+                className="rounded-full bg-white"
+                priority
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <Section
+        eyebrow="Launch updates"
+        title="What is planned for Fall 2026"
+        description="These activities are not yet confirmed calendar events. Exact logistics will be posted only after the chapter verifies them."
+        className="bg-gt-cream"
+      >
+        <div className="grid gap-4">
+          {announcements.map((announcement) => (
+            <AnnouncementBanner key={announcement.id} announcement={announcement} />
+          ))}
+        </div>
+      </Section>
+
+      <Section
+        eyebrow="This week"
+        title="What is happening this week"
+        description="Upcoming items rebuilt from confirmed chapter/national listings and verified Georgia Tech or LMSA external sources for September 14–20, 2026. External items are recommendations only — not LMSA Plus partnerships."
+        className="bg-white"
+      >
+        {thisWeekItems.length ? (
+          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {thisWeekItems.map((item) => (
+              <ThisWeekCard key={item.id} item={item} />
+            ))}
+          </div>
+        ) : (
+          <p className="leading-7 text-slate-600">
+            No confirmed chapter or verified external items fall in this week&apos;s
+            window right now. Check Events for the full calendar.
+          </p>
+        )}
+        <Link href="/events" className="button button-secondary mt-8">
+          See all events and campus recommendations
+        </Link>
+      </Section>
+
+      <Section
+        eyebrow="Our mission"
+        title={mission.heading}
+        description={mission.paragraphs.join(" ")}
+        className="bg-gt-cream"
+      >
+        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-5">
+          {coreValues.map((value, index) => (
+            <ValueCard key={value.title} index={index + 1} {...value} />
+          ))}
+        </div>
+        <div className="mt-8">
+          <Link href="/about" className="text-link font-bold">
+            Learn about LMSA, PLUS, and the Georgia Tech chapter →
+          </Link>
+        </div>
+      </Section>
+
+      <Section
+        eyebrow="Programs"
+        title="Programming designed around the pre-health journey"
+        description="Every local program shown here is planned. The board will mark activities active only after confirming scope, support, and logistics."
+        className="bg-white"
+      >
+        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {programs.slice(0, 6).map((program) => (
+            <ProgramCard key={program.title} program={program} />
+          ))}
+        </div>
+        <Link href="/programs" className="button button-secondary mt-8">
+          Explore all planned programs
+        </Link>
+      </Section>
+
+      <Section
+        eyebrow="Events"
+        title="The first chapter calendar is taking shape"
+        description="Confirmed upcoming chapter and national dates appear below when available. Time-sensitive campus recommendations are listed under This Week and on the Events page."
+        className="bg-gt-cream"
+      >
+        <div className="grid gap-5 md:grid-cols-2">
+          {events
+            .filter((event) => event.status === "confirmed")
+            .slice(0, 2)
+            .map((event) => (
+              <EventCard key={event.id} event={event} />
+            ))}
+        </div>
+        <Link href="/events" className="button button-secondary mt-8">
+          View the event calendar
+        </Link>
+      </Section>
+
+      <Section
+        eyebrow="Founding board"
+        title="Meet the chapter leaders preparing the launch"
+        description="Fall 2026 founding board roles. Three officers are confirmed; open chair applications open August 6, 2026 for Events / Programming, Service / Community Health, Marketing / Communications, Treasurer / Finance, and Secretary. Only board information approved for public use is displayed."
+        className="bg-white"
+      >
+        <div className="grid gap-5 md:grid-cols-3">
+          {boardMembers.map((member) => (
+            <BoardCard key={`${member.role}-${member.name}`} member={member} />
+          ))}
+        </div>
+      </Section>
+
+      <Section
+        eyebrow="Questions"
+        title="Start with the essentials"
+        description="Find clear answers about the chapter, participation, membership, and the launch."
+        className="bg-gt-cream"
+      >
+        <FAQList items={faqs.slice(0, 5)} />
+        <Link href="/about#frequently-asked-questions" className="button button-secondary mt-8">
+          Read all frequently asked questions
+        </Link>
+      </Section>
+
+      <section className="bg-gt-gold px-6 py-16 sm:px-8">
+        <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-8 md:flex-row md:items-center">
+          <div>
+            <p className="eyebrow !text-gt-navy">Help shape the first year</p>
+            <h2 className="mt-3 max-w-2xl text-3xl font-black text-gt-navy sm:text-4xl">
+              Follow launch updates and bring your ideas to the founding chapter.
+            </h2>
+          </div>
+          <Link href="/get-involved" className="button bg-gt-navy text-white hover:bg-gt-navy-deep">
+            Get involved <span aria-hidden="true">→</span>
+          </Link>
+        </div>
+      </section>
+    </SitePage>
+  );
+}
