@@ -90,6 +90,26 @@ export const sourceRegistry: SourceRecord[] = [
     timeSensitive: true,
   },
   {
+    name: "Georgia Tech Campus Calendar",
+    url: "https://calendar.gatech.edu/",
+    supports: [
+      "UGA School of Medicine Virtual Info Session Sep 15 2026",
+      "Grad School Week Pre-Health Post-Bacc panel Sep 16 2026",
+    ],
+    lastVerified: LAST_CONTENT_REVIEW,
+    timeSensitive: true,
+  },
+  {
+    name: "Georgia Tech Applying to Grad School Week",
+    url: "https://www.success.gatech.edu/grad-school-week",
+    supports: [
+      "Grad School Week schedule",
+      "Pre-Health Post-Bac and Specialty Masters registration",
+    ],
+    lastVerified: LAST_CONTENT_REVIEW,
+    timeSensitive: true,
+  },
+  {
     name: "Georgia Tech Student Engagement",
     url: "https://studentengagement.gatech.edu/",
     supports: ["registered student organizations", "service", "campus involvement"],
