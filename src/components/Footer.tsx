@@ -4,8 +4,8 @@ import {
   chapterInfo,
   contactLinks,
   creatorCredit,
-  navLinks,
 } from "@/lib/site-data";
+import { navLinks } from "@/lib/nav-links";
 
 export function Footer() {
   return (
