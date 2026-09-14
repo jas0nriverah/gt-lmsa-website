@@ -1,6 +1,6 @@
 import type { SourceRecord } from "./site-types";
 
-export const LAST_CONTENT_REVIEW = "July 13, 2026";
+export const LAST_CONTENT_REVIEW = "September 14, 2026";
 
 // Developer-maintained audit record. Re-check time-sensitive sources before
 // changing an opportunity to "open" or publishing a new deadline or price.
@@ -25,6 +25,27 @@ export const sourceRegistry: SourceRecord[] = [
     supports: ["PLUS history", "chapter development", "pre-health programming"],
     lastVerified: LAST_CONTENT_REVIEW,
     timeSensitive: false,
+  },
+  {
+    name: "LMSA National Conference NC2026",
+    url: "https://national.lmsa.net/programming/nc2026/",
+    supports: ["NC2026 dates", "Houston venue", "Cultura Cura theme", "conference overview"],
+    lastVerified: LAST_CONTENT_REVIEW,
+    timeSensitive: true,
+  },
+  {
+    name: "LMSA Southeast chapter directory",
+    url: "https://southeast.lmsa.net/already-a-chapter/",
+    supports: ["Georgia medical-school chapter listing", "regional networking context"],
+    lastVerified: LAST_CONTENT_REVIEW,
+    timeSensitive: true,
+  },
+  {
+    name: "LMSA National Join",
+    url: "https://national.lmsa.net/join/",
+    supports: ["national membership categories", "join process"],
+    lastVerified: LAST_CONTENT_REVIEW,
+    timeSensitive: true,
   },
   {
     name: "LMSA National Scholarships",
