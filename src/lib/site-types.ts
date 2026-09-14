@@ -123,6 +123,10 @@ export interface ScholarshipOpportunity {
   benefit?: string;
   status: OpportunityStatus;
   deadline?: string;
+  /** Optional machine-readable open date (ISO 8601). Display still uses deadline/status. */
+  opensAt?: string;
+  /** Optional machine-readable deadline (ISO 8601). Display still uses deadline string. */
+  deadlineAt?: string;
   sourceUrl: string;
   category: string;
   preMedRelevant: boolean;
