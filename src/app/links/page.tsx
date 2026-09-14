@@ -5,8 +5,8 @@ import { LinktreeButton } from "@/components/LinktreeButton";
 import {
   chapterInfo,
   contactLinks,
-  linktreeLinks,
 } from "@/lib/site-data";
+import { linktreeLinks } from "@/lib/sep-2026-refresh";
 import type { ActionLink } from "@/lib/site-types";
 
 export const metadata: Metadata = {

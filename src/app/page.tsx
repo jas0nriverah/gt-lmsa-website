@@ -11,15 +11,14 @@ import { FAQList } from "@/components/FAQList";
 import { Section } from "@/components/Section";
 import { SitePage } from "@/components/SitePage";
 import {
-  announcements,
   boardMembers,
   chapterInfo,
   coreValues,
-  events,
   faqs,
   mission,
   programs,
 } from "@/lib/site-data";
+import { announcements, events } from "@/lib/sep-2026-refresh";
 
 export default function HomePage() {
   return (
