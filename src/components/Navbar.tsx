@@ -4,7 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { chapterInfo, navLinks } from "@/lib/site-data";
+import { chapterInfo } from "@/lib/site-data";
+import { navLinks } from "@/lib/nav-links";
 
 export function Navbar() {
   const pathname = usePathname();
