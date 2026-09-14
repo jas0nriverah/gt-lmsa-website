@@ -6,7 +6,7 @@ import { PageHero } from "@/components/PageHero";
 import { Section } from "@/components/Section";
 import { SitePage } from "@/components/SitePage";
 import { campusCalendarDates } from "@/lib/site-data";
-import { events } from "@/lib/sep-2026-refresh";
+import { events } from "@/lib/stale-status-sep-14";
 
 export const metadata: Metadata = {
   title: "Events",

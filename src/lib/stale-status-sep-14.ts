@@ -1,0 +1,94 @@
+import type {
+  Announcement,
+  ChapterEvent,
+  FAQ,
+  ScholarshipOpportunity,
+} from "./site-types";
+import {
+  announcements as refreshedAnnouncements,
+  events as refreshedEvents,
+} from "./sep-2026-refresh";
+import { faqs as baseFaqs, scholarships as baseScholarships } from "./site-data";
+import { LAST_CONTENT_REVIEW } from "./source-registry";
+
+/** September 14, 2026 stale opportunity/event status refresh. */
+
+const PAST_EVENT_IDS = new Set([
+  "pre-health-fall-kickoff-2026",
+  "fall-2026-student-organization-fair-day-1",
+]);
+
+const PAST_ANNOUNCEMENT_IDS = new Set([
+  "pre-health-fall-kickoff-2026",
+  "student-org-fair-fall-2026",
+]);
+
+const RECHECKED_CLOSED = new Set([
+  "Carmen Reyes MCAT Scholarship",
+  "Hispanic Scholarship Fund Scholar Program",
+  "National Health Service Corps Scholarship Program",
+]);
+
+export const scholarships: ScholarshipOpportunity[] = baseScholarships.map(
+  (opportunity) => {
+    if (opportunity.name === "LMSA National Fall Scholarship Cycle") {
+      return {
+        ...opportunity,
+        status: "closed",
+        description:
+          "The 2026 fall cycle included medical-student awards and an NC2026 travel scholarship that listed LMSA National or LMSA PLUS members planning to apply to medical school among eligible audiences. The listed application deadline has passed.",
+        lastVerified: LAST_CONTENT_REVIEW,
+      };
+    }
+    if (RECHECKED_CLOSED.has(opportunity.name)) {
+      return {
+        ...opportunity,
+        lastVerified: LAST_CONTENT_REVIEW,
+      };
+    }
+    return opportunity;
+  },
+);
+
+export const events: ChapterEvent[] = refreshedEvents.map((event) => {
+  if (PAST_EVENT_IDS.has(event.id)) {
+    return {
+      ...event,
+      status: "past",
+      featured: false,
+    };
+  }
+  if (event.id === "fall-2026-interest-meeting") {
+    return {
+      ...event,
+      displayDate: "Date TBD — mid-to-late September 2026",
+      description:
+        "Meet the founding executive board, learn what LMSA PLUS is, explore planned programming, and share what would make the chapter useful to you. Exact date, time, and location are not confirmed yet.",
+    };
+  }
+  return event;
+});
+
+export const announcements: Announcement[] = refreshedAnnouncements
+  .filter((announcement) => !PAST_ANNOUNCEMENT_IDS.has(announcement.id))
+  .map((announcement) => {
+    if (announcement.id === "interest-meeting-fall-2026") {
+      return {
+        ...announcement,
+        timing:
+          "Date TBD — mid-to-late September 2026 (time and location coming soon)",
+      };
+    }
+    return announcement;
+  });
+
+export const faqs: FAQ[] = baseFaqs.map((faq) => {
+  if (faq.question === "When will the first meeting occur?") {
+    return {
+      ...faq,
+      answer:
+        "The first Interest Meeting is planned for mid-to-late September 2026. Exact date, time, location, and registration details have not been confirmed. Follow the chapter Instagram or email the chapter for updates.",
+    };
+  }
+  return faq;
+});

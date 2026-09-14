@@ -3,11 +3,9 @@ import { OpportunityCard, ResourceCard } from "@/components/Cards";
 import { PageHero } from "@/components/PageHero";
 import { Section } from "@/components/Section";
 import { SitePage } from "@/components/SitePage";
-import {
-  scholarshipDisclaimer,
-  scholarships,
-} from "@/lib/site-data";
+import { scholarshipDisclaimer } from "@/lib/site-data";
 import { resourceCategories } from "@/lib/sep-2026-refresh";
+import { scholarships } from "@/lib/stale-status-sep-14";
 import { LAST_CONTENT_REVIEW } from "@/lib/source-registry";
 
 export const metadata: Metadata = {

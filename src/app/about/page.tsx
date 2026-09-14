@@ -8,11 +8,11 @@ import {
   boardMembers,
   chapterInfo,
   coreValues,
-  faqs,
   lmsaHistory,
   mission,
   organizationLevels,
 } from "@/lib/site-data";
+import { faqs } from "@/lib/stale-status-sep-14";
 
 export const metadata: Metadata = {
   title: "About",
