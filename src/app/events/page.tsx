@@ -5,7 +5,8 @@ import { EventCalendar } from "@/components/EventCalendar";
 import { PageHero } from "@/components/PageHero";
 import { Section } from "@/components/Section";
 import { SitePage } from "@/components/SitePage";
-import { campusCalendarDates, events } from "@/lib/site-data";
+import { campusCalendarDates } from "@/lib/site-data";
+import { events } from "@/lib/sep-2026-refresh";
 
 export const metadata: Metadata = {
   title: "Events",

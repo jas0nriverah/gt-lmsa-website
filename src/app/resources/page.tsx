@@ -4,10 +4,10 @@ import { PageHero } from "@/components/PageHero";
 import { Section } from "@/components/Section";
 import { SitePage } from "@/components/SitePage";
 import {
-  resourceCategories,
   scholarshipDisclaimer,
   scholarships,
 } from "@/lib/site-data";
+import { resourceCategories } from "@/lib/sep-2026-refresh";
 import { LAST_CONTENT_REVIEW } from "@/lib/source-registry";
 
 export const metadata: Metadata = {
