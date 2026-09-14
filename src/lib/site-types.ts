@@ -123,6 +123,10 @@ export interface ScholarshipOpportunity {
   benefit?: string;
   status: OpportunityStatus;
   deadline?: string;
+  /** Optional machine-readable open date (ISO 8601). Display still uses deadline/status. */
+  opensAt?: string;
+  /** Optional machine-readable deadline (ISO 8601). Display still uses deadline string. */
+  deadlineAt?: string;
   sourceUrl: string;
   category: string;
   preMedRelevant: boolean;
@@ -152,4 +156,44 @@ export interface SourceRecord {
   supports: string[];
   lastVerified: string;
   timeSensitive: boolean;
+}
+
+/** Recommended campus/national pre-health events (not LMSA Plus chapter programming). */
+export type ExternalVerificationLevel =
+  | "official-calendar"
+  | "official-page"
+  | "verified-secondary";
+
+export interface ExternalEvent {
+  id: string;
+  title: string;
+  organization: string;
+  displayDate: string;
+  startDate: string;
+  time?: string;
+  location?: string;
+  description: string;
+  sourceUrl: string;
+  registrationUrl?: string;
+  category: string;
+  verificationLevel: ExternalVerificationLevel;
+  lastCheckedAt: string;
+  /** Rough relevance score for GT-eligible pre-health/medicine items (include ~80+). */
+  relevanceScore: number;
+  /** Never imply LMSA Plus partnership — display as recommended/external only. */
+  sourceType: "external";
+}
+
+/** Unified homepage “This Week” row built from chapter + external data. */
+export interface ThisWeekItem {
+  id: string;
+  title: string;
+  displayDate: string;
+  time?: string;
+  location?: string;
+  organization: string;
+  href: string;
+  category: string;
+  sourceType: "chapter" | "external";
+  badgeLabel: string;
 }
