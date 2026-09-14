@@ -14,11 +14,10 @@ import {
   boardMembers,
   chapterInfo,
   coreValues,
-  faqs,
   mission,
   programs,
 } from "@/lib/site-data";
-import { announcements, events } from "@/lib/sep-2026-refresh";
+import { announcements, events, faqs } from "@/lib/stale-status-sep-14";
 
 export default function HomePage() {
   return (
@@ -151,7 +150,7 @@ export default function HomePage() {
       <Section
         eyebrow="Events"
         title="The first chapter calendar is taking shape"
-        description="Confirmed Fall Student Organizations Fair dates are on the calendar. Other launch activities remain planned until logistics are verified."
+        description="Confirmed upcoming dates appear below. Past outreach (Kickoff and Org Fair) is in the Events archive; other launch activities remain planned until logistics are verified."
         className="bg-white"
       >
         <div className="grid gap-5 md:grid-cols-2">
