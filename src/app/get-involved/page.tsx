@@ -16,9 +16,6 @@ export default function GetInvolvedPage() {
   const availableNow = involvementActions.filter(
     (action) => action.status === "active" && Boolean(action.href),
   );
-  const comingSoon = involvementActions.filter(
-    (action) => action.status === "coming-soon" || !action.href,
-  );
   const featured = availableNow.filter((action) => action.featured);
   const secondary = availableNow.filter((action) => !action.featured);
 
@@ -26,14 +23,14 @@ export default function GetInvolvedPage() {
     <SitePage>
       <PageHero
         eyebrow="Get involved"
-        title="There is room to help shape the founding year."
-        description="Complete the chapter interest form, follow public updates, contact the board, and return as mentorship, volunteer, and event forms are approved. Unfinished forms are visibly labeled and cannot collect information."
+        title="Find your place in our community."
+        description="Express your interest, connect with the chapter, and help shape our founding year at Georgia Tech. Students of all backgrounds are welcome."
       />
 
       <Section
         eyebrow="Ways to participate"
         title="Choose the next step that fits you"
-        description="Start with an open action below. Coming-soon items show progress without collecting information yet."
+        description="Interested in joining, taking on a leadership role, or staying connected? Start here."
         className="bg-gt-cream"
       >
         <div className="grid gap-8">
@@ -56,25 +53,13 @@ export default function GetInvolvedPage() {
             </div>
           </div>
 
-          {comingSoon.length ? (
-            <div>
-              <p className="mb-4 text-xs font-bold uppercase tracking-[0.22em] text-gt-dark-gold">
-                Coming soon
-              </p>
-              <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-                {comingSoon.map((action) => (
-                  <ActionLink key={action.label} action={action} />
-                ))}
-              </div>
-            </div>
-          ) : null}
         </div>
       </Section>
 
       <Section
         eyebrow="Community partners"
-        title="Organizations we are already working with"
-        description="These are confirmed partners. Additional collaborations are welcome and will be added after the board approves them."
+        title="Our community partners"
+        description="Meet the organizations working with our chapter to connect students with mentorship, service, and community."
         className="bg-white"
       >
         <div className="grid gap-5 md:grid-cols-2">
@@ -106,11 +91,6 @@ export default function GetInvolvedPage() {
                   ) : null}
                 </div>
               </div>
-              {partner.contactName ? (
-                <p className="mt-1 text-sm text-slate-500">
-                  Contact: {partner.contactName}
-                </p>
-              ) : null}
               <p className="mt-3 flex-1 leading-7 text-slate-600">
                 {partner.description}
               </p>
@@ -131,20 +111,15 @@ export default function GetInvolvedPage() {
 
       <Section
         eyebrow="Collaboration"
-        title="Physicians, medical students, campus groups, and community organizations"
-        description="The chapter welcomes thoughtful introductions. A message starts a review; it does not create a partnership, event, sponsorship, or speaker commitment."
+        title="Connect with our chapter"
+        description="We welcome physicians, medical students, campus groups, and community organizations interested in supporting our students."
         className="bg-gt-cream"
       >
         <div className="card max-w-3xl p-7 sm:p-8">
-          <h3 className="text-2xl font-bold text-gt-navy">
-            What to include in an introduction
-          </h3>
-          <ul className="mt-5 grid gap-3 leading-7 text-slate-600 sm:grid-cols-2">
-            <li>• Your organization and role</li>
-            <li>• The proposed topic or activity</li>
-            <li>• The intended student or community audience</li>
-            <li>• A preferred timeline and any constraints</li>
-          </ul>
+          <p className="leading-7 text-slate-600">
+            Have an idea for mentorship, a workshop, or a service project?
+            Introduce yourself and tell us how you would like to get involved.
+          </p>
           <a
             href={`mailto:${contactLinks.email}?subject=Collaboration%20with%20LMSA%20Plus%20at%20Georgia%20Tech`}
             className="button button-primary mt-7"
@@ -154,20 +129,6 @@ export default function GetInvolvedPage() {
         </div>
       </Section>
 
-      <section className="bg-gt-navy px-6 py-14 text-white sm:px-8">
-        <div className="mx-auto max-w-6xl">
-          <p className="eyebrow !text-gt-gold">Privacy note</p>
-          <h2 className="mt-3 text-3xl font-bold">
-            Share only what the chapter needs.
-          </h2>
-          <p className="mt-4 max-w-3xl leading-8 text-white/75">
-            Do not email medical records, patient information, student IDs,
-            financial documents, passwords, or other sensitive personal data.
-            The public website lists only the approved chapter email and chapter
-            Instagram account.
-          </p>
-        </div>
-      </section>
     </SitePage>
   );
 }

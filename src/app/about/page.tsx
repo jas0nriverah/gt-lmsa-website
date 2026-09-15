@@ -48,7 +48,7 @@ export default function AboutPage() {
       <Section
         eyebrow="Shared values"
         title="Five principles guide the chapter's direction"
-        description="Local language reflects the themes in LMSA National's organizing principles while keeping commitments realistic for a new chapter."
+        description="Five values shape how we build community, support one another, and serve."
         className="bg-gt-cream"
       >
         <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-5">
@@ -61,7 +61,7 @@ export default function AboutPage() {
       <Section
         eyebrow="The LMSA network"
         title={lmsaHistory.heading}
-        description="The chapter's public description is grounded in LMSA's official history and organizational pages."
+        description="Learn how our Georgia Tech chapter connects to the broader LMSA network."
         className="bg-white"
       >
         <div className="grid gap-5 lg:grid-cols-[0.9fr_1.1fr]">
@@ -97,7 +97,7 @@ export default function AboutPage() {
       <Section
         eyebrow="Founding executive board"
         title="The students preparing the chapter launch"
-        description="Three founding officers are confirmed. Applications are open for Events / Programming, Service / Community Health, Marketing / Communications, Treasurer / Finance, and Secretary. The Membership / Mentorship chair is not open yet."
+        description="Meet the students preparing the founding launch. Contact the chapter to ask about current roles and ways to get involved."
         className="bg-gt-cream"
       >
         <div className="grid gap-5 md:grid-cols-3">
@@ -110,7 +110,7 @@ export default function AboutPage() {
       <Section
         id="frequently-asked-questions"
         eyebrow="Frequently asked questions"
-        title="Clear expectations for a chapter in formation"
+        title="Your questions, answered"
         description="Details that have not been finalized are labeled honestly."
         className="bg-white"
       >

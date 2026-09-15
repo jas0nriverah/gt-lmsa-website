@@ -49,7 +49,7 @@ export function Footer() {
                 {link.label}
               </Link>
             ))}
-            <Link href="/interest" className="footer-link">Chapter interest form</Link>
+            <Link href="/interest" className="footer-link">Express interest</Link>
           </div>
         </div>
 
@@ -77,6 +77,7 @@ export function Footer() {
               className="footer-link"
             >
               LMSA National <span aria-hidden="true">↗</span>
+              <span className="sr-only"> (opens in a new tab)</span>
             </a>
             <a
               href="https://southeast.lmsa.net/"
@@ -85,6 +86,7 @@ export function Footer() {
               className="footer-link"
             >
               LMSA Southeast <span aria-hidden="true">↗</span>
+              <span className="sr-only"> (opens in a new tab)</span>
             </a>
           </div>
         </div>

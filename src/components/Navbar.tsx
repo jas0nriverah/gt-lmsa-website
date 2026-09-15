@@ -69,7 +69,7 @@ export function Navbar() {
             aria-current={pathname === "/interest" ? "page" : undefined}
             className="button button-primary text-sm"
           >
-            Join the interest list
+            Express interest
           </Link>
         </div>
 
@@ -110,7 +110,7 @@ export function Navbar() {
               onClick={() => setIsOpen(false)}
               className="button button-primary mt-3 justify-center"
             >
-              Join the interest list
+              Express interest
             </Link>
           </div>
         </div>

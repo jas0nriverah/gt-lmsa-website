@@ -6,23 +6,23 @@ import { SitePage } from "@/components/SitePage";
 import { contactLinks } from "@/lib/site-data";
 
 export const metadata: Metadata = {
-  title: "Chapter Interest Form",
+  title: "Express Interest",
   description:
-    "Express interest in LMSA Plus at Georgia Tech membership, mentorship, service, events, resources, and chapter-building.",
+    "Prepare an email to express interest in LMSA Plus at Georgia Tech. Nothing is sent or saved until you choose to send it.",
 };
 
 export default function InterestPage() {
   return (
     <SitePage>
       <PageHero
-        eyebrow="Join the interest list"
-        title="Be part of the founding year."
-        description="Get updates about chapter meetings, programs, and opportunities. Start with your name and email."
+        eyebrow="Express interest"
+        title="Tell us you’re interested."
+        description="Complete this short form to prepare an email to the chapter. Nothing is sent or saved until you choose to send it."
       />
       <Section
-        eyebrow="Express interest"
-        title="Prepare a message to the chapter"
-        description="Prepare your message, then send it with your email app or copy it into webmail."
+        eyebrow="Email the chapter"
+        title="Prepare your interest email"
+        description="Review the message, then open your email app or copy it into webmail. Your information is not saved on this site."
         className="bg-gt-cream"
       >
         <div className="grid gap-8 lg:grid-cols-[minmax(0,1.5fr)_minmax(17rem,0.5fr)] lg:items-start">

@@ -3,7 +3,6 @@ import { OpportunityCard } from "@/components/Cards";
 import { PageHero } from "@/components/PageHero";
 import { Section } from "@/components/Section";
 import { SitePage } from "@/components/SitePage";
-import { scholarshipDisclaimer } from "@/lib/site-data";
 import { scholarships } from "@/lib/stale-status-sep-14";
 import type { OpportunityStatus, ScholarshipOpportunity } from "@/lib/site-types";
 import { LAST_CONTENT_REVIEW } from "@/lib/source-registry";
@@ -40,25 +39,18 @@ export default function OpportunitiesPage() {
     <SitePage>
       <PageHero
         eyebrow="Opportunities"
-        title="Scholarships, fee assistance, research funding, and enrichment."
-        description={`Last content-reviewed ${LAST_CONTENT_REVIEW}. Statuses reflect the last review date—not a guarantee. Always confirm current availability on the official source.`}
+        title="Support your pre-health journey."
+        description="Explore scholarships, fee assistance, research funding, and enrichment programs for your next step."
       />
 
       <Section
-        eyebrow="Time-sensitive"
-        title="Verify before you apply"
-        description={scholarshipDisclaimer}
+        eyebrow="Funding and enrichment"
+        title="Find opportunities that fit you"
+        description={`Last reviewed ${LAST_CONTENT_REVIEW}. Confirm current eligibility and deadlines on each program’s official website before applying.`}
         className="bg-gt-cream"
       >
-        <div className="mb-8 rounded-3xl border border-amber-300 bg-amber-50 p-6 text-amber-950">
-          <h3 className="font-bold">Verify before you act</h3>
-          <p className="mt-2 leading-7">
-            A status reflects the last review date—not a guarantee. Use each official source to confirm current availability, eligibility, deadlines, award terms, and required memberships before spending money or submitting personal information.
-          </p>
-        </div>
-
         <h3 className="text-2xl font-bold text-gt-navy">
-          Relevant before professional-school matriculation
+          For undergraduate and pre-health students
         </h3>
         <div className="mt-5 grid gap-5 lg:grid-cols-2">
           {preHealthOpportunities.map((opportunity) => (
@@ -67,10 +59,12 @@ export default function OpportunitiesPage() {
         </div>
 
         <h3 className="mt-12 text-2xl font-bold text-gt-navy">
-          Future opportunities after acceptance or matriculation
+          After professional-school acceptance or enrollment
         </h3>
         <p className="mt-3 max-w-3xl leading-7 text-slate-600">
-          These are included for long-term planning and are not current undergraduate funding options.
+          Keep these in mind for a later stage of your journey. They require
+          professional-school acceptance or enrollment and are not current
+          undergraduate funding options.
         </p>
         <div className="mt-5 grid gap-5 lg:grid-cols-2">
           {futureOpportunities.map((opportunity) => (

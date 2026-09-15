@@ -17,7 +17,7 @@ import {
 export const metadata: Metadata = {
   title: "Events",
   description:
-    "See confirmed LMSA Plus at Georgia Tech events on the calendar, plus planned launch activities still under development.",
+    "See confirmed LMSA Plus at Georgia Tech events on the calendar, plus planned chapter activities.",
 };
 
 export const dynamic = "force-dynamic";
@@ -35,7 +35,7 @@ export default function EventsPage() {
       <PageHero
         eyebrow="Events"
         title="Confirmed dates appear on the calendar first."
-        description="Browse confirmed dates for chapter, national, and campus events. Follow each event's official source for schedules and attendance details. Plans in progress are listed separately."
+        description="Browse confirmed chapter, national, and campus events, plus planned chapter activities. Planned dates and details will be posted here once confirmed."
       />
       <Section
         eyebrow="Confirmed calendar"
@@ -66,7 +66,7 @@ export default function EventsPage() {
       <Section
         eyebrow="Around Georgia Tech"
         title="Recommended pre-health events"
-        description="Verified campus and regional pre-health sessions from official Georgia Tech sources. These are recommendations for students — not LMSA Plus chapter events and not claims of partnership. Always confirm details on the official source."
+        description="Explore verified campus and regional pre-health sessions. Check the official source for current details."
         className="bg-gt-cream"
       >
         {recommendedExternal.length ? (
@@ -87,9 +87,9 @@ export default function EventsPage() {
         </p>
       </Section>
       <Section
-        eyebrow="Planning board"
-        title="Events under development"
-        description="These concepts communicate direction without representing scheduled commitments."
+        eyebrow="Planned events"
+        title="Chapter events in planning"
+        description="These events are planned for the founding year; dates and details will be posted once confirmed."
         className="bg-white"
       >
         <div className="grid gap-5 md:grid-cols-2">

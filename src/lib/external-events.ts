@@ -22,9 +22,10 @@ export const externalEvents: ExternalEvent[] = [
     displayDate: "Tuesday, September 15, 2026",
     startDate: "2026-09-15",
     time: "5:45 PM – 7:00 PM",
-    location: "Room C340, Van Leer Building",
+    location:
+      "Virtual session; GT listing also notes Room C340, Van Leer Building. Confirm attendance details when registering.",
     description:
-      "A representative from UGA’s School of Medicine Admissions team will lead an info session for pre-health students on the school’s mission and application process. Listed on the Georgia Tech Campus Calendar; register through the official form linked from that listing. This is a campus-recommended external session — not an LMSA Plus chapter event or partnership.",
+      "A representative from UGA’s School of Medicine Admissions team will lead an info session for pre-health students on the school’s mission and application process. Register through the official form linked from the Georgia Tech Campus Calendar.",
     sourceUrl:
       "https://calendar.gatech.edu/event/2026/09/15/uga-school-medicine-virtual-info-session",
     registrationUrl: "https://forms.gle/3RnJqtWa1mzNK5Zw8",
@@ -44,7 +45,7 @@ export const externalEvents: ExternalEvent[] = [
     time: "5:30 PM – 6:30 PM ET",
     location: "Virtual (register for meeting link)",
     description:
-      "Virtual panel with Pre-Health Post-Bac and Specialty Master’s admissions representatives for students strengthening applications to health professional programs (MD, DO, PA, DDS, PharmD, and related). Hosted during Applying to Grad School Week 2026; free and open to Georgia Tech undergraduates, graduate students, employees, and alumni. Register on the official Zoom registration page linked from Grad School Week. Recommended campus programming — not an LMSA Plus partnership.",
+      "Free virtual panel with Pre-Health Post-Bac and Specialty Master’s admissions representatives for students strengthening applications to health professional programs (MD, DO, PA, DDS, PharmD, and related). Hosted during Applying to Grad School Week 2026 and open to Georgia Tech undergraduates, graduate students, employees, and alumni. Register on the official Zoom registration page linked from Grad School Week.",
     sourceUrl:
       "https://calendar.gatech.edu/event/2026/09/16/applying-grad-school-week-2026-virtual-event-pre-health-post-bacc-and-specialty",
     registrationUrl:

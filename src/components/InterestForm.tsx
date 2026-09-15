@@ -69,7 +69,7 @@ export function InterestForm() {
           </label>
         </div>
         <details className="mt-6 rounded-xl border border-slate-200 p-4">
-          <summary className="cursor-pointer font-bold text-gt-navy">Personalize your updates <span className="font-normal text-slate-500">(optional)</span></summary>
+          <summary className="cursor-pointer font-bold text-gt-navy">Tell us what interests you <span className="font-normal text-slate-500">(optional)</span></summary>
           <label className="mt-5 block font-bold text-gt-navy">
             Academic year
             <select className={inputClasses} name="academicLevel" defaultValue="">
@@ -111,13 +111,6 @@ export function InterestForm() {
             <textarea readOnly value={message} rows={8} className={inputClasses + " font-normal"} onFocus={(event) => event.currentTarget.select()} />
           </label>
           <p role="status" className="mt-3 text-sm leading-6 text-slate-600">{copyStatus}</p>
-          {contactLinks.whatsappInvite.status === "active" && contactLinks.whatsappInvite.href ? (
-            <div className="mt-6 border-t border-slate-200 pt-5">
-              <h3 className="font-bold text-gt-navy">Want to connect now?</h3>
-              <p className="mt-2 text-sm leading-6 text-slate-600">The chapter WhatsApp is optional and separate from the interest list.</p>
-              <a href={contactLinks.whatsappInvite.href} target="_blank" rel="noopener noreferrer" className="text-link mt-3 inline-block font-bold">Join the chapter WhatsApp ↗</a>
-            </div>
-          ) : null}
         </div>
       ) : null}
     </div>

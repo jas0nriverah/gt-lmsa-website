@@ -5,13 +5,14 @@ import { ProgramCard } from "@/components/Cards";
 import { ThisWeekCard } from "@/components/ThisWeekCard";
 import { Section } from "@/components/Section";
 import { SitePage } from "@/components/SitePage";
-import { chapterInfo, programs } from "@/lib/site-data";
+import { boardMembers, chapterInfo, programs } from "@/lib/site-data";
 import { events } from "@/lib/stale-status-sep-14";
 import { getUpcomingItems } from "@/lib/external-events";
 
 export const dynamic = "force-dynamic";
 
 const highlightedPrograms = ["Peer mentorship", "Community service", "Pre-health planning workshops"];
+const currentOfficers = boardMembers.filter((member) => !member.openingNote && member.name !== "Position open");
 
 export default function HomePage() {
   const upcoming = getUpcomingItems();
@@ -19,7 +20,7 @@ export default function HomePage() {
 
   return (
     <SitePage>
-      <section className="relative overflow-hidden border-b border-gt-gold/25 bg-white px-6 py-12 sm:px-8 sm:py-16">
+      <section className="relative overflow-hidden border-b border-gt-gold/25 bg-white px-6 py-10 sm:px-8 sm:py-12">
         <div aria-hidden="true" className="pointer-events-none absolute -right-16 bottom-0 h-72 w-72 rounded-full bg-gt-gold/20 blur-3xl" />
         <div className="relative mx-auto grid max-w-6xl items-center gap-8 md:grid-cols-[1.5fr_1fr] md:gap-12">
           <div>
@@ -29,10 +30,10 @@ export default function HomePage() {
               LMSA PLUS brings students together through mentorship, service, and Latino/Hispanic health. All majors and backgrounds are welcome to express interest.
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
-              <Link href="/interest" className="button button-primary">Join the interest list <span aria-hidden="true">→</span></Link>
+              <Link href="/interest" className="button button-primary">Express interest <span aria-hidden="true">→</span></Link>
               <Link href="/events" className="button button-secondary">Explore events</Link>
             </div>
-            <Link href="/about" className="text-link mt-5 inline-block text-sm font-bold">Our mission and founding board →</Link>
+            <Link href="/about" className="text-link mt-5 inline-block text-sm font-bold">Discover our mission →</Link>
           </div>
           <div className="relative mx-auto hidden aspect-square w-full max-w-72 items-center justify-center rounded-full border border-gt-gold/40 p-5 md:flex">
             <div aria-hidden="true" className="absolute inset-2 rounded-full border border-dashed border-gt-navy/20" />
@@ -40,6 +41,37 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      <Section
+        id="executive-board"
+        eyebrow="Meet your e-board"
+        title="Students building community, together."
+        description="Meet the founding officers of LMSA PLUS at Georgia Tech."
+        className="bg-white"
+      >
+        <div className="grid gap-5 md:grid-cols-3">
+          {currentOfficers.map((member) => (
+            <article key={`${member.role}-${member.name}`} className="flex flex-col items-center rounded-3xl border border-gt-gold/40 bg-gt-cream p-6 text-center sm:p-8">
+              {member.image ? (
+                <Image
+                  src={member.image.src}
+                  alt={member.image.alt}
+                  width={160}
+                  height={160}
+                  sizes="160px"
+                  className="h-40 w-40 rounded-full object-cover ring-4 ring-white"
+                />
+              ) : (
+                <div aria-hidden="true" className="flex h-40 w-40 items-center justify-center rounded-full bg-gt-navy text-4xl font-black text-white ring-4 ring-gt-gold/25">
+                  {member.initials}
+                </div>
+              )}
+              <h3 className="mt-6 text-xl font-bold text-gt-navy">{member.name}</h3>
+              <p className="mt-2 text-sm font-bold leading-6 text-gt-dark-gold">{member.role}</p>
+            </article>
+          ))}
+        </div>
+      </Section>
 
       <Section eyebrow="What's coming up" title="Find your next connection" description="Chapter plans, national events, and campus recommendations in one place." className="bg-gt-cream">
         {meeting ? (
@@ -80,7 +112,7 @@ export default function HomePage() {
             <p className="mt-3 max-w-xl leading-7 text-gt-navy">Get chapter updates and hear when meetings and opportunities open.</p>
           </div>
           <div className="flex flex-col items-start gap-4">
-            <Link href="/interest" className="button button-primary">Join the interest list <span aria-hidden="true">→</span></Link>
+            <Link href="/interest" className="button button-primary">Express interest <span aria-hidden="true">→</span></Link>
             <Link href="/about#frequently-asked-questions" className="text-link text-sm font-bold">Questions? Read the FAQ →</Link>
           </div>
         </div>

@@ -5,12 +5,11 @@ import { PageHero } from "@/components/PageHero";
 import { Section } from "@/components/Section";
 import { SitePage } from "@/components/SitePage";
 import { resourceCategories } from "@/lib/sep-2026-refresh";
-import { LAST_CONTENT_REVIEW } from "@/lib/source-registry";
 
 export const metadata: Metadata = {
   title: "Resources",
   description:
-    "Official Georgia Tech, LMSA, AAMC, AACOM, TMDSAS, research, and pre-health resources with status and verification notes.",
+    "Explore official Georgia Tech advising, LMSA, medical school application, and research resources for your pre-health journey.",
 };
 
 export default function ResourcesPage() {
@@ -18,20 +17,19 @@ export default function ResourcesPage() {
     <SitePage>
       <PageHero
         eyebrow="Resources"
-        title="Start with official sources, then verify what has changed."
-        description={`This directory was last content-reviewed ${LAST_CONTENT_REVIEW}. Time-sensitive pages, deadlines, prices, and eligibility can change without notice.`}
+        title="Resources for your next step."
+        description="Find advising, application guidance, research opportunities, and support from Georgia Tech and the LMSA network."
       />
 
       <Section
         eyebrow="Looking for funding?"
-        title="Scholarships and enrichment live on Opportunities"
-        description="Time-sensitive scholarships, fee assistance, research funding, and summer enrichment programs have moved to a dedicated page so this directory can stay focused on evergreen official links."
+        title="Explore scholarships and enrichment"
         className="bg-gt-cream"
       >
         <div className="rounded-3xl border border-gt-gold/40 bg-white p-6 sm:p-8">
           <p className="leading-7 text-slate-600">
-            Browse open, upcoming, and recently closed cycles—and always confirm
-            requirements on the official source before applying.
+            Find scholarships, fee assistance, research funding, and summer
+            programs on our Opportunities page.
           </p>
           <Link href="/opportunities" className="button button-primary mt-5 inline-flex">
             Go to Opportunities

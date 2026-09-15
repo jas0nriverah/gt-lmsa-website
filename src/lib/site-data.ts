@@ -18,7 +18,6 @@ import type {
   ChapterInfo,
   CoreValue,
   FAQ,
-  NavLink,
   Partner,
   Program,
   ResourceCategory,
@@ -43,39 +42,15 @@ export const contactLinks = {
   email: "lmsaplusgatech@gmail.com",
   instagram: "https://www.instagram.com/lmsaplusgatech/",
   instagramHandle: "@lmsaplusgatech",
-  // Chapter interest: currently the on-site /interest form. Paste a Google Form
-  // URL here later if you prefer spreadsheet responses instead of email.
+  // The /interest page prepares an email for the student to review and send.
   interestForm: { status: "active" as const, href: "/interest" },
-  // WhatsApp community invite link.
-  whatsappInvite: {
-    status: "active" as "coming-soon" | "active",
-    href: "https://chat.whatsapp.com/IAZMENKqJ9lHofTVgz11vd" as string | undefined,
-  },
-  // Private feedback Google Form. Paste forms.gle URL when ready.
-  feedbackForm: {
-    status: "coming-soon" as "coming-soon" | "active",
-    href: undefined as string | undefined,
-  },
-  // Fall chair applications (Events, Service, Marketing, Treasurer / Finance, Secretary).
+  // Email the chapter to ask about the open Fall chair roles.
   boardApplicationForm: {
     status: "active" as "coming-soon" | "active",
-    href: "https://forms.gle/zvrUCM5XgP7Ac3og9" as string | undefined,
+    href: "mailto:lmsaplusgatech@gmail.com?subject=Leadership%20interest%20at%20LMSA%20Plus%20at%20Georgia%20Tech" as string | undefined,
   },
   newsletterForm: { status: "coming-soon" as const },
-  mentorshipForm: { status: "coming-soon" as const },
-  volunteerForm: { status: "coming-soon" as const },
-  eventSuggestionForm: { status: "coming-soon" as const },
-  partnershipForm: { status: "coming-soon" as const },
 };
-
-export const navLinks: NavLink[] = [
-  { label: "About", href: "/about" },
-  { label: "Programs", href: "/programs" },
-  { label: "Events", href: "/events" },
-  { label: "Resources", href: "/resources" },
-  { label: "Get Involved", href: "/get-involved" },
-  { label: "Links", href: "/links" },
-];
 
 export const announcements: Announcement[] = [
   {
@@ -178,7 +153,7 @@ export const organizationLevels = [
   {
     title: "Georgia Tech chapter",
     description:
-      "Builds local community and programming for Georgia Tech students. Fall 2026 events and forms remain planned until the board confirms details.",
+      "Builds local community and programming for Georgia Tech students.",
     href: "/programs",
   },
 ];
@@ -239,13 +214,6 @@ export const programs: Program[] = [
       "Planned volunteer opportunities developed with attention to community priorities, appropriate training, safety, and Georgia Tech policies.",
     status: "planned",
     category: "Service",
-  },
-  {
-    title: "Digital confidence for families",
-    description:
-      "A Spring 2027 initiative being explored with local high schools to help Hispanic/Latino families—including first-generation households—build confidence with digital tools, understand responsible AI use, recognize misinformation and scams, and find trustworthy education and health resources.",
-    status: "planned",
-    category: "Community education",
   },
   {
     title: "Culture and community",
@@ -326,7 +294,7 @@ export const events: ChapterEvent[] = [
     status: "planned",
     displayDate: "Fall 2026 — date to be confirmed",
     description:
-      "A planned first meeting for members to connect, review the semester direction, and learn how to participate in early chapter projects.",
+      "A planned first meeting for members to connect, learn about the chapter, and find ways to participate.",
     registrationStatus: "coming-soon",
   },
 ];
@@ -459,7 +427,7 @@ export const boardMembers: BoardMember[] = [
     role: "President",
     initials: "SL",
     description:
-      "Sets the chapter vision, makes high-level decisions, coordinates with LMSA National and Southeast, manages Georgia Tech relationships, and keeps the board aligned.",
+      "Guides the chapter's mission, represents LMSA PLUS at Georgia Tech, and connects students with national, regional, and campus communities.",
     image: {
       src: "/board/stacy-lomeli.png",
       alt: "Headshot of Stacy Lomeli, President of LMSA Plus at Georgia Tech",
@@ -470,7 +438,7 @@ export const boardMembers: BoardMember[] = [
     role: "Vice President / Operations",
     initials: "AU",
     description:
-      "Owns internal organization—exec task tracking, deadlines, meeting follow-ups, calendar, accountability, and member systems—so the chapter runs smoothly.",
+      "Helps create a welcoming chapter experience and keeps programs, communications, and resources moving from idea to action.",
     image: {
       src: "/board/amanda-ubera-corona.png",
       alt: "Headshot of Amanda Ubera-Corona, Vice President / Operations of LMSA Plus at Georgia Tech",
@@ -480,20 +448,20 @@ export const boardMembers: BoardMember[] = [
     name: "Position open",
     role: "Secretary",
     initials: "SE",
-    openingNote: "Apply now",
+    openingNote: "Ask about leadership roles",
     applicationUrl:
       contactLinks.boardApplicationForm.status === "active" &&
       contactLinks.boardApplicationForm.href
         ? contactLinks.boardApplicationForm.href
         : undefined,
     description:
-      "Takes meeting notes, keeps chapter records organized, tracks attendance, and helps maintain shared documents and board communications.",
+      "Helps the chapter communicate clearly, keep its story organized, and make information easy for members to find.",
   },
   {
     name: "Position open",
     role: "Treasurer / Finance",
     initials: "TR",
-    openingNote: "Apply now",
+    openingNote: "Ask about leadership roles",
     applicationUrl:
       contactLinks.boardApplicationForm.status === "active" &&
       contactLinks.boardApplicationForm.href
@@ -517,40 +485,40 @@ export const boardMembers: BoardMember[] = [
     name: "Position open",
     role: "Service / Community Health Chair",
     initials: "SC",
-    openingNote: "Apply now",
+    openingNote: "Ask about leadership roles",
     applicationUrl:
       contactLinks.boardApplicationForm.status === "active" &&
       contactLinks.boardApplicationForm.href
         ? contactLinks.boardApplicationForm.href
         : undefined,
     description:
-      "Runs programming primarily for the community—volunteer events, health fairs, supervised screenings, Hispanic-family outreach, and service logistics.",
+      "Leads community-centered service activities and helps connect students with health-equity work.",
   },
   {
     name: "Position open",
     role: "Events / Programming Chair",
     initials: "EP",
-    openingNote: "Apply now",
+    openingNote: "Ask about leadership roles",
     applicationUrl:
       contactLinks.boardApplicationForm.status === "active" &&
       contactLinks.boardApplicationForm.href
         ? contactLinks.boardApplicationForm.href
         : undefined,
     description:
-      "Runs programming primarily for members—speakers, panels, workshops, general body meetings, networking, and Medical Spanish programming.",
+      "Creates welcoming events such as speakers, panels, workshops, general body meetings, and networking programs.",
   },
   {
     name: "Position open",
     role: "Marketing / Communications Chair",
     initials: "MC",
-    openingNote: "Apply now",
+    openingNote: "Ask about leadership roles",
     applicationUrl:
       contactLinks.boardApplicationForm.status === "active" &&
       contactLinks.boardApplicationForm.href
         ? contactLinks.boardApplicationForm.href
         : undefined,
     description:
-      "Manages Instagram, graphics, announcements, website updates, promotion, and event recaps so students stay informed.",
+      "Shares the chapter's story through Instagram, graphics, announcements, website updates, and event recaps.",
   },
 ];
 
@@ -942,11 +910,11 @@ export const scholarships: ScholarshipOpportunity[] = [
     audience:
       "Primarily medical students; the National Conference Travel Scholarship also includes eligible pre-med applicants",
     description:
-      "The current fall cycle includes medical-student awards and an NC2026 travel scholarship that lists LMSA National or LMSA PLUS members planning to apply to medical school among eligible audiences.",
+      "The 2026 fall cycle included medical-student awards and an NC2026 travel scholarship that listed LMSA National or LMSA PLUS members planning to apply to medical school among eligible audiences. The listed application deadline has passed.",
     eligibility:
-      "Requirements differ by award. Review the official page and application before applying.",
+      "Requirements differed by award; the listed application deadline has passed.",
     benefit: "Varies by award; the listed NC2026 travel scholarship provides $500",
-    status: "open",
+    status: "closed",
     deadline: "August 2, 2026 at 11:59 p.m. ET",
     sourceUrl: "https://national.lmsa.net/resources/awards/scholarships/",
     category: "LMSA",
@@ -1172,12 +1140,12 @@ export const faqs: FAQ[] = [
   {
     question: "What is the Fall 2026 board structure?",
     answer:
-      "The founding Fall 2026 board includes President, Vice President / Operations, Outreach / Partnerships Chair, Events / Programming Chair, Service / Community Health Chair, Marketing / Communications Chair, Treasurer / Finance, and Secretary. Three roles are already filled. Applications for the remaining Fall chairs are open. Membership / Mentorship is not opening yet—onboarding and member tracking start under Vice President / Operations.",
+      "The founding Fall 2026 board includes President, Vice President / Operations, Outreach / Partnerships Chair, Events / Programming Chair, Service / Community Health Chair, Marketing / Communications Chair, Treasurer / Finance, and Secretary. Three roles are already filled. The remaining Fall chairs are open for leadership interest; email the chapter to ask about roles. Membership / Mentorship is not part of the current Fall leadership openings.",
   },
   {
     question: "Will more board positions open later?",
     answer:
-      "Yes. As the chapter grows, the board may open additional roles such as Membership / Mentorship Chair and First-Year Representative. Those are later positions—not part of the current Fall chair application round.",
+      "Yes. As the chapter grows, the board may open additional roles such as Membership / Mentorship Chair and First-Year Representative. Those are later positions—not part of the current Fall leadership openings.",
   },
   {
     question: "Who has the chapter partnered with so far?",
@@ -1193,30 +1161,13 @@ export const faqs: FAQ[] = [
 
 export const involvementActions: ActionLink[] = [
   {
-    label: "Join the interest list",
+    label: "Express interest",
     description:
-      "Fill out the chapter interest form so we can share launch updates and involvement opportunities.",
+      "Prepare and send an email to share your interest and receive launch updates.",
     href: contactLinks.interestForm.href,
     status: "active",
     category: "Membership",
     featured: true,
-  },
-  {
-    label: "Join the chapter WhatsApp",
-    description:
-      "Our shared space for reminders, opportunities, and chapter conversation—join for more information.",
-    href: contactLinks.whatsappInvite.href,
-    status: contactLinks.whatsappInvite.status,
-    category: "Community",
-    featured: true,
-  },
-  {
-    label: "Share private feedback",
-    description:
-      "Tell the board how programming feels. Responses are confidential and never tied to your name.",
-    href: contactLinks.feedbackForm.href,
-    status: contactLinks.feedbackForm.status,
-    category: "Feedback",
   },
   {
     label: "All quick links",
@@ -1226,9 +1177,9 @@ export const involvementActions: ActionLink[] = [
     category: "Chapter",
   },
   {
-    label: "Apply for Fall board chairs",
+    label: "Ask about Fall board chairs",
     description:
-      "Events / Programming, Service / Community Health, Marketing / Communications, Treasurer / Finance, and Secretary — apply through the Google Form.",
+      "Email the chapter to ask about open Fall board chairs and share your leadership interests.",
     href: contactLinks.boardApplicationForm.href,
     status: contactLinks.boardApplicationForm.status,
     category: "Leadership",
@@ -1248,26 +1199,8 @@ export const involvementActions: ActionLink[] = [
     category: "Contact",
   },
   {
-    label: "Mentorship interest",
-    description: "The chapter-specific mentorship form is being developed.",
-    status: "coming-soon",
-    category: "Mentorship",
-  },
-  {
-    label: "Volunteer and service interest",
-    description: "The service-interest form will open after opportunities are confirmed.",
-    status: "coming-soon",
-    category: "Service",
-  },
-  {
-    label: "Suggest an event",
-    description: "A structured event-suggestion form is planned.",
-    status: "coming-soon",
-    category: "Programming",
-  },
-  {
     label: "Partner with the chapter",
-    description: "Email the chapter now; a dedicated partnership form is planned.",
+    description: "Email the chapter with a collaboration idea.",
     href: `mailto:${contactLinks.email}?subject=Collaboration%20with%20LMSA%20Plus%20at%20Georgia%20Tech`,
     status: "active",
     category: "Partnerships",
@@ -1276,31 +1209,16 @@ export const involvementActions: ActionLink[] = [
 
 export const linktreeLinks: ActionLink[] = [
   {
-    label: "Join the interest list",
-    description: "Get launch updates and chapter announcements.",
+    label: "Express interest",
+    description: "Prepare and send an email to receive launch updates and chapter announcements.",
     href: contactLinks.interestForm.href,
     status: "active",
     category: "Membership",
     featured: true,
   },
   {
-    label: "Join the chapter WhatsApp",
-    description: "Reminders, opportunities, and conversation—join for more information.",
-    href: contactLinks.whatsappInvite.href,
-    status: contactLinks.whatsappInvite.status,
-    category: "Community",
-    featured: true,
-  },
-  {
-    label: "Share private feedback",
-    description: "Confidential notes for the board on meetings and programming.",
-    href: contactLinks.feedbackForm.href,
-    status: contactLinks.feedbackForm.status,
-    category: "Feedback",
-  },
-  {
-    label: "Fall Board Chair Applications",
-    description: "Events, Service, Marketing, Treasurer / Finance & Secretary — apply now.",
+    label: "Ask about Fall board chairs",
+    description: "Email the chapter to ask about open Fall board chairs and share your leadership interests.",
     href: contactLinks.boardApplicationForm.href,
     status: contactLinks.boardApplicationForm.status,
     category: "Leadership",

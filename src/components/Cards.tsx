@@ -80,8 +80,14 @@ export function EventCard({ event }: { event: ChapterEvent }) {
         (event.calendarUrl && event.startDate) ? (
           <div className="mt-6 flex flex-wrap gap-3">
             {event.status !== "past" && event.registrationStatus === "active" && event.registrationUrl ? (
-              <a className="button button-primary" href={event.registrationUrl}>
-                Register
+              <a
+                className="button button-primary"
+                href={event.registrationUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Register <span aria-hidden="true">↗</span>
+                <span className="sr-only"> (opens in a new tab)</span>
               </a>
             ) : event.status !== "past" && event.registrationStatus === "coming-soon" ? (
               <span className="button button-disabled" aria-disabled="true">
@@ -92,13 +98,25 @@ export function EventCard({ event }: { event: ChapterEvent }) {
               <span className="self-center text-sm font-semibold text-slate-600">Online registration closed</span>
             ) : null}
             {event.detailsUrl ? (
-              <a className="button button-secondary" href={event.detailsUrl}>
-                {event.scope === "national" ? "Conference details" : "Event details"}
+              <a
+                className="button button-secondary"
+                href={event.detailsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {event.scope === "national" ? "Conference details" : "Event details"} <span aria-hidden="true">↗</span>
+                <span className="sr-only"> (opens in a new tab)</span>
               </a>
             ) : null}
             {event.calendarUrl && event.startDate ? (
-              <a className="button button-secondary" href={event.calendarUrl}>
-                Add to calendar
+              <a
+                className="button button-secondary"
+                href={event.calendarUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Add to calendar <span aria-hidden="true">↗</span>
+                <span className="sr-only"> (opens in a new tab)</span>
               </a>
             ) : null}
           </div>
@@ -109,6 +127,8 @@ export function EventCard({ event }: { event: ChapterEvent }) {
 }
 
 export function BoardCard({ member }: { member: BoardMember }) {
+  const isEmailApplication = member.applicationUrl?.toLowerCase().startsWith("mailto:");
+
   return (
     <article className="card flex h-full flex-col p-6">
       {member.image ? (
@@ -142,11 +162,12 @@ export function BoardCard({ member }: { member: BoardMember }) {
       {member.applicationUrl ? (
         <a
           href={member.applicationUrl}
-          target="_blank"
-          rel="noopener noreferrer"
+          {...(isEmailApplication
+            ? {}
+            : { target: "_blank", rel: "noopener noreferrer" })}
           className="button button-primary mt-5 self-start"
         >
-          Apply for this role
+          {isEmailApplication ? "Ask about this role" : "Apply for this role"}
         </a>
       ) : member.openingNote ? (
         <span className="button button-disabled mt-5 self-start" aria-disabled="true">
