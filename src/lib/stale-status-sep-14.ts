@@ -11,7 +11,7 @@ import {
 import { faqs as baseFaqs, scholarships as baseScholarships, interestMeetingTiming } from "./site-data";
 import { LAST_CONTENT_REVIEW } from "./source-registry";
 
-/** September 14, 2026 stale opportunity/event status refresh. */
+/** September 14–15, 2026 stale opportunity/event status refresh (daily 2026-09-15). */
 
 const PAST_EVENT_IDS = new Set([
   "pre-health-fall-kickoff-2026",
@@ -40,13 +40,37 @@ export const scholarships: ScholarshipOpportunity[] = baseScholarships.map(
         lastVerified: LAST_CONTENT_REVIEW,
       };
     }
+    if (opportunity.name === "Summer Health Professions Education Program") {
+      return {
+        ...opportunity,
+        status: "closed",
+        description:
+          "SHPEP concluded its final summer cohort in 2026. The official website is preserved as a historical resource celebrating more than three decades of the program; there is no new application cycle to plan around.",
+        eligibility:
+          "No current application cycle. Review the historical SHPEP site only for legacy program context.",
+        lastVerified: LAST_CONTENT_REVIEW,
+      };
+    }
+    if (opportunity.name === "President's Undergraduate Research Award — Salary") {
+      return {
+        ...opportunity,
+        status: "open",
+        deadline: "October 1, 2026",
+        description:
+          "PURA Salary Awards fund eligible undergraduate research completed with a Georgia Tech or GTRI faculty mentor. The Spring 2027 funding cycle lists an October 1 application deadline on the official UROP page.",
+        lastVerified: LAST_CONTENT_REVIEW,
+      };
+    }
     if (RECHECKED_CLOSED.has(opportunity.name)) {
       return {
         ...opportunity,
         lastVerified: LAST_CONTENT_REVIEW,
       };
     }
-    return opportunity;
+    return {
+      ...opportunity,
+      lastVerified: LAST_CONTENT_REVIEW,
+    };
   },
 );
 

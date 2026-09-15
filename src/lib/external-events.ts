@@ -8,11 +8,11 @@ import { chapterToday, currentWeek, hasEnded } from "./event-dates";
 
 /**
  * P0.3 — verified external / recommended pre-health events.
- * Checked September 14, 2026 against official GT Calendar + Grad School Week pages.
+ * Checked September 15, 2026 against official GT Calendar + Grad School Week pages.
  * Listings are recommendations only — not LMSA Plus partnerships or chapter programming.
  */
 
-export const EXTERNAL_EVENTS_CHECKED_AT = "September 14, 2026";
+export const EXTERNAL_EVENTS_CHECKED_AT = "September 15, 2026";
 
 export const externalEvents: ExternalEvent[] = [
   {
