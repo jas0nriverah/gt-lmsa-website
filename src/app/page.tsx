@@ -1,239 +1,88 @@
 import Image from "next/image";
 import Link from "next/link";
 import { AnnouncementBanner } from "@/components/AnnouncementBanner";
-import {
-  BoardCard,
-  EventCard,
-  ProgramCard,
-  ValueCard,
-} from "@/components/Cards";
+import { ProgramCard } from "@/components/Cards";
 import { ThisWeekCard } from "@/components/ThisWeekCard";
-import { FAQList } from "@/components/FAQList";
 import { Section } from "@/components/Section";
 import { SitePage } from "@/components/SitePage";
-import {
-  boardMembers,
-  chapterInfo,
-  coreValues,
-  mission,
-  programs,
-} from "@/lib/site-data";
-import { announcements, events, faqs } from "@/lib/stale-status-sep-14";
-import { getThisWeekItems } from "@/lib/external-events";
-import { chapterToday, currentWeek, eventsAsOf, hasEnded } from "@/lib/event-dates";
+import { chapterInfo, programs } from "@/lib/site-data";
+import { events } from "@/lib/stale-status-sep-14";
+import { getUpcomingItems } from "@/lib/external-events";
 
 export const dynamic = "force-dynamic";
 
+const highlightedPrograms = ["Peer mentorship", "Community service", "Pre-health planning workshops"];
+
 export default function HomePage() {
-  const today = chapterToday();
-  const thisWeekItems = getThisWeekItems(events, undefined, today);
-  const currentAnnouncements = announcements.filter((item) => !hasEnded(item, today));
-  const upcomingEvents = eventsAsOf(events, today).filter((event) => event.status === "confirmed");
+  const upcoming = getUpcomingItems();
+  const meeting = events.find((event) => event.id === "fall-2026-interest-meeting" && event.status === "planned");
+
   return (
     <SitePage>
-      <section className="relative overflow-hidden border-b border-gt-gold/25 bg-white px-6 py-16 sm:px-8 sm:py-20 lg:py-24">
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute -left-24 top-10 h-64 w-64 rounded-full bg-gt-navy/[0.04] blur-3xl"
-        />
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute -right-16 bottom-0 h-72 w-72 rounded-full bg-gt-gold/20 blur-3xl"
-        />
-
-        <div className="relative mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
+      <section className="relative overflow-hidden border-b border-gt-gold/25 bg-white px-6 py-12 sm:px-8 sm:py-16">
+        <div aria-hidden="true" className="pointer-events-none absolute -right-16 bottom-0 h-72 w-72 rounded-full bg-gt-gold/20 blur-3xl" />
+        <div className="relative mx-auto grid max-w-6xl items-center gap-8 md:grid-cols-[1.5fr_1fr] md:gap-12">
           <div>
             <p className="eyebrow">{chapterInfo.launchLabel}</p>
-            <h1 className="mt-4 max-w-3xl text-4xl font-black leading-[1.05] tracking-tight text-gt-navy sm:text-5xl lg:text-[3.35rem]">
-              LMSA PLUS
-            </h1>
-            <p className="mt-3 text-xl font-bold text-gt-dark-gold sm:text-2xl">
-              Georgia Tech Chapter
+            <h1 className="mt-4 text-4xl font-black leading-tight text-gt-navy sm:text-5xl">Your pre-health community at Georgia Tech.</h1>
+            <p className="mt-5 max-w-xl text-lg leading-8 text-slate-600">
+              LMSA PLUS brings students together through mentorship, service, and Latino/Hispanic health. All majors and backgrounds are welcome to express interest.
             </p>
-            <p className="mt-5 max-w-xl text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">
-              Student-led pre-health community for mentorship, service, and
-              Latino/Hispanic health. Public programming begins Fall 2026.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link href="/interest" className="button button-primary">
-                Join the interest list <span aria-hidden="true">→</span>
-              </Link>
-              <Link href="/events" className="button button-secondary">
-                View planned events
-              </Link>
+            <div className="mt-7 flex flex-wrap gap-3">
+              <Link href="/interest" className="button button-primary">Join the interest list <span aria-hidden="true">→</span></Link>
+              <Link href="/events" className="button button-secondary">Explore events</Link>
             </div>
+            <Link href="/about" className="text-link mt-5 inline-block text-sm font-bold">Our mission and founding board →</Link>
           </div>
-
-          <div className="relative mx-auto flex aspect-square w-full max-w-[22rem] items-center justify-center lg:mx-0 lg:max-w-none">
-            {/* Navy & gold rings circling the logo — white field, no split panel */}
-            <div
-              aria-hidden="true"
-              className="absolute inset-[2%] rounded-full border border-gt-navy/10"
-            />
-            <div
-              aria-hidden="true"
-              className="absolute inset-[8%] rounded-full border-2 border-gt-navy/20"
-            />
-            <div
-              aria-hidden="true"
-              className="absolute inset-[14%] rounded-full border border-dashed border-gt-gold/70"
-            />
-            <div
-              aria-hidden="true"
-              className="absolute inset-[20%] rounded-full border border-gt-navy/15"
-            />
-            {/* Partial navy arcs for a braided/encircling feel */}
-            <div
-              aria-hidden="true"
-              className="absolute inset-[4%] rounded-full border-[3px] border-transparent border-t-gt-navy border-r-gt-navy/40"
-            />
-            <div
-              aria-hidden="true"
-              className="absolute inset-[10%] rotate-[160deg] rounded-full border-[3px] border-transparent border-t-gt-gold border-l-gt-navy/50"
-            />
-            <div
-              aria-hidden="true"
-              className="absolute inset-[16%] -rotate-45 rounded-full border-2 border-transparent border-b-gt-navy/35 border-r-gt-gold/80"
-            />
-            <div className="relative z-10 rounded-full bg-white p-2 shadow-[0_12px_40px_rgba(0,48,87,0.12)] ring-1 ring-gt-navy/10">
-              <Image
-                src="/lmsa-logo.png"
-                alt="Latino Medical Student Association logo"
-                width={280}
-                height={280}
-                className="rounded-full bg-white"
-                priority
-              />
-            </div>
+          <div className="relative mx-auto hidden aspect-square w-full max-w-72 items-center justify-center rounded-full border border-gt-gold/40 p-5 md:flex">
+            <div aria-hidden="true" className="absolute inset-2 rounded-full border border-dashed border-gt-navy/20" />
+            <Image src="/lmsa-logo.png" alt="Latino Medical Student Association logo" width={280} height={280} className="relative rounded-full bg-white" priority />
           </div>
         </div>
       </section>
 
-      <Section
-        eyebrow="Chapter and national news"
-        title="Latest updates"
-        description="Follow confirmed events and plans in progress. Each update shows its current status."
-        className="bg-gt-cream"
-      >
-        <div className="grid gap-4">
-          {currentAnnouncements.map((announcement) => (
-            <AnnouncementBanner key={announcement.id} announcement={announcement} />
-          ))}
-        </div>
-      </Section>
-
-      <Section
-        eyebrow="This week"
-        title="What is happening this week"
-        description={`Upcoming and ongoing events for ${currentWeek(today).label}. Chapter, national, and recommended external events are labeled separately.`}
-        className="bg-white"
-      >
-        {thisWeekItems.length ? (
+      <Section eyebrow="What's coming up" title="Find your next connection" description="Chapter plans, national events, and campus recommendations in one place." className="bg-gt-cream">
+        {meeting ? (
+          <div className="mb-6">
+            <AnnouncementBanner announcement={{
+              id: meeting.id,
+              title: meeting.title,
+              summary: "Meet the founding board, learn about LMSA PLUS, and help shape our first year.",
+              timing: meeting.displayDate + " (time and location coming soon)",
+              status: "planned",
+              href: "/events#" + meeting.id,
+              featured: true,
+            }} />
+          </div>
+        ) : null}
+        {upcoming.length ? (
           <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {thisWeekItems.map((item) => (
-              <ThisWeekCard key={item.id} item={item} />
-            ))}
+            {upcoming.map((item) => <ThisWeekCard key={item.id} item={item} />)}
           </div>
         ) : (
-          <p className="leading-7 text-slate-600">
-            No confirmed chapter or verified external items fall in this week&apos;s
-            window right now. Check Events for the full calendar.
-          </p>
+          <p className="leading-7 text-slate-600">New dates will appear here as events are confirmed. Join the interest list to hear about chapter updates.</p>
         )}
-        <Link href="/events" className="button button-secondary mt-8">
-          See all events and campus recommendations
-        </Link>
+        <Link href="/events" className="text-link mt-7 inline-block font-bold">View the full calendar →</Link>
       </Section>
 
-      <Section
-        eyebrow="Our mission"
-        title={mission.heading}
-        description={mission.paragraphs.join(" ")}
-        className="bg-gt-cream"
-      >
-        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-5">
-          {coreValues.map((value, index) => (
-            <ValueCard key={value.title} index={index + 1} {...value} />
-          ))}
-        </div>
-        <div className="mt-8">
-          <Link href="/about" className="text-link font-bold">
-            Learn about LMSA, PLUS, and the Georgia Tech chapter →
-          </Link>
-        </div>
-      </Section>
-
-      <Section
-        eyebrow="Programs"
-        title="Programming designed around the pre-health journey"
-        description="Every local program shown here is planned. The board will mark activities active only after confirming scope, support, and logistics."
-        className="bg-white"
-      >
-        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {programs.slice(0, 6).map((program) => (
-            <ProgramCard key={program.title} program={program} />
-          ))}
-        </div>
-        <Link href="/programs" className="button button-secondary mt-8">
-          Explore all planned programs
-        </Link>
-      </Section>
-
-      <Section
-        eyebrow="Events"
-        title="The first chapter calendar is taking shape"
-        description="Confirmed upcoming chapter and national dates appear below when available. Time-sensitive campus recommendations are listed under This Week and on the Events page."
-        className="bg-gt-cream"
-      >
-        <div className="grid gap-5 md:grid-cols-2">
-          {upcomingEvents
-            .slice(0, 2)
-            .map((event) => (
-              <EventCard key={event.id} event={event} />
-            ))}
-        </div>
-        {!upcomingEvents.length ? <p className="leading-7 text-slate-600">No upcoming chapter or national events are confirmed right now. Visit Events for plans in progress.</p> : null}
-        <Link href="/events" className="button button-secondary mt-8">
-          View the event calendar
-        </Link>
-      </Section>
-
-      <Section
-        eyebrow="Founding board"
-        title="Meet the chapter leaders preparing the launch"
-        description="Three founding officers are confirmed. Applications are open for Events / Programming, Service / Community Health, Marketing / Communications, Treasurer / Finance, and Secretary."
-        className="bg-white"
-      >
+      <Section eyebrow="Grow with us" title="Community for the path ahead" description="Three ways we're planning to support your pre-health journey." className="bg-white">
         <div className="grid gap-5 md:grid-cols-3">
-          {boardMembers.map((member) => (
-            <BoardCard key={`${member.role}-${member.name}`} member={member} />
-          ))}
+          {highlightedPrograms.map((title) => programs.find((program) => program.title === title))
+            .map((program) => program ? <ProgramCard key={program.title} program={program} /> : null)}
         </div>
+        <Link href="/programs" className="text-link mt-7 inline-block font-bold">Explore all programs →</Link>
       </Section>
 
-      <Section
-        eyebrow="Questions"
-        title="Start with the essentials"
-        description="Find clear answers about the chapter, participation, membership, and the launch."
-        className="bg-gt-cream"
-      >
-        <FAQList items={faqs.slice(0, 5)} />
-        <Link href="/about#frequently-asked-questions" className="button button-secondary mt-8">
-          Read all frequently asked questions
-        </Link>
-      </Section>
-
-      <section className="bg-gt-gold px-6 py-16 sm:px-8">
-        <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-8 md:flex-row md:items-center">
+      <section className="bg-gt-gold px-6 py-12 sm:px-8 sm:py-16">
+        <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-6 md:flex-row md:items-center">
           <div>
-            <p className="eyebrow !text-gt-navy">Help shape the first year</p>
-            <h2 className="mt-3 max-w-2xl text-3xl font-black text-gt-navy sm:text-4xl">
-              Follow launch updates and bring your ideas to the founding chapter.
-            </h2>
+            <h2 className="text-3xl font-bold text-gt-navy">Be part of the founding year.</h2>
+            <p className="mt-3 max-w-xl leading-7 text-gt-navy">Get chapter updates and hear when meetings and opportunities open.</p>
           </div>
-          <Link href="/get-involved" className="button bg-gt-navy text-white hover:bg-gt-navy-deep">
-            Get involved <span aria-hidden="true">→</span>
-          </Link>
+          <div className="flex flex-col items-start gap-4">
+            <Link href="/interest" className="button button-primary">Join the interest list <span aria-hidden="true">→</span></Link>
+            <Link href="/about#frequently-asked-questions" className="text-link text-sm font-bold">Questions? Read the FAQ →</Link>
+          </div>
         </div>
       </section>
     </SitePage>

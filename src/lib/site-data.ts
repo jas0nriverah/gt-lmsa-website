@@ -26,6 +26,8 @@ import type {
 } from "./site-types";
 import { LAST_CONTENT_REVIEW } from "./source-registry";
 
+export const interestMeetingTiming = "early–mid October 2026";
+
 export const chapterInfo: ChapterInfo = {
   shortName: "LMSA Plus at Georgia Tech",
   fullName: "Latino Medical Student Association Plus Chapter at Georgia Tech",
@@ -101,7 +103,7 @@ export const announcements: Announcement[] = [
     title: "Fall 2026 Interest Meeting",
     summary:
       "Meet the founding board, learn how LMSA PLUS connects pre-health students, and help shape the chapter's first year.",
-    timing: "Mid-September 2026 — exact date, time, and location coming soon",
+    timing: `Date TBD — ${interestMeetingTiming} (time and location coming soon)`,
     status: "planned",
     href: "/events",
     featured: true,
@@ -311,7 +313,7 @@ export const events: ChapterEvent[] = [
     title: "Fall 2026 Interest Meeting",
     category: "Chapter launch",
     status: "planned",
-    displayDate: "Mid-September 2026",
+    displayDate: `Date TBD — ${interestMeetingTiming}`,
     description:
       "Meet the founding executive board, learn what LMSA PLUS is, explore planned programming, and share what would make the chapter useful to you.",
     registrationStatus: "coming-soon",
@@ -1185,7 +1187,7 @@ export const faqs: FAQ[] = [
   {
     question: "When will the first meeting occur?",
     answer:
-      "The first Interest Meeting is intended for mid-September 2026. The exact date, time, location, and registration details have not been confirmed. Follow the chapter Instagram or email the chapter for updates.",
+      `The first Interest Meeting is planned for ${interestMeetingTiming}. The exact date, time, location, and registration details have not been confirmed. Follow the chapter Instagram or email the chapter for updates.`,
   },
 ];
 

@@ -8,7 +8,7 @@ import {
   announcements as refreshedAnnouncements,
   events as refreshedEvents,
 } from "./sep-2026-refresh";
-import { faqs as baseFaqs, scholarships as baseScholarships } from "./site-data";
+import { faqs as baseFaqs, scholarships as baseScholarships, interestMeetingTiming } from "./site-data";
 import { LAST_CONTENT_REVIEW } from "./source-registry";
 
 /** September 14, 2026 stale opportunity/event status refresh. */
@@ -61,7 +61,7 @@ export const events: ChapterEvent[] = refreshedEvents.map((event) => {
   if (event.id === "fall-2026-interest-meeting") {
     return {
       ...event,
-      displayDate: "Date TBD — mid-to-late September 2026",
+      displayDate: `Date TBD — ${interestMeetingTiming}`,
       description:
         "Meet the founding executive board, learn what LMSA PLUS is, explore planned programming, and share what would make the chapter useful to you. Exact date, time, and location are not confirmed yet.",
     };
@@ -76,7 +76,7 @@ export const announcements: Announcement[] = refreshedAnnouncements
       return {
         ...announcement,
         timing:
-          "Date TBD — mid-to-late September 2026 (time and location coming soon)",
+          `Date TBD — ${interestMeetingTiming} (time and location coming soon)`,
       };
     }
     return announcement;
@@ -87,7 +87,7 @@ export const faqs: FAQ[] = baseFaqs.map((faq) => {
     return {
       ...faq,
       answer:
-        "The first Interest Meeting is planned for mid-to-late September 2026. Exact date, time, location, and registration details have not been confirmed. Follow the chapter Instagram or email the chapter for updates.",
+        `The first Interest Meeting is planned for ${interestMeetingTiming}. Exact date, time, location, and registration details have not been confirmed. Follow the chapter Instagram or email the chapter for updates.`,
     };
   }
   if (faq.question === "How can students hear about scholarships?") {

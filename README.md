@@ -6,7 +6,7 @@ Live site: [gt-lmsa-website.vercel.app](https://gt-lmsa-website.vercel.app)
 
 ## What is included
 
-- Homepage with launch information and planned activities
+- Compact homepage with one event preview, three program highlights, and interest-list actions
 - About page with mission, values, LMSA history, board, and FAQ
 - Programs page with an honest planned-program roadmap
 - Events page separating confirmed, planned, and past events
@@ -30,7 +30,7 @@ The September content overlays in `src/lib/sep-2026-refresh.ts` and
 `src/lib/stale-status-sep-14.ts` also supply current events and announcements.
 The homepage, Events, and Links render fresh data on each request. Date comparisons
 use America/New_York: completed dated events move to the archive, expired
-announcements and quick links disappear, and This Week advances every Monday.
+announcements and quick links disappear, and the homepage preview shows the next three events.
 Undated planned events still require an officer update.
 
 For multi-day events, set both `startDate` and `endDate` (inclusive ISO dates).
@@ -59,7 +59,7 @@ When an event is complete, change its status to `"past"` and keep only accurate,
 
 ### How the chapter interest form works
 
-The `/interest` page gathers a minimal set of details in the visitor's browser and prepares an email addressed to the approved chapter account. The website does not transmit or store the response, and no third-party form vendor is involved. The visitor must review and send the prepared email from their own mail app.
+The `/interest` page asks for name and email, with academic year and interests optional. It prepares an email addressed to the approved chapter account. The website does not transmit or store the response, and no third-party form vendor is involved. Visitors review the prepared message, then open their mail app or copy the text into webmail and send it. The next-step panel explicitly says the request is not complete until sent, and offers the chapter WhatsApp as a separate, optional action.
 
 This approach can be replaced later with an approved Google Form or another reviewed service. Before changing it, document who owns the form, where responses are stored, who has access, how long data is retained, and which fields are actually necessary.
 

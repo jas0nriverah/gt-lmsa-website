@@ -2,13 +2,21 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { chapterToday, currentWeek, eventsAsOf, hasEnded } from "./event-dates";
 import { events, announcements } from "./stale-status-sep-14";
-import { getThisWeekItems, getVerifiedExternalEvents } from "./external-events";
+import { getThisWeekItems, getVerifiedExternalEvents, getUpcomingItems } from "./external-events";
 import { linktreeLinks } from "./opportunities-linktree";
 
 test("chapter date respects New York midnight and daylight saving time", () => {
   assert.equal(chapterToday(new Date("2026-09-21T03:59:59Z")), "2026-09-20");
   assert.equal(chapterToday(new Date("2026-09-21T04:00:00Z")), "2026-09-21");
   assert.equal(chapterToday(new Date("2026-12-01T04:30:00Z")), "2026-11-30");
+});
+
+test("homepage previews contain each event once and expire after the event", () => {
+  const preview = getUpcomingItems("2026-09-14");
+  assert.equal(preview.length, 3);
+  assert.equal(new Set(preview.map((item) => item.id)).size, preview.length);
+  assert.equal(preview.filter((item) => item.sourceType === "national").length, 1);
+  assert.equal(getUpcomingItems("2026-09-21").length, 0);
 });
 
 test("weeks start Monday and span month/year and DST boundaries", () => {
