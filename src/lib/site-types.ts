@@ -1,5 +1,5 @@
 export type LinkStatus = "active" | "coming-soon";
-export type RegistrationStatus = LinkStatus | "not-required";
+export type RegistrationStatus = LinkStatus | "not-required" | "closed";
 export type ContentStatus = "planned" | "confirmed" | "past";
 export type OpportunityStatus =
   | "open"
@@ -31,6 +31,7 @@ export interface Announcement {
   status: "planned" | "confirmed";
   href?: string;
   featured: boolean;
+  endDate?: string;
 }
 
 export interface Partner {
@@ -62,6 +63,9 @@ export interface ChapterEvent {
   status: ContentStatus;
   displayDate: string;
   startDate?: string;
+  endDate?: string;
+  scope?: "chapter" | "national" | "campus";
+  detailsUrl?: string;
   time?: string;
   location?: string;
   description: string;
@@ -148,6 +152,7 @@ export interface ActionLink {
   status: LinkStatus;
   category: string;
   featured?: boolean;
+  endDate?: string;
 }
 
 export interface SourceRecord {
@@ -170,6 +175,7 @@ export interface ExternalEvent {
   organization: string;
   displayDate: string;
   startDate: string;
+  endDate?: string;
   time?: string;
   location?: string;
   description: string;
@@ -194,6 +200,6 @@ export interface ThisWeekItem {
   organization: string;
   href: string;
   category: string;
-  sourceType: "chapter" | "external";
+  sourceType: "chapter" | "national" | "campus" | "external";
   badgeLabel: string;
 }

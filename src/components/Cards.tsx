@@ -64,10 +64,10 @@ export function EventCard({ event }: { event: ChapterEvent }) {
             <dt className="font-bold text-gt-navy">Date:</dt>
             <dd className="text-slate-600">{event.displayDate}</dd>
           </div>
-          <div className="flex gap-2">
+          {event.time || event.status === "planned" ? <div className="flex gap-2">
             <dt className="font-bold text-gt-navy">Time:</dt>
             <dd className="text-slate-600">{event.time ?? "To be confirmed"}</dd>
-          </div>
+          </div> : null}
           <div className="flex gap-2">
             <dt className="font-bold text-gt-navy">Location:</dt>
             <dd className="text-slate-600">
@@ -76,17 +76,25 @@ export function EventCard({ event }: { event: ChapterEvent }) {
           </div>
         </dl>
         <p className="mt-4 flex-1 leading-7 text-slate-600">{event.description}</p>
-        {event.registrationStatus !== "not-required" ||
+        {event.detailsUrl || event.registrationStatus !== "not-required" ||
         (event.calendarUrl && event.startDate) ? (
           <div className="mt-6 flex flex-wrap gap-3">
-            {event.registrationStatus === "active" && event.registrationUrl ? (
+            {event.status !== "past" && event.registrationStatus === "active" && event.registrationUrl ? (
               <a className="button button-primary" href={event.registrationUrl}>
                 Register
               </a>
-            ) : event.registrationStatus === "coming-soon" ? (
+            ) : event.status !== "past" && event.registrationStatus === "coming-soon" ? (
               <span className="button button-disabled" aria-disabled="true">
                 Registration coming soon
               </span>
+            ) : null}
+            {event.registrationStatus === "closed" ? (
+              <span className="self-center text-sm font-semibold text-slate-600">Online registration closed</span>
+            ) : null}
+            {event.detailsUrl ? (
+              <a className="button button-secondary" href={event.detailsUrl}>
+                {event.scope === "national" ? "Conference details" : "Event details"}
+              </a>
             ) : null}
             {event.calendarUrl && event.startDate ? (
               <a className="button button-secondary" href={event.calendarUrl}>

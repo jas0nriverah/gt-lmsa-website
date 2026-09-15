@@ -17,12 +17,12 @@ export default function ProgramsPage() {
       <PageHero
         eyebrow="Programs"
         title="A practical roadmap for the pre-health journey."
-        description="The founding chapter is designing programming that helps students build community, find reliable guidance, serve thoughtfully, and explore health professions. Every item below remains planned until formally activated."
+        description="The founding chapter is designing programming that helps students build community, find guidance, serve, and explore health professions. Campus and community collaboration is available now; other programs are being planned."
       />
       <Section
         eyebrow="2026–2027 roadmap"
-        title="Planned chapter programming"
-        description="Program status is maintained in one editable content file so officers can publish only what has been confirmed."
+        title="Chapter programs and collaboration"
+        description="Check each card for availability. Planned programs will open for participation after their details are confirmed."
         className="bg-gt-cream"
       >
         <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">

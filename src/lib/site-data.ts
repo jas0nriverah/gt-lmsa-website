@@ -280,13 +280,14 @@ export const events: ChapterEvent[] = [
     id: "pre-health-fall-kickoff-2026",
     title: "2026 Pre-Health Fall Kickoff",
     category: "Campus outreach",
+    scope: "campus",
     status: "confirmed",
     displayDate: "Thursday, August 27, 2026",
     startDate: "2026-08-27",
     time: "5:00 PM - 6:00 PM",
     location: "Georgia Tech Klaus Atrium",
     description:
-      "An in-person kickoff where students can discover pre-health resources on campus and in the community. Stop by the LMSA Plus table during the 5:00–6:00 PM tabling hour at the Klaus Atrium to meet the chapter and learn how to get involved.",
+      "The August 27 kickoff offered an introduction to pre-health resources on campus and in the community, with a 5:00–6:00 PM tabling hour at the Klaus Atrium.",
     registrationStatus: "not-required",
     featured: true,
   },
@@ -294,13 +295,14 @@ export const events: ChapterEvent[] = [
     id: "fall-2026-student-organization-fair-day-1",
     title: "Fall Student Organizations Fair: Day 1",
     category: "Campus outreach",
+    scope: "campus",
     status: "confirmed",
     displayDate: "Tuesday, September 1, 2026",
     startDate: "2026-09-01",
     time: "11:00 AM - 1:00 PM",
     location: "Tech Green and Surrounding Walkways",
     description:
-      "Day 1 of Georgia Tech's Fall Student Organizations Fair, hosted by the Center for Student Engagement. Stop by the LMSA Plus table — we will be handing out brochures and some goodies! Meet organization leaders from a select group of 550+ RSOs and kick-start your involvement on campus. RSOs that want to table must register on Engage. Contact: Engage@gatech.edu.",
+      "Day 1 of Georgia Tech's Fall Student Organizations Fair took place September 1 on Tech Green and surrounding walkways. Hosted by the Center for Student Engagement, the fair introduced students to campus organizations.",
     registrationStatus: "not-required",
     featured: true,
   },
@@ -1168,7 +1170,7 @@ export const faqs: FAQ[] = [
   {
     question: "What is the Fall 2026 board structure?",
     answer:
-      "The founding Fall 2026 board includes President, Vice President / Operations, Outreach / Partnerships Chair, Events / Programming Chair, Service / Community Health Chair, Marketing / Communications Chair, Treasurer / Finance, and Secretary. Three roles are already filled. Applications for the remaining Fall chairs open August 6, 2026. Membership / Mentorship is not opening yet—onboarding and member tracking start under Vice President / Operations.",
+      "The founding Fall 2026 board includes President, Vice President / Operations, Outreach / Partnerships Chair, Events / Programming Chair, Service / Community Health Chair, Marketing / Communications Chair, Treasurer / Finance, and Secretary. Three roles are already filled. Applications for the remaining Fall chairs are open. Membership / Mentorship is not opening yet—onboarding and member tracking start under Vice President / Operations.",
   },
   {
     question: "Will more board positions open later?",
@@ -1303,6 +1305,7 @@ export const linktreeLinks: ActionLink[] = [
   },
   {
     label: "2026 Pre-Health Fall Kickoff",
+    endDate: "2026-08-27",
     description: "Thu Aug 27 · 5–6 PM · Klaus Atrium",
     href: "/events#pre-health-fall-kickoff-2026",
     status: "active",
@@ -1310,6 +1313,7 @@ export const linktreeLinks: ActionLink[] = [
   },
   {
     label: "Fall Student Organizations Fair",
+    endDate: "2026-09-01",
     description: "Sep 1 · 11 AM–1 PM · Tech Green",
     href: "/events",
     status: "active",

@@ -26,6 +26,19 @@ src/lib/site-data.ts
 
 That file contains chapter identity, approved contact accounts, announcements, programs, events, board members, resources, opportunities, FAQs, involvement actions, and quick links. Its opening privacy warning applies to every update.
 
+The September content overlays in `src/lib/sep-2026-refresh.ts` and
+`src/lib/stale-status-sep-14.ts` also supply current events and announcements.
+The homepage, Events, and Links render fresh data on each request. Date comparisons
+use America/New_York: completed dated events move to the archive, expired
+announcements and quick links disappear, and This Week advances every Monday.
+Undated planned events still require an officer update.
+
+For multi-day events, set both `startDate` and `endDate` (inclusive ISO dates).
+Set `scope` to `chapter`, `national`, or `campus` for correct calendar labeling.
+Use `registrationStatus: "closed"` and a separate `detailsUrl` when registration
+has ended but the event information should remain accessible. Add `endDate` to
+time-limited announcements and quick links so they expire with the event.
+
 Research citations and review dates are maintained separately in:
 
 ```text
@@ -114,6 +127,7 @@ This project uses Next.js, TypeScript, Tailwind CSS, and ESLint. When dependenci
 
 ```bash
 npm run lint
+npm test
 npx tsc --noEmit
 npm run build
 ```

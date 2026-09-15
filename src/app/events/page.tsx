@@ -8,6 +8,7 @@ import { Section } from "@/components/Section";
 import { SitePage } from "@/components/SitePage";
 import { campusCalendarDates } from "@/lib/site-data";
 import { events } from "@/lib/stale-status-sep-14";
+import { chapterToday, eventsAsOf } from "@/lib/event-dates";
 import {
   EXTERNAL_EVENTS_CHECKED_AT,
   getVerifiedExternalEvents,
@@ -19,29 +20,34 @@ export const metadata: Metadata = {
     "See confirmed LMSA Plus at Georgia Tech events on the calendar, plus planned launch activities still under development.",
 };
 
+export const dynamic = "force-dynamic";
+
 export default function EventsPage() {
-  const confirmedEvents = events.filter((event) => event.status === "confirmed");
-  const plannedEvents = events.filter((event) => event.status === "planned");
-  const pastEvents = events.filter((event) => event.status === "past");
-  const recommendedExternal = getVerifiedExternalEvents();
+  const today = chapterToday();
+  const currentEvents = eventsAsOf(events, today);
+  const confirmedEvents = currentEvents.filter((event) => event.status === "confirmed");
+  const plannedEvents = currentEvents.filter((event) => event.status === "planned");
+  const pastEvents = currentEvents.filter((event) => event.status === "past");
+  const recommendedExternal = getVerifiedExternalEvents(undefined, today);
 
   return (
     <SitePage>
       <PageHero
         eyebrow="Events"
         title="Confirmed dates appear on the calendar first."
-        description="Confirmed events include verified dates, times, and locations. Planning-board ideas stay separate until the founding board confirms them."
+        description="Browse confirmed dates for chapter, national, and campus events. Follow each event's official source for schedules and attendance details. Plans in progress are listed separately."
       />
       <Section
         eyebrow="Confirmed calendar"
-        title="Chapter events and Georgia Tech academic dates"
-        description="Gold highlights LMSA Plus confirmed events. Navy labels show Georgia Tech academic dates such as first day of classes, breaks, and finals."
+        title="Chapter, national, and campus calendar"
+        description="Gold marks chapter events, purple marks national events, and navy marks Georgia Tech dates. Multi-day events appear on every day they run."
         className="bg-white"
       >
         <div className="grid gap-8">
           <EventCalendar
             events={confirmedEvents}
             campusDates={campusCalendarDates}
+            today={today}
           />
           {confirmedEvents.length ? (
             <div className="grid gap-5 md:grid-cols-2">
@@ -51,8 +57,8 @@ export default function EventsPage() {
             </div>
           ) : (
             <EmptyState
-              title="No LMSA Plus events have been confirmed yet"
-              description="Chapter dates will appear here after the founding board verifies them. Georgia Tech academic dates still show on the calendar above."
+              title="No upcoming chapter or national events are confirmed"
+              description="New events will appear here after their dates are confirmed. Georgia Tech academic dates still show on the calendar above."
             />
           )}
         </div>
@@ -92,7 +98,7 @@ export default function EventsPage() {
           ))}
         </div>
       </Section>
-      <Section eyebrow="Archive" title="Past chapter events" className="bg-gt-cream">
+      <Section eyebrow="Archive" title="Past events and campus outreach" className="bg-gt-cream">
         {pastEvents.length ? (
           <div className="grid gap-5 md:grid-cols-2">
             {pastEvents.map((event) => (

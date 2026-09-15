@@ -8,6 +8,9 @@ import {
 } from "@/lib/site-data";
 import { linktreeLinks } from "@/lib/opportunities-linktree";
 import type { ActionLink } from "@/lib/site-types";
+import { chapterToday, hasEnded } from "@/lib/event-dates";
+
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Links",
@@ -44,8 +47,10 @@ const sections: { id: string; title: string; match: (link: ActionLink) => boolea
 ];
 
 export default function LinksPage() {
-  const featured = linktreeLinks.filter((link) => link.featured);
-  const rest = linktreeLinks.filter((link) => !link.featured);
+  const today = chapterToday();
+  const currentLinks = linktreeLinks.filter((link) => !hasEnded(link, today));
+  const featured = currentLinks.filter((link) => link.featured);
+  const rest = currentLinks.filter((link) => !link.featured);
 
   const used = new Set<string>();
   const grouped = sections

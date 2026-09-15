@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import type { CampusCalendarDate, ChapterEvent } from "@/lib/site-types";
+import { hasEnded } from "@/lib/event-dates";
 
 const WEEKDAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 const MONTH_NAMES = [
@@ -22,7 +23,7 @@ const MONTH_NAMES = [
 type CalendarItem = {
   id: string;
   title: string;
-  kind: "chapter" | "campus";
+  kind: "chapter" | "national" | "campus";
   href?: string;
 };
 
@@ -47,41 +48,33 @@ function eachDayInRange(startIso: string, endIso?: string) {
 
 function initialView(
   chapterEvents: ChapterEvent[],
-  campusDates: CampusCalendarDate[],
+  today: string,
 ) {
   const dated = chapterEvents
-    .filter((event) => event.startDate)
-    .map((event) => parseLocalDate(event.startDate!))
+    .filter((event) => event.startDate && !hasEnded(event, today))
+    .map((event) => parseLocalDate(event.startDate! < today ? today : event.startDate!))
     .sort((a, b) => a.getTime() - b.getTime());
 
   if (dated.length) {
     return { year: dated[0].getFullYear(), monthIndex: dated[0].getMonth() };
   }
 
-  const campusDated = campusDates
-    .map((date) => parseLocalDate(date.startDate))
-    .sort((a, b) => a.getTime() - b.getTime());
-  if (campusDated.length) {
-    return {
-      year: campusDated[0].getFullYear(),
-      monthIndex: campusDated[0].getMonth(),
-    };
-  }
-
-  const today = new Date();
-  return { year: today.getFullYear(), monthIndex: today.getMonth() };
+  const date = parseLocalDate(today);
+  return { year: date.getFullYear(), monthIndex: date.getMonth() };
 }
 
 export function EventCalendar({
   events,
   campusDates = [],
+  today,
 }: {
   events: ChapterEvent[];
   campusDates?: CampusCalendarDate[];
+  today: string;
 }) {
   const startingPoint = useMemo(
-    () => initialView(events, campusDates),
-    [events, campusDates],
+    () => initialView(events, today),
+    [events, today],
   );
   const [year, setYear] = useState(startingPoint.year);
   const [monthIndex, setMonthIndex] = useState(startingPoint.monthIndex);
@@ -100,12 +93,14 @@ export function EventCalendar({
 
     for (const event of events) {
       if (!event.startDate) continue;
-      addItem(parseLocalDate(event.startDate), {
-        id: event.id,
-        title: event.title,
-        kind: "chapter",
-        href: `#${event.id}`,
-      });
+      for (const day of eachDayInRange(event.startDate, event.endDate)) {
+        addItem(day, {
+          id: event.id,
+          title: event.title,
+          kind: event.scope ?? "chapter",
+          href: `#${event.id}`,
+        });
+      }
     }
 
     for (const campusDate of campusDates) {
@@ -139,20 +134,19 @@ export function EventCalendar({
   }
 
   function goToToday() {
-    const today = new Date();
-    setYear(today.getFullYear());
-    setMonthIndex(today.getMonth());
+    const date = parseLocalDate(today);
+    setYear(date.getFullYear());
+    setMonthIndex(date.getMonth());
   }
 
+  const nextChapterEvents = events.filter((event) =>
+    (!event.scope || event.scope === "chapter") && event.startDate && !hasEnded(event, today));
+
   function goToNextChapterEvent() {
-    const upcoming = events
-      .filter((event) => event.startDate)
-      .map((event) => parseLocalDate(event.startDate!))
-      .sort((a, b) => a.getTime() - b.getTime());
-    if (!upcoming.length) return;
-    const first = upcoming[0];
-    setYear(first.getFullYear());
-    setMonthIndex(first.getMonth());
+    if (!nextChapterEvents.length) return;
+    const next = initialView(nextChapterEvents, today);
+    setYear(next.year);
+    setMonthIndex(next.monthIndex);
   }
 
   const selectClasses =
@@ -167,7 +161,7 @@ export function EventCalendar({
               {MONTH_NAMES[monthIndex]} {year}
             </h3>
             <p className="mt-1 text-sm text-white/70">
-              Browse any month or year. Gold = chapter events · Navy = Georgia Tech academic dates.
+              Gold = chapter · Purple = national · Navy = Georgia Tech
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-2">
@@ -232,9 +226,10 @@ export function EventCalendar({
           <button
             type="button"
             onClick={goToNextChapterEvent}
-            className="rounded-full border border-gt-gold/50 px-3 py-1.5 text-xs font-bold text-gt-gold transition hover:bg-white/10"
+            disabled={!nextChapterEvents.length}
+            className="rounded-full border border-gt-gold/50 px-3 py-1.5 text-xs font-bold text-gt-gold transition hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-50"
           >
-            Jump to next chapter event
+            {nextChapterEvents.length ? "Jump to next chapter event" : "No upcoming chapter event"}
           </button>
         </div>
       </div>
@@ -256,14 +251,15 @@ export function EventCalendar({
           const hasCampus = Boolean(
             dayItems?.some((item) => item.kind === "campus"),
           );
+          const hasNational = Boolean(dayItems?.some((item) => item.kind === "national"));
 
           return (
             <div
               key={`${year}-${monthIndex}-${index}`}
-              className={`min-h-20 bg-white p-2 ${
+              className={`min-h-20 min-w-0 bg-white p-1 sm:p-2 ${
                 hasChapter
                   ? "ring-2 ring-inset ring-gt-gold"
-                  : hasCampus
+                  : hasNational ? "ring-2 ring-inset ring-purple-300" : hasCampus
                     ? "ring-1 ring-inset ring-gt-navy/30"
                     : ""
               }`}
@@ -272,7 +268,7 @@ export function EventCalendar({
                 <>
                   <p
                     className={`text-sm font-bold ${
-                      hasChapter || hasCampus ? "text-gt-navy" : "text-slate-400"
+                      hasChapter || hasCampus || hasNational ? "text-gt-navy" : "text-slate-400"
                     }`}
                   >
                     {day}
@@ -284,18 +280,19 @@ export function EventCalendar({
                           {item.href ? (
                             <a
                               href={item.href}
+                              aria-label={`${item.title}, ${MONTH_NAMES[monthIndex]} ${day}, ${year}`}
                               target={
-                                item.kind === "campus" ? "_blank" : undefined
+                                item.href.startsWith("http") ? "_blank" : undefined
                               }
                               rel={
-                                item.kind === "campus"
+                                item.href.startsWith("http")
                                   ? "noopener noreferrer"
                                   : undefined
                               }
-                              className={`block rounded-md px-1.5 py-1 text-[0.65rem] font-bold leading-snug ${
+                              className={`block break-words rounded-md px-0.5 py-1 text-[0.65rem] font-bold leading-snug sm:px-1.5 ${
                                 item.kind === "chapter"
                                   ? "bg-gt-cream text-gt-navy hover:bg-gt-gold/30"
-                                  : "bg-gt-navy/10 text-gt-navy hover:bg-gt-navy/15"
+                                  : item.kind === "national" ? "bg-purple-50 text-purple-900 hover:bg-purple-100" : "bg-gt-navy/10 text-gt-navy hover:bg-gt-navy/15"
                               }`}
                             >
                               {item.title}

@@ -4,6 +4,7 @@ import type {
   ThisWeekItem,
 } from "./site-types";
 import { events as chapterEventsFromRefresh } from "./stale-status-sep-14";
+import { chapterToday, currentWeek, hasEnded } from "./event-dates";
 
 /**
  * P0.3 — verified external / recommended pre-health events.
@@ -12,10 +13,6 @@ import { events as chapterEventsFromRefresh } from "./stale-status-sep-14";
  */
 
 export const EXTERNAL_EVENTS_CHECKED_AT = "September 14, 2026";
-
-/** Inclusive “this week” window for homepage (America/New_York week of Mon Sep 14, 2026). */
-export const THIS_WEEK_START = "2026-09-14";
-export const THIS_WEEK_END = "2026-09-20";
 
 export const externalEvents: ExternalEvent[] = [
   {
@@ -65,25 +62,22 @@ export const EXTERNAL_RELEVANCE_THRESHOLD = 80;
 
 export function getVerifiedExternalEvents(
   events: ExternalEvent[] = externalEvents,
+  today = chapterToday(),
 ): ExternalEvent[] {
   return events
     .filter(
       (event) =>
         event.relevanceScore >= EXTERNAL_RELEVANCE_THRESHOLD &&
         Boolean(event.sourceUrl) &&
-        Boolean(event.lastCheckedAt),
+        Boolean(event.lastCheckedAt) && !hasEnded(event, today),
     )
     .sort((a, b) => a.startDate.localeCompare(b.startDate));
 }
 
-function dateInThisWeek(startDate?: string): boolean {
-  if (!startDate) return false;
-  return startDate >= THIS_WEEK_START && startDate <= THIS_WEEK_END;
-}
-
 function chapterToThisWeekItem(event: ChapterEvent): ThisWeekItem {
   const href =
-    event.registrationUrl ??
+    event.detailsUrl ??
+    (event.registrationStatus === "active" ? event.registrationUrl : undefined) ??
     event.calendarUrl ??
     `/events#${event.id}`;
   return {
@@ -92,11 +86,11 @@ function chapterToThisWeekItem(event: ChapterEvent): ThisWeekItem {
     displayDate: event.displayDate,
     time: event.time,
     location: event.location,
-    organization: "LMSA Plus at Georgia Tech / LMSA National",
+    organization: event.scope === "national" ? "LMSA National" : event.scope === "campus" ? "Georgia Tech" : "LMSA Plus at Georgia Tech",
     href,
     category: event.category,
-    sourceType: "chapter",
-    badgeLabel: "Chapter / national",
+    sourceType: event.scope ?? "chapter",
+    badgeLabel: event.scope === "national" ? "National event" : event.scope === "campus" ? "Campus event" : "Chapter event",
   };
 }
 
@@ -121,17 +115,22 @@ function externalToThisWeekItem(event: ExternalEvent): ThisWeekItem {
  */
 export function getThisWeekItems(
   chapterEvents: ChapterEvent[] = chapterEventsFromRefresh,
-  externals: ExternalEvent[] = getVerifiedExternalEvents(),
+  externals: ExternalEvent[] = externalEvents,
+  today = chapterToday(),
 ): ThisWeekItem[] {
+  const week = currentWeek(today);
+  const inWindow = (event: { startDate?: string; endDate?: string }) =>
+    Boolean(event.startDate && event.startDate <= week.end &&
+      (event.endDate ?? event.startDate) >= week.start && !hasEnded(event, today));
   const chapterItems = chapterEvents
     .filter(
       (event) =>
-        event.status === "confirmed" && dateInThisWeek(event.startDate),
+        event.status === "confirmed" && inWindow(event),
     )
     .map(chapterToThisWeekItem);
 
-  const externalItems = externals
-    .filter((event) => dateInThisWeek(event.startDate))
+  const externalItems = getVerifiedExternalEvents(externals, today)
+    .filter(inWindow)
     .map(externalToThisWeekItem);
 
   return [...chapterItems, ...externalItems]

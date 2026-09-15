@@ -16,13 +16,14 @@ import {
 
 export const nc2026Announcement: Announcement = {
   id: "nc2026-houston",
-  title: "LMSA National Conference NC2026 — this week",
+  title: "LMSA National Conference NC2026",
   summary:
     "The 21st Annual LMSA National Conference meets in Houston under the theme “Cultura Cura: Healing Through Heritage.” Online registration closed September 10, 2026; check the official NC2026 page for current conference information.",
   timing: "September 17–20, 2026 · Houston, Texas",
   status: "confirmed",
   href: "https://national.lmsa.net/programming/nc2026/",
   featured: true,
+  endDate: "2026-09-20",
 };
 
 export const nc2026Event: ChapterEvent = {
@@ -32,11 +33,13 @@ export const nc2026Event: ChapterEvent = {
   status: "confirmed",
   displayDate: "September 17–20, 2026",
   startDate: "2026-09-17",
+  endDate: "2026-09-20",
+  scope: "national",
   location: "Houston, Texas (Royal Sonesta Houston Galleria)",
   description:
     "National LMSA conference themed “Cultura Cura: Healing Through Heritage.” This is national programming, not a Georgia Tech chapter event. Online registration closed September 10, 2026; visit the official NC2026 page for schedules and on-site details.",
-  registrationUrl: "https://national.lmsa.net/programming/nc2026/",
-  registrationStatus: "active",
+  detailsUrl: "https://national.lmsa.net/programming/nc2026/",
+  registrationStatus: "closed",
   featured: true,
 };
 
@@ -128,6 +131,7 @@ export const nc2026LinktreeLink: ActionLink = {
   href: "https://national.lmsa.net/programming/nc2026/",
   status: "active",
   category: "Events",
+  endDate: "2026-09-20",
 };
 
 export const announcements: Announcement[] = [

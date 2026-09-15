@@ -20,10 +20,15 @@ import {
 } from "@/lib/site-data";
 import { announcements, events, faqs } from "@/lib/stale-status-sep-14";
 import { getThisWeekItems } from "@/lib/external-events";
+import { chapterToday, currentWeek, eventsAsOf, hasEnded } from "@/lib/event-dates";
 
-const thisWeekItems = getThisWeekItems();
+export const dynamic = "force-dynamic";
 
 export default function HomePage() {
+  const today = chapterToday();
+  const thisWeekItems = getThisWeekItems(events, undefined, today);
+  const currentAnnouncements = announcements.filter((item) => !hasEnded(item, today));
+  const upcomingEvents = eventsAsOf(events, today).filter((event) => event.status === "confirmed");
   return (
     <SitePage>
       <section className="relative overflow-hidden border-b border-gt-gold/25 bg-white px-6 py-16 sm:px-8 sm:py-20 lg:py-24">
@@ -105,13 +110,13 @@ export default function HomePage() {
       </section>
 
       <Section
-        eyebrow="Launch updates"
-        title="What is planned for Fall 2026"
-        description="These activities are not yet confirmed calendar events. Exact logistics will be posted only after the chapter verifies them."
+        eyebrow="Chapter and national news"
+        title="Latest updates"
+        description="Follow confirmed events and plans in progress. Each update shows its current status."
         className="bg-gt-cream"
       >
         <div className="grid gap-4">
-          {announcements.map((announcement) => (
+          {currentAnnouncements.map((announcement) => (
             <AnnouncementBanner key={announcement.id} announcement={announcement} />
           ))}
         </div>
@@ -120,7 +125,7 @@ export default function HomePage() {
       <Section
         eyebrow="This week"
         title="What is happening this week"
-        description="Upcoming items rebuilt from confirmed chapter/national listings and verified Georgia Tech or LMSA external sources for September 14–20, 2026. External items are recommendations only — not LMSA Plus partnerships."
+        description={`Upcoming and ongoing events for ${currentWeek(today).label}. Chapter, national, and recommended external events are labeled separately.`}
         className="bg-white"
       >
         {thisWeekItems.length ? (
@@ -181,13 +186,13 @@ export default function HomePage() {
         className="bg-gt-cream"
       >
         <div className="grid gap-5 md:grid-cols-2">
-          {events
-            .filter((event) => event.status === "confirmed")
+          {upcomingEvents
             .slice(0, 2)
             .map((event) => (
               <EventCard key={event.id} event={event} />
             ))}
         </div>
+        {!upcomingEvents.length ? <p className="leading-7 text-slate-600">No upcoming chapter or national events are confirmed right now. Visit Events for plans in progress.</p> : null}
         <Link href="/events" className="button button-secondary mt-8">
           View the event calendar
         </Link>
@@ -196,7 +201,7 @@ export default function HomePage() {
       <Section
         eyebrow="Founding board"
         title="Meet the chapter leaders preparing the launch"
-        description="Fall 2026 founding board roles. Three officers are confirmed; open chair applications open August 6, 2026 for Events / Programming, Service / Community Health, Marketing / Communications, Treasurer / Finance, and Secretary. Only board information approved for public use is displayed."
+        description="Three founding officers are confirmed. Applications are open for Events / Programming, Service / Community Health, Marketing / Communications, Treasurer / Finance, and Secretary."
         className="bg-white"
       >
         <div className="grid gap-5 md:grid-cols-3">
