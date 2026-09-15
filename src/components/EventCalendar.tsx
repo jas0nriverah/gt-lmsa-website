@@ -19,12 +19,26 @@ const MONTH_NAMES = [
   "November",
   "December",
 ];
+const MIN_YEAR = 1900;
+const MAX_YEAR = 2100;
 
 type CalendarItem = {
   id: string;
   title: string;
   kind: "chapter" | "national" | "campus";
   href?: string;
+};
+
+const SCOPE_LABELS = {
+  chapter: "Chapter event",
+  national: "National event",
+  campus: "Georgia Tech",
+};
+
+const ITEM_COLORS = {
+  chapter: "bg-gt-cream text-gt-navy hover:bg-gt-gold/30",
+  national: "bg-purple-50 text-purple-900 hover:bg-purple-100",
+  campus: "bg-gt-navy/10 text-gt-navy hover:bg-gt-navy/15",
 };
 
 function parseLocalDate(isoDate: string) {
@@ -77,6 +91,7 @@ export function EventCalendar({
     [events, today],
   );
   const [year, setYear] = useState(startingPoint.year);
+  const [draftYear, setDraftYear] = useState(String(startingPoint.year));
   const [monthIndex, setMonthIndex] = useState(startingPoint.monthIndex);
 
   const itemsByDay = useMemo(() => {
@@ -129,13 +144,28 @@ export function EventCalendar({
 
   function shiftMonth(delta: number) {
     const next = new Date(year, monthIndex + delta, 1);
+    if (next.getFullYear() < MIN_YEAR || next.getFullYear() > MAX_YEAR) {
+      return;
+    }
     setYear(next.getFullYear());
+    setDraftYear(String(next.getFullYear()));
     setMonthIndex(next.getMonth());
+  }
+
+  function commitDraftYear() {
+    const nextYear = Number(draftYear);
+    if (Number.isInteger(nextYear) && nextYear >= MIN_YEAR && nextYear <= MAX_YEAR) {
+      setYear(nextYear);
+      setDraftYear(String(nextYear));
+    } else {
+      setDraftYear(String(year));
+    }
   }
 
   function goToToday() {
     const date = parseLocalDate(today);
     setYear(date.getFullYear());
+    setDraftYear(String(date.getFullYear()));
     setMonthIndex(date.getMonth());
   }
 
@@ -146,6 +176,7 @@ export function EventCalendar({
     if (!nextChapterEvents.length) return;
     const next = initialView(nextChapterEvents, today);
     setYear(next.year);
+    setDraftYear(String(next.year));
     setMonthIndex(next.monthIndex);
   }
 
@@ -157,7 +188,7 @@ export function EventCalendar({
       <div className="border-b border-slate-200/80 bg-gt-navy px-5 py-4 text-white">
         <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
           <div>
-            <h3 className="text-lg font-bold">
+            <h3 className="text-lg font-bold" aria-live="polite" aria-atomic="true">
               {MONTH_NAMES[monthIndex]} {year}
             </h3>
             <p className="mt-1 text-sm text-white/70">
@@ -196,11 +227,14 @@ export function EventCalendar({
               type="number"
               min={1900}
               max={2100}
-              value={year}
+              value={draftYear}
               onChange={(event) => {
-                const nextYear = Number(event.target.value);
-                if (!Number.isNaN(nextYear)) {
-                  setYear(nextYear);
+                setDraftYear(event.target.value);
+              }}
+              onBlur={commitDraftYear}
+              onKeyDown={(event) => {
+                if (event.key === "Enter") {
+                  commitDraftYear();
                 }
               }}
               className={`${selectClasses} w-24`}
@@ -234,7 +268,55 @@ export function EventCalendar({
         </div>
       </div>
 
-      <div className="grid grid-cols-7 gap-px bg-slate-200/70 p-px">
+      <div className="bg-white px-5 py-4 md:hidden">
+        <h4 className="sr-only">Agenda for {MONTH_NAMES[monthIndex]} {year}</h4>
+        {itemsByDay.size ? (
+          <ol className="space-y-5">
+            {[...itemsByDay.entries()].sort(([a], [b]) => a - b).map(([day, dayItems]) => {
+              const date = new Date(year, monthIndex, day);
+              const isoDate = `${year}-${String(monthIndex + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+              return (
+                <li key={day}>
+                  <p className="mb-2 text-sm font-bold text-gt-navy">
+                    <time dateTime={isoDate}>
+                      {WEEKDAYS[date.getDay()]}, {MONTH_NAMES[monthIndex]} {day}
+                    </time>
+                    {isoDate === today ? <span className="ml-2 text-gt-dark-gold">Today</span> : null}
+                  </p>
+                  <ul className="space-y-2">
+                    {dayItems.map((item) => {
+                      const external = item.href?.startsWith("http");
+                      const content = (
+                        <>
+                          <span className="block text-xs font-semibold">{SCOPE_LABELS[item.kind]}</span>
+                          <span className="mt-1 block text-sm font-bold">{item.title}</span>
+                          {external ? <span className="sr-only"> (opens in a new tab)</span> : null}
+                        </>
+                      );
+                      const classes = `block rounded-lg px-4 py-3 leading-relaxed ${ITEM_COLORS[item.kind]} focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gt-navy`;
+                      return (
+                        <li key={item.id}>
+                          {item.href ? (
+                            <a href={item.href} target={external ? "_blank" : undefined} rel={external ? "noopener noreferrer" : undefined} className={classes}>
+                              {content}
+                            </a>
+                          ) : <div className={classes}>{content}</div>}
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </li>
+              );
+            })}
+          </ol>
+        ) : (
+          <p className="py-4 text-sm leading-relaxed text-slate-600">
+            No dated events or Georgia Tech calendar dates are listed for this month. Choose another month to explore the calendar.
+          </p>
+        )}
+      </div>
+
+      <div className="hidden grid-cols-7 gap-px bg-slate-200/70 p-px md:grid">
         {WEEKDAYS.map((day) => (
           <div
             key={day}
@@ -280,7 +362,7 @@ export function EventCalendar({
                           {item.href ? (
                             <a
                               href={item.href}
-                              aria-label={`${item.title}, ${MONTH_NAMES[monthIndex]} ${day}, ${year}`}
+                              aria-label={`${SCOPE_LABELS[item.kind]}: ${item.title}, ${MONTH_NAMES[monthIndex]} ${day}, ${year}${item.href.startsWith("http") ? ", opens in a new tab" : ""}`}
                               target={
                                 item.href.startsWith("http") ? "_blank" : undefined
                               }
@@ -295,10 +377,12 @@ export function EventCalendar({
                                   : item.kind === "national" ? "bg-purple-50 text-purple-900 hover:bg-purple-100" : "bg-gt-navy/10 text-gt-navy hover:bg-gt-navy/15"
                               }`}
                             >
+                              <span className="mb-0.5 block text-[0.6rem] font-medium">{SCOPE_LABELS[item.kind]}</span>
                               {item.title}
                             </a>
                           ) : (
                             <span className="block rounded-md bg-gt-navy/10 px-1.5 py-1 text-[0.65rem] font-bold leading-snug text-gt-navy">
+                              <span className="mb-0.5 block text-[0.6rem] font-medium">{SCOPE_LABELS[item.kind]}</span>
                               {item.title}
                             </span>
                           )}
