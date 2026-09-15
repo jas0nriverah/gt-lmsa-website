@@ -31,15 +31,6 @@ export default function ProgramsPage() {
           ))}
         </div>
       </Section>
-      <section className="bg-white px-6 py-16 sm:px-8">
-        <div className="mx-auto max-w-6xl rounded-3xl border border-gt-gold/40 bg-gt-cream p-7 sm:p-10">
-          <p className="eyebrow">Important boundaries</p>
-          <h2 className="mt-3 text-3xl font-bold text-gt-navy">Education and community—not professional advice.</h2>
-          <p className="mt-4 max-w-4xl leading-8 text-slate-600">
-            Chapter programming does not replace Georgia Tech academic advising, medical care, legal guidance, language-interpreter certification, or the current rules of an application service. Students should verify decisions with the responsible official office or organization.
-          </p>
-        </div>
-      </section>
     </SitePage>
   );
 }
