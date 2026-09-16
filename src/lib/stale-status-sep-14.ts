@@ -11,7 +11,7 @@ import {
 import { faqs as baseFaqs, scholarships as baseScholarships, interestMeetingTiming } from "./site-data";
 import { LAST_CONTENT_REVIEW } from "./source-registry";
 
-/** September 14–15, 2026 stale opportunity/event status refresh (daily 2026-09-15). */
+/** September 14–16, 2026 stale opportunity/event status refresh (daily 2026-09-16). */
 
 const PAST_EVENT_IDS = new Set([
   "pre-health-fall-kickoff-2026",
@@ -58,6 +58,7 @@ export const scholarships: ScholarshipOpportunity[] = baseScholarships.map(
         deadline: "October 1, 2026",
         description:
           "PURA Salary Awards fund eligible undergraduate research completed with a Georgia Tech or GTRI faculty mentor. The Spring 2027 funding cycle lists an October 1 application deadline on the official UROP page.",
+        sourceUrl: "https://experiential.learning.gatech.edu/urop/pura-salary/",
         lastVerified: LAST_CONTENT_REVIEW,
       };
     }

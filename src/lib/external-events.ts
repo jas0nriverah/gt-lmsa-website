@@ -8,33 +8,15 @@ import { chapterToday, currentWeek, hasEnded } from "./event-dates";
 
 /**
  * P0.3 — verified external / recommended pre-health events.
- * Checked September 15, 2026 against official GT Calendar + Grad School Week pages.
+ * Rechecked September 16, 2026 against official GT Campus Calendar + Grad School Week.
+ * UGA SOM Virtual Info Session (Sep 15) ended and was removed from the live list.
+ * No additional official-calendar pre-health events verified for Sep 17–22.
  * Listings are recommendations only — not LMSA Plus partnerships or chapter programming.
  */
 
-export const EXTERNAL_EVENTS_CHECKED_AT = "September 15, 2026";
+export const EXTERNAL_EVENTS_CHECKED_AT = "September 16, 2026";
 
 export const externalEvents: ExternalEvent[] = [
-  {
-    id: "ext-uga-som-virtual-info-2026-09-15",
-    title: "UGA School of Medicine Virtual Info Session",
-    organization: "UGA School of Medicine Admissions (via Georgia Tech Campus Calendar)",
-    displayDate: "Tuesday, September 15, 2026",
-    startDate: "2026-09-15",
-    time: "5:45 PM – 7:00 PM",
-    location:
-      "Virtual session; GT listing also notes Room C340, Van Leer Building. Confirm attendance details when registering.",
-    description:
-      "A representative from UGA’s School of Medicine Admissions team will lead an info session for pre-health students on the school’s mission and application process. Register through the official form linked from the Georgia Tech Campus Calendar.",
-    sourceUrl:
-      "https://calendar.gatech.edu/event/2026/09/15/uga-school-medicine-virtual-info-session",
-    registrationUrl: "https://forms.gle/3RnJqtWa1mzNK5Zw8",
-    category: "Medical school info session",
-    verificationLevel: "official-calendar",
-    lastCheckedAt: EXTERNAL_EVENTS_CHECKED_AT,
-    relevanceScore: 95,
-    sourceType: "external",
-  },
   {
     id: "ext-grad-school-week-prehealth-postbacc-2026-09-16",
     title:
