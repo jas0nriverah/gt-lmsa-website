@@ -1,6 +1,6 @@
 import type { SourceRecord } from "./site-types";
 
-export const LAST_CONTENT_REVIEW = "September 16, 2026";
+export const LAST_CONTENT_REVIEW = "September 18, 2026";
 
 // Developer-maintained audit record. Re-check time-sensitive sources before
 // changing an opportunity to "open" or publishing a new deadline or price.
@@ -93,8 +93,10 @@ export const sourceRegistry: SourceRecord[] = [
     name: "Georgia Tech Campus Calendar",
     url: "https://calendar.gatech.edu/",
     supports: [
-      "Grad School Week Pre-Health Post-Bacc panel Sep 16 2026 (rechecked Sep 16)",
-      "No additional official-calendar pre-health events verified for Sep 17–22 2026",
+      "Grad School Week Pre-Health Post-Bacc panel ended Sep 16 2026 (removed)",
+      "No additional official-calendar pre-health events verified for Sep 18–25 2026",
+      "NC2026 in progress Sep 17–20 Houston (day 2 of 4)",
+      "GT Health Professional School Fair announced for Feb 23 2027 (too far for This Week)",
     ],
     lastVerified: LAST_CONTENT_REVIEW,
     timeSensitive: true,

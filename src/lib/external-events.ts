@@ -8,37 +8,15 @@ import { chapterToday, currentWeek, hasEnded } from "./event-dates";
 
 /**
  * P0.3 — verified external / recommended pre-health events.
- * Rechecked September 16, 2026 against official GT Campus Calendar + Grad School Week.
- * UGA SOM Virtual Info Session (Sep 15) ended and was removed from the live list.
- * No additional official-calendar pre-health events verified for Sep 17–22.
+ * Rechecked September 18, 2026 against official GT Campus Calendar + Grad School Week + Pre-Health Advising.
+ * Grad School Week Pre-Health Post-Bacc panel (Sep 16) ended and was removed from the live list.
+ * No additional official-calendar pre-health events verified for Sep 18–25.
  * Listings are recommendations only — not LMSA Plus partnerships or chapter programming.
  */
 
-export const EXTERNAL_EVENTS_CHECKED_AT = "September 16, 2026";
+export const EXTERNAL_EVENTS_CHECKED_AT = "September 18, 2026";
 
-export const externalEvents: ExternalEvent[] = [
-  {
-    id: "ext-grad-school-week-prehealth-postbacc-2026-09-16",
-    title:
-      "Applying to Grad School Week: Pre-Health Post-Bac and Specialty Masters Programs",
-    organization: "Georgia Tech Pre-Health Advising / Pre-Graduate Advising",
-    displayDate: "Wednesday, September 16, 2026",
-    startDate: "2026-09-16",
-    time: "5:30 PM – 6:30 PM ET",
-    location: "Virtual (register for meeting link)",
-    description:
-      "Free virtual panel with Pre-Health Post-Bac and Specialty Master’s admissions representatives for students strengthening applications to health professional programs (MD, DO, PA, DDS, PharmD, and related). Hosted during Applying to Grad School Week 2026 and open to Georgia Tech undergraduates, graduate students, employees, and alumni. Register on the official Zoom registration page linked from Grad School Week.",
-    sourceUrl:
-      "https://calendar.gatech.edu/event/2026/09/16/applying-grad-school-week-2026-virtual-event-pre-health-post-bacc-and-specialty",
-    registrationUrl:
-      "https://gatech.zoom.us/meeting/register/IxIksWsiSHymRw3RHQjsxQ#/registration",
-    category: "Pre-health pathway panel",
-    verificationLevel: "official-calendar",
-    lastCheckedAt: EXTERNAL_EVENTS_CHECKED_AT,
-    relevanceScore: 94,
-    sourceType: "external",
-  },
-];
+export const externalEvents: ExternalEvent[] = [];
 
 /** Minimum relevance score for public listing (~80+). */
 export const EXTERNAL_RELEVANCE_THRESHOLD = 80;
