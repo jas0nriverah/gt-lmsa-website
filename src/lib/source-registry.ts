@@ -1,6 +1,6 @@
 import type { SourceRecord } from "./site-types";
 
-export const LAST_CONTENT_REVIEW = "September 18, 2026";
+export const LAST_CONTENT_REVIEW = "September 20, 2026";
 
 // Developer-maintained audit record. Re-check time-sensitive sources before
 // changing an opportunity to "open" or publishing a new deadline or price.
@@ -29,7 +29,7 @@ export const sourceRegistry: SourceRecord[] = [
   {
     name: "LMSA National Conference NC2026",
     url: "https://national.lmsa.net/programming/nc2026/",
-    supports: ["NC2026 dates", "Houston venue", "Cultura Cura theme", "online registration closed Sep 10 2026", "conference week Sep 17–20"],
+    supports: ["NC2026 dates", "Houston venue", "Cultura Cura theme", "online registration closed Sep 10 2026", "conference week Sep 17–20", "final day Sep 20 2026"],
     lastVerified: LAST_CONTENT_REVIEW,
     timeSensitive: true,
   },
@@ -50,7 +50,7 @@ export const sourceRegistry: SourceRecord[] = [
   {
     name: "LMSA National Scholarships",
     url: "https://national.lmsa.net/resources/awards/scholarships/",
-    supports: ["national scholarship cycles", "travel scholarship"],
+    supports: ["national scholarship cycles", "travel scholarship", "Fall Canopy deadline Sep 1 2026 passed", "no open pre-health national cycle verified Sep 20"],
     lastVerified: LAST_CONTENT_REVIEW,
     timeSensitive: true,
   },
@@ -83,9 +83,16 @@ export const sourceRegistry: SourceRecord[] = [
     timeSensitive: true,
   },
   {
+    name: "LMSA Southeast Regional Conference",
+    url: "https://southeast.lmsa.net/events/regional-conference/",
+    supports: ["17th Annual Regional Conference Feb 27–Mar 1 2026 Nashville (past as of Sep 20)", "watch for 2027 announcement before listing as upcoming"],
+    lastVerified: LAST_CONTENT_REVIEW,
+    timeSensitive: true,
+  },
+  {
     name: "Georgia Tech Pre-Health Advising",
     url: "https://www.success.gatech.edu/pre-health/",
-    supports: ["advising", "appointments", "Canvas", "prerequisites", "workshops"],
+    supports: ["advising", "appointments", "Canvas", "prerequisites", "workshops", "Health Professional School Fair Feb 23 2027"],
     lastVerified: LAST_CONTENT_REVIEW,
     timeSensitive: true,
   },
@@ -93,9 +100,8 @@ export const sourceRegistry: SourceRecord[] = [
     name: "Georgia Tech Campus Calendar",
     url: "https://calendar.gatech.edu/",
     supports: [
-      "Grad School Week Pre-Health Post-Bacc panel ended Sep 16 2026 (removed)",
-      "No additional official-calendar pre-health events verified for Sep 18–25 2026",
-      "NC2026 in progress Sep 17–20 Houston (day 2 of 4)",
+      "No additional official-calendar pre-health events verified for Sep 20–Oct 4 2026",
+      "NC2026 final day Sep 20 Houston",
       "GT Health Professional School Fair announced for Feb 23 2027 (too far for This Week)",
     ],
     lastVerified: LAST_CONTENT_REVIEW,
@@ -177,7 +183,7 @@ export const sourceRegistry: SourceRecord[] = [
   {
     name: "Summer Health Professions Education Program",
     url: "https://www.shpep.org/",
-    supports: ["health professions summer enrichment"],
+    supports: ["health professions summer enrichment", "final cohort 2026 concluded", "site historical only"],
     lastVerified: LAST_CONTENT_REVIEW,
     timeSensitive: true,
   },
