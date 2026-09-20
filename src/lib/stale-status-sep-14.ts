@@ -11,7 +11,7 @@ import {
 import { faqs as baseFaqs, scholarships as baseScholarships, interestMeetingTiming } from "./site-data";
 import { LAST_CONTENT_REVIEW } from "./source-registry";
 
-/** September 14–18, 2026 stale opportunity/event status refresh (daily 2026-09-18). */
+/** September 14–20, 2026 stale opportunity/event status refresh (Sunday deep audit 2026-09-20). */
 
 const PAST_EVENT_IDS = new Set([
   "pre-health-fall-kickoff-2026",
