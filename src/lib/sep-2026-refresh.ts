@@ -12,17 +12,17 @@ import {
   resourceCategories as baseResourceCategories,
 } from "./site-data";
 
-/** Mid-September 2026 content refresh overlays (NC2026 and regional context). */
+/** Mid–late September 2026 content refresh overlays (NC2026 archived after Sep 20; regional context). */
 
 export const nc2026Announcement: Announcement = {
   id: "nc2026-houston",
   title: "LMSA National Conference NC2026",
   summary:
-    "The 21st Annual LMSA National Conference meets in Houston under the theme “Cultura Cura: Healing Through Heritage.” Online registration closed September 10, 2026; September 20 is the final conference day. Check the official NC2026 page for current conference information.",
-  timing: "September 17–20, 2026 · Houston, Texas",
+    "The 21st Annual LMSA National Conference concluded in Houston (September 17–20, 2026) under the theme “Cultura Cura: Healing Through Heritage.” Online registration closed September 10, 2026. See the official NC2026 page for conference archives and related national programming.",
+  timing: "September 17–20, 2026 · Houston, Texas (concluded)",
   status: "confirmed",
   href: "https://national.lmsa.net/programming/nc2026/",
-  featured: true,
+  featured: false,
   endDate: "2026-09-20",
 };
 
@@ -30,23 +30,23 @@ export const nc2026Event: ChapterEvent = {
   id: "nc2026-houston",
   title: "LMSA National Conference NC2026",
   category: "National conference",
-  status: "confirmed",
+  status: "past",
   displayDate: "September 17–20, 2026",
   startDate: "2026-09-17",
   endDate: "2026-09-20",
   scope: "national",
   location: "Houston, Texas (Royal Sonesta Houston Galleria)",
   description:
-    "National LMSA conference themed “Cultura Cura: Healing Through Heritage.” This is national programming, not a Georgia Tech chapter event. Online registration closed September 10, 2026; September 20 is the final conference day. Visit the official NC2026 page for schedules and on-site details.",
+    "National LMSA conference themed “Cultura Cura: Healing Through Heritage.” This was national programming, not a Georgia Tech chapter event. Online registration closed September 10, 2026; the conference ran September 17–20, 2026 in Houston. Visit the official NC2026 page for archives and related national programming.",
   detailsUrl: "https://national.lmsa.net/programming/nc2026/",
   registrationStatus: "closed",
-  featured: true,
+  featured: false,
 };
 
 export const nc2026Resource: Resource = {
   title: "LMSA National Conference NC2026",
   description:
-    "Official page for the September 17–20, 2026 national conference in Houston (theme: Cultura Cura: Healing Through Heritage). Online registration closed September 10, 2026; September 20 is the final conference day.",
+    "Official page for the September 17–20, 2026 national conference in Houston (theme: Cultura Cura: Healing Through Heritage). The conference concluded September 20, 2026; online registration closed September 10, 2026.",
   organization: "LMSA National",
   href: "https://national.lmsa.net/programming/nc2026/",
   category: "National events",
@@ -65,7 +65,7 @@ export const georgiaMedChaptersResource: Resource = {
 
 export const nc2026LinktreeLink: ActionLink = {
   label: "LMSA NC2026 (Houston)",
-  description: "Sep 17–20 · Cultura Cura — final day Sep 20 · national conference page",
+  description: "Sep 17–20 · Cultura Cura — concluded · national conference archive",
   href: "https://national.lmsa.net/programming/nc2026/",
   status: "active",
   category: "Events",

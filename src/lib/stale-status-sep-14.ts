@@ -11,16 +11,18 @@ import {
 import { faqs as baseFaqs, scholarships as baseScholarships, interestMeetingTiming } from "./site-data";
 import { LAST_CONTENT_REVIEW } from "./source-registry";
 
-/** September 14–20, 2026 stale opportunity/event status refresh (Sunday deep audit 2026-09-20). */
+/** September 14–21, 2026 stale opportunity/event status refresh (daily 2026-09-21; NC2026 archived). */
 
 const PAST_EVENT_IDS = new Set([
   "pre-health-fall-kickoff-2026",
   "fall-2026-student-organization-fair-day-1",
+  "nc2026-houston",
 ]);
 
 const PAST_ANNOUNCEMENT_IDS = new Set([
   "pre-health-fall-kickoff-2026",
   "student-org-fair-fall-2026",
+  "nc2026-houston",
 ]);
 
 const RECHECKED_CLOSED = new Set([

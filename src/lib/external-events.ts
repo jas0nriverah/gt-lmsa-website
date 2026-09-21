@@ -8,14 +8,15 @@ import { chapterToday, currentWeek, hasEnded } from "./event-dates";
 
 /**
  * P0.3 — verified external / recommended pre-health events.
- * Rechecked September 20, 2026 (Sunday deep audit) against official GT Campus Calendar,
+ * Rechecked September 21, 2026 (weekday daily) against official GT Campus Calendar,
  * Pre-Health Advising, LMSA National, and LMSA Southeast sources.
- * No additional official-calendar pre-health events verified for Sep 20–Oct 4.
+ * No additional official-calendar pre-health events verified for Sep 21–Oct 5.
+ * NC2026 (Sep 17–20 Houston) concluded — archived via overlays / eventsAsOf.
  * LMSA SE 17th Regional Conference (Feb 27–Mar 1 2026) is past — not listed as upcoming.
  * Listings are recommendations only — not LMSA Plus partnerships or chapter programming.
  */
 
-export const EXTERNAL_EVENTS_CHECKED_AT = "September 20, 2026";
+export const EXTERNAL_EVENTS_CHECKED_AT = "September 21, 2026";
 
 export const externalEvents: ExternalEvent[] = [];
 
