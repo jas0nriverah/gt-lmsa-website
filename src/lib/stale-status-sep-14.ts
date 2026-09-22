@@ -11,7 +11,7 @@ import {
 import { faqs as baseFaqs, scholarships as baseScholarships, interestMeetingTiming } from "./site-data";
 import { LAST_CONTENT_REVIEW } from "./source-registry";
 
-/** September 14–21, 2026 stale opportunity/event status refresh (daily 2026-09-21; NC2026 archived). */
+/** September 14–22, 2026 stale opportunity/event status refresh (daily 2026-09-22; NC2026 archived; PURA deadline Oct 12). */
 
 const PAST_EVENT_IDS = new Set([
   "pre-health-fall-kickoff-2026",
@@ -53,13 +53,13 @@ export const scholarships: ScholarshipOpportunity[] = baseScholarships.map(
         lastVerified: LAST_CONTENT_REVIEW,
       };
     }
-    if (opportunity.name === "President's Undergraduate Research Award — Salary") {
+    if (opportunity.name === "President's Undergraduate Research Award \u2014 Salary") {
       return {
         ...opportunity,
         status: "open",
-        deadline: "October 1, 2026",
+        deadline: "October 12, 2026",
         description:
-          "PURA Salary Awards fund eligible undergraduate research completed with a Georgia Tech or GTRI faculty mentor. The Spring 2027 funding cycle lists an October 1 application deadline on the official UROP page.",
+          "PURA Salary Awards fund eligible undergraduate research completed with a Georgia Tech or GTRI faculty mentor. The Spring 2027 funding cycle lists an October 12 application deadline on the official UROP page (applications open).",
         sourceUrl: "https://experiential.learning.gatech.edu/urop/pura-salary/",
         lastVerified: LAST_CONTENT_REVIEW,
       };
@@ -88,7 +88,7 @@ export const events: ChapterEvent[] = refreshedEvents.map((event) => {
   if (event.id === "fall-2026-interest-meeting") {
     return {
       ...event,
-      displayDate: `Date TBD — ${interestMeetingTiming}`,
+      displayDate: `Date TBD \u2014 ${interestMeetingTiming}`,
       description:
         "Meet the founding executive board, learn what LMSA PLUS is, explore planned programming, and share what would make the chapter useful to you. Exact date, time, and location are not confirmed yet.",
     };
@@ -103,7 +103,7 @@ export const announcements: Announcement[] = refreshedAnnouncements
       return {
         ...announcement,
         timing:
-          `Date TBD — ${interestMeetingTiming} (time and location coming soon)`,
+          `Date TBD \u2014 ${interestMeetingTiming} (time and location coming soon)`,
       };
     }
     return announcement;
