@@ -44,9 +44,9 @@ export const contactLinks = {
   instagramHandle: "@lmsaplusgatech",
   // The /interest page prepares an email for the student to review and send.
   interestForm: { status: "active" as const, href: "/interest" },
-  // Email the chapter to ask about the open Fall chair roles.
+  // Fall founding board roles are filled. Keep for future openings.
   boardApplicationForm: {
-    status: "active" as "coming-soon" | "active",
+    status: "coming-soon" as "coming-soon" | "active",
     href: "mailto:lmsaplusgatech@gmail.com?subject=Leadership%20interest%20at%20LMSA%20Plus%20at%20Georgia%20Tech" as string | undefined,
   },
   newsletterForm: { status: "coming-soon" as const },
@@ -445,30 +445,26 @@ export const boardMembers: BoardMember[] = [
     },
   },
   {
-    name: "Position open",
+    name: "Riya Gupta",
     role: "Secretary",
-    initials: "SE",
-    openingNote: "Ask about leadership roles",
-    applicationUrl:
-      contactLinks.boardApplicationForm.status === "active" &&
-      contactLinks.boardApplicationForm.href
-        ? contactLinks.boardApplicationForm.href
-        : undefined,
+    initials: "RG",
     description:
       "Helps the chapter communicate clearly, keep its story organized, and make information easy for members to find.",
+    image: {
+      src: "/board/riya-gupta.jpg",
+      alt: "Headshot of Riya Gupta, Secretary of LMSA Plus at Georgia Tech",
+    },
   },
   {
-    name: "Position open",
+    name: "Ashley Cubias",
     role: "Treasurer / Finance",
-    initials: "TR",
-    openingNote: "Ask about leadership roles",
-    applicationUrl:
-      contactLinks.boardApplicationForm.status === "active" &&
-      contactLinks.boardApplicationForm.href
-        ? contactLinks.boardApplicationForm.href
-        : undefined,
+    initials: "AC",
     description:
       "Handles fundraising, dues, reimbursements, purchases, and Georgia Tech funding processes for the chapter.",
+    image: {
+      src: "/board/ashley-cubias.jpg",
+      alt: "Headshot of Ashley Cubias, Treasurer / Finance of LMSA Plus at Georgia Tech",
+    },
   },
   {
     name: "Ashley Diaz Duenas",
@@ -482,43 +478,37 @@ export const boardMembers: BoardMember[] = [
     },
   },
   {
-    name: "Position open",
+    name: "Isabel Zimbron",
     role: "Service / Community Health Chair",
-    initials: "SC",
-    openingNote: "Ask about leadership roles",
-    applicationUrl:
-      contactLinks.boardApplicationForm.status === "active" &&
-      contactLinks.boardApplicationForm.href
-        ? contactLinks.boardApplicationForm.href
-        : undefined,
+    initials: "IZ",
     description:
       "Leads community-centered service activities and helps connect students with health-equity work.",
+    image: {
+      src: "/board/isabel-zimbron.jpg",
+      alt: "Headshot of Isabel Zimbron, Service / Community Health Chair of LMSA Plus at Georgia Tech",
+    },
   },
   {
-    name: "Position open",
+    name: "Esther Meth",
     role: "Events / Programming Chair",
-    initials: "EP",
-    openingNote: "Ask about leadership roles",
-    applicationUrl:
-      contactLinks.boardApplicationForm.status === "active" &&
-      contactLinks.boardApplicationForm.href
-        ? contactLinks.boardApplicationForm.href
-        : undefined,
+    initials: "EM",
     description:
       "Creates welcoming events such as speakers, panels, workshops, general body meetings, and networking programs.",
+    image: {
+      src: "/board/esther-meth.jpg",
+      alt: "Headshot of Esther Meth, Events / Programming Chair of LMSA Plus at Georgia Tech",
+    },
   },
   {
-    name: "Position open",
+    name: "Italia Salazar",
     role: "Marketing / Communications Chair",
-    initials: "MC",
-    openingNote: "Ask about leadership roles",
-    applicationUrl:
-      contactLinks.boardApplicationForm.status === "active" &&
-      contactLinks.boardApplicationForm.href
-        ? contactLinks.boardApplicationForm.href
-        : undefined,
+    initials: "IS",
     description:
       "Shares the chapter's story through Instagram, graphics, announcements, website updates, and event recaps.",
+    image: {
+      src: "/board/italia-salazar.jpg",
+      alt: "Headshot of Italia Salazar, Marketing / Communications Chair of LMSA Plus at Georgia Tech",
+    },
   },
 ];
 
@@ -1140,7 +1130,7 @@ export const faqs: FAQ[] = [
   {
     question: "What is the Fall 2026 board structure?",
     answer:
-      "The founding Fall 2026 board includes President, Vice President / Operations, Outreach / Partnerships Chair, Events / Programming Chair, Service / Community Health Chair, Marketing / Communications Chair, Treasurer / Finance, and Secretary. Three roles are already filled. The remaining Fall chairs are open for leadership interest; email the chapter to ask about roles. Membership / Mentorship is not part of the current Fall leadership openings.",
+      "The founding Fall 2026 board includes President, Vice President / Operations, Secretary, Treasurer / Finance, Outreach / Partnerships Chair, Service / Community Health Chair, Events / Programming Chair, and Marketing / Communications Chair. All eight founding Fall roles are filled. Membership / Mentorship is not opening yet—onboarding and member tracking start under Vice President / Operations.",
   },
   {
     question: "Will more board positions open later?",
@@ -1179,9 +1169,8 @@ export const involvementActions: ActionLink[] = [
   {
     label: "Ask about Fall board chairs",
     description:
-      "Email the chapter to ask about open Fall board chairs and share your leadership interests.",
-    href: contactLinks.boardApplicationForm.href,
-    status: contactLinks.boardApplicationForm.status,
+      "All founding Fall board roles are currently filled. Check back if additional openings are announced.",
+    status: "coming-soon",
     category: "Leadership",
   },
   {
@@ -1218,9 +1207,8 @@ export const linktreeLinks: ActionLink[] = [
   },
   {
     label: "Ask about Fall board chairs",
-    description: "Email the chapter to ask about open Fall board chairs and share your leadership interests.",
-    href: contactLinks.boardApplicationForm.href,
-    status: contactLinks.boardApplicationForm.status,
+    description: "All founding Fall board roles are filled — check back for future openings.",
+    status: "coming-soon",
     category: "Leadership",
   },
   {

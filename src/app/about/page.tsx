@@ -97,7 +97,7 @@ export default function AboutPage() {
       <Section
         eyebrow="Founding executive board"
         title="The students preparing the chapter launch"
-        description="Meet the students preparing the founding launch. Contact the chapter to ask about current roles and ways to get involved."
+        description="Meet the founding officers of LMSA PLUS at Georgia Tech. All eight Fall founding roles are filled."
         className="bg-gt-cream"
       >
         <div className="grid gap-5 md:grid-cols-3">
