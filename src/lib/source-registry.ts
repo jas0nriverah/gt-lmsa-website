@@ -1,6 +1,6 @@
 import type { SourceRecord } from "./site-types";
 
-export const LAST_CONTENT_REVIEW = "September 21, 2026";
+export const LAST_CONTENT_REVIEW = "September 22, 2026";
 
 // Developer-maintained audit record. Re-check time-sensitive sources before
 // changing an opportunity to "open" or publishing a new deadline or price.
@@ -50,7 +50,7 @@ export const sourceRegistry: SourceRecord[] = [
   {
     name: "LMSA National Scholarships",
     url: "https://national.lmsa.net/resources/awards/scholarships/",
-    supports: ["national scholarship cycles", "travel scholarship", "Fall Canopy deadline Sep 1 2026 passed", "no open pre-health national cycle verified Sep 21"],
+    supports: ["national scholarship cycles", "travel scholarship", "Fall Canopy deadline Sep 1 2026 passed", "no open pre-health national cycle verified Sep 22"],
     lastVerified: LAST_CONTENT_REVIEW,
     timeSensitive: true,
   },
@@ -100,7 +100,7 @@ export const sourceRegistry: SourceRecord[] = [
     name: "Georgia Tech Campus Calendar",
     url: "https://calendar.gatech.edu/",
     supports: [
-      "No additional official-calendar pre-health events verified for Sep 21–Oct 5 2026",
+      "No additional official-calendar pre-health events verified for Sep 22–Oct 6 2026",
       "NC2026 concluded Sep 20 Houston (past)",
       "GT Health Professional School Fair announced for Feb 23 2027 (too far for This Week)",
     ],
@@ -141,7 +141,7 @@ export const sourceRegistry: SourceRecord[] = [
   {
     name: "Georgia Tech PURA Salary Awards",
     url: "https://experiential.learning.gatech.edu/urop/pura-salary/",
-    supports: ["salary-award eligibility", "award amount", "Spring 2027 deadline October 1", "applications open messaging"],
+    supports: ["salary-award eligibility", "award amount", "Spring 2027 deadline October 12", "applications open messaging"],
     lastVerified: LAST_CONTENT_REVIEW,
     timeSensitive: true,
   },
