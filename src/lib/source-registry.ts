@@ -1,6 +1,6 @@
 import type { SourceRecord } from "./site-types";
 
-export const LAST_CONTENT_REVIEW = "September 25, 2026";
+export const LAST_CONTENT_REVIEW = "September 27, 2026";
 
 // Developer-maintained audit record. Re-check time-sensitive sources before
 // changing an opportunity to "open" or publishing a new deadline or price.
@@ -50,14 +50,14 @@ export const sourceRegistry: SourceRecord[] = [
   {
     name: "LMSA National Scholarships",
     url: "https://national.lmsa.net/resources/awards/scholarships/",
-    supports: ["national scholarship cycles", "travel scholarship", "Fall Canopy deadline Sep 1 2026 passed", "no open pre-health national cycle verified Sep 25"],
+    supports: ["national scholarship cycles", "travel scholarship", "Fall Canopy deadline Sep 1 2026 passed", "no open pre-health national cycle verified Sep 27"],
     lastVerified: LAST_CONTENT_REVIEW,
     timeSensitive: true,
   },
   {
     name: "LMSA PLUS National Scholarships",
     url: "https://national.lmsa.net/resources/awards/lmsa-plus-national-scholarships/",
-    supports: ["Carmen Reyes MCAT Scholarship"],
+    supports: ["Carmen Reyes MCAT Scholarship closed Mar 31 2026 deadline passed"],
     lastVerified: LAST_CONTENT_REVIEW,
     timeSensitive: true,
   },
@@ -100,7 +100,7 @@ export const sourceRegistry: SourceRecord[] = [
     name: "Georgia Tech Campus Calendar",
     url: "https://calendar.gatech.edu/",
     supports: [
-      "No additional official-calendar pre-health events verified for Sep 25–Oct 9 2026",
+      "No additional official-calendar pre-health events verified for Sep 27–Oct 11 2026",
       "NC2026 concluded Sep 20 Houston (past)",
       "GT Health Professional School Fair announced for Feb 23 2027 (too far for This Week)",
     ],
