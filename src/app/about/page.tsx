@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { BoardCard, ValueCard } from "@/components/Cards";
+import { ValueCard } from "@/components/Cards";
+import { BoardGrid } from "@/components/BoardGrid";
 import { FAQList } from "@/components/FAQList";
 import { PageHero } from "@/components/PageHero";
 import { Section } from "@/components/Section";
 import { SitePage } from "@/components/SitePage";
 import {
-  boardMembers,
   chapterInfo,
   coreValues,
   lmsaHistory,
@@ -94,18 +94,13 @@ export default function AboutPage() {
         </div>
       </Section>
 
-      <Section
+      <BoardGrid
+        id="executive-board"
         eyebrow="Founding executive board"
         title="The students preparing the chapter launch"
         description="Meet the founding officers of LMSA PLUS at Georgia Tech. All eight Fall founding roles are filled."
         className="bg-gt-cream"
-      >
-        <div className="grid gap-5 md:grid-cols-3">
-          {boardMembers.map((member) => (
-            <BoardCard key={`${member.role}-${member.name}`} member={member} />
-          ))}
-        </div>
-      </Section>
+      />
 
       <Section
         id="frequently-asked-questions"

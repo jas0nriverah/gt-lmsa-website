@@ -13,3 +13,9 @@ export const navLinks: NavLink[] = [
   { label: "Get Involved", href: "/get-involved" },
   { label: "Links", href: "/links" },
 ];
+
+/** Membership routes remain distinct from national paid LMSA membership. */
+export const memberNavLinks: NavLink[] = [
+  { label: "My membership", href: "/member" },
+  { label: "Join LMSA+", href: "/join" },
+];

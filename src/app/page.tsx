@@ -1,120 +1,152 @@
 import Image from "next/image";
 import Link from "next/link";
-import { AnnouncementBanner } from "@/components/AnnouncementBanner";
-import { ProgramCard } from "@/components/Cards";
+import { BoardGrid } from "@/components/BoardGrid";
 import { ThisWeekCard } from "@/components/ThisWeekCard";
-import { Section } from "@/components/Section";
 import { SitePage } from "@/components/SitePage";
-import { boardMembers, chapterInfo, programs } from "@/lib/site-data";
-import { events } from "@/lib/stale-status-sep-14";
 import { getUpcomingItems } from "@/lib/external-events";
+import { chapterInfo, interestMeetingTiming } from "@/lib/site-data";
+import { formatEventTime } from "@/lib/platform-dates";
+import { getPublicChapterEvents } from "@/server/public-events";
 
 export const dynamic = "force-dynamic";
 
-const highlightedPrograms = ["Peer mentorship", "Community service", "Pre-health planning workshops"];
-const currentOfficers = boardMembers.filter((member) => !member.openingNote && member.name !== "Position open");
-
-export default function HomePage() {
-  const upcoming = getUpcomingItems();
-  const meeting = events.find((event) => event.id === "fall-2026-interest-meeting" && event.status === "planned");
+export default async function HomePage() {
+  const [{ events: chapterEvents, availability }, recommendedItems] = await Promise.all([
+    getPublicChapterEvents(),
+    Promise.resolve(getUpcomingItems().filter((item) => item.sourceType !== "chapter")),
+  ]);
+  const featuredEvent = chapterEvents.find(
+    (event) => event.publicationStatus === "published",
+  );
 
   return (
     <SitePage>
-      <section className="relative overflow-hidden border-b border-gt-gold/25 bg-white px-6 py-10 sm:px-8 sm:py-12">
-        <div aria-hidden="true" className="pointer-events-none absolute -right-16 bottom-0 h-72 w-72 rounded-full bg-gt-gold/20 blur-3xl" />
-        <div className="relative mx-auto grid max-w-6xl items-center gap-8 md:grid-cols-[1.5fr_1fr] md:gap-12">
-          <div>
-            <p className="eyebrow">{chapterInfo.launchLabel}</p>
-            <h1 className="mt-4 text-4xl font-black leading-tight text-gt-navy sm:text-5xl">Your pre-health community at Georgia Tech.</h1>
-            <p className="mt-5 max-w-xl text-lg leading-8 text-slate-600">
-              LMSA PLUS brings students together through mentorship, service, and Latino/Hispanic health. All majors and backgrounds are welcome to express interest.
+      <section className="relative isolate overflow-hidden border-b border-gt-gold/30 bg-white px-5 py-12 sm:px-8 sm:py-16 lg:py-20">
+        <div aria-hidden="true" className="hero-wash absolute inset-y-0 right-0 -z-10 w-full md:w-[56%]" />
+        <div className="mx-auto grid max-w-7xl items-center gap-10 md:grid-cols-[1.15fr_0.85fr] lg:gap-16">
+          <div className="max-w-3xl">
+            <p className="eyebrow">Georgia Tech · LMSA PLUS</p>
+            <h1 className="mt-5 max-w-3xl text-4xl font-black leading-[1.08] text-gt-navy sm:text-5xl lg:text-6xl">
+              Find your people on the path to healthcare.
+            </h1>
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-600">
+              {chapterInfo.description} All majors and backgrounds are welcome.
             </p>
-            <div className="mt-7 flex flex-wrap gap-3">
-              <Link href="/interest" className="button button-primary">Express interest <span aria-hidden="true">→</span></Link>
-              <Link href="/events" className="button button-secondary">Explore events</Link>
+            <div className="mt-8 flex flex-wrap items-center gap-3">
+              <Link href="/join" className="button button-primary">
+                Join LMSA+ <span aria-hidden="true">→</span>
+              </Link>
+              <Link href="/interest" className="button button-secondary">
+                Express interest
+              </Link>
             </div>
-            <Link href="/about" className="text-link mt-5 inline-block text-sm font-bold">Discover our mission →</Link>
+            <Link href="/member" className="text-link mt-5 inline-flex rounded-sm text-sm font-bold">
+              My membership <span aria-hidden="true" className="ml-2">→</span>
+            </Link>
           </div>
-          <div className="relative mx-auto hidden aspect-square w-full max-w-72 items-center justify-center rounded-full border border-gt-gold/40 p-5 md:flex">
-            <div aria-hidden="true" className="absolute inset-2 rounded-full border border-dashed border-gt-navy/20" />
-            <Image src="/lmsa-logo.png" alt="Latino Medical Student Association logo" width={280} height={280} className="relative rounded-full bg-white" priority />
+
+          <div className="hero-art relative mx-auto flex w-full max-w-md items-center justify-center overflow-hidden rounded-2xl border border-gt-gold/35 bg-gt-cream px-6 py-9 sm:py-12">
+            <span aria-hidden="true" className="plus-mark plus-mark-large absolute right-7 top-7 opacity-25" />
+            <span aria-hidden="true" className="plus-mark absolute bottom-7 left-7 opacity-45" />
+            <div className="relative z-10 flex flex-col items-center text-center">
+              <Image
+                src="/lmsa-logo.png"
+                alt="Latino Medical Student Association PLUS logo"
+                width={240}
+                height={240}
+                sizes="(max-width: 767px) 176px, 224px"
+                className="h-44 w-44 rounded-full bg-white object-contain p-2 ring-1 ring-gt-gold/40 sm:h-56 sm:w-56"
+                priority
+              />
+              <p className="mt-5 max-w-xs text-sm font-semibold leading-6 text-gt-navy">
+                {chapterInfo.fullName}
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
-      <Section
+      <BoardGrid
         id="executive-board"
-        eyebrow="Meet your e-board"
-        title="Students building community, together."
-        description="Meet the founding officers of LMSA PLUS at Georgia Tech."
+        eyebrow="Meet the founding board"
+        title="The people building this chapter."
+        description="Eight student leaders bringing their perspectives and care for community to LMSA PLUS at Georgia Tech."
         className="bg-white"
-      >
-        <div className="grid gap-5 md:grid-cols-3">
-          {currentOfficers.map((member) => (
-            <article key={`${member.role}-${member.name}`} className="flex flex-col items-center rounded-3xl border border-gt-gold/40 bg-gt-cream p-6 text-center sm:p-8">
-              {member.image ? (
-                <Image
-                  src={member.image.src}
-                  alt={member.image.alt}
-                  width={160}
-                  height={160}
-                  sizes="160px"
-                  className="h-40 w-40 rounded-full object-cover ring-4 ring-white"
-                />
+      />
+
+      <section className="section-shell bg-gt-cream" aria-labelledby="chapter-events-heading">
+        <div className="mx-auto max-w-7xl">
+          <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
+            <div>
+              <p className="eyebrow">Stay connected</p>
+              <h2 id="chapter-events-heading" className="mt-3 text-3xl font-bold text-gt-navy sm:text-4xl">
+                Make room for what comes next.
+              </h2>
+              <p className="mt-4 max-w-xl leading-7 text-slate-600">
+                Find chapter plans alongside recommended campus and LMSA events. Details appear here as they are confirmed.
+              </p>
+              <Link href="/events" className="text-link mt-6 inline-flex rounded-sm font-bold">
+                Explore all events <span aria-hidden="true" className="ml-2">→</span>
+              </Link>
+            </div>
+
+            <div className="grid gap-4">
+              {featuredEvent ? (
+                <Link
+                  href={`/events/${featuredEvent.id}`}
+                  className="event-spotlight group rounded-xl border border-gt-gold/45 bg-white p-6 sm:p-8"
+                >
+                  <p className="eyebrow">From LMSA PLUS at Georgia Tech</p>
+                  <h3 className="mt-3 text-2xl font-bold text-gt-navy">{featuredEvent.title}</h3>
+                  <p className="mt-3 font-semibold text-slate-600">{formatEventTime(featuredEvent)}</p>
+                  <span className="mt-6 inline-flex font-bold text-gt-navy">
+                    Event details <span aria-hidden="true" className="ml-2 transition-transform group-hover:translate-x-1">→</span>
+                  </span>
+                </Link>
               ) : (
-                <div aria-hidden="true" className="flex h-40 w-40 items-center justify-center rounded-full bg-gt-navy text-4xl font-black text-white ring-4 ring-gt-gold/25">
-                  {member.initials}
+                <div className="rounded-xl border border-gt-gold/45 bg-white p-6 sm:p-8" role="status">
+                  <p className="eyebrow">Chapter calendar</p>
+                  <p className="mt-3 text-lg font-bold text-gt-navy">
+                    {availability === "ready"
+                      ? "No upcoming chapter events are currently listed."
+                      : availability === "unconfigured"
+                        ? "Fall 2026 Interest Meeting"
+                        : "Chapter event details are temporarily unavailable."}
+                  </p>
+                  <p className="mt-2 leading-7 text-slate-600">
+                    {availability === "unavailable"
+                      ? "Please check the events page again soon for confirmed updates."
+                      : availability === "unconfigured"
+                        ? `Planned for ${interestMeetingTiming}. Exact date, time and location will be announced; RSVPs are not open yet.`
+                        : "Check back here as plans and event details are confirmed."}
+                  </p>
                 </div>
               )}
-              <h3 className="mt-6 text-xl font-bold text-gt-navy">{member.name}</h3>
-              <p className="mt-2 text-sm font-bold leading-6 text-gt-dark-gold">{member.role}</p>
-            </article>
-          ))}
-        </div>
-      </Section>
 
-      <Section eyebrow="What's coming up" title="Find your next connection" description="Chapter plans, national events, and campus recommendations in one place." className="bg-gt-cream">
-        {meeting ? (
-          <div className="mb-6">
-            <AnnouncementBanner announcement={{
-              id: meeting.id,
-              title: meeting.title,
-              summary: "Meet the founding board, learn about LMSA PLUS, and help shape our first year.",
-              timing: meeting.displayDate + " (time and location coming soon)",
-              status: "planned",
-              href: "/events#" + meeting.id,
-              featured: true,
-            }} />
+              {recommendedItems.length ? (
+                <div>
+                  <h3 className="mb-4 text-sm font-bold uppercase tracking-[0.14em] text-gt-dark-gold">
+                    Recommended around campus and the LMSA network
+                  </h3>
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    {recommendedItems.map((item) => <ThisWeekCard key={item.id} item={item} />)}
+                  </div>
+                </div>
+              ) : null}
+            </div>
           </div>
-        ) : null}
-        {upcoming.length ? (
-          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {upcoming.map((item) => <ThisWeekCard key={item.id} item={item} />)}
-          </div>
-        ) : (
-          <p className="leading-7 text-slate-600">New dates will appear here as events are confirmed. Join the interest list to hear about chapter updates.</p>
-        )}
-        <Link href="/events" className="text-link mt-7 inline-block font-bold">View the full calendar →</Link>
-      </Section>
-
-      <Section eyebrow="Grow with us" title="Community for the path ahead" description="Three ways we're planning to support your pre-health journey." className="bg-white">
-        <div className="grid gap-5 md:grid-cols-3">
-          {highlightedPrograms.map((title) => programs.find((program) => program.title === title))
-            .map((program) => program ? <ProgramCard key={program.title} program={program} /> : null)}
         </div>
-        <Link href="/programs" className="text-link mt-7 inline-block font-bold">Explore all programs →</Link>
-      </Section>
+      </section>
 
-      <section className="bg-gt-gold px-6 py-12 sm:px-8 sm:py-16">
-        <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-6 md:flex-row md:items-center">
+      <section className="bg-gt-navy px-5 py-10 text-white sm:px-8 sm:py-12">
+        <div className="mx-auto flex max-w-7xl flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <h2 className="text-3xl font-bold text-gt-navy">Be part of the founding year.</h2>
-            <p className="mt-3 max-w-xl leading-7 text-gt-navy">Get chapter updates and hear when meetings and opportunities open.</p>
+            <p className="eyebrow eyebrow-on-dark">A place to begin</p>
+            <h2 className="mt-2 text-2xl font-bold sm:text-3xl">Community grows when we show up for one another.</h2>
           </div>
-          <div className="flex flex-col items-start gap-4">
-            <Link href="/interest" className="button button-primary">Express interest <span aria-hidden="true">→</span></Link>
-            <Link href="/about#frequently-asked-questions" className="text-link text-sm font-bold">Questions? Read the FAQ →</Link>
-          </div>
+          <Link href="/join" className="button button-on-navy shrink-0">
+            Join LMSA+ <span aria-hidden="true">→</span>
+          </Link>
         </div>
       </section>
     </SitePage>

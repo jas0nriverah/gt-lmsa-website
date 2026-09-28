@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ResourceCard } from "@/components/Cards";
+import { ResourceDirectory } from "@/components/ResourceDirectory";
 import { PageHero } from "@/components/PageHero";
 import { Section } from "@/components/Section";
 import { SitePage } from "@/components/SitePage";
@@ -22,36 +22,28 @@ export default function ResourcesPage() {
       />
 
       <Section
-        eyebrow="Looking for funding?"
+        eyebrow="Opportunities"
         title="Explore scholarships and enrichment"
         className="bg-gt-cream"
       >
-        <div className="rounded-3xl border border-gt-gold/40 bg-white p-6 sm:p-8">
-          <p className="leading-7 text-slate-600">
-            Find scholarships, fee assistance, research funding, and summer
-            programs on our Opportunities page.
+        <div className="flex flex-col gap-5 rounded-xl border border-gt-gold/40 bg-white p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8">
+          <p className="max-w-2xl leading-7 text-slate-600">
+            Find scholarships, fee assistance, research funding, and summer programs on our Opportunities page.
           </p>
-          <Link href="/opportunities" className="button button-primary mt-5 inline-flex">
-            Go to Opportunities
+          <Link href="/opportunities" className="button button-primary shrink-0">
+            Go to Opportunities <span aria-hidden="true">→</span>
           </Link>
         </div>
       </Section>
 
-      {resourceCategories.map((group, index) => (
-        <Section
-          key={group.category}
-          eyebrow="Official resource directory"
-          title={group.category}
-          description={group.description}
-          className={index % 2 === 0 ? "bg-white" : "bg-gt-cream"}
-        >
-          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {group.items.map((resource) => (
-              <ResourceCard key={resource.href} resource={resource} />
-            ))}
-          </div>
-        </Section>
-      ))}
+      <Section
+        eyebrow="Official resource directory"
+        title="Start with sources you can trust."
+        description="Search and filter official Georgia Tech, LMSA, and health-professions resources. For time-sensitive items, check current details with the source."
+        className="bg-white"
+      >
+        <ResourceDirectory categories={resourceCategories} />
+      </Section>
     </SitePage>
   );
 }

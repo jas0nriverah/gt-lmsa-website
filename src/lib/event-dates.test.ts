@@ -4,6 +4,12 @@ import { chapterToday, currentWeek, eventsAsOf, hasEnded } from "./event-dates";
 import { events, announcements } from "./stale-status-sep-14";
 import { getThisWeekItems, getVerifiedExternalEvents, getUpcomingItems } from "./external-events";
 import { linktreeLinks } from "./opportunities-linktree";
+import type { ChapterEvent, ExternalEvent } from "./site-types";
+
+// Synthetic historical fixtures: editorial changes to live events must not change date semantics.
+const conferenceFixture: ChapterEvent = { id: "test-conference", title: "Test conference", category: "National conference", scope: "national", status: "confirmed", displayDate: "September 17–20, 2026", startDate: "2026-09-17", endDate: "2026-09-20", description: "Synthetic event", detailsUrl: "https://example.com/conference", registrationStatus: "closed" };
+const externalFixtures: ExternalEvent[] = [15,16].map(day=>({ id:`test-external-${day}`,title:"Synthetic session",organization:"Test host",category:"Education",description:"Synthetic event",displayDate:`September ${day}, 2026`,startDate:`2026-09-${day}`,sourceUrl:"https://example.com/session",verificationLevel:"official-calendar" as const,sourceType:"external" as const,lastCheckedAt:"September 14, 2026",relevanceScore:100 }));
+const eventFixtures = [conferenceFixture];
 
 test("chapter date respects New York midnight and daylight saving time", () => {
   assert.equal(chapterToday(new Date("2026-09-21T03:59:59Z")), "2026-09-20");
@@ -12,11 +18,11 @@ test("chapter date respects New York midnight and daylight saving time", () => {
 });
 
 test("homepage previews contain each event once and expire after the event", () => {
-  const preview = getUpcomingItems("2026-09-14");
+  const preview = getUpcomingItems("2026-09-14", eventFixtures, externalFixtures);
   assert.equal(preview.length, 3);
   assert.equal(new Set(preview.map((item) => item.id)).size, preview.length);
   assert.equal(preview.filter((item) => item.sourceType === "national").length, 1);
-  assert.equal(getUpcomingItems("2026-09-21").length, 0);
+  assert.equal(getUpcomingItems("2026-09-21", eventFixtures, externalFixtures).length, 0);
 });
 
 test("weeks start Monday and span month/year and DST boundaries", () => {
@@ -28,7 +34,7 @@ test("weeks start Monday and span month/year and DST boundaries", () => {
 });
 
 test("conference remains current through its last day and archives the next day", () => {
-  const conference = events.find((event) => event.id === "nc2026-houston")!;
+  const conference = conferenceFixture;
   assert.equal(conference.scope, "national");
   assert.equal(conference.registrationStatus, "closed");
   assert.ok(conference.detailsUrl);
@@ -39,14 +45,14 @@ test("conference remains current through its last day and archives the next day"
 });
 
 test("this week retires completed events without hiding ongoing multi-day events", () => {
-  assert.equal(getThisWeekItems(events, undefined, "2026-09-14").length, 3);
-  assert.equal(getThisWeekItems(events, undefined, "2026-09-16").length, 2);
-  const sunday = getThisWeekItems(events, undefined, "2026-09-20");
+  assert.equal(getThisWeekItems(eventFixtures, externalFixtures, "2026-09-14").length, 3);
+  assert.equal(getThisWeekItems(eventFixtures, externalFixtures, "2026-09-16").length, 2);
+  const sunday = getThisWeekItems(eventFixtures, externalFixtures, "2026-09-20");
   assert.equal(sunday.length, 1);
   assert.equal(sunday[0].badgeLabel, "National event");
-  assert.equal(getThisWeekItems(events, undefined, "2026-09-21").length, 0);
-  assert.equal(getVerifiedExternalEvents(undefined, "2026-09-17").length, 0);
-  const spanning = { ...events[0], startDate: "2026-09-20", endDate: "2026-09-22" };
+  assert.equal(getThisWeekItems(eventFixtures, externalFixtures, "2026-09-21").length, 0);
+  assert.equal(getVerifiedExternalEvents(externalFixtures, "2026-09-17").length, 0);
+  const spanning = { ...conferenceFixture, startDate: "2026-09-20", endDate: "2026-09-22" };
   assert.equal(getThisWeekItems([spanning], [], "2026-09-21").length, 1);
 });
 

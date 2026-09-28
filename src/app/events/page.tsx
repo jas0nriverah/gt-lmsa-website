@@ -1,115 +1,102 @@
 import type { Metadata } from "next";
 import { EventCard } from "@/components/Cards";
 import { ExternalEventCard } from "@/components/ExternalEventCard";
-import { EmptyState } from "@/components/EmptyState";
 import { EventCalendar } from "@/components/EventCalendar";
+import { ChapterEventBrowser } from "@/components/ChapterEventBrowser";
 import { PageHero } from "@/components/PageHero";
 import { Section } from "@/components/Section";
 import { SitePage } from "@/components/SitePage";
 import { campusCalendarDates } from "@/lib/site-data";
 import { events } from "@/lib/stale-status-sep-14";
 import { chapterToday, eventsAsOf } from "@/lib/event-dates";
-import {
-  EXTERNAL_EVENTS_CHECKED_AT,
-  getVerifiedExternalEvents,
-} from "@/lib/external-events";
+import { getVerifiedExternalEvents } from "@/lib/external-events";
+import { getPublicChapterEvents } from "@/server/public-events";
+import type { ChapterEvent } from "@/lib/site-types";
+import { formatEventTime } from "@/lib/platform-dates";
 
 export const metadata: Metadata = {
   title: "Events",
-  description:
-    "See confirmed LMSA Plus at Georgia Tech events on the calendar, plus planned chapter activities.",
+  description: "Find your next connection: chapter gatherings, service, mentorship, and pre-health events.",
 };
-
 export const dynamic = "force-dynamic";
 
-export default function EventsPage() {
+export default async function EventsPage() {
   const today = chapterToday();
-  const currentEvents = eventsAsOf(events, today);
-  const confirmedEvents = currentEvents.filter((event) => event.status === "confirmed");
-  const plannedEvents = currentEvents.filter((event) => event.status === "planned");
-  const pastEvents = currentEvents.filter((event) => event.status === "past");
-  const recommendedExternal = getVerifiedExternalEvents(undefined, today);
+  const chapter = await getPublicChapterEvents();
+  // Static overlays ONLY own national/campus events, never database-backed chapter events.
+  const network = eventsAsOf(
+    events.filter(event => event.scope === "national" || event.scope === "campus"),
+    today,
+  );
+  const confirmedNetwork = network.filter(event => event.status === "confirmed");
+  const pastNetwork = network.filter(event => event.status === "past");
+  const chapterCalendar: ChapterEvent[] = chapter.events
+    .filter(event => event.startsAt && event.endsAt && event.publicationStatus === "published")
+    .map(event => ({
+      id: event.id,
+      title: event.title,
+      description: event.description,
+      category: event.category,
+      scope: "chapter",
+      status: "confirmed",
+      displayDate: formatEventTime(event),
+      location: event.location,
+      startDate: chapterToday(new Date(event.startsAt!)),
+      // Midnight is an exclusive event end, not another occupied calendar day.
+      endDate: chapterToday(new Date(new Date(event.endsAt!).getTime() - 1)),
+      detailsUrl: `/events/${event.id}`,
+      registrationStatus: "not-required",
+    }));
+  const external = getVerifiedExternalEvents(undefined, today);
 
   return (
     <SitePage>
       <PageHero
-        eyebrow="Events"
-        title="Confirmed dates appear on the calendar first."
-        description="Browse confirmed chapter, national, and campus events, plus planned chapter activities. Planned dates and details will be posted here once confirmed."
+        eyebrow="Find your people"
+        title="Make room for what’s next."
+        description="A conversation, a new connection, a chance to serve. Explore what’s happening with LMSA+ at Georgia Tech."
       />
       <Section
-        eyebrow="Confirmed calendar"
-        title="Chapter, national, and campus calendar"
-        description="Gold marks chapter events, purple marks national events, and navy marks Georgia Tech dates. Multi-day events appear on every day they run."
-        className="bg-white"
-      >
-        <div className="grid gap-8">
-          <EventCalendar
-            events={confirmedEvents}
-            campusDates={campusCalendarDates}
-            today={today}
-          />
-          {confirmedEvents.length ? (
-            <div className="grid gap-5 md:grid-cols-2">
-              {confirmedEvents.map((event) => (
-                <EventCard key={event.id} event={event} />
-              ))}
-            </div>
-          ) : (
-            <EmptyState
-              title="No upcoming chapter or national events are confirmed"
-              description="New events will appear here after their dates are confirmed. Georgia Tech academic dates still show on the calendar above."
-            />
-          )}
-        </div>
-      </Section>
-      <Section
-        eyebrow="Around Georgia Tech"
-        title="Recommended pre-health events"
-        description="Explore verified campus and regional pre-health sessions. Check the official source for current details."
+        id="chapter-events"
+        eyebrow="LMSA+ at Georgia Tech"
+        title="Chapter gatherings"
+        description="Browse events and RSVP with your approved chapter membership."
         className="bg-gt-cream"
       >
-        {recommendedExternal.length ? (
-          <div className="grid gap-5 md:grid-cols-2">
-            {recommendedExternal.map((event) => (
-              <ExternalEventCard key={event.id} event={event} />
-            ))}
-          </div>
-        ) : (
-          <EmptyState
-            title="No external recommendations listed right now"
-            description="High-relevance, verified campus or LMSA listings will appear here after they are checked against official sources."
-          />
-        )}
-        <p className="mt-6 text-sm font-semibold text-slate-500">
-          External listings last checked {EXTERNAL_EVENTS_CHECKED_AT}. Sources:
-          Georgia Tech Campus Calendar and Applying to Grad School Week.
-        </p>
+        <ChapterEventBrowser configured={Boolean(process.env.DATABASE_URL)} />
       </Section>
       <Section
-        eyebrow="Planned events"
-        title="Chapter events in planning"
-        description="These events are planned for the founding year; dates and details will be posted once confirmed."
+        eyebrow="Plan ahead"
+        title="Your chapter and campus calendar"
+        description="All dates are shown in Atlanta time. Undated plans stay in the event list until their schedule is confirmed."
         className="bg-white"
       >
-        <div className="grid gap-5 md:grid-cols-2">
-          {plannedEvents.map((event) => (
-            <EventCard key={event.id} event={event} />
-          ))}
-        </div>
+        {chapter.availability === "unavailable" ? (
+          <p role="status" className="mb-6 rounded-xl bg-amber-50 p-4 text-amber-900">
+            Chapter dates could not be loaded. The calendar below currently shows campus and national dates only.
+          </p>
+        ) : null}
+        <EventCalendar
+          events={[...chapterCalendar, ...confirmedNetwork]}
+          campusDates={campusCalendarDates}
+          today={today}
+        />
       </Section>
-      <Section eyebrow="Archive" title="Past events and campus outreach" className="bg-gt-cream">
-        {pastEvents.length ? (
+      {external.length > 0 || confirmedNetwork.length > 0 ? (
+        <Section eyebrow="Beyond our chapter" title="Around Georgia Tech & LMSA" className="bg-gt-cream">
           <div className="grid gap-5 md:grid-cols-2">
-            {pastEvents.map((event) => (
-              <EventCard key={event.id} event={event} />
-            ))}
+            {external.map(event => <ExternalEventCard key={event.id} event={event} />)}
+            {confirmedNetwork.map(event => <EventCard key={event.id} event={event} />)}
+          </div>
+        </Section>
+      ) : null}
+      <Section eyebrow="Community history" title="Past campus & national events" className="bg-white">
+        {pastNetwork.length ? (
+          <div className="grid gap-5 md:grid-cols-2">
+            {pastNetwork.map(event => <EventCard key={event.id} event={event} />)}
           </div>
         ) : (
-          <EmptyState
-            title="The archive will begin after launch"
-            description="Completed events can be added here with verified dates, summaries, and approved images."
-          />
+          <p className="text-slate-600">Completed campus and national events will appear here.</p>
         )}
       </Section>
     </SitePage>

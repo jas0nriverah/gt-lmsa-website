@@ -112,12 +112,12 @@ export function getThisWeekItems(
 }
 
 /** One chronological homepage preview, including events beyond this week. */
-export function getUpcomingItems(today = chapterToday()): ThisWeekItem[] {
+export function getUpcomingItems(today = chapterToday(), chapterEvents: ChapterEvent[] = chapterEventsFromRefresh.filter(e => e.scope === "national" || e.scope === "campus"), externals: ExternalEvent[] = externalEvents): ThisWeekItem[] {
   const items = [
-    ...chapterEventsFromRefresh
+    ...chapterEvents
       .filter((event) => event.status === "confirmed" && event.startDate && !hasEnded(event, today))
       .map((event) => ({ date: event.startDate!, item: chapterToThisWeekItem(event) })),
-    ...getVerifiedExternalEvents(externalEvents, today)
+    ...getVerifiedExternalEvents(externals, today)
       .map((event) => ({ date: event.startDate, item: externalToThisWeekItem(event) })),
   ];
   return items.sort((a, b) => a.date.localeCompare(b.date)).slice(0, 3).map(({ item }) => item);

@@ -10,6 +10,8 @@ const routes = [
   "/opportunities",
   "/get-involved",
   "/interest",
+  "/join",
+  "/privacy",
   "/links",
 ];
 

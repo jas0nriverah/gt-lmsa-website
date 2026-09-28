@@ -25,7 +25,7 @@ import type {
 } from "./site-types";
 import { LAST_CONTENT_REVIEW } from "./source-registry";
 
-export const interestMeetingTiming = "early–mid October 2026";
+export const interestMeetingTiming = "the second or third week of October 2026";
 
 export const chapterInfo: ChapterInfo = {
   shortName: "LMSA Plus at Georgia Tech",
@@ -1145,11 +1145,19 @@ export const faqs: FAQ[] = [
   {
     question: "When will the first meeting occur?",
     answer:
-      `The first Interest Meeting is planned for ${interestMeetingTiming}. The exact date, time, location, and registration details have not been confirmed. Follow the chapter Instagram or email the chapter for updates.`,
+      "The Events page is the current source for the first Interest Meeting’s schedule, location, and registration status. Planned dates remain tentative until confirmed there. Follow the chapter Instagram or email the chapter for updates.",
   },
 ];
 
 export const involvementActions: ActionLink[] = [
+  {
+    label: "Join LMSA+",
+    description: "Create a chapter profile, request membership approval, and manage your event RSVPs when member access opens.",
+    href: "/join",
+    status: "active",
+    category: "Membership",
+    featured: true,
+  },
   {
     label: "Express interest",
     description:
@@ -1197,6 +1205,14 @@ export const involvementActions: ActionLink[] = [
 ];
 
 export const linktreeLinks: ActionLink[] = [
+  {
+    label: "Join LMSA+",
+    description: "Start a chapter profile or find the latest member access updates.",
+    href: "/join",
+    status: "active",
+    category: "Membership",
+    featured: true,
+  },
   {
     label: "Express interest",
     description: "Prepare and send an email to receive launch updates and chapter announcements.",

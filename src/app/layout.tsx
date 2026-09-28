@@ -78,7 +78,7 @@ export default function RootLayout({
   children: ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${sora.variable}`}>
+    <html lang="en" data-scroll-behavior="smooth" className={`${inter.variable} ${sora.variable}`}>
       <body>
         <a href="#main-content" className="skip-link">
           Skip to main content
