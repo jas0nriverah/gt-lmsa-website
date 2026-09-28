@@ -1,170 +1,61 @@
-# LMSA Plus at Georgia Tech
+# LMSA+ at Georgia Tech
 
-Public website for the Latino Medical Student Association Plus Chapter at Georgia Tech. The chapter is recognized by Georgia Tech and LMSA PLUS and is preparing public programming for Fall 2026.
+Public chapter website and a locally implemented and tested member/events platform for the Latino Medical Student Association Plus chapter at Georgia Tech.
 
-Live site: [gt-lmsa-website.vercel.app](https://gt-lmsa-website.vercel.app)
+Public site: [www.gt-lmsa.com](https://www.gt-lmsa.com)
 
-## What is included
+Implementation contract: [docs/IMPLEMENTATION-PLAN.md](docs/IMPLEMENTATION-PLAN.md)
 
-- Compact homepage with one event preview, three program highlights, and interest-list actions
-- About page with mission, values, LMSA history, board, and FAQ
-- Programs page with an honest planned-program roadmap
-- Events page separating confirmed, planned, and past events
-- Resources page with official links and time-sensitive opportunity statuses
-- Get Involved page with active contact methods and non-clickable Coming Soon forms
-- Privacy-minimal chapter interest form at `/interest`
-- Mobile quick-links page at `/links`
-- Route metadata, sitemap, robots file, 404 page, keyboard focus styles, and reduced-motion support
+Platform setup, API, privacy and release guide: [docs/PLATFORM-GUIDE.md](docs/PLATFORM-GUIDE.md)
 
-## Routine officer updates
+Feature status and actual verification results: [docs/VERIFICATION.md](docs/VERIFICATION.md)
 
-Most public content is maintained in one file:
+UI-to-database walkthrough and request examples: [docs/REQUEST-WALKTHROUGH.md](docs/REQUEST-WALKTHROUGH.md)
 
-```text
-src/lib/site-data.ts
-```
+Security boundaries and residual risks: [docs/THREAT-MODEL.md](docs/THREAT-MODEL.md)
 
-That file contains chapter identity, approved contact accounts, announcements, programs, events, board members, resources, opportunities, FAQs, involvement actions, and quick links. Its opening privacy warning applies to every update.
+Local backup/restore evidence: [docs/LOCAL-RECOVERY-DRILL.md](docs/LOCAL-RECOVERY-DRILL.md)
 
-The September content overlays in `src/lib/sep-2026-refresh.ts` and
-`src/lib/stale-status-sep-14.ts` also supply current events and announcements.
-The homepage, Events, and Links render fresh data on each request. Date comparisons
-use America/New_York: completed dated events move to the archive, expired
-announcements and quick links disappear, and the homepage preview shows the next three events.
-Undated planned events still require an officer update.
+Five-minute backend demo and engineering tradeoffs: [docs/ENGINEERING-TOUR.md](docs/ENGINEERING-TOUR.md)
 
-For multi-day events, set both `startDate` and `endDate` (inclusive ISO dates).
-Set `scope` to `chapter`, `national`, or `campus` for correct calendar labeling.
-Use `registrationStatus: "closed"` and a separate `detailsUrl` when registration
-has ended but the event information should remain accessible. Add `endDate` to
-time-limited announcements and quick links so they expire with the event.
+## Project status
 
-Research citations and review dates are maintained separately in:
+**September 28 release work:** the owner authorized completing and deploying the platform. The Free Neon schema is initialized, Google sign-in is published, and Vercel Production uses a dedicated application database credential rather than injected owner credentials. See [current provisioning status](docs/PROVISIONING-STATUS.md) for verified milestones and remaining checks.
 
-```text
-src/lib/source-registry.ts
-```
+The existing public website is live. The redesigned public pages and member platform are implemented and tested locally on `feature/member-event-platform`, not deployed. Hosted setup progress is recorded above; a production backup/restore drill and platform deployment remain outstanding. CI checks code; it does not deploy. The authored Playwright suite and first hosted CI run remain unexecuted; local browser verification used synthetic sessions. Do not treat synthetic-session tests as Google sign-in verification or a production preview.
 
-### Publish a confirmed event
+The owner approved local dependency/database setup on September 27 and production setup, commit/push, and deployment on September 28. Paid services remain out of scope. These approvals supersede the older local-only instructions recorded in historical implementation documents.
 
-In the `events` array:
+## Public site content
 
-1. Replace the planned display date with confirmed information.
-2. Add `time` and `location` only when verified.
-3. Change `status` from `"planned"` to `"confirmed"`.
-4. Add a public registration URL and change `registrationStatus` to `"active"` only when the form is approved and tested.
-5. Never name a speaker, partner, or venue before confirmation.
+Routine public content is maintained primarily in `src/lib/site-data.ts`, with supporting date/content overlays and sources in `src/lib/sep-2026-refresh.ts`, `src/lib/stale-status-sep-14.ts`, and `src/lib/source-registry.ts`. Board names, roles, descriptions, and images require officer approval. Publish only verified event logistics and current resource information; do not invent dates, venues, biographies, or statistics.
 
-When an event is complete, change its status to `"past"` and keep only accurate, approved information.
+The public `/interest` form prepares an email for the approved chapter address; it does not transmit or store the response. This differs from the member platform, which stores profile and event participation data in PostgreSQL. Keep those data flows and privacy statements distinct.
 
-### How the chapter interest form works
+Only approved chapter accounts are published:
 
-The `/interest` page asks for name and email, with academic year and interests optional. It prepares an email addressed to the approved chapter account. The website does not transmit or store the response, and no third-party form vendor is involved. Visitors review the prepared message, then open their mail app or copy the text into webmail and send it. The next-step panel explicitly says the request is not complete until sent, and offers the chapter WhatsApp as a separate, optional action.
+- Email: `lmsaplusgatech@gmail.com`
+- Instagram: `@lmsaplusgatech`
 
-This approach can be replaced later with an approved Google Form or another reviewed service. Before changing it, document who owns the form, where responses are stored, who has access, how long data is retained, and which fields are actually necessary.
+Do not publish private contact details, student IDs, schedules, messages, or unapproved photos.
 
-### Activate another form or action
+## Local development
 
-Coming Soon actions intentionally have no URL. To activate one:
+See [the platform guide](docs/PLATFORM-GUIDE.md#local-development) for the owner-approved local setup, Google OAuth callback configuration, migrations, synthetic browser fixtures, and test boundaries. In brief, use Node.js 22 (the package requires Node 20+), PostgreSQL 17, `npm ci`, and a private `.env.local`. No production credentials belong in local test fixtures.
 
-```ts
-{
-  label: "Newsletter signup",
-  description: "Receive chapter announcements.",
-  href: "https://approved-public-form.example",
-  status: "active",
-  category: "Updates",
-}
-```
-
-Test the form in a private browser window before publishing. Confirm that its owner, permissions, data-request fields, privacy language, and response destination are appropriate for public use.
-
-### Update the board
-
-Edit `boardMembers` only after the officer approves their public name, role, description, image, and any optional contact link. Personal contact details are omitted by default.
-
-If an approved headshot is added, place it in `public/board/` and include meaningful alt text. Do not upload contact screenshots, private messages, ID cards, class schedules, or unapproved images.
-
-### Update resources or opportunities
-
-For every time-sensitive item:
-
-1. Open the official source.
-2. Confirm the current cycle, audience, eligibility, award or benefit, and deadline.
-3. Update the status and `lastVerified` date.
-4. Update the matching source record when necessary.
-5. Preserve the visible verification disclaimer.
-
-Use `"verify-current-cycle"` when an official page is ambiguous or between cycles. A closed or uncertain opportunity must never be presented as open.
-
-## Public contact policy
-
-The only approved chapter contact accounts currently published are:
-
-- Chapter email: `lmsaplusgatech@gmail.com`
-- Chapter Instagram: `@lmsaplusgatech`
-
-The creator credit links the creator's name to the approved LinkedIn profile. It does not publish a separate personal Instagram link.
-
-Never publish personal phone numbers, private conversations, student IDs, home addresses, medical or financial information, secrets, or unapproved personal emails and social accounts.
-
-## Page and component structure
-
-```text
-src/app/                 Next.js routes, metadata, sitemap, and global styles
-src/components/          Reusable navigation, footer, cards, statuses, and sections
-src/lib/site-data.ts     Officer-editable public content
-src/lib/source-registry.ts  Research and verification audit record
-src/lib/site-types.ts    Content data types
-public/lmsa-logo.png     Current LMSA logo asset
-public/board/            Future approved board images
-public/images/           Future approved chapter or event images
-```
-
-## Local validation
-
-This project uses Next.js, TypeScript, Tailwind CSS, and ESLint. When dependencies already exist, run:
+Useful checks:
 
 ```bash
 npm run lint
+npm run typecheck
 npm test
-npx tsc --noEmit
+npm run test:integration
+npm run test:e2e
 npm run build
 ```
 
-Do not run `npm install` or regenerate a lockfile on the currently restricted maintenance machine. Vercel installs dependencies from `package.json` during deployment. Do not commit `.next`, `node_modules`, environment files, local logs, PDFs, or temporary attachments.
+`npm test` is the explicit unit-test command; PostgreSQL integration and browser suites are separate and require a loopback database whose name ends in `_test`. The browser preview uses synthetic local sessions only. See the guide for which schema must be migrated first and which checks CI actually runs.
 
-Before publishing, also review:
+## Production and release boundary
 
-- Desktop and mobile layouts
-- Keyboard navigation and visible focus
-- Heading hierarchy and image alt text
-- Reduced-motion behavior and color contrast
-- Internal and external links
-- Browser console and hydration warnings
-- Repository-wide privacy and secret scans
-
-## Deployment
-
-Pushing the tracked GitHub branch triggers the existing Vercel project. Normal publishing flow:
-
-```bash
-git status
-git diff --check
-git add <intended-files>
-git commit -m "Describe the public content update"
-git push
-```
-
-After pushing, verify both the GitHub commit and the resulting Vercel deployment before announcing that the update is live.
-
-## Remaining officer decisions
-
-- Confirm the exact Fall 2026 interest-meeting date, time, location, and registration method
-- Confirm Georgia Tech Student Organization Fair participation and logistics
-- Decide whether to keep the email-based interest form or replace it with an approved hosted form
-- Approve the public newsletter, mentorship, volunteer, and event-suggestion forms
-- Decide local membership and graduate-student participation policies
-- Approve any officer headshots or expanded public biographies
-- Confirm each program before changing its status from Planned
-- Re-verify time-sensitive resources and opportunities on a regular schedule
+The owner approved this release; the README itself does not authorize future infrastructure or data changes. Keep credentials in Vercel Production secrets, use the [restricted runtime role](docs/RUNTIME-DATABASE-ACCESS.md), and keep migration-owner credentials outside application deployments. The migration runner refuses remote targets unless an explicit bypass flag is supplied; that flag is not approval. Track outstanding operational work and observed release results in [provisioning status](docs/PROVISIONING-STATUS.md). Never run local synthetic tests against production.

@@ -114,7 +114,7 @@ export const faqs: FAQ[] = baseFaqs.map((faq) => {
     return {
       ...faq,
       answer:
-        `The first Interest Meeting is planned for ${interestMeetingTiming}. Exact date, time, location, and registration details have not been confirmed. Follow the chapter Instagram or email the chapter for updates.`,
+        "The Events page is the current source for the first Interest Meeting’s schedule, location, and registration status. Planned dates remain tentative until confirmed there. Follow the chapter Instagram or email the chapter for updates.",
     };
   }
   if (faq.question === "How can students hear about scholarships?") {

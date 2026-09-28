@@ -5,13 +5,13 @@ import {
   contactLinks,
   creatorCredit,
 } from "@/lib/site-data";
-import { navLinks } from "@/lib/nav-links";
+import { memberNavLinks, navLinks } from "@/lib/nav-links";
 
 export function Footer() {
   return (
     <footer className="bg-gt-navy text-white">
       <div className="h-1.5 bg-gt-gold" />
-      <div className="mx-auto grid max-w-6xl gap-10 px-6 py-14 sm:px-8 md:grid-cols-[1.4fr_1fr_1fr]">
+      <div className="mx-auto grid max-w-7xl gap-10 px-5 py-12 sm:px-8 md:grid-cols-[1.4fr_1fr_1fr] lg:py-14">
         <div>
           <div className="flex items-center gap-3">
             <Image
@@ -45,6 +45,11 @@ export function Footer() {
           <div className="mt-4 grid gap-3">
             <Link href="/" className="footer-link">Home</Link>
             {navLinks.map((link) => (
+              <Link key={link.href} href={link.href} className="footer-link">
+                {link.label}
+              </Link>
+            ))}
+            {memberNavLinks.map((link) => (
               <Link key={link.href} href={link.href} className="footer-link">
                 {link.label}
               </Link>
@@ -92,9 +97,10 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-white/15 px-6 py-6 sm:px-8">
-        <div className="mx-auto flex max-w-6xl flex-col gap-3 text-sm text-white/60 sm:flex-row sm:items-center sm:justify-between">
+      <div className="border-t border-white/15 px-5 py-6 sm:px-8">
+        <div className="mx-auto flex max-w-7xl flex-col gap-3 text-sm text-white/60 sm:flex-row sm:items-center sm:justify-between">
           <p>© {new Date().getFullYear()} LMSA Plus at Georgia Tech.</p>
+          <Link href="/privacy" className="footer-link underline underline-offset-4">Member privacy</Link>
           <p>
             Built by{" "}
             <a

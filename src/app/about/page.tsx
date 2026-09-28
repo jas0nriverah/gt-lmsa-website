@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
-import { BoardCard, ValueCard } from "@/components/Cards";
+import { ValueCard } from "@/components/Cards";
+import { AboutDnaAccent } from "@/components/AboutDnaAccent";
+import { BoardGrid } from "@/components/BoardGrid";
 import { FAQList } from "@/components/FAQList";
 import { PageHero } from "@/components/PageHero";
 import { Section } from "@/components/Section";
 import { SitePage } from "@/components/SitePage";
 import {
-  boardMembers,
   chapterInfo,
   coreValues,
   lmsaHistory,
@@ -23,11 +24,14 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <SitePage>
-      <PageHero
-        eyebrow="About the chapter"
-        title="A local chapter connected to a national pre-health network."
-        description={`${chapterInfo.fullName} is preparing an inclusive Fall 2026 launch for students interested in medicine, health professions, service, and Latino/Hispanic health.`}
-      />
+      <div className="relative isolate">
+        <PageHero
+          eyebrow="About the chapter"
+          title="A local chapter connected to a national pre-health network."
+          description={`${chapterInfo.fullName} is preparing an inclusive Fall 2026 launch for students interested in medicine, health professions, service, and Latino/Hispanic health.`}
+        />
+        <AboutDnaAccent />
+      </div>
 
       <Section eyebrow="Mission" title={mission.heading} className="bg-white">
         <div className="grid gap-6 text-lg leading-8 text-slate-600 lg:grid-cols-2">
@@ -94,18 +98,13 @@ export default function AboutPage() {
         </div>
       </Section>
 
-      <Section
+      <BoardGrid
+        id="executive-board"
         eyebrow="Founding executive board"
         title="The students preparing the chapter launch"
         description="Meet the founding officers of LMSA PLUS at Georgia Tech. All eight Fall founding roles are filled."
         className="bg-gt-cream"
-      >
-        <div className="grid gap-5 md:grid-cols-3">
-          {boardMembers.map((member) => (
-            <BoardCard key={`${member.role}-${member.name}`} member={member} />
-          ))}
-        </div>
-      </Section>
+      />
 
       <Section
         id="frequently-asked-questions"
