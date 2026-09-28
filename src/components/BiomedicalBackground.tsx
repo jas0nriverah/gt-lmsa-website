@@ -11,9 +11,11 @@ export function BiomedicalBackground() {
     const root = rootRef.current; const canvas = canvasRef.current; const hero = root?.closest("section");
     const ctx = canvas?.getContext("2d");
     if (!root || !canvas || !hero || !ctx) return;
-    const media = window.matchMedia("(min-width: 768px) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)");
+    const media = window.matchMedia("(min-width: 768px) and (hover: hover) and (pointer: fine)");
+    const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const interactive = () => media.matches && !motionPreference.matches;
     let bounds = root.getBoundingClientRect();
-    let tissue = createTissue(bounds.width, bounds.height, !media.matches);
+    let tissue = createTissue(bounds.width, bounds.height, !interactive());
     let pointer: LensPointer | null = null;
     let frame = 0; let lastFrame = 0; let lastSignal = -Infinity; let visible = true;
     const render = (now: number) => drawTissue(ctx, tissue, now);
@@ -24,29 +26,32 @@ export function BiomedicalBackground() {
     };
     const reset = () => {
       cancelAnimationFrame(frame); frame = 0; lastFrame = 0; pointer = null; lastSignal = -Infinity;
-      resetTissue(tissue); describe(media.matches ? "idle" : "static", 0); render(performance.now());
+      resetTissue(tissue); describe(interactive() ? "idle" : "static", 0); render(performance.now());
     };
     const tick = (now: number) => {
       frame = 0;
-      if (!media.matches || !visible || document.hidden) return;
+      // A media change can be observed by rAF before its change event arrives.
+      // Clear the old frame immediately; never leave revealed tissue frozen.
+      if (!interactive()) { resize(); return; }
+      if (!visible || document.hidden) { reset(); return; }
       const result = stepTissue(tissue, pointer, now, lastFrame ? (now-lastFrame)/1000 : 1/60); lastFrame = now;
       render(now); describe(result.active ? "active" : result.moving ? "settling" : "idle", result.displacement);
       if (result.moving) frame = requestAnimationFrame(tick); else lastFrame = 0;
     };
     const schedule = () => { if (!frame) frame = requestAnimationFrame(tick); };
     const move = (event: PointerEvent) => {
-      if (!media.matches || event.pointerType !== "mouse" || !visible || document.hidden) return;
+      if (!interactive() || event.pointerType !== "mouse" || !visible || document.hidden) return;
       const x = event.clientX-bounds.left; const y = event.clientY-bounds.top;
       if (pointer && pointer.x === x && pointer.y === y) return;
       const now = performance.now(); pointer = { x,y,movedAt:now };
       if (now-lastSignal > 1300) { stimulateTissue(tissue,pointer,now); lastSignal=now; }
       schedule();
     };
-    const release = () => { pointer=null; if (media.matches && visible && !document.hidden) schedule(); };
+    const release = () => { pointer=null; if (interactive() && visible && !document.hidden) schedule(); };
     const resize = () => {
       bounds=root.getBoundingClientRect(); const dpr=Math.min(window.devicePixelRatio || 1,2);
       canvas.width=Math.round(bounds.width*dpr); canvas.height=Math.round(bounds.height*dpr); ctx.setTransform(dpr,0,0,dpr,0,0);
-      tissue=createTissue(bounds.width,bounds.height,!media.matches); root.dataset.cellCount=String(tissue.cells.length); root.dataset.interactive=String(media.matches); reset();
+      tissue=createTissue(bounds.width,bounds.height,!interactive()); root.dataset.cellCount=String(tissue.cells.length); root.dataset.interactive=String(interactive()); reset();
     };
     const scroll = () => { bounds=root.getBoundingClientRect(); release(); };
     const visibility = () => { if (document.hidden) reset(); };
@@ -54,12 +59,14 @@ export function BiomedicalBackground() {
     const sizeObserver=new ResizeObserver(resize);
     resize(); observer.observe(hero); sizeObserver.observe(root);
     hero.addEventListener("pointermove",move,{passive:true}); hero.addEventListener("pointerleave",release); hero.addEventListener("pointercancel",release);
-    media.addEventListener("change",resize); window.addEventListener("resize",resize); window.addEventListener("blur",release);
+    media.addEventListener("change",resize); motionPreference.addEventListener("change",resize);
+    window.addEventListener("resize",resize); window.addEventListener("blur",release);
     window.addEventListener("scroll",scroll,{passive:true}); document.addEventListener("visibilitychange",visibility);
     return () => {
       cancelAnimationFrame(frame); observer.disconnect(); sizeObserver.disconnect();
       hero.removeEventListener("pointermove",move); hero.removeEventListener("pointerleave",release); hero.removeEventListener("pointercancel",release);
-      media.removeEventListener("change",resize); window.removeEventListener("resize",resize); window.removeEventListener("blur",release);
+      media.removeEventListener("change",resize); motionPreference.removeEventListener("change",resize);
+      window.removeEventListener("resize",resize); window.removeEventListener("blur",release);
       window.removeEventListener("scroll",scroll); document.removeEventListener("visibilitychange",visibility);
     };
   },[]);

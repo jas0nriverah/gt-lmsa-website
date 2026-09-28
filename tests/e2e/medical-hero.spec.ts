@@ -209,12 +209,19 @@ test("enabling reduced motion during an active lens clears all motion", async ({
   await page.emulateMedia({ reducedMotion: "no-preference" });
   await page.goto("/");
   const background = page.getByTestId("biomedical-background");
-  await expect(background).toHaveAttribute("data-interactive", "true");
-  const point = await heroPoint(background, 70, 90);
-  await page.mouse.move(point.x, point.y);
-  await expect.poll(() => background.getAttribute("data-reveal").then(Number), { intervals: [16, 32, 50] }).toBeGreaterThan(0.3);
-  await expect.poll(() => background.getAttribute("data-displacement").then(Number), { intervals: [16, 32, 50] }).toBeGreaterThan(0);
-
+  for (let attempt = 0; attempt < 3; attempt++) {
+    await page.emulateMedia({ reducedMotion: "no-preference" });
+    await expect(background).toHaveAttribute("data-interactive", "true");
+    const point = await heroPoint(background, 70 + attempt, 90);
+    await page.mouse.move(point.x, point.y);
+    await expect.poll(() => background.getAttribute("data-reveal").then(Number), { intervals: [16, 32, 50] }).toBeGreaterThan(0.3);
+    await expect.poll(() => background.getAttribute("data-displacement").then(Number), { intervals: [16, 32, 50] }).toBeGreaterThan(0);
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    await expectStaticCanvas(background);
+  }
+  // Also honor preference changes when there is no animation frame running.
+  await page.emulateMedia({ reducedMotion: "no-preference" });
+  await expectCanvasIdle(background);
   await page.emulateMedia({ reducedMotion: "reduce" });
   await expectStaticCanvas(background);
 });
