@@ -2,6 +2,7 @@ name: CI
 
 on:
   push:
+    branches: [main]
   pull_request:
 
 permissions:
@@ -15,9 +16,13 @@ jobs:
   verify:
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        postgres: [17, 18]
     services:
       postgres:
-        image: postgres:17
+        image: postgres:${{ matrix.postgres }}
         env:
           POSTGRES_DB: lmsa_test
           POSTGRES_USER: postgres
@@ -68,3 +73,12 @@ jobs:
 
       - name: Synthetic-session browser journeys
         run: npm run test:e2e
+
+      - name: Preserve synthetic browser failure evidence
+        if: failure()
+        uses: actions/upload-artifact@v7.0.1
+        with:
+          name: browser-failures-postgres-${{ matrix.postgres }}
+          path: test-results/
+          if-no-files-found: ignore
+          retention-days: 3

@@ -40,9 +40,9 @@ test("resource search and category filters work on a narrow viewport", async ({ 
   await page.getByRole("searchbox", { name: "Search the directory" }).fill("MCAT");
   await expect(page.locator(".resource-entry")).toHaveCount(2);
 
-  await page.getByRole("button", { name: "Medical school", exact: true }).click();
+  await page.getByRole("button", { name: "Medical-school applications", exact: true }).click();
   await expect(page.locator(".resource-entry")).toHaveCount(1);
-  await expect(page.getByText(/1 resource in Medical school matching/i)).toBeVisible();
+  await expect(page.getByText(/1 resource in Medical-school applications matching/i)).toBeVisible();
   await expect.poll(() => page.evaluate(
     () => document.documentElement.scrollWidth <= document.documentElement.clientWidth,
   )).toBe(true);
@@ -136,7 +136,7 @@ test("synthetic member and officer can complete the reviewed chapter journey", a
   await expect(page.getByRole("heading", { name: "Officer workspace" })).toBeVisible();
   await page.getByRole("navigation", { name: "Officer dashboard views" })
     .getByRole("button", { name: "Attendance" }).click();
-  const eventSelect = page.getByLabel("Event", { exact: true });
+  const eventSelect = page.locator("#checkin-event");
   await expect(eventSelect).toBeVisible();
   await eventSelect.selectOption({ label: eventTitle });
 
@@ -246,7 +246,9 @@ test("officers preserve stale event edits, explicitly reload, and filter activit
     expect(staleResponse.status()).toBe(409);
     const stalePayload = await staleResponse.json() as { error?: { code?: string } };
     expect(stalePayload.error?.code).toBe("STALE_EVENT");
-    await expect(staleTab.getByRole("alert")).toContainText("Your unsaved changes are still here");
+    await expect(staleTab.getByRole("alert").filter({
+      hasText: "Your unsaved changes are still here",
+    })).toContainText("Your unsaved changes are still here");
     await expect(staleTab.getByLabel("Location")).toHaveValue("Unsaved location");
 
     const reloadResponsePromise = staleTab.waitForResponse((response) =>
