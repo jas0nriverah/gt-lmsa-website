@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { BoardGrid } from "@/components/BoardGrid";
 import { MedicalHero } from "@/components/MedicalHero";
-import { NeuralNetworkBackground } from "@/components/NeuralNetworkBackground";
+import { BiomedicalBackground } from "@/components/BiomedicalBackground";
 import { ThisWeekCard } from "@/components/ThisWeekCard";
 import { SitePage } from "@/components/SitePage";
 import { getUpcomingItems } from "@/lib/external-events";
@@ -23,7 +23,7 @@ export default async function HomePage() {
   return (
     <SitePage>
       <section className="relative isolate overflow-hidden border-b border-gt-gold/30 bg-gt-cream px-5 py-12 sm:px-8 sm:py-16 lg:py-24" aria-labelledby="welcome-heading">
-        <NeuralNetworkBackground />
+        <BiomedicalBackground />
         <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-8 md:grid-cols-[1.15fr_0.85fr] lg:gap-16">
           <div className="max-w-3xl">
             <p className="eyebrow">Georgia Tech</p>
