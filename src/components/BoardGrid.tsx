@@ -50,9 +50,6 @@ export function BoardGrid({
             <h3 className="mt-1 text-lg font-bold leading-snug text-gt-navy sm:text-xl">
               {member.name}
             </h3>
-            <p className="mt-2 text-sm leading-6 text-slate-600 sm:text-[0.94rem]">
-              {member.description}
-            </p>
           </article>
         ))}
       </div>
