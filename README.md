@@ -1,6 +1,6 @@
 # LMSA+ at Georgia Tech
 
-Public chapter website and a locally implemented and tested member/events platform for the Latino Medical Student Association Plus chapter at Georgia Tech.
+Public chapter website and PostgreSQL-backed member/events platform for the Latino Medical Student Association Plus chapter at Georgia Tech.
 
 Public site: [www.gt-lmsa.com](https://www.gt-lmsa.com)
 
@@ -20,9 +20,9 @@ Five-minute backend demo and engineering tradeoffs: [docs/ENGINEERING-TOUR.md](d
 
 ## Project status
 
-**September 28 release work:** the owner authorized completing and deploying the platform. The Free Neon schema is initialized, Google sign-in is published, and Vercel Production uses a dedicated application database credential rather than injected owner credentials. See [current provisioning status](docs/PROVISIONING-STATUS.md) for verified milestones and remaining checks.
+**September 28 release:** the redesigned site and member platform are deployed at [www.gt-lmsa.com](https://www.gt-lmsa.com). Real Google sign-in, database-backed onboarding, and the explicitly authorized officer account were verified. Vercel Production uses a restricted application database credential rather than owner credentials; no paid services were provisioned. See [current provisioning status](docs/PROVISIONING-STATUS.md) for evidence and remaining operational work.
 
-The existing public website is live. The redesigned public pages and member platform are implemented and tested locally on `feature/member-event-platform`, not deployed. Hosted setup progress is recorded above; a production backup/restore drill and platform deployment remain outstanding. CI checks code; it does not deploy. The authored Playwright suite and first hosted CI run remain unexecuted; local browser verification used synthetic sessions. Do not treat synthetic-session tests as Google sign-in verification or a production preview.
+Release PR #16 is merged. Hosted CI passed on PostgreSQL 17 and 18: lint, type checks, 31 unit tests, 18 database integration tests, production build, and all five browser scenarios in each matrix job. Vercel's Git integration handles deployment separately from CI. See the provisioning report for live deployment and Google sign-in evidence. Synthetic-session browser tests do not substitute for real-provider sign-in verification. A production backup/restore drill remains outstanding.
 
 The owner approved local dependency/database setup on September 27 and production setup, commit/push, and deployment on September 28. Paid services remain out of scope. These approvals supersede the older local-only instructions recorded in historical implementation documents.
 

@@ -1,10 +1,10 @@
 # LMSA+ member platform guide
 
-Status as of September 27, 2026: the member platform and redesigned public pages are implemented and tested locally; see [the verification report](VERIFICATION.md) for exact results and limitations. The existing public chapter site is live, but this upgrade is not deployed. There is no configured or approved production member-platform database, OAuth client, backup system, deployment, or release. This guide describes the code that exists; it is not production approval.
+The member platform and redesigned public pages are implemented. The owner authorized the September 28 release, hosted PostgreSQL and Google OAuth setup, restricted Production credentials, and explicit verified-account officer bootstrap. See [the provisioning report](PROVISIONING-STATUS.md) for current deployment evidence and [the verification report](VERIFICATION.md) for test results and limitations. This guide itself does not authorize future infrastructure or data changes.
 
 For concrete request/response examples and three UI-to-database traces, read [the request walkthrough](REQUEST-WALKTHROUGH.md).
 
-The owner approved local development dependency and database setup on September 27, 2026. This explicitly supersedes the older README prohibition on local installs for local development only. It does not authorize paid services, remote/production setup or migrations, deployment, commits, or pushes.
+The owner approved local development dependency and database setup on September 27, 2026, then production setup, commits, pushes, and deployment on September 28. Those explicit approvals supersede the older local-only restriction. Paid services remain out of scope.
 
 ## Local development
 

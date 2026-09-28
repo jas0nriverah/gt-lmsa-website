@@ -1,6 +1,16 @@
-# Local implementation and verification
+# Implementation and verification
 
-This records the September 27 local review. Subsequent owner-approved hosted database setup is tracked in [PROVISIONING-STATUS.md](PROVISIONING-STATUS.md); those later actions supersede the historical statements below about no remote provisioning/migrations. No application deployment is claimed.
+## September 28 release verification
+
+Release PR #16 merged as `34cd1c1`. Hosted [CI run 36379422988](https://github.com/jas0nriverah/gt-lmsa-website/actions/runs/36379422988) passed on PostgreSQL 17 and 18 with Node.js 22. Each job ran lint, type checks, 31 unit tests, 18 real-database integration tests, optimized build, and five Chromium browser tests: mobile resource search; membership/officer/RSVP/ticket/check-in journey; stale event edits and private audit details; keyboard-controlled mobile medical animation; and reduced-motion rendering. Early runs exposed stale browser selectors; those were corrected without removing the workflow assertions.
+
+The coordinator reviewed Luna's implementation and review outputs, including a corrected pause/play button semantic issue. Desktop and mobile visuals preserve the GT palette and logo. Medical SVG/CSS motion has an explicit pause control and reduced-motion alternatives; the About accent completes in under two seconds. Production dependencies reported zero known vulnerabilities at this review, not a guarantee against unknown issues.
+
+Current hosted deployment, restricted database access, and actual Google sign-in evidence are tracked in [PROVISIONING-STATUS.md](PROVISIONING-STATUS.md). Local recovery testing is not a production recovery drill.
+
+## Historical September 27 local review
+
+The remainder records the earlier local-only review. Its statements about no commit, provisioning, hosted CI, or release are historical and superseded by the September 28 evidence above and provisioning report.
 
 Review date: September 27, 2026, America/New_York. Branch: `feature/member-event-platform`, based on freshly pulled `origin/main` commit `124ef6c`. No implementation commit, push, remote migration, deployment, real email, or paid provisioning was performed. The live public site is unchanged by this work.
 
