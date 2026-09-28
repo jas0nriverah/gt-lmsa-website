@@ -1,10 +1,11 @@
 import Link from "next/link";
 import { BoardGrid } from "@/components/BoardGrid";
 import { MedicalHero } from "@/components/MedicalHero";
+import { NeuralNetworkBackground } from "@/components/NeuralNetworkBackground";
 import { ThisWeekCard } from "@/components/ThisWeekCard";
 import { SitePage } from "@/components/SitePage";
 import { getUpcomingItems } from "@/lib/external-events";
-import { chapterInfo, interestMeetingTiming } from "@/lib/site-data";
+import { interestMeetingTiming } from "@/lib/site-data";
 import { formatEventTime } from "@/lib/platform-dates";
 import { getPublicChapterEvents } from "@/server/public-events";
 
@@ -21,16 +22,16 @@ export default async function HomePage() {
 
   return (
     <SitePage>
-      <section className="relative isolate overflow-hidden border-b border-gt-gold/30 bg-white px-5 py-12 sm:px-8 sm:py-16 lg:py-20">
-        <div aria-hidden="true" className="hero-wash absolute inset-y-0 right-0 -z-10 w-full md:w-[56%]" />
-        <div className="mx-auto grid max-w-7xl items-center gap-10 md:grid-cols-[1.15fr_0.85fr] lg:gap-16">
+      <section className="relative isolate overflow-hidden border-b border-gt-gold/30 bg-gt-cream px-5 py-12 sm:px-8 sm:py-16 lg:py-24" aria-labelledby="welcome-heading">
+        <NeuralNetworkBackground />
+        <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-8 md:grid-cols-[1.15fr_0.85fr] lg:gap-16">
           <div className="max-w-3xl">
-            <p className="eyebrow">Georgia Tech · LMSA PLUS</p>
-            <h1 className="hero-heading mt-5 max-w-3xl text-4xl font-black leading-[1.08] text-gt-navy sm:text-5xl lg:text-6xl">
-              Find your people on the path to healthcare.
+            <p className="eyebrow">Georgia Tech</p>
+            <h1 id="welcome-heading" className="hero-heading mt-5 max-w-3xl text-5xl font-black leading-[1.04] tracking-tight text-gt-navy sm:text-6xl lg:text-7xl">
+              Welcome to<br />GT-LMSA<span className="text-gt-dark-gold">+</span>
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-600">
-              {chapterInfo.description} All majors and backgrounds are welcome.
+              Georgia Tech’s Latino Medical Student Association. Meet other pre-health students, find mentors, and give back to our community.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <Link href="/join" className="button button-primary">
@@ -45,15 +46,14 @@ export default async function HomePage() {
             </Link>
           </div>
 
-          <MedicalHero chapterName={chapterInfo.fullName} />
+          <MedicalHero />
         </div>
       </section>
 
       <BoardGrid
         id="executive-board"
-        eyebrow="Meet the founding board"
-        title="The people building this chapter."
-        description="Eight student leaders bringing their perspectives and care for community to LMSA PLUS at Georgia Tech."
+        eyebrow="Fall 2026"
+        title="Meet our executive board"
         className="bg-white"
       />
 
@@ -63,10 +63,10 @@ export default async function HomePage() {
             <div>
               <p className="eyebrow">Stay connected</p>
               <h2 id="chapter-events-heading" className="mt-3 text-3xl font-bold text-gt-navy sm:text-4xl">
-                Make room for what comes next.
+                Upcoming events
               </h2>
               <p className="mt-4 max-w-xl leading-7 text-slate-600">
-                Find chapter plans alongside recommended campus and LMSA events. Details appear here as they are confirmed.
+                Chapter meetings, campus events, and opportunities from the LMSA network.
               </p>
               <Link href="/events" className="text-link mt-6 inline-flex rounded-sm font-bold">
                 Explore all events <span aria-hidden="true" className="ml-2">→</span>
@@ -124,8 +124,8 @@ export default async function HomePage() {
       <section className="bg-gt-navy px-5 py-10 text-white sm:px-8 sm:py-12">
         <div className="mx-auto flex max-w-7xl flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <p className="eyebrow eyebrow-on-dark">A place to begin</p>
-            <h2 className="mt-2 text-2xl font-bold sm:text-3xl">Community grows when we show up for one another.</h2>
+            <p className="eyebrow eyebrow-on-dark">LMSA+ at Georgia Tech</p>
+            <h2 className="mt-2 text-2xl font-bold sm:text-3xl">We’d love to meet you.</h2>
           </div>
           <Link href="/join" className="button button-on-navy shrink-0">
             Join LMSA+ <span aria-hidden="true">→</span>

@@ -1,0 +1,131 @@
+.background {
+  position: absolute;
+  inset: 0;
+  overflow: clip;
+  pointer-events: none;
+  background: linear-gradient(110deg, #fff 25%, #f8f7f2 100%);
+}
+
+.background::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  background: linear-gradient(90deg, #fff 0%, rgb(255 255 255 / 94%) 25%, rgb(255 255 255 / 72%) 43%, rgb(248 247 242 / 12%) 70%, transparent 100%);
+}
+
+.network {
+  display: block;
+  width: 100%;
+  height: 100%;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.connections path,
+.dendrites path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+  animation: network-draw 2.7s ease-out both;
+}
+
+.connections {
+  stroke: #003057;
+  stroke-width: 1.35;
+  opacity: 0.27;
+}
+
+.connections path:nth-child(3n) {
+  stroke: #b3a369;
+  stroke-width: 1.7;
+  animation-delay: 0.3s;
+}
+
+.dendrites {
+  stroke: #003057;
+  stroke-width: 1;
+  opacity: 0.22;
+}
+
+.dendrites path {
+  animation-delay: 0.55s;
+}
+
+.signals {
+  stroke: #b3a369;
+  stroke-width: 2;
+}
+
+.signals path {
+  opacity: 0;
+  stroke-dasharray: 0.09 0.91;
+  animation: network-signal 2.5s ease-in-out 1.5s both;
+}
+
+.signals path:nth-child(2) {
+  animation-delay: 1.7s;
+}
+
+.signals path:nth-child(3) {
+  animation-delay: 1.9s;
+}
+
+.neurons {
+  animation: neuron-reveal 1.4s ease-out 0.6s both;
+}
+
+.navyNeuron {
+  fill: #003057;
+  fill-opacity: 0.18;
+  stroke: #003057;
+  stroke-opacity: 0.4;
+  stroke-width: 0.8;
+}
+
+.goldNeuron {
+  fill: #b3a369;
+  fill-opacity: 0.35;
+  stroke: #b3a369;
+  stroke-opacity: 0.75;
+  stroke-width: 1;
+}
+
+.neurons circle {
+  fill-opacity: 0.65;
+  stroke: none;
+}
+
+@keyframes network-draw {
+  from { stroke-dashoffset: 1; }
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes network-signal {
+  0% { stroke-dashoffset: 1; opacity: 0; }
+  20% { opacity: 0.65; }
+  75% { opacity: 0.65; }
+  100% { stroke-dashoffset: -1; opacity: 0; }
+}
+
+@keyframes neuron-reveal {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@media (max-width: 767px) {
+  .background::after {
+    background: linear-gradient(90deg, rgb(255 255 255 / 92%), rgb(255 255 255 / 76%) 48%, rgb(248 247 242 / 24%));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .connections path,
+  .dendrites path,
+  .signals path,
+  .neurons {
+    animation: none;
+  }
+
+  .signals {
+    display: none;
+  }
+}
