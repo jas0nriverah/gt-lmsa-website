@@ -289,7 +289,7 @@ test("officers preserve stale event edits, explicitly reload, and filter activit
     const auditEntry = staleTab.locator("article").filter({ hasText: eventId });
     await expect(auditEntry).toHaveCount(1);
     await expect(auditEntry.getByRole("heading", { name: "Event updated" })).toBeVisible();
-    await auditEntry.getByRole("button", { name: "View change details" }).click();
+    await auditEntry.locator("details > summary").filter({ hasText: /^View change details$/ }).click();
     for (const detail of [
       "Previous publication status",
       "Publication status",

@@ -1,6 +1,6 @@
-import Image from "next/image";
 import Link from "next/link";
 import { BoardGrid } from "@/components/BoardGrid";
+import { MedicalHero } from "@/components/MedicalHero";
 import { ThisWeekCard } from "@/components/ThisWeekCard";
 import { SitePage } from "@/components/SitePage";
 import { getUpcomingItems } from "@/lib/external-events";
@@ -26,7 +26,7 @@ export default async function HomePage() {
         <div className="mx-auto grid max-w-7xl items-center gap-10 md:grid-cols-[1.15fr_0.85fr] lg:gap-16">
           <div className="max-w-3xl">
             <p className="eyebrow">Georgia Tech · LMSA PLUS</p>
-            <h1 className="mt-5 max-w-3xl text-4xl font-black leading-[1.08] text-gt-navy sm:text-5xl lg:text-6xl">
+            <h1 className="hero-heading mt-5 max-w-3xl text-4xl font-black leading-[1.08] text-gt-navy sm:text-5xl lg:text-6xl">
               Find your people on the path to healthcare.
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-600">
@@ -45,24 +45,7 @@ export default async function HomePage() {
             </Link>
           </div>
 
-          <div className="hero-art relative mx-auto flex w-full max-w-md items-center justify-center overflow-hidden rounded-2xl border border-gt-gold/35 bg-gt-cream px-6 py-9 sm:py-12">
-            <span aria-hidden="true" className="plus-mark plus-mark-large absolute right-7 top-7 opacity-25" />
-            <span aria-hidden="true" className="plus-mark absolute bottom-7 left-7 opacity-45" />
-            <div className="relative z-10 flex flex-col items-center text-center">
-              <Image
-                src="/lmsa-logo.png"
-                alt="Latino Medical Student Association PLUS logo"
-                width={240}
-                height={240}
-                sizes="(max-width: 767px) 176px, 224px"
-                className="h-44 w-44 rounded-full bg-white object-contain p-2 ring-1 ring-gt-gold/40 sm:h-56 sm:w-56"
-                priority
-              />
-              <p className="mt-5 max-w-xs text-sm font-semibold leading-6 text-gt-navy">
-                {chapterInfo.fullName}
-              </p>
-            </div>
-          </div>
+          <MedicalHero chapterName={chapterInfo.fullName} />
         </div>
       </section>
 

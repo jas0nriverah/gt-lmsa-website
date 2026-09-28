@@ -203,6 +203,121 @@ input {
   content: "";
 }
 
+.medical-hero {
+  /* Clip decoration without creating a scroll container that moves on focus. */
+  overflow: clip;
+  min-height: 26.5rem;
+  padding-top: 2rem;
+  padding-bottom: 4rem;
+}
+
+.medical-hero__pulse-band {
+  width: 14rem;
+  max-width: 100%;
+  height: 2.75rem;
+  margin-top: 0.75rem;
+  pointer-events: none;
+}
+
+.medical-hero__routes {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.medical-hero__route {
+  stroke-dasharray: 8 8;
+  animation: medical-route-flow 17s linear infinite;
+}
+
+.medical-hero__route--two {
+  animation-delay: -5s;
+}
+
+.medical-hero__route--three {
+  animation-delay: -9s;
+}
+
+.medical-hero__route--four {
+  animation-delay: -13s;
+}
+
+.medical-hero__nodes circle {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: medical-node-breathe 4.8s ease-in-out infinite alternate;
+}
+
+.medical-hero__nodes circle:nth-child(even) {
+  animation-delay: -2.4s;
+}
+
+.medical-hero__pulse {
+  stroke-dasharray: 270;
+  stroke-dashoffset: 270;
+  animation: medical-pulse-draw 5.5s ease-in-out infinite;
+}
+
+.medical-hero.is-paused *,
+.medical-hero.is-paused .medical-hero__nodes circle {
+  animation-play-state: paused;
+}
+
+.medical-hero__motion-control {
+  position: absolute;
+  right: 0.75rem;
+  bottom: 0.65rem;
+  z-index: 20;
+  min-height: 2.75rem;
+  border: 1px solid rgba(0, 48, 87, 0.22);
+  border-radius: 999px;
+  background: rgba(248, 247, 242, 0.9);
+  padding: 0.35rem 0.7rem;
+  color: #003057;
+  font-size: 0.68rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.medical-hero__motion-control:hover {
+  border-color: #b3a369;
+  background: #ffffff;
+}
+
+@keyframes medical-route-flow {
+  to { stroke-dashoffset: -128; }
+}
+
+@keyframes medical-node-breathe {
+  from { opacity: 0.55; transform: scale(0.88); }
+  to { opacity: 1; transform: scale(1.12); }
+}
+
+@keyframes medical-pulse-draw {
+  0%, 12% { stroke-dashoffset: 270; opacity: 0.42; }
+  60%, 88% { stroke-dashoffset: 0; opacity: 0.9; }
+  100% { stroke-dashoffset: -270; opacity: 0.42; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .medical-hero__routes *,
+  .medical-hero__routes .medical-hero__nodes circle,
+  .medical-hero__pulse {
+    animation: none !important;
+  }
+
+  .medical-hero__pulse {
+    stroke-dashoffset: 0;
+    opacity: 0.85;
+  }
+
+  .medical-hero__motion-control {
+    display: none;
+  }
+}
+
 .plus-mark {
   position: relative;
   display: inline-block;
@@ -239,13 +354,40 @@ input {
   transform: scale(1.025);
 }
 
-.event-spotlight {
-  transition: border-color 160ms ease, box-shadow 160ms ease;
+.hero-heading {
+  animation: hero-heading-enter 550ms ease-out both;
 }
 
-.event-spotlight:hover {
+@keyframes hero-heading-enter {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.event-spotlight,
+.resource-entry {
+  transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+
+.event-spotlight:focus-within,
+.resource-entry:focus-within {
   border-color: #b3a369;
-  box-shadow: 0 12px 30px rgba(0, 48, 87, 0.08);
+  box-shadow: 0 10px 28px rgba(179, 163, 105, 0.16);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .event-spotlight:hover,
+  .resource-entry:hover {
+    border-color: #b3a369;
+    box-shadow: 0 10px 28px rgba(179, 163, 105, 0.16);
+    transform: translateY(-2px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-heading { animation: none; }
+  .event-spotlight:hover,
+  .resource-entry:hover,
+  .board-person:hover .board-portrait img { transform: none; }
 }
 
 @media (min-width: 640px) {

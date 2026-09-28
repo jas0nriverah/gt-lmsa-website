@@ -1,0 +1,77 @@
+.accent {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  right: max(1.5rem, calc((100vw - 72rem) / 2));
+  width: clamp(5rem, 10vw, 8.75rem);
+  height: min(18rem, 76%);
+  transform: translateY(-50%);
+  opacity: 0.2;
+  pointer-events: none;
+}
+
+.accent svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.helixNavy,
+.helixGold {
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 900;
+  stroke-dashoffset: 900;
+  animation: draw-helix 1.7s ease-out 0.1s forwards;
+}
+
+.helixNavy {
+  stroke: #003057;
+}
+
+.helixGold {
+  stroke: #b3a369;
+  animation-delay: 0.24s;
+}
+
+.rungs {
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: reveal-rungs 0.75s ease-out 0.75s forwards;
+}
+
+@keyframes draw-helix {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes reveal-rungs {
+  to {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+@media (max-width: 1099px) {
+  .accent {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .helixNavy,
+  .helixGold {
+    stroke-dashoffset: 0;
+    animation: none;
+  }
+
+  .rungs {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+}
