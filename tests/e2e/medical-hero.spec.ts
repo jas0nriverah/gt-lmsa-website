@@ -8,15 +8,13 @@ test("medical hero fits mobile and its motion can be paused with the keyboard", 
   await expect(hero.getByRole("img", { name: "Latino Medical Student Association PLUS logo" })).toBeVisible();
   const pause = hero.getByRole("button", { name: "Pause hero animation" });
   await expect(pause).toBeEnabled();
-  await expect(pause).toHaveAttribute("aria-pressed", "false");
   await pause.focus();
   await page.keyboard.press("Space");
   const play = hero.getByRole("button", { name: "Play hero animation" });
   await expect(play).toBeFocused();
-  await expect(play).toHaveAttribute("aria-pressed", "true");
   await expect(hero.locator(".medical-hero__pulse")).toHaveCSS("animation-play-state", "paused");
   await play.press("Enter");
-  await expect(pause).toHaveAttribute("aria-pressed", "false");
+  await expect(pause).toBeVisible();
   await expect(hero.locator(".medical-hero__pulse")).toHaveCSS("animation-play-state", "running");
   await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth)).toBe(true);
 });

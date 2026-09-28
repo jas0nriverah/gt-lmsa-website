@@ -79,7 +79,6 @@ export function MedicalHero({ chapterName }: MedicalHeroProps) {
           type="button"
           className="medical-hero__motion-control"
           aria-label={paused ? "Play hero animation" : "Pause hero animation"}
-          aria-pressed={paused}
           disabled={!motionReady}
           onClick={() => setPaused((current) => !current)}
         >
