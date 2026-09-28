@@ -11,7 +11,7 @@ import {
 import { faqs as baseFaqs, scholarships as baseScholarships, interestMeetingTiming } from "./site-data";
 import { LAST_CONTENT_REVIEW } from "./source-registry";
 
-/** September 14–27, 2026 stale opportunity/event status refresh (Sunday deep audit 2026-09-27; NC2026 archived; PURA deadline Oct 12). */
+/** September 14–28, 2026 stale opportunity/event status refresh (daily 2026-09-28; NC2026 archived; PURA deadline Oct 12). */
 
 const PAST_EVENT_IDS = new Set([
   "pre-health-fall-kickoff-2026",
