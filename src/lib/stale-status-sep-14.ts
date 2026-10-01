@@ -11,7 +11,7 @@ import {
 import { faqs as baseFaqs, scholarships as baseScholarships, interestMeetingTiming } from "./site-data";
 import { LAST_CONTENT_REVIEW } from "./source-registry";
 
-/** September 14–30, 2026 stale opportunity/event status refresh (daily 2026-09-30; NC2026 archived; PURA deadline Oct 12). */
+/** October 1, 2026 stale opportunity/event status refresh (weekday daily; YPI listed in external-events; PURA deadline Oct 12). */
 
 const PAST_EVENT_IDS = new Set([
   "pre-health-fall-kickoff-2026",
