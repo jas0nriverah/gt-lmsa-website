@@ -75,6 +75,10 @@ describe("platform PostgreSQL integration", { skip: skipped, concurrency: false 
     await platformPool.query(migration);
     const securityMigration = await readFile(resolve(process.cwd(), "migrations/002-security-audit.sql"), "utf8");
     await platformPool.query(securityMigration);
+    for (const name of ["003-interest-meeting-schedule.sql", "004-hide-unconfirmed-general-body-meeting.sql"]) {
+      const sql = await readFile(resolve(process.cwd(), "migrations", name), "utf8");
+      await platformPool.query(sql);
+    }
 
     const grants = await platformPool.query<{ count: string }>("SELECT count(*)::text AS count FROM officers");
     assert.equal(Number(grants.rows[0].count), 0, "the migration must not create a first officer");
