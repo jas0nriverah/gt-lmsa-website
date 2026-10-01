@@ -8,20 +8,38 @@ import { chapterToday, currentWeek, hasEnded } from "./event-dates";
 
 /**
  * P0.3 — verified external / recommended pre-health events.
- * Rechecked September 30, 2026 (weekday daily) against official GT Campus Calendar,
- * Pre-Health Advising, LMSA National, and LMSA Southeast sources.
- * No additional official-calendar pre-health events verified for Sep 30–Oct 14.
+ * Rechecked October 1, 2026 (weekday daily) against official GT Campus Calendar,
+ * Pre-Health Advising, Explore LLC, LMSA National, and LMSA Southeast sources.
+ * Window Oct 1–Oct 15: Young Physicians Initiative (Oct 15, Montag) listed (≥80).
  * NC2026 (Sep 17–20 Houston) concluded — archived via overlays / eventsAsOf.
  * LMSA SE 17th Regional Conference (Feb 27–Mar 1 2026) is past — not listed as upcoming.
  * SCENE College of Sciences event Oct 7 deliberately not listed (below relevance threshold).
- * Young Physicians Initiative (Oct 15, 6:30–7:30pm, Montag) is outside the Sep 30–Oct 14
- * window — not listed yet; recheck when the window includes Oct 15.
  * Listings are recommendations only — not LMSA Plus partnerships or chapter programming.
  */
 
-export const EXTERNAL_EVENTS_CHECKED_AT = "September 30, 2026";
+export const EXTERNAL_EVENTS_CHECKED_AT = "October 1, 2026";
 
-export const externalEvents: ExternalEvent[] = [];
+export const externalEvents: ExternalEvent[] = [
+  {
+    id: "ext-ypi-montag-2026-10-15",
+    title: "Young Physicians Initiative — Interactive Medical Case",
+    organization:
+      "Young Physicians Initiative (via Explore LLC / Georgia Tech College of Sciences)",
+    displayDate: "Thursday, October 15, 2026",
+    startDate: "2026-10-15",
+    time: "6:30 PM – 7:30 PM",
+    location: "Montag Learning Center",
+    description:
+      "Interactive medical case with current medical students from the Young Physicians Initiative. Attendees work through patient history, labs, and differential diagnosis and ask questions about clinical reasoning. Listed by Explore Living Learning Community. Recommendation only — not LMSA Plus chapter programming or a partnership.",
+    sourceUrl:
+      "https://explorellc.cos.gatech.edu/2026/09/15/young-physicians-initiative/",
+    category: "Pre-health clinical exposure",
+    verificationLevel: "official-page",
+    lastCheckedAt: EXTERNAL_EVENTS_CHECKED_AT,
+    relevanceScore: 92,
+    sourceType: "external",
+  },
+];
 
 /** Minimum relevance score for public listing (~80+). */
 export const EXTERNAL_RELEVANCE_THRESHOLD = 80;

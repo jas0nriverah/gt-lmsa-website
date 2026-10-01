@@ -1,6 +1,6 @@
 import type { SourceRecord } from "./site-types";
 
-export const LAST_CONTENT_REVIEW = "September 30, 2026";
+export const LAST_CONTENT_REVIEW = "October 1, 2026";
 
 // Developer-maintained audit record. Re-check time-sensitive sources before
 // changing an opportunity to "open" or publishing a new deadline or price.
@@ -50,7 +50,7 @@ export const sourceRegistry: SourceRecord[] = [
   {
     name: "LMSA National Scholarships",
     url: "https://national.lmsa.net/resources/awards/scholarships/",
-    supports: ["national scholarship cycles", "travel scholarship", "Fall Canopy deadline Sep 1 2026 passed", "no open pre-health national cycle verified Sep 30"],
+    supports: ["national scholarship cycles", "travel scholarship", "Fall Canopy deadline Sep 1 2026 passed", "no open pre-health national cycle verified Oct 1"],
     lastVerified: LAST_CONTENT_REVIEW,
     timeSensitive: true,
   },
@@ -100,8 +100,9 @@ export const sourceRegistry: SourceRecord[] = [
     name: "Georgia Tech Campus Calendar",
     url: "https://calendar.gatech.edu/",
     supports: [
-      "No additional official-calendar pre-health events verified for Sep 30–Oct 14 2026",
-      "NC2026 concluded Sep 20 Houston (past)",
+      "Young Physicians Initiative Oct 15 2026 6:30–7:30pm Montag — Explore LLC official page (listed as external)",
+      "No other ≥80 dedicated official-calendar pre-health events verified for Oct 1–Oct 15 2026",
+      "SCENE CoS Oct 7 deliberately not listed (not dedicated pre-health)",
       "GT Health Professional School Fair announced for Feb 23 2027 (too far for This Week)",
     ],
     lastVerified: LAST_CONTENT_REVIEW,
