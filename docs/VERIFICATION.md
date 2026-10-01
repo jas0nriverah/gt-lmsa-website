@@ -28,7 +28,7 @@ Three real `gpt-6-luna` agents at Max reasoning implemented bounded workstreams.
 |---|---|
 | GT/LMSA public design | Implemented; desktop and 390×844 mobile preview reviewed. Existing logo, navy/gold palette, all eight officers preserved. `src/app/page.tsx`, `src/components/BoardGrid.tsx`, `Navbar.tsx`. |
 | E-board near the front | Immediately follows the homepage hero, with portrait-led cards; same reusable component on About. Both portrait rows visually inspected. |
-| October first event | Planned second or third week of October 2026, no invented exact schedule or venue. Seed and unconfigured public states agree. Browser verified disabled RSVP until scheduling. |
+| October first event | Thursday, October 15, 2026, 6:30–7:30 PM EDT; Instructional Center (IC), Room 115. Registration remains closed. |
 | Registered membership | Persisted profile, stable ID, pending/active/suspended status, own-field updates; officer approval required. `MemberPortal.tsx`, `src/server/platform.ts`, HTTP and service tests. |
 | Authentication | Better Auth Google integration, verified server sessions, encrypted OAuth tokens, database sessions. Synthetic signed-session authorization tested; actual Google OAuth remains blocked on provider setup. |
 | Officer permissions | Explicit database grants; no public role selector or first-user promotion. Member-to-officer denial, revoked access, payload escalation, and ownership tested. |

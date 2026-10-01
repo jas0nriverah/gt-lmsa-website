@@ -33,7 +33,7 @@ export function BoardGrid({
                   alt={member.image.alt}
                   fill
                   sizes="(max-width: 639px) 46vw, (max-width: 1023px) 46vw, 23vw"
-                  className="object-cover"
+                  className={member.image.fit === "contain" ? "object-contain p-8" : "object-cover"}
                 />
               ) : (
                 <div

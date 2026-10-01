@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import type { EventInput, Page, PlatformEvent, Registration } from "@/lib/platform-contracts";
 import { PlatformRequestError, errorMessage, platformRequest, responseError } from "./api";
 import { formatAtlantaDateTime } from "./date-time";
+import { formatEventTime } from "@/lib/platform-dates";
 import { OfficerEventForm } from "./OfficerEventForm";
 import { InlineAlert, LoadingState, PageControls, Panel, PlatformStatus } from "./ui";
 
@@ -206,7 +207,7 @@ export function OfficerEvents() {
                 <div className="flex flex-wrap items-start justify-between gap-3">
                   <div>
                     <h4 className="text-lg font-bold text-gt-navy">{event.title}</h4>
-                    <p className="mt-1 text-sm text-slate-600">{event.startsAt ? formatAtlantaDateTime(event.startsAt) : event.timingLabel} · {event.location}</p>
+                    <p className="mt-1 text-sm text-slate-600">{formatEventTime(event)} · {event.location}</p>
                     <p className="mt-2 text-sm text-slate-600">{event.registeredCount} registered{event.attendanceCount === undefined ? "" : ` · ${event.attendanceCount} checked in`}</p>
                   </div>
                   <div className="flex flex-wrap items-center gap-2">

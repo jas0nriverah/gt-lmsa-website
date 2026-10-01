@@ -25,7 +25,7 @@ import type {
 } from "./site-types";
 import { LAST_CONTENT_REVIEW } from "./source-registry";
 
-export const interestMeetingTiming = "the second or third week of October 2026";
+export const interestMeetingTiming = "Thursday, October 15, 2026 · 6:30–7:30 PM EDT";
 
 export const chapterInfo: ChapterInfo = {
   shortName: "LMSA Plus at Georgia Tech",
@@ -78,7 +78,7 @@ export const announcements: Announcement[] = [
     title: "Fall 2026 Interest Meeting",
     summary:
       "Meet the founding board, learn how LMSA PLUS connects pre-health students, and help shape the chapter's first year.",
-    timing: `Date TBD — ${interestMeetingTiming} (time and location coming soon)`,
+    timing: `${interestMeetingTiming} · Instructional Center (IC), Room 115`,
     status: "planned",
     href: "/events",
     featured: true,
@@ -281,21 +281,15 @@ export const events: ChapterEvent[] = [
     title: "Fall 2026 Interest Meeting",
     category: "Chapter launch",
     status: "planned",
-    displayDate: `Date TBD — ${interestMeetingTiming}`,
+    displayDate: interestMeetingTiming,
+    startDate: "2026-10-15",
+    endDate: "2026-10-15",
+    time: "6:30–7:30 PM EDT",
+    location: "Instructional Center (IC), Room 115",
     description:
-      "Meet the founding executive board, learn what LMSA PLUS is, explore planned programming, and share what would make the chapter useful to you.",
+      "Meet the founding executive board, learn what LMSA PLUS is, explore planned programming, and share what would make the chapter useful to you. The meeting is scheduled for Thursday, October 15, 2026, from 6:30–7:30 PM EDT in Instructional Center (IC), Room 115.",
     registrationStatus: "coming-soon",
     featured: true,
-  },
-  {
-    id: "first-general-body-meeting",
-    title: "First General Body Meeting",
-    category: "Chapter meeting",
-    status: "planned",
-    displayDate: "Fall 2026 — date to be confirmed",
-    description:
-      "A planned first meeting for members to connect, learn about the chapter, and find ways to participate.",
-    registrationStatus: "coming-soon",
   },
 ];
 
@@ -462,8 +456,9 @@ export const boardMembers: BoardMember[] = [
     description:
       "Handles fundraising, dues, reimbursements, purchases, and Georgia Tech funding processes for the chapter.",
     image: {
-      src: "/board/ashley-cubias.jpg",
-      alt: "Headshot of Ashley Cubias, Treasurer / Finance of LMSA Plus at Georgia Tech",
+      src: "/lmsa-logo.png",
+      alt: "LMSA Plus at Georgia Tech logo shown on Ashley Cubias’s officer card",
+      fit: "contain",
     },
   },
   {
@@ -1145,7 +1140,7 @@ export const faqs: FAQ[] = [
   {
     question: "When will the first meeting occur?",
     answer:
-      "The Events page is the current source for the first Interest Meeting’s schedule, location, and registration status. Planned dates remain tentative until confirmed there. Follow the chapter Instagram or email the chapter for updates.",
+      "The first Interest Meeting is scheduled for Thursday, October 15, 2026, from 6:30–7:30 PM EDT in Instructional Center (IC), Room 115. RSVPs are not open yet. Check the Events page or follow the chapter Instagram for updates.",
   },
 ];
 

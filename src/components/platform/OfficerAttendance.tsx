@@ -4,6 +4,7 @@ import { useEffect, useState, type FormEvent } from "react";
 import type { Page, PlatformEvent, Registration } from "@/lib/platform-contracts";
 import { PlatformRequestError, errorMessage, platformRequest } from "./api";
 import { formatAtlantaDateTime } from "./date-time";
+import { formatEventTime } from "@/lib/platform-dates";
 import { FieldLabel, InlineAlert, inputClassName, LoadingState, PageControls, Panel, PlatformStatus } from "./ui";
 
 const pageSize = 20;
@@ -151,7 +152,7 @@ export function OfficerAttendance() {
               </select>
             </label>
             {eventList ? <div className="mt-3"><PageControls page={eventList.page} pageSize={eventList.pageSize} total={eventList.total} onChange={setEventPage} /></div> : null}
-            {selectedEvent ? <p className="mt-3 text-sm text-slate-600">{selectedEvent.startsAt ? formatAtlantaDateTime(selectedEvent.startsAt) : selectedEvent.timingLabel} · {selectedEvent.location}</p> : null}
+            {selectedEvent ? <p className="mt-3 text-sm text-slate-600">{formatEventTime(selectedEvent)} · {selectedEvent.location}</p> : null}
             <form className="mt-6 grid gap-5 border-t border-slate-200 pt-5" onSubmit={submitCheckIn}>
               <fieldset className="grid gap-3 sm:grid-cols-2">
                 <legend className="mb-2 text-sm font-bold text-gt-navy">Lookup method</legend>

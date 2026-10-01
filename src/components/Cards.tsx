@@ -137,7 +137,7 @@ export function BoardCard({ member }: { member: BoardMember }) {
           alt={member.image.alt}
           width={96}
           height={96}
-          className="h-24 w-24 rounded-3xl object-cover"
+          className={`h-24 w-24 rounded-3xl bg-white ${member.image.fit === "contain" ? "object-contain p-2" : "object-cover"}`}
         />
       ) : (
         <div

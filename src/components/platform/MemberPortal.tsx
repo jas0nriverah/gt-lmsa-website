@@ -16,6 +16,7 @@ import { ACADEMIC_YEARS, MEMBER_INTERESTS } from "@/lib/platform-contracts";
 import { PlatformRequestError, errorMessage, platformRequest } from "./api";
 import { GoogleSignInAction, SignOutAction } from "./AuthActions";
 import { formatAtlantaDateTime } from "./date-time";
+import { formatEventTime } from "@/lib/platform-dates";
 import {
   FieldLabel,
   InlineAlert,
@@ -386,7 +387,7 @@ export function MemberPortal({ authEnabled }: { authEnabled: boolean }) {
                   <div className="flex flex-wrap items-start justify-between gap-3">
                     <div>
                       <h4 className="text-lg font-bold text-gt-navy">{registration.event?.title ?? "Chapter event"}</h4>
-                      <p className="mt-1 text-sm text-slate-600">{formatAtlantaDateTime(registration.event?.startsAt ?? null)}</p>
+                      <p className="mt-1 text-sm text-slate-600">{registration.event ? formatEventTime(registration.event) : "Event details unavailable"}</p>
                     </div>
                     <PlatformStatus status={registration.status} />
                   </div>
@@ -456,7 +457,7 @@ export function MemberPortal({ authEnabled }: { authEnabled: boolean }) {
                   </div>
                   <p className="mt-3 whitespace-pre-line leading-7 text-slate-600">{event.description}</p>
                   <dl className="mt-4 grid gap-2 text-sm text-slate-600 sm:grid-cols-2">
-                    <div><dt className="inline font-bold text-gt-navy">When: </dt><dd className="inline">{event.startsAt ? formatAtlantaDateTime(event.startsAt) : event.timingLabel || "To be announced"}</dd></div>
+                    <div><dt className="inline font-bold text-gt-navy">When: </dt><dd className="inline">{formatEventTime(event)}</dd></div>
                     <div><dt className="inline font-bold text-gt-navy">Where: </dt><dd className="inline">{event.location}</dd></div>
                     <div><dt className="inline font-bold text-gt-navy">Registered: </dt><dd className="inline">{event.registeredCount}{event.capacity === null ? "" : ` of ${event.capacity}`}</dd></div>
                   </dl>

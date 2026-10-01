@@ -75,6 +75,10 @@ describe("platform PostgreSQL integration", { skip: skipped, concurrency: false 
     await platformPool.query(migration);
     const securityMigration = await readFile(resolve(process.cwd(), "migrations/002-security-audit.sql"), "utf8");
     await platformPool.query(securityMigration);
+    for (const name of ["003-interest-meeting-schedule.sql", "004-hide-unconfirmed-general-body-meeting.sql"]) {
+      const sql = await readFile(resolve(process.cwd(), "migrations", name), "utf8");
+      await platformPool.query(sql);
+    }
 
     const grants = await platformPool.query<{ count: string }>("SELECT count(*)::text AS count FROM officers");
     assert.equal(Number(grants.rows[0].count), 0, "the migration must not create a first officer");
@@ -106,23 +110,28 @@ describe("platform PostgreSQL integration", { skip: skipped, concurrency: false 
     else process.env.MEMBERSHIP_APPROVAL_ENABLED = originalApprovalSetting;
   });
 
-  it("seeds both planned chapter events without inventing dates or opening registration", async () => {
+  it("seeds the confirmed interest meeting and keeps the unconfirmed first general body meeting hidden", async () => {
     const result = await platformPool!.query<{
-      id: string; title: string; starts_at: Date | null; ends_at: Date | null;
+      id: string; title: string; location: string; starts_at: Date | null; ends_at: Date | null;
       publication_status: string; registration_status: string;
     }>(
-      `SELECT id, title, starts_at, ends_at, publication_status, registration_status
+      `SELECT id, title, location, starts_at, ends_at, publication_status, registration_status
          FROM events WHERE id IN ($1, $2) ORDER BY id`,
       ["b978ce11-0e75-4e1d-91cb-5fb6fd327001", "b978ce11-0e75-4e1d-91cb-5fb6fd327002"],
     );
     assert.equal(result.rows.length, 2);
     assert.deepEqual(new Set(result.rows.map(row => row.title)), new Set(["Fall 2026 Interest Meeting", "First General Body Meeting"]));
-    for (const event of result.rows) {
-      assert.equal(event.starts_at, null);
-      assert.equal(event.ends_at, null);
-      assert.equal(event.publication_status, "published");
-      assert.equal(event.registration_status, "closed");
-    }
+    const interestMeeting = result.rows.find(row => row.id === "b978ce11-0e75-4e1d-91cb-5fb6fd327001")!;
+    assert.equal(interestMeeting.starts_at?.toISOString(), "2026-10-15T22:30:00.000Z");
+    assert.equal(interestMeeting.ends_at?.toISOString(), "2026-10-15T23:30:00.000Z");
+    assert.equal(interestMeeting.location, "Instructional Center (IC), Room 115");
+    assert.equal(interestMeeting.publication_status, "published");
+    assert.equal(interestMeeting.registration_status, "closed");
+    const generalBodyMeeting = result.rows.find(row => row.id === "b978ce11-0e75-4e1d-91cb-5fb6fd327002")!;
+    assert.equal(generalBodyMeeting.starts_at, null);
+    assert.equal(generalBodyMeeting.ends_at, null);
+    assert.equal(generalBodyMeeting.publication_status, "draft");
+    assert.equal(generalBodyMeeting.registration_status, "closed");
   });
 
   it("preflights member and officer eligibility before waiting on an event row lock", async () => {

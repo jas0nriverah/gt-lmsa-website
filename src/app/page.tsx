@@ -100,7 +100,7 @@ export default async function HomePage() {
                     {availability === "unavailable"
                       ? "Please check the events page again soon for confirmed updates."
                       : availability === "unconfigured"
-                        ? `Planned for ${interestMeetingTiming}. Exact date, time and location will be announced; RSVPs are not open yet.`
+                        ? `Scheduled for ${interestMeetingTiming} at Instructional Center (IC), Room 115. RSVPs are not open yet.`
                         : "Check back here as plans and event details are confirmed."}
                   </p>
                 </div>

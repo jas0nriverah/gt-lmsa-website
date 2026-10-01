@@ -95,7 +95,7 @@ export interface BoardMember {
   openingNote?: string;
   /** Optional Google Form (or other) URL for applying to an open role. */
   applicationUrl?: string;
-  image?: { src: string; alt: string };
+  image?: { src: string; alt: string; fit?: "cover" | "contain" };
   publicContacts?: Array<{
     label: string;
     href: string;
