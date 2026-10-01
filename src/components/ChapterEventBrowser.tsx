@@ -68,7 +68,7 @@ export function ChapterEventBrowser({ configured }: { configured: boolean }) {
         <p className="eyebrow">First chapter gathering</p>
         <h3 className="mt-3 text-2xl font-bold text-gt-navy">Fall 2026 Interest Meeting</h3>
         <p className="mt-3">
-          Planned for the second or third week of October 2026. Exact date, time, and location to be confirmed.
+          Thursday, October 15, 2026, from 6:30–7:30 PM EDT in Instructional Center (IC), Room 115.
         </p>
         <p className="mt-3 text-slate-600">
           Online RSVPs aren’t available yet. Check back for registration details.

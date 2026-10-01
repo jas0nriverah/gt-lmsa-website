@@ -88,9 +88,9 @@ export const events: ChapterEvent[] = refreshedEvents.map((event) => {
   if (event.id === "fall-2026-interest-meeting") {
     return {
       ...event,
-      displayDate: `Date TBD \u2014 ${interestMeetingTiming}`,
+      displayDate: interestMeetingTiming,
       description:
-        "Meet the founding executive board, learn what LMSA PLUS is, explore planned programming, and share what would make the chapter useful to you. Exact date, time, and location are not confirmed yet.",
+        "Meet the founding executive board, learn what LMSA PLUS is, explore planned programming, and share what would make the chapter useful to you. The meeting is scheduled for Thursday, October 15, 2026, from 6:30–7:30 PM EDT in Instructional Center (IC), Room 115.",
     };
   }
   return event;
@@ -102,8 +102,7 @@ export const announcements: Announcement[] = refreshedAnnouncements
     if (announcement.id === "interest-meeting-fall-2026") {
       return {
         ...announcement,
-        timing:
-          `Date TBD \u2014 ${interestMeetingTiming} (time and location coming soon)`,
+        timing: `${interestMeetingTiming} · Instructional Center (IC), Room 115`,
       };
     }
     return announcement;
@@ -114,7 +113,7 @@ export const faqs: FAQ[] = baseFaqs.map((faq) => {
     return {
       ...faq,
       answer:
-        "The Events page is the current source for the first Interest Meeting’s schedule, location, and registration status. Planned dates remain tentative until confirmed there. Follow the chapter Instagram or email the chapter for updates.",
+        "The first Interest Meeting is scheduled for Thursday, October 15, 2026, from 6:30–7:30 PM EDT in Instructional Center (IC), Room 115. RSVPs are not open yet. Check the Events page or follow the chapter Instagram for updates.",
     };
   }
   if (faq.question === "How can students hear about scholarships?") {

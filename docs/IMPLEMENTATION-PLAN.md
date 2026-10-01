@@ -12,7 +12,7 @@ Baseline `origin/main` is 124ef6c. No backend/auth/database exists. Public pages
 
 One Next.js app, node-postgres parameterized SQL, PostgreSQL, Better Auth Google verified sign-in. No passwords, Redis, separate server, or browser database credentials. Auth identity is distinct from membership and officer permission. No user is promoted automatically. New membership is pending. The owner confirmed pending membership followed by officer approval on September 27, 2026; `.env.example` therefore enables MEMBERSHIP_APPROVAL_ENABLED=true. This is not authorization to activate production. Google login does not imply Georgia Tech affiliation.
 
-PostgreSQL owns chapter events when configured, including an undated planned launch for the second or third week of October 2026. Static national/campus/external records stay separate. Database outages are errors, never a switch to stale chapter records. Initial launch registration is closed until an officer confirms scheduling. Local synthetic test events can exercise full RSVPs without inventing public logistics.
+PostgreSQL owns chapter events when configured, including the Fall 2026 Interest Meeting scheduled for October 15, 2026, from 6:30–7:30 PM EDT in Instructional Center (IC), Room 115. Registration remains closed until an officer opens it. Static national/campus/external records stay separate. Database outages are errors, never a switch to stale chapter records. Local synthetic test events can exercise full RSVPs.
 
 ## API contract
 

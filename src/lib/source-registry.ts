@@ -100,7 +100,7 @@ export const sourceRegistry: SourceRecord[] = [
     name: "Georgia Tech Campus Calendar",
     url: "https://calendar.gatech.edu/",
     supports: [
-      "Young Physicians Initiative Oct 15 2026 6:30–7:30pm Montag — Explore LLC official page (listed as external)",
+      "Young Physicians Initiative Oct 15 2026 6:30–7:30pm Montag — omitted from public recommendations because it overlaps with the LMSA Plus Interest Meeting",
       "No other ≥80 dedicated official-calendar pre-health events verified for Oct 1–Oct 15 2026",
       "SCENE CoS Oct 7 deliberately not listed (not dedicated pre-health)",
       "GT Health Professional School Fair announced for Feb 23 2027 (too far for This Week)",
