@@ -8,8 +8,9 @@ import { chapterToday, currentWeek, hasEnded } from "./event-dates";
 
 /**
  * P0.3 — verified external / recommended pre-health events.
- * Rechecked October 1, 2026 (weekday daily) against official GT Campus Calendar,
+ * Rechecked October 2, 2026 (weekday daily) against official GT Campus Calendar,
  * Pre-Health Advising, Explore LLC, LMSA National, and LMSA Southeast sources.
+ * Rolling window: October 2 – October 16, 2026.
  * Young Physicians Initiative on Oct 15 was omitted because it conflicts with
  * the LMSA Plus Interest Meeting at the same time.
  * NC2026 (Sep 17–20 Houston) concluded — archived via overlays / eventsAsOf.
@@ -18,7 +19,7 @@ import { chapterToday, currentWeek, hasEnded } from "./event-dates";
  * Listings are recommendations only — not LMSA Plus partnerships or chapter programming.
  */
 
-export const EXTERNAL_EVENTS_CHECKED_AT = "October 1, 2026";
+export const EXTERNAL_EVENTS_CHECKED_AT = "October 2, 2026";
 
 export const externalEvents: ExternalEvent[] = [];
 
