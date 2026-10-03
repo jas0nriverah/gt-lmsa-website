@@ -60,7 +60,7 @@ export default async function EventsPage() {
         id="chapter-events"
         eyebrow="LMSA+ at Georgia Tech"
         title="Chapter gatherings"
-        description="Browse events and RSVP with your approved chapter membership."
+        description="Browse chapter events and follow each event’s registration link."
         className="bg-gt-cream"
       >
         <ChapterEventBrowser configured={Boolean(process.env.DATABASE_URL)} />

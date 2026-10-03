@@ -113,7 +113,7 @@ export const faqs: FAQ[] = baseFaqs.map((faq) => {
     return {
       ...faq,
       answer:
-        "The first Interest Meeting is scheduled for Thursday, October 15, 2026, from 6:30–7:30 PM EDT in Instructional Center (IC), Room 115. RSVPs are not open yet. Check the Events page or follow the chapter Instagram for updates.",
+        "The first Interest Meeting is scheduled for Thursday, October 15, 2026, from 6:30–7:30 PM EDT in Instructional Center (IC), Room 115. RSVP through Georgia Tech Engage from the Events page.",
     };
   }
   if (faq.question === "How can students hear about scholarships?") {

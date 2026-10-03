@@ -24,6 +24,7 @@ import type {
   ScholarshipOpportunity,
 } from "./site-types";
 import { LAST_CONTENT_REVIEW } from "./source-registry";
+import { ENGAGE_INTEREST_MEETING_RSVP_URL } from "./engage-events";
 
 export const interestMeetingTiming = "Thursday, October 15, 2026 · 6:30–7:30 PM EDT";
 
@@ -288,7 +289,8 @@ export const events: ChapterEvent[] = [
     location: "Instructional Center (IC), Room 115",
     description:
       "Meet the founding executive board, learn what LMSA PLUS is, explore planned programming, and share what would make the chapter useful to you. The meeting is scheduled for Thursday, October 15, 2026, from 6:30–7:30 PM EDT in Instructional Center (IC), Room 115.",
-    registrationStatus: "coming-soon",
+    registrationUrl: ENGAGE_INTEREST_MEETING_RSVP_URL,
+    registrationStatus: "active",
     featured: true,
   },
 ];

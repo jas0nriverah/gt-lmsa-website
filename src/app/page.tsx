@@ -7,6 +7,7 @@ import { SitePage } from "@/components/SitePage";
 import { getUpcomingItems } from "@/lib/external-events";
 import { interestMeetingTiming } from "@/lib/site-data";
 import { formatEventTime } from "@/lib/platform-dates";
+import { ENGAGE_INTEREST_MEETING_RSVP_URL } from "@/lib/engage-events";
 import { getPublicChapterEvents } from "@/server/public-events";
 
 export const dynamic = "force-dynamic";
@@ -100,9 +101,20 @@ export default async function HomePage() {
                     {availability === "unavailable"
                       ? "Please check the events page again soon for confirmed updates."
                       : availability === "unconfigured"
-                        ? `Scheduled for ${interestMeetingTiming} at Instructional Center (IC), Room 115. RSVPs are not open yet.`
-                        : "Check back here as plans and event details are confirmed."}
+                        ? `Scheduled for ${interestMeetingTiming} at Instructional Center (IC), Room 115. RSVP through Georgia Tech Engage.`
+                      : "Check back here as plans and event details are confirmed."}
                   </p>
+                  {availability === "unconfigured" ? (
+                    <a
+                      href={ENGAGE_INTEREST_MEETING_RSVP_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="button button-primary mt-5"
+                    >
+                      RSVP on Georgia Tech Engage <span aria-hidden="true">↗</span>
+                      <span className="sr-only"> (opens in a new tab)</span>
+                    </a>
+                  ) : null}
                 </div>
               )}
 

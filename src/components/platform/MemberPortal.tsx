@@ -17,6 +17,7 @@ import { PlatformRequestError, errorMessage, platformRequest } from "./api";
 import { GoogleSignInAction, SignOutAction } from "./AuthActions";
 import { formatAtlantaDateTime } from "./date-time";
 import { formatEventTime } from "@/lib/platform-dates";
+import { engageRsvpUrlForEvent } from "@/lib/engage-events";
 import {
   FieldLabel,
   InlineAlert,
@@ -382,6 +383,9 @@ export function MemberPortal({ authEnabled }: { authEnabled: boolean }) {
           <div className="grid gap-4">
             {registrations.items.map((registration) => {
               const ticket = tickets[registration.id];
+              const engageRsvpUrl = registration.event
+                ? engageRsvpUrlForEvent(registration.event)
+                : undefined;
               return (
                 <article key={registration.id} className="rounded-2xl border border-slate-200 p-4 sm:p-5">
                   <div className="flex flex-wrap items-start justify-between gap-3">
@@ -389,20 +393,39 @@ export function MemberPortal({ authEnabled }: { authEnabled: boolean }) {
                       <h4 className="text-lg font-bold text-gt-navy">{registration.event?.title ?? "Chapter event"}</h4>
                       <p className="mt-1 text-sm text-slate-600">{registration.event ? formatEventTime(registration.event) : "Event details unavailable"}</p>
                     </div>
-                    <PlatformStatus status={registration.status} />
+                    {engageRsvpUrl ? (
+                      <span className="rounded-full bg-amber-50 px-3 py-1 text-sm font-bold text-amber-900">
+                        {registration.status === "registered" ? "Website RSVP record" : "Website RSVP canceled"}
+                      </span>
+                    ) : (
+                      <PlatformStatus status={registration.status} />
+                    )}
                   </div>
-                  {registration.checkedInAt ? <p className="mt-3 text-sm font-semibold text-emerald-800">Checked in {formatAtlantaDateTime(registration.checkedInAt)}</p> : null}
+                  {engageRsvpUrl ? (
+                    <p className="mt-3 text-sm leading-6 text-slate-600">
+                      This website RSVP is separate from Georgia Tech Engage. Use Engage for the official event registration.
+                    </p>
+                  ) : registration.checkedInAt ? (
+                    <p className="mt-3 text-sm font-semibold text-emerald-800">Checked in {formatAtlantaDateTime(registration.checkedInAt)}</p>
+                  ) : null}
                   {registration.status === "registered" ? (
                     <div className="mt-4 flex flex-wrap gap-3">
-                      <button type="button" className="button button-secondary text-sm disabled:opacity-60" disabled={memberStatus !== "active" || Boolean(registration.event && (registration.event.publicationStatus !== "published" || !registration.event.startsAt || !registration.event.endsAt)) || busyKey === `ticket:${registration.id}`} onClick={() => void issueTicket(registration)}>
-                        {busyKey === `ticket:${registration.id}` ? "Issuing code…" : ticket ? "Issue a new ticket code" : "Get ticket code"}
-                      </button>
+                      {engageRsvpUrl ? (
+                        <a className="button button-primary text-sm" href={engageRsvpUrl} target="_blank" rel="noopener noreferrer">
+                          RSVP on Georgia Tech Engage <span aria-hidden="true">↗</span>
+                          <span className="sr-only"> (opens in a new tab)</span>
+                        </a>
+                      ) : (
+                        <button type="button" className="button button-secondary text-sm disabled:opacity-60" disabled={memberStatus !== "active" || Boolean(registration.event && (registration.event.publicationStatus !== "published" || !registration.event.startsAt || !registration.event.endsAt)) || busyKey === `ticket:${registration.id}`} onClick={() => void issueTicket(registration)}>
+                          {busyKey === `ticket:${registration.id}` ? "Issuing code…" : ticket ? "Issue a new ticket code" : "Get ticket code"}
+                        </button>
+                      )}
                       <button type="button" className="button button-secondary text-sm disabled:opacity-60" disabled={busyKey === `rsvp:${registration.eventId}`} onClick={() => void changeRsvp(registration.eventId, true)}>
-                        {busyKey === `rsvp:${registration.eventId}` ? "Cancelling…" : "Cancel RSVP"}
+                        {busyKey === `rsvp:${registration.eventId}` ? "Cancelling…" : engageRsvpUrl ? "Remove website RSVP" : "Cancel RSVP"}
                       </button>
                     </div>
                   ) : null}
-                  {ticket ? (
+                  {ticket && !engageRsvpUrl ? (
                     <div className="mt-4 rounded-xl bg-gt-cream p-4">
                       <label htmlFor={`ticket-${registration.id}`} className="text-sm font-bold text-gt-navy">Private ticket code</label>
                       <p className="mt-1 text-sm leading-6 text-slate-600">Show this code to an officer at check-in. It is not a webpage link.</p>
@@ -436,6 +459,10 @@ export function MemberPortal({ authEnabled }: { authEnabled: boolean }) {
         {events?.items.length ? (
           <div className="grid gap-4">
             {events.items.map((event) => {
+              const engageRsvpUrl =
+                event.publicationStatus === "published"
+                  ? engageRsvpUrlForEvent(event)
+                  : undefined;
               const current = registrations?.items.find((row) => row.eventId === event.id && row.status === "registered");
               const now = Date.now();
               const registrationNotStarted = Boolean(event.registrationOpensAt && Date.parse(event.registrationOpensAt) > now);
@@ -452,17 +479,34 @@ export function MemberPortal({ authEnabled }: { authEnabled: boolean }) {
                     </div>
                     <div className="flex flex-wrap gap-2">
                       <PlatformStatus status={event.publicationStatus} />
-                      <PlatformStatus status={event.registrationStatus} />
+                      {engageRsvpUrl ? null : <PlatformStatus status={event.registrationStatus} />}
                     </div>
                   </div>
                   <p className="mt-3 whitespace-pre-line leading-7 text-slate-600">{event.description}</p>
                   <dl className="mt-4 grid gap-2 text-sm text-slate-600 sm:grid-cols-2">
                     <div><dt className="inline font-bold text-gt-navy">When: </dt><dd className="inline">{formatEventTime(event)}</dd></div>
                     <div><dt className="inline font-bold text-gt-navy">Where: </dt><dd className="inline">{event.location}</dd></div>
-                    <div><dt className="inline font-bold text-gt-navy">Registered: </dt><dd className="inline">{event.registeredCount}{event.capacity === null ? "" : ` of ${event.capacity}`}</dd></div>
+                    {engageRsvpUrl ? null : (
+                      <div><dt className="inline font-bold text-gt-navy">Registered: </dt><dd className="inline">{event.registeredCount}{event.capacity === null ? "" : ` of ${event.capacity}`}</dd></div>
+                    )}
                   </dl>
                   <div className="mt-4 flex flex-wrap items-center gap-3">
-                    {current ? (
+                    {engageRsvpUrl ? (
+                      <>
+                        <span className="text-sm text-slate-600">
+                          RSVP is handled by Georgia Tech Engage; this site will not save a second RSVP.
+                        </span>
+                        <a className="button button-primary text-sm" href={engageRsvpUrl} target="_blank" rel="noopener noreferrer">
+                          RSVP on Engage <span aria-hidden="true">↗</span>
+                          <span className="sr-only"> (opens in a new tab)</span>
+                        </a>
+                        {current ? (
+                          <button type="button" className="button button-secondary text-sm disabled:opacity-60" disabled={busyKey === `rsvp:${event.id}`} onClick={() => void changeRsvp(event.id, true)}>
+                            {busyKey === `rsvp:${event.id}` ? "Removing…" : "Remove website RSVP"}
+                          </button>
+                        ) : null}
+                      </>
+                    ) : current ? (
                       <>
                         <span className="text-sm font-bold text-emerald-800">You’re registered</span>
                         <button type="button" className="button button-secondary text-sm disabled:opacity-60" disabled={busyKey === `rsvp:${event.id}`} onClick={() => void changeRsvp(event.id, true)}>
@@ -474,7 +518,7 @@ export function MemberPortal({ authEnabled }: { authEnabled: boolean }) {
                         {busyKey === `rsvp:${event.id}` ? "Saving RSVP…" : "RSVP"}
                       </button>
                     )}
-                    {!canRegister && !current ? (
+                    {!engageRsvpUrl && !canRegister && !current ? (
                       <span className="text-sm text-slate-500">
                         {memberStatus !== "active" ? "An active membership is required to RSVP." : event.publicationStatus !== "published" ? "This event is not currently accepting RSVPs." : event.registrationStatus !== "open" || registrationEnded ? "Registration is closed." : registrationNotStarted ? `Registration opens ${formatAtlantaDateTime(event.registrationOpensAt)}.` : eventAlreadyStarted ? "This event is already in progress." : eventFull ? "This event has reached capacity." : "Registration is unavailable."}
                       </span>

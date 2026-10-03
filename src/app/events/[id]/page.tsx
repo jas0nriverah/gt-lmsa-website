@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { EventRsvp } from "@/components/EventRsvp";
 import { SitePage } from "@/components/SitePage";
 import type { PlatformEvent } from "@/lib/platform-contracts";
+import { engageRsvpUrlForEvent } from "@/lib/engage-events";
 import { formatEventTime, registrationState } from "@/lib/platform-dates";
 import { PlatformError } from "@/server/errors";
 import { getPool } from "@/server/db";
@@ -34,6 +35,10 @@ export default async function EventDetail({
   }
 
   const state = registrationState(event);
+  const engageRsvpUrl =
+    event.publicationStatus === "published"
+      ? engageRsvpUrlForEvent(event)
+      : undefined;
 
   return (
     <SitePage>
@@ -57,7 +62,25 @@ export default async function EventDetail({
             <p className="whitespace-pre-line leading-8 text-slate-700">
               {event.description}
             </p>
-            <EventRsvp key={id} event={event} initialState={state} />
+            {engageRsvpUrl ? (
+              <aside className="card p-7">
+                <h2 className="text-2xl font-bold text-gt-navy">RSVP on Georgia Tech Engage</h2>
+                <p className="mt-3 leading-7 text-slate-600">
+                  Use Georgia Tech Engage for your official registration. The chapter website’s RSVP form is disabled for this event.
+                </p>
+                <a
+                  className="button button-primary mt-5"
+                  href={engageRsvpUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Continue to Engage <span aria-hidden="true">↗</span>
+                  <span className="sr-only"> (opens in a new tab)</span>
+                </a>
+              </aside>
+            ) : (
+              <EventRsvp key={id} event={event} initialState={state} />
+            )}
           </div>
         </div>
       </section>

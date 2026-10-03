@@ -4,6 +4,10 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import type { Page, PlatformEvent } from "@/lib/platform-contracts";
 import { formatEventTime, registrationState } from "@/lib/platform-dates";
+import {
+  ENGAGE_INTEREST_MEETING_RSVP_URL,
+  engageRsvpUrlForEvent,
+} from "@/lib/engage-events";
 
 type EventsResponse = {
   data?: Page<PlatformEvent>;
@@ -71,11 +75,17 @@ export function ChapterEventBrowser({ configured }: { configured: boolean }) {
           Thursday, October 15, 2026, from 6:30–7:30 PM EDT in Instructional Center (IC), Room 115.
         </p>
         <p className="mt-3 text-slate-600">
-          Online RSVPs aren’t available yet. Check back for registration details.
+          RSVP through Georgia Tech Engage. The chapter website does not collect a second RSVP for this event.
         </p>
-        <Link href="/join" className="button button-primary mt-5">
-          Membership information →
-        </Link>
+        <a
+          href={ENGAGE_INTEREST_MEETING_RSVP_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="button button-primary mt-5"
+        >
+          RSVP on Georgia Tech Engage <span aria-hidden="true">↗</span>
+          <span className="sr-only"> (opens in a new tab)</span>
+        </a>
       </div>
     );
   }
@@ -129,25 +139,49 @@ export function ChapterEventBrowser({ configured }: { configured: boolean }) {
         <>
           {result?.items.length ? (
             <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-              {result.items.map((event) => (
-                <article id={event.id} key={event.id} className="card flex flex-col p-6">
-                  <p className="eyebrow">{event.category}</p>
-                  <h3 className="mt-3 text-xl font-bold text-gt-navy">{event.title}</h3>
-                  <p className="mt-3 font-semibold">{formatEventTime(event)}</p>
-                  <p className="mt-2 text-sm text-slate-600">
-                    {event.location || "Location to be confirmed"}
-                  </p>
-                  <p className="mt-4 flex-1 line-clamp-3 leading-7 text-slate-600">
-                    {event.description}
-                  </p>
-                  <p className="mt-4 text-sm font-bold text-gt-dark-gold">
-                    {registrationState(event)}
-                  </p>
-                  <Link className="text-link mt-5 font-bold" href={`/events/${event.id}`}>
-                    Event details &amp; RSVP →
-                  </Link>
-                </article>
-              ))}
+              {result.items.map((event) => {
+                const engageRsvpUrl =
+                  event.publicationStatus === "published"
+                    ? engageRsvpUrlForEvent(event)
+                    : undefined;
+
+                return (
+                  <article id={event.id} key={event.id} className="card flex flex-col p-6">
+                    <p className="eyebrow">{event.category}</p>
+                    <h3 className="mt-3 text-xl font-bold text-gt-navy">{event.title}</h3>
+                    <p className="mt-3 font-semibold">{formatEventTime(event)}</p>
+                    <p className="mt-2 text-sm text-slate-600">
+                      {event.location || "Location to be confirmed"}
+                    </p>
+                    <p className="mt-4 flex-1 line-clamp-3 leading-7 text-slate-600">
+                      {event.description}
+                    </p>
+                    {engageRsvpUrl ? (
+                      <>
+                        <p className="mt-4 text-sm font-bold text-gt-dark-gold">
+                          RSVP through Georgia Tech Engage
+                        </p>
+                        <a
+                          className="button button-primary mt-4 self-start"
+                          href={engageRsvpUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          RSVP on Engage <span aria-hidden="true">↗</span>
+                          <span className="sr-only"> (opens in a new tab)</span>
+                        </a>
+                      </>
+                    ) : (
+                      <p className="mt-4 text-sm font-bold text-gt-dark-gold">
+                        {registrationState(event)}
+                      </p>
+                    )}
+                    <Link className="text-link mt-5 font-bold" href={`/events/${event.id}`}>
+                      {engageRsvpUrl ? "Event details →" : "Event details & RSVP →"}
+                    </Link>
+                  </article>
+                );
+              })}
             </div>
           ) : (
             <p className="card p-7">
