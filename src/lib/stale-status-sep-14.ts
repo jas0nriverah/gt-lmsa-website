@@ -11,7 +11,7 @@ import {
 import { faqs as baseFaqs, scholarships as baseScholarships, interestMeetingTiming } from "./site-data";
 import { LAST_CONTENT_REVIEW } from "./source-registry";
 
-/** October 2, 2026 stale opportunity/event status refresh (weekday daily; YPI omitted per board decision in external-events; PURA deadline Oct 12). */
+/** October 4, 2026 Sunday deep audit (Interest Meeting published via site-data interestMeetingTiming; YPI omitted per board decision in external-events; PURA deadline Oct 12). */
 
 const PAST_EVENT_IDS = new Set([
   "pre-health-fall-kickoff-2026",
