@@ -1175,13 +1175,6 @@ export const involvementActions: ActionLink[] = [
     category: "Chapter",
   },
   {
-    label: "Ask about Fall board chairs",
-    description:
-      "All founding Fall board roles are currently filled. Check back if additional openings are announced.",
-    status: "coming-soon",
-    category: "Leadership",
-  },
-  {
     label: "Follow chapter updates",
     description: `Follow ${contactLinks.instagramHandle} for public announcements.`,
     href: contactLinks.instagram,
@@ -1220,12 +1213,6 @@ export const linktreeLinks: ActionLink[] = [
     status: "active",
     category: "Membership",
     featured: true,
-  },
-  {
-    label: "Ask about Fall board chairs",
-    description: "All founding Fall board roles are filled — check back for future openings.",
-    status: "coming-soon",
-    category: "Leadership",
   },
   {
     label: "2026 Pre-Health Fall Kickoff",
