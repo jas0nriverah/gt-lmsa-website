@@ -90,7 +90,7 @@ export const events: ChapterEvent[] = refreshedEvents.map((event) => {
       ...event,
       displayDate: interestMeetingTiming,
       description:
-        "Meet the founding executive board, learn what LMSA PLUS is, explore planned programming, and share what would make the chapter useful to you. The meeting is scheduled for Thursday, October 15, 2026, from 6:30–7:30 PM EDT in Instructional Center (IC), Room 115.",
+        "Meet the founding executive board, learn about LMSA+ at Georgia Tech, explore service and professional-development opportunities, and find ways to get involved. The meeting is scheduled for Thursday, October 15, 2026, from 6:30–7:30 PM EDT in Instructional Center (IC), Room 115. RSVP through Georgia Tech Engage.",
     };
   }
   return event;
@@ -113,7 +113,7 @@ export const faqs: FAQ[] = baseFaqs.map((faq) => {
     return {
       ...faq,
       answer:
-        "The first Interest Meeting is scheduled for Thursday, October 15, 2026, from 6:30–7:30 PM EDT in Instructional Center (IC), Room 115. RSVPs are not open yet. Check the Events page or follow the chapter Instagram for updates.",
+        "The first LMSA+ Interest Meeting is Thursday, October 15, 2026, from 6:30–7:30 PM EDT in Instructional Center (IC), Room 115. RSVP through the official Georgia Tech Engage event page.",
     };
   }
   if (faq.question === "How can students hear about scholarships?") {

@@ -5,9 +5,9 @@ import { BiomedicalBackground } from "@/components/BiomedicalBackground";
 import { ThisWeekCard } from "@/components/ThisWeekCard";
 import { SitePage } from "@/components/SitePage";
 import { getUpcomingItems } from "@/lib/external-events";
-import { interestMeetingTiming } from "@/lib/site-data";
 import { formatEventTime } from "@/lib/platform-dates";
 import { getPublicChapterEvents } from "@/server/public-events";
+import { FIRST_CHAPTER_EVENT } from "@/lib/first-chapter-event";
 
 export const dynamic = "force-dynamic";
 
@@ -33,7 +33,19 @@ export default async function HomePage() {
             <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-600">
               Georgia Tech’s Latino Medical Student Association. Meet other pre-health students, find mentors, and give back to our community.
             </p>
+            <p className="mt-5 text-sm font-semibold text-slate-600">
+              First meeting · {FIRST_CHAPTER_EVENT.shortTiming} · IC, Room 115
+            </p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
+              <a
+                href={FIRST_CHAPTER_EVENT.engageUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="button button-primary"
+              >
+                RSVP on Georgia Tech Engage <span aria-hidden="true">↗</span>
+                <span className="sr-only"> (opens in a new tab)</span>
+              </a>
               <Link href="/join" className="button button-primary">
                 Join LMSA+ <span aria-hidden="true">→</span>
               </Link>
@@ -83,7 +95,7 @@ export default async function HomePage() {
                   <h3 className="mt-3 text-2xl font-bold text-gt-navy">{featuredEvent.title}</h3>
                   <p className="mt-3 font-semibold text-slate-600">{formatEventTime(featuredEvent)}</p>
                   <span className="mt-6 inline-flex font-bold text-gt-navy">
-                    Event details <span aria-hidden="true" className="ml-2 transition-transform group-hover:translate-x-1">→</span>
+                    Event details &amp; RSVP <span aria-hidden="true" className="ml-2 transition-transform group-hover:translate-x-1">→</span>
                   </span>
                 </Link>
               ) : (
@@ -93,16 +105,26 @@ export default async function HomePage() {
                     {availability === "ready"
                       ? "No upcoming chapter events are currently listed."
                       : availability === "unconfigured"
-                        ? "Fall 2026 Interest Meeting"
+                        ? FIRST_CHAPTER_EVENT.title
                         : "Chapter event details are temporarily unavailable."}
                   </p>
                   <p className="mt-2 leading-7 text-slate-600">
                     {availability === "unavailable"
                       ? "Please check the events page again soon for confirmed updates."
                       : availability === "unconfigured"
-                        ? `Scheduled for ${interestMeetingTiming} at Instructional Center (IC), Room 115. RSVPs are not open yet.`
+                        ? `${FIRST_CHAPTER_EVENT.timing} · ${FIRST_CHAPTER_EVENT.location}. RSVP through Georgia Tech Engage.`
                         : "Check back here as plans and event details are confirmed."}
                   </p>
+                  {availability === "unconfigured" ? (
+                    <a
+                      href={FIRST_CHAPTER_EVENT.engageUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="button button-primary mt-5"
+                    >
+                      RSVP on Georgia Tech Engage <span aria-hidden="true">↗</span>
+                    </a>
+                  ) : null}
                 </div>
               )}
 

@@ -3,6 +3,7 @@ import { getPool } from "@/server/db";
 import { PlatformError } from "@/server/errors";
 import { body, handle, json, privateHeaders, rateLimit, verifyOrigin } from "@/server/http";
 import { createPlatform } from "@/server/platform";
+import { FIRST_CHAPTER_EVENT } from "@/lib/first-chapter-event";
 import { auditQuery, checkInInput, eventInput, eventUpdateInput, listQuery, memberInput, membershipStatus, object, uuid } from "@/server/validation";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -32,6 +33,16 @@ async function dispatch(request: Request, context: Context) {
       const id = uuid(path[1]);
       // Identity and ownership come exclusively from the verified session.
       if (request.body) object(await body(request), []);
+      if (
+        id === FIRST_CHAPTER_EVENT.platformId &&
+        ((path[2] === "rsvp" && method === "POST") || (path[2] === "ticket" && method === "POST"))
+      ) {
+        throw new PlatformError(
+          "EXTERNAL_REGISTRATION",
+          "This event's RSVP is handled by Georgia Tech Engage.",
+          409,
+        );
+      }
       if (path[2] === "rsvp" && method === "POST") return json(await service.rsvp(actor, id));
       if (path[2] === "rsvp" && method === "DELETE") return json(await service.cancelRsvp(actor, id));
       if (path[2] === "ticket" && method === "POST") return json(await service.issueTicket(actor, id));

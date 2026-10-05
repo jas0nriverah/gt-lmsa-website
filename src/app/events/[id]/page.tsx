@@ -8,6 +8,7 @@ import { PlatformError } from "@/server/errors";
 import { getPool } from "@/server/db";
 import { createPlatform } from "@/server/platform";
 import { uuid } from "@/server/validation";
+import { FIRST_CHAPTER_EVENT } from "@/lib/first-chapter-event";
 
 export const dynamic = "force-dynamic";
 export const metadata = { title: "Chapter event" };
@@ -57,7 +58,30 @@ export default async function EventDetail({
             <p className="whitespace-pre-line leading-8 text-slate-700">
               {event.description}
             </p>
-            <EventRsvp key={id} event={event} initialState={state} />
+            {event.id === FIRST_CHAPTER_EVENT.platformId && event.publicationStatus === "published" ? (
+              <aside className="card p-7" aria-labelledby="engage-rsvp-heading">
+                <h2 id="engage-rsvp-heading" className="text-2xl font-bold text-gt-navy">
+                  Join us
+                </h2>
+                <p className="mt-3 leading-7 text-slate-600">
+                  RSVP for this meeting through Georgia Tech Engage. Follow the instructions there to confirm your attendance.
+                </p>
+                <a
+                  href={FIRST_CHAPTER_EVENT.engageUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="button button-primary mt-5"
+                >
+                  RSVP on Georgia Tech Engage <span aria-hidden="true">↗</span>
+                  <span className="sr-only"> (opens in a new tab)</span>
+                </a>
+                <p className="mt-3 text-sm text-slate-600">
+                  Registration and attendance confirmation are handled on Engage.
+                </p>
+              </aside>
+            ) : (
+              <EventRsvp key={id} event={event} initialState={state} />
+            )}
           </div>
         </div>
       </section>

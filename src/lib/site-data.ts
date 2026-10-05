@@ -24,8 +24,9 @@ import type {
   ScholarshipOpportunity,
 } from "./site-types";
 import { LAST_CONTENT_REVIEW } from "./source-registry";
+import { FIRST_CHAPTER_EVENT } from "./first-chapter-event";
 
-export const interestMeetingTiming = "Thursday, October 15, 2026 · 6:30–7:30 PM EDT";
+export const interestMeetingTiming = FIRST_CHAPTER_EVENT.timing;
 
 export const chapterInfo: ChapterInfo = {
   shortName: "LMSA Plus at Georgia Tech",
@@ -75,13 +76,14 @@ export const announcements: Announcement[] = [
   },
   {
     id: "interest-meeting-fall-2026",
-    title: "Fall 2026 Interest Meeting",
+    title: FIRST_CHAPTER_EVENT.title,
     summary:
       "Meet the founding board, learn how LMSA PLUS connects pre-health students, and help shape the chapter's first year.",
-    timing: `${interestMeetingTiming} · Instructional Center (IC), Room 115`,
-    status: "planned",
-    href: "/events",
+    timing: `${FIRST_CHAPTER_EVENT.timing} · ${FIRST_CHAPTER_EVENT.location}`,
+    status: "confirmed",
+    href: FIRST_CHAPTER_EVENT.engageUrl,
     featured: true,
+    endDate: FIRST_CHAPTER_EVENT.endDate,
   },
 ];
 
@@ -278,17 +280,20 @@ export const events: ChapterEvent[] = [
   },
   {
     id: "fall-2026-interest-meeting",
-    title: "Fall 2026 Interest Meeting",
+    title: FIRST_CHAPTER_EVENT.title,
     category: "Chapter launch",
-    status: "planned",
-    displayDate: interestMeetingTiming,
+    status: "confirmed",
+    displayDate: FIRST_CHAPTER_EVENT.timing,
     startDate: "2026-10-15",
-    endDate: "2026-10-15",
-    time: "6:30–7:30 PM EDT",
-    location: "Instructional Center (IC), Room 115",
+    endDate: FIRST_CHAPTER_EVENT.endDate,
+    time: "6:30 PM–7:30 PM EDT",
+    scope: "chapter",
+    location: FIRST_CHAPTER_EVENT.location,
     description:
-      "Meet the founding executive board, learn what LMSA PLUS is, explore planned programming, and share what would make the chapter useful to you. The meeting is scheduled for Thursday, October 15, 2026, from 6:30–7:30 PM EDT in Instructional Center (IC), Room 115.",
-    registrationStatus: "coming-soon",
+      "Meet the founding executive board, learn about LMSA+ at Georgia Tech, explore service and professional-development opportunities, and find ways to get involved. All Georgia Tech students are welcome.",
+    detailsUrl: FIRST_CHAPTER_EVENT.engageUrl,
+    registrationUrl: FIRST_CHAPTER_EVENT.engageUrl,
+    registrationStatus: "active",
     featured: true,
   },
 ];
