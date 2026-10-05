@@ -8,18 +8,18 @@ import { chapterToday, currentWeek, hasEnded } from "./event-dates";
 
 /**
  * P0.3 — verified external / recommended pre-health events.
- * Rechecked October 4, 2026 (Sunday deep audit) against official GT Campus Calendar,
+ * Rechecked October 5, 2026 (weekday daily) against official GT Campus Calendar,
  * Pre-Health Advising, Explore LLC, LMSA National, and LMSA Southeast sources.
- * Rolling window: October 4 – October 18, 2026.
+ * Rolling window: October 5 – October 19, 2026.
  * Young Physicians Initiative on Oct 15 was omitted because it conflicts with
  * the LMSA Plus Interest Meeting at the same time.
  * NC2026 (Sep 17–20 Houston) concluded — archived via overlays / eventsAsOf.
- * LMSA SE 17th Regional Conference (Feb 27–Mar 1 2026) is past — no 2027 dates announced as of Oct 4.
+ * LMSA SE 17th Regional Conference (Feb 27–Mar 1 2026) is past — no 2027 dates announced as of Oct 5.
  * SCENE College of Sciences event Oct 7 deliberately not listed (not dedicated pre-health).
  * Listings are recommendations only — not LMSA Plus partnerships or chapter programming.
  */
 
-export const EXTERNAL_EVENTS_CHECKED_AT = "October 4, 2026";
+export const EXTERNAL_EVENTS_CHECKED_AT = "October 5, 2026";
 
 export const externalEvents: ExternalEvent[] = [];
 
