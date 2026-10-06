@@ -43,6 +43,7 @@ export const contactLinks = {
   email: "lmsaplusgatech@gmail.com",
   instagram: "https://www.instagram.com/lmsaplusgatech/",
   instagramHandle: "@lmsaplusgatech",
+  whatsappGroup: "https://chat.whatsapp.com/IAZMENKqJ9lHofTVgz11vd?mode=gi_t",
   // The /interest page prepares an email for the student to review and send.
   interestForm: { status: "active" as const, href: "/interest" },
   // Fall founding board roles are filled. Keep for future openings.
@@ -1165,6 +1166,14 @@ export const involvementActions: ActionLink[] = [
     featured: true,
   },
   {
+    label: "Join our WhatsApp group",
+    description: "Get chapter updates and reminders in the group chat.",
+    href: contactLinks.whatsappGroup,
+    status: "active",
+    category: "Updates",
+    featured: true,
+  },
+  {
     label: "All quick links",
     description: "Open the chapter link hub—perfect for saving or sharing from Instagram.",
     href: "/links",
@@ -1216,6 +1225,14 @@ export const linktreeLinks: ActionLink[] = [
     href: contactLinks.interestForm.href,
     status: "active",
     category: "Membership",
+    featured: true,
+  },
+  {
+    label: "Join our WhatsApp group",
+    description: "Get chapter updates and reminders in the group chat.",
+    href: contactLinks.whatsappGroup,
+    status: "active",
+    category: "Community",
     featured: true,
   },
   {
