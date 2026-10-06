@@ -63,5 +63,5 @@ test("expired promotions disappear, while undated plans and contact links remain
   assert.ok(current.some((item) => item.status === "active" && item.href === "/interest"));
   assert.ok(announcements.filter((item) => !hasEnded(item, "2026-09-21"))
     .every((item) => item.id !== "nc2026-houston"));
-  assert.equal(eventsAsOf(events, "2026-10-01").find((item) => item.id === "fall-2026-interest-meeting")?.status, "planned");
+  assert.equal(eventsAsOf(events, "2026-10-01").find((item) => item.id === "fall-2026-interest-meeting")?.status, "confirmed");
 });
