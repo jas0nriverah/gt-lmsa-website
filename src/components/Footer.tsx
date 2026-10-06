@@ -76,6 +76,15 @@ export function Footer() {
               <span className="sr-only"> (opens in a new tab)</span>
             </a>
             <a
+              href={contactLinks.whatsappGroup}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="footer-link"
+            >
+              Join our WhatsApp group <span aria-hidden="true">↗</span>
+              <span className="sr-only"> (opens in a new tab)</span>
+            </a>
+            <a
               href="https://national.lmsa.net/"
               target="_blank"
               rel="noopener noreferrer"
