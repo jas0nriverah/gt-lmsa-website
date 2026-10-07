@@ -11,7 +11,7 @@ import {
 import { faqs as baseFaqs, scholarships as baseScholarships, interestMeetingTiming } from "./site-data";
 import { LAST_CONTENT_REVIEW } from "./source-registry";
 
-/** October 6, 2026 weekday daily (Interest Meeting confirmed with Engage RSVP via first-chapter-event; YPI omitted per board decision in external-events; PURA Spring 2027 deadline Oct 12 — scholarship statuses have no deadline auto-close, flip manually after Oct 12). */
+/** October 7, 2026 weekday daily (Interest Meeting confirmed with Engage RSVP via first-chapter-event; YPI omitted per board decision in external-events; PURA Spring 2027 deadline Oct 12 — scholarship statuses have no deadline auto-close, flip manually after Oct 12). */
 
 const PAST_EVENT_IDS = new Set([
   "pre-health-fall-kickoff-2026",
