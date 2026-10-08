@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { chapterToday, currentWeek, eventsAsOf, hasEnded } from "./event-dates";
 import { events, announcements } from "./stale-status-sep-14";
-import { getThisWeekItems, getVerifiedExternalEvents, getUpcomingItems } from "./external-events";
+import { externalEvents, getThisWeekItems, getVerifiedExternalEvents, getUpcomingItems } from "./external-events";
 import { linktreeLinks } from "./opportunities-linktree";
 import type { ChapterEvent, ExternalEvent } from "./site-types";
 
@@ -54,6 +54,13 @@ test("this week retires completed events without hiding ongoing multi-day events
   assert.equal(getVerifiedExternalEvents(externalFixtures, "2026-09-17").length, 0);
   const spanning = { ...conferenceFixture, startDate: "2026-09-20", endDate: "2026-09-22" };
   assert.equal(getThisWeekItems([spanning], [], "2026-09-21").length, 1);
+});
+
+test("Would You Rather external listing is verified before Oct 20 and expires after it ends", () => {
+  const id = "ext-maps-would-you-rather-2026-10-20";
+  assert.ok(getVerifiedExternalEvents(externalEvents, "2026-10-08").some((event) => event.id === id));
+  assert.ok(getVerifiedExternalEvents(externalEvents, "2026-10-20").some((event) => event.id === id));
+  assert.equal(getVerifiedExternalEvents(externalEvents, "2026-10-21").some((event) => event.id === id), false);
 });
 
 test("expired promotions disappear, while undated plans and contact links remain", () => {
