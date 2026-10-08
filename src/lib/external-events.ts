@@ -8,20 +8,40 @@ import { chapterToday, currentWeek, hasEnded } from "./event-dates";
 
 /**
  * P0.3 — verified external / recommended pre-health events.
- * Rechecked October 7, 2026 (weekday daily) against official GT Campus Calendar,
+ * Rechecked October 8, 2026 (weekday daily) against official GT Campus Calendar,
  * Pre-Health Advising, Explore LLC, LMSA National, and LMSA Southeast sources.
- * Rolling window: October 7 – October 21, 2026.
- * Young Physicians Initiative on Oct 15 was omitted because it conflicts with
+ * Rolling window: October 8 – October 22, 2026.
+ * Added Would You Rather? Pre-Health Edition (Oct 20, MAPS at Georgia Tech) from the GT Campus Calendar.
+ * Young Physicians Initiative on Oct 15 remains omitted because it conflicts with
  * the LMSA Plus Interest Meeting (confirmed; RSVP via Georgia Tech Engage) at the same time.
  * NC2026 (Sep 17–20 Houston) concluded — archived via overlays / eventsAsOf.
- * LMSA SE 17th Regional Conference (Feb 27–Mar 1 2026) is past — no 2027 dates announced as of Oct 7.
- * SCENE College of Sciences event Oct 7 (today) deliberately not listed (generic career expo, not dedicated pre-health).
+ * LMSA SE 17th Regional Conference (Feb 27–Mar 1 2026) is past — no 2027 dates announced as of Oct 8.
+ * SCENE College of Sciences event Oct 7 is past; it was deliberately not listed (generic career expo, not dedicated pre-health).
  * Listings are recommendations only — not LMSA Plus partnerships or chapter programming.
  */
 
-export const EXTERNAL_EVENTS_CHECKED_AT = "October 7, 2026";
+export const EXTERNAL_EVENTS_CHECKED_AT = "October 8, 2026";
 
-export const externalEvents: ExternalEvent[] = [];
+export const externalEvents: ExternalEvent[] = [
+  {
+    id: "ext-maps-would-you-rather-2026-10-20",
+    title: "Would You Rather? Pre-Health Edition",
+    organization: "MAPS at Georgia Tech (student organization, @maps.gt)",
+    displayDate: "Tuesday, October 20, 2026",
+    startDate: "2026-10-20",
+    time: "6:00 PM – 7:00 PM ET",
+    location: "Location TBA (check the GT Campus Calendar listing)",
+    description:
+      "Student-sponsored game of would-you-rather based on pre-health topics, open to all pre-health undergraduate students. Updates are shared via Instagram @maps.gt. Recommendation only — not LMSA Plus chapter programming or a partnership.",
+    sourceUrl:
+      "https://calendar.gatech.edu/event/2026/10/20/would-you-rather-pre-health-edition",
+    category: "Community",
+    verificationLevel: "official-calendar",
+    lastCheckedAt: EXTERNAL_EVENTS_CHECKED_AT,
+    relevanceScore: 82,
+    sourceType: "external",
+  },
+];
 
 /** Minimum relevance score for public listing (~80+). */
 export const EXTERNAL_RELEVANCE_THRESHOLD = 80;
