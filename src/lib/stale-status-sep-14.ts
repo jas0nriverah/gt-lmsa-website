@@ -11,7 +11,7 @@ import {
 import { faqs as baseFaqs, scholarships as baseScholarships, interestMeetingTiming } from "./site-data";
 import { LAST_CONTENT_REVIEW } from "./source-registry";
 
-/** October 8, 2026 weekday daily (Interest Meeting confirmed with Engage RSVP via first-chapter-event; YPI omitted per board decision in external-events; PURA Spring 2027 deadline Oct 12 — scholarship statuses have no deadline auto-close, flip manually after Oct 12). */
+/** October 9, 2026 weekday daily (Interest Meeting confirmed with Engage RSVP via first-chapter-event; YPI omitted per board decision in external-events; PURA Spring 2027 deadline Oct 16, extended from Oct 12 — scholarship statuses have no deadline auto-close, flip manually on/after Oct 17). */
 
 const PAST_EVENT_IDS = new Set([
   "pre-health-fall-kickoff-2026",
@@ -57,9 +57,9 @@ export const scholarships: ScholarshipOpportunity[] = baseScholarships.map(
       return {
         ...opportunity,
         status: "open",
-        deadline: "October 12, 2026",
+        deadline: "October 16, 2026",
         description:
-          "PURA Salary Awards fund eligible undergraduate research completed with a Georgia Tech or GTRI faculty mentor. The Spring 2027 funding cycle lists an October 12 application deadline on the official UROP page (applications open).",
+          "PURA Salary Awards fund eligible undergraduate research completed with a Georgia Tech or GTRI faculty mentor. The Spring 2027 funding cycle lists an October 16 application deadline (extended) on the official UROP page (applications open).",
         sourceUrl: "https://experiential.learning.gatech.edu/urop/pura-salary/",
         lastVerified: LAST_CONTENT_REVIEW,
       };

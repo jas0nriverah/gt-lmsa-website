@@ -1,6 +1,6 @@
 import type { SourceRecord } from "./site-types";
 
-export const LAST_CONTENT_REVIEW = "October 8, 2026";
+export const LAST_CONTENT_REVIEW = "October 9, 2026";
 
 // Developer-maintained audit record. Re-check time-sensitive sources before
 // changing an opportunity to "open" or publishing a new deadline or price.
@@ -102,7 +102,7 @@ export const sourceRegistry: SourceRecord[] = [
     supports: [
       "Young Physicians Initiative Oct 15 2026 6:30–7:30pm Montag — omitted from public recommendations because it overlaps with the LMSA Plus Interest Meeting",
       "Would You Rather? Pre-Health Edition Oct 20 2026 6–7pm (MAPS at Georgia Tech, location TBA) listed as recommended external",
-      "No other ≥80 dedicated official-calendar pre-health events verified for Oct 8–Oct 22 2026",
+      "No other ≥80 dedicated official-calendar pre-health events verified for Oct 9–Oct 23 2026",
       "SCENE CoS Oct 7 is past; was deliberately not listed (not dedicated pre-health)",
       "GT Health Professional School Fair announced for Feb 23 2027 (too far for This Week)",
       "Interest Meeting confirmed Thu Oct 15 2026 6:30–7:30 PM EDT IC Room 115, RSVP via Georgia Tech Engage (chapter event, not external)",
@@ -144,7 +144,7 @@ export const sourceRegistry: SourceRecord[] = [
   {
     name: "Georgia Tech PURA Salary Awards",
     url: "https://experiential.learning.gatech.edu/urop/pura-salary/",
-    supports: ["salary-award eligibility", "award amount", "Spring 2027 deadline October 12", "applications open messaging"],
+    supports: ["salary-award eligibility", "award amount", "Spring 2027 deadline October 16 (extended from October 12)", "applications open messaging"],
     lastVerified: LAST_CONTENT_REVIEW,
     timeSensitive: true,
   },
