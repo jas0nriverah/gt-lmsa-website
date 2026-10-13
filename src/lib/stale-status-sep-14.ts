@@ -11,7 +11,7 @@ import {
 import { faqs as baseFaqs, scholarships as baseScholarships, interestMeetingTiming } from "./site-data";
 import { LAST_CONTENT_REVIEW } from "./source-registry";
 
-/** October 12, 2026 weekday daily maintenance (Interest Meeting unchanged — Engage RSVP via first-chapter-event; YPI omission unchanged per board decision in external-events; PURA Salary still open with Spring 2027 deadline Oct 16 — scholarship statuses have no deadline auto-close, flip manually on/after Oct 17). */
+/** October 13, 2026 weekday daily maintenance (Interest Meeting unchanged — Engage RSVP via first-chapter-event; YPI omission unchanged per board decision in external-events; PURA Salary still open with Spring 2027 deadline Oct 16 — scholarship statuses have no deadline auto-close, flip manually on/after Oct 17). */
 
 const PAST_EVENT_IDS = new Set([
   "pre-health-fall-kickoff-2026",
