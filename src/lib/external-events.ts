@@ -8,20 +8,21 @@ import { chapterToday, currentWeek, hasEnded } from "./event-dates";
 
 /**
  * P0.3 — verified external / recommended pre-health events.
- * Rechecked October 15, 2026 (weekday daily maintenance) against official GT Campus Calendar,
+ * Rechecked October 16, 2026 (weekday daily maintenance) against official GT Campus Calendar,
  * Pre-Health Advising, Explore LLC, LMSA National, and LMSA Southeast sources.
- * Rolling window: October 15 – October 29, 2026.
+ * Rolling window: October 16 – October 30, 2026.
  * Would You Rather? Pre-Health Edition (Oct 20, MAPS at Georgia Tech) kept — GT Campus Calendar listing still live and unchanged (location still TBA).
- * Young Physicians Initiative on Oct 15 remains omitted because it conflicts with
- * the LMSA Plus Interest Meeting (confirmed; RSVP via Georgia Tech Engage) at the same time.
+ * Young Physicians Initiative (Oct 15) is past and was never listed — it conflicted with
+ * the LMSA Plus Interest Meeting at the same time.
+ * The LMSA Plus Interest Meeting (Oct 15) is past — retired from upcoming surfaces via date checks.
  * NC2026 (Sep 17–20 Houston) concluded — archived via overlays / eventsAsOf.
- * LMSA SE 17th Regional Conference (Feb 27–Mar 1 2026) is past — no 2027 dates announced as of Oct 15.
+ * LMSA SE 17th Regional Conference (Feb 27–Mar 1 2026) is past — no 2027 dates announced as of Oct 16.
  * No other ≥80 official-calendar dedicated pre-health events verified for the window.
  * SCENE College of Sciences event Oct 7 is past; it was deliberately not listed (generic career expo, not dedicated pre-health).
  * Listings are recommendations only — not LMSA Plus partnerships or chapter programming.
  */
 
-export const EXTERNAL_EVENTS_CHECKED_AT = "October 15, 2026";
+export const EXTERNAL_EVENTS_CHECKED_AT = "October 16, 2026";
 
 export const externalEvents: ExternalEvent[] = [
   {
