@@ -1,3 +1,5 @@
+import { chapterToday, hasEnded } from "./event-dates";
+
 export const FIRST_CHAPTER_EVENT = {
   platformId: "b978ce11-0e75-4e1d-91cb-5fb6fd327001",
   engageUrl: "https://gatech.campuslabs.com/engage/event/12844813",
@@ -7,3 +9,8 @@ export const FIRST_CHAPTER_EVENT = {
   location: "Instructional Center (IC), Room 115",
   endDate: "2026-10-15",
 } as const;
+
+/** True once the Atlanta calendar date is after the first chapter event's endDate. */
+export function firstChapterEventHasEnded(today = chapterToday()): boolean {
+  return hasEnded(FIRST_CHAPTER_EVENT, today);
+}

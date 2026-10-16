@@ -8,10 +8,10 @@ import {
   announcements as refreshedAnnouncements,
   events as refreshedEvents,
 } from "./sep-2026-refresh";
-import { faqs as baseFaqs, scholarships as baseScholarships, interestMeetingTiming } from "./site-data";
+import { contactLinks, faqs as baseFaqs, scholarships as baseScholarships, interestMeetingTiming } from "./site-data";
 import { LAST_CONTENT_REVIEW } from "./source-registry";
 
-/** October 15, 2026 weekday daily maintenance (Interest Meeting unchanged — Engage RSVP via first-chapter-event; YPI omission unchanged per board decision in external-events; PURA Salary still open with Spring 2027 deadline Oct 16 — scholarship statuses have no deadline auto-close, flip manually on/after Oct 17). */
+/** October 16, 2026 weekday daily maintenance (Interest Meeting on Oct 15 is now past — retired from upcoming/RSVP surfaces via date checks; YPI omission unchanged per board decision in external-events; PURA Salary still open with Spring 2027 deadline Oct 16 — scholarship statuses have no deadline auto-close, flip manually on/after Oct 17). */
 
 const PAST_EVENT_IDS = new Set([
   "pre-health-fall-kickoff-2026",
@@ -23,6 +23,7 @@ const PAST_ANNOUNCEMENT_IDS = new Set([
   "pre-health-fall-kickoff-2026",
   "student-org-fair-fall-2026",
   "nc2026-houston",
+  "interest-meeting-fall-2026",
 ]);
 
 const RECHECKED_CLOSED = new Set([
@@ -90,30 +91,22 @@ export const events: ChapterEvent[] = refreshedEvents.map((event) => {
       ...event,
       displayDate: interestMeetingTiming,
       description:
-        "Meet the founding executive board, learn about LMSA+ at Georgia Tech, explore service and professional-development opportunities, and find ways to get involved. The meeting is scheduled for Thursday, October 15, 2026, from 6:30–7:30 PM EDT in Instructional Center (IC), Room 115. RSVP through Georgia Tech Engage.",
+        "Meet the founding executive board, learn about LMSA+ at Georgia Tech, explore service and professional-development opportunities, and find ways to get involved. Scheduled for Thursday, October 15, 2026, 6:30–7:30 PM EDT in Instructional Center (IC), Room 115 (Georgia Tech Engage).",
     };
   }
   return event;
 });
 
 export const announcements: Announcement[] = refreshedAnnouncements
-  .filter((announcement) => !PAST_ANNOUNCEMENT_IDS.has(announcement.id))
-  .map((announcement) => {
-    if (announcement.id === "interest-meeting-fall-2026") {
-      return {
-        ...announcement,
-        timing: `${interestMeetingTiming} · Instructional Center (IC), Room 115`,
-      };
-    }
-    return announcement;
-  });
+  .filter((announcement) => !PAST_ANNOUNCEMENT_IDS.has(announcement.id));
 
 export const faqs: FAQ[] = baseFaqs.map((faq) => {
   if (faq.question === "When will the first meeting occur?") {
     return {
       ...faq,
+      question: "When was the first chapter meeting?",
       answer:
-        "The first LMSA+ Interest Meeting is Thursday, October 15, 2026, from 6:30–7:30 PM EDT in Instructional Center (IC), Room 115. RSVP through the official Georgia Tech Engage event page.",
+        `The first LMSA+ Interest Meeting was scheduled for Thursday, October 15, 2026, from 6:30–7:30 PM EDT in Instructional Center (IC), Room 115. New chapter dates will appear on the Events page when announced; follow ${contactLinks.instagramHandle} on Instagram for updates.`,
     };
   }
   if (faq.question === "How can students hear about scholarships?") {

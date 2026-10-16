@@ -60,7 +60,7 @@ export default async function EventsPage() {
         id="chapter-events"
         eyebrow="LMSA+ at Georgia Tech"
         title="Chapter gatherings"
-        description="Browse chapter gatherings and follow each event’s RSVP link. Our first meeting uses Georgia Tech Engage."
+        description="Browse upcoming and past chapter gatherings and follow each event’s RSVP link."
         className="bg-gt-cream"
       >
         <ChapterEventBrowser configured={Boolean(process.env.DATABASE_URL)} />

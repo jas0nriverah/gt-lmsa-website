@@ -3,8 +3,8 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import type { Page, PlatformEvent } from "@/lib/platform-contracts";
-import { formatEventTime, registrationState } from "@/lib/platform-dates";
-import { FIRST_CHAPTER_EVENT } from "@/lib/first-chapter-event";
+import { eventHasEnded, formatEventTime, registrationState } from "@/lib/platform-dates";
+import { FIRST_CHAPTER_EVENT, firstChapterEventHasEnded } from "@/lib/first-chapter-event";
 
 type EventsResponse = {
   data?: Page<PlatformEvent>;
@@ -64,6 +64,12 @@ export function ChapterEventBrowser({ configured }: { configured: boolean }) {
   }, [configured, search, view, page, revision]);
 
   if (!configured) {
+    // Date-only check so the static fallback renders the same on server and client.
+    if (firstChapterEventHasEnded()) {
+      return (
+        <p className="card p-7">New chapter dates will appear here when announced.</p>
+      );
+    }
     return (
       <div className="card p-8">
         <p className="eyebrow">First chapter gathering</p>
@@ -135,8 +141,10 @@ export function ChapterEventBrowser({ configured }: { configured: boolean }) {
           {result?.items.length ? (
             <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
               {result.items.map((event) => {
-                const engageRsvp = event.id === FIRST_CHAPTER_EVENT.platformId
+                const firstChapter = event.id === FIRST_CHAPTER_EVENT.platformId
                   && event.publicationStatus === "published";
+                const ended = eventHasEnded(event);
+                const engageRsvp = firstChapter && !ended;
                 return (
                   <article id={event.id} key={event.id} className="card flex flex-col p-6">
                     <p className="eyebrow">{event.category}</p>
@@ -149,7 +157,11 @@ export function ChapterEventBrowser({ configured }: { configured: boolean }) {
                       {event.description}
                     </p>
                     <p className="mt-4 text-sm font-bold text-gt-dark-gold">
-                      {engageRsvp ? "RSVP through Georgia Tech Engage" : registrationState(event)}
+                      {engageRsvp
+                        ? "RSVP through Georgia Tech Engage"
+                        : firstChapter
+                          ? "Past event"
+                          : registrationState(event)}
                     </p>
                     {engageRsvp ? (
                       <a
@@ -163,7 +175,7 @@ export function ChapterEventBrowser({ configured }: { configured: boolean }) {
                       </a>
                     ) : null}
                     <Link className="text-link mt-5 font-bold" href={`/events/${event.id}`}>
-                      {engageRsvp ? "Event details →" : "Event details & RSVP →"}
+                      {firstChapter ? "Event details →" : "Event details & RSVP →"}
                     </Link>
                   </article>
                 );

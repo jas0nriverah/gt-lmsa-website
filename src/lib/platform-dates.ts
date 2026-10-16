@@ -1,5 +1,9 @@
 import type { PlatformEvent } from "./platform-contracts";
 export const CHAPTER_TIME_ZONE = "America/New_York";
+/** True once a database-backed event's scheduled end time has passed. */
+export function eventHasEnded(event: Pick<PlatformEvent, "endsAt">, now = Date.now()): boolean {
+  return Boolean(event.endsAt && Date.parse(event.endsAt) <= now);
+}
 export function registrationState(event: PlatformEvent, now = Date.now()): string {
   if (event.publicationStatus === "cancelled") return "Cancelled";
   if (!event.startsAt) return "Planned · schedule to be confirmed";

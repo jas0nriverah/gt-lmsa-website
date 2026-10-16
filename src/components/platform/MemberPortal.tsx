@@ -16,8 +16,8 @@ import { ACADEMIC_YEARS, MEMBER_INTERESTS } from "@/lib/platform-contracts";
 import { PlatformRequestError, errorMessage, platformRequest } from "./api";
 import { GoogleSignInAction, SignOutAction } from "./AuthActions";
 import { formatAtlantaDateTime } from "./date-time";
-import { formatEventTime } from "@/lib/platform-dates";
-import { FIRST_CHAPTER_EVENT } from "@/lib/first-chapter-event";
+import { eventHasEnded, formatEventTime } from "@/lib/platform-dates";
+import { FIRST_CHAPTER_EVENT, firstChapterEventHasEnded } from "@/lib/first-chapter-event";
 import {
   FieldLabel,
   InlineAlert,
@@ -384,6 +384,8 @@ export function MemberPortal({ authEnabled }: { authEnabled: boolean }) {
             {registrations.items.map((registration) => {
               const ticket = tickets[registration.id];
               const usesEngage = registration.event?.id === FIRST_CHAPTER_EVENT.platformId;
+              const engageEnded = usesEngage
+                && (registration.event?.endsAt ? eventHasEnded(registration.event) : firstChapterEventHasEnded());
               return (
                 <article key={registration.id} className="rounded-2xl border border-slate-200 p-4 sm:p-5">
                   <div className="flex flex-wrap items-start justify-between gap-3">
@@ -406,10 +408,12 @@ export function MemberPortal({ authEnabled }: { authEnabled: boolean }) {
                   {registration.status === "registered" ? (
                     <div className="mt-4 flex flex-wrap gap-3">
                       {usesEngage ? (
-                        <a className="button button-primary text-sm" href={FIRST_CHAPTER_EVENT.engageUrl} target="_blank" rel="noopener noreferrer">
-                          RSVP on Georgia Tech Engage <span aria-hidden="true">↗</span>
-                          <span className="sr-only"> (opens in a new tab)</span>
-                        </a>
+                        engageEnded ? null : (
+                          <a className="button button-primary text-sm" href={FIRST_CHAPTER_EVENT.engageUrl} target="_blank" rel="noopener noreferrer">
+                            RSVP on Georgia Tech Engage <span aria-hidden="true">↗</span>
+                            <span className="sr-only"> (opens in a new tab)</span>
+                          </a>
+                        )
                       ) : (
                         <button type="button" className="button button-secondary text-sm disabled:opacity-60" disabled={memberStatus !== "active" || Boolean(registration.event && (registration.event.publicationStatus !== "published" || !registration.event.startsAt || !registration.event.endsAt)) || busyKey === `ticket:${registration.id}`} onClick={() => void issueTicket(registration)}>
                           {busyKey === `ticket:${registration.id}` ? "Issuing code…" : ticket ? "Issue a new ticket code" : "Get ticket code"}
@@ -458,6 +462,7 @@ export function MemberPortal({ authEnabled }: { authEnabled: boolean }) {
               const engageRsvp = event.id === FIRST_CHAPTER_EVENT.platformId
                 && event.publicationStatus === "published";
               const now = Date.now();
+              const engageEnded = engageRsvp && (eventHasEnded(event, now) || firstChapterEventHasEnded());
               const registrationNotStarted = Boolean(event.registrationOpensAt && Date.parse(event.registrationOpensAt) > now);
               const registrationEnded = Boolean(event.registrationClosesAt && Date.parse(event.registrationClosesAt) < now);
               const eventAlreadyStarted = Boolean(event.startsAt && Date.parse(event.startsAt) <= now);
@@ -487,10 +492,12 @@ export function MemberPortal({ authEnabled }: { authEnabled: boolean }) {
                     {engageRsvp ? (
                       <>
                         <span className="text-sm text-slate-600">Official registration is handled by Georgia Tech Engage.</span>
-                        <a className="button button-primary text-sm" href={FIRST_CHAPTER_EVENT.engageUrl} target="_blank" rel="noopener noreferrer">
-                          RSVP on Georgia Tech Engage <span aria-hidden="true">↗</span>
-                          <span className="sr-only"> (opens in a new tab)</span>
-                        </a>
+                        {engageEnded ? null : (
+                          <a className="button button-primary text-sm" href={FIRST_CHAPTER_EVENT.engageUrl} target="_blank" rel="noopener noreferrer">
+                            RSVP on Georgia Tech Engage <span aria-hidden="true">↗</span>
+                            <span className="sr-only"> (opens in a new tab)</span>
+                          </a>
+                        )}
                         {current ? (
                           <button type="button" className="button button-secondary text-sm disabled:opacity-60" disabled={busyKey === `rsvp:${event.id}`} onClick={() => void changeRsvp(event.id, true)}>
                             {busyKey === `rsvp:${event.id}` ? "Removing…" : "Remove website RSVP"}
