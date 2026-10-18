@@ -63,6 +63,13 @@ test("Would You Rather external listing is verified before Oct 20 and expires af
   assert.equal(getVerifiedExternalEvents(externalEvents, "2026-10-21").some((event) => event.id === id), false);
 });
 
+test("MAPS Pre-Health Fair external listing is verified through Oct 27 and expires after it ends", () => {
+  const id = "ext-maps-pre-health-fair-2026-10-27";
+  assert.ok(getVerifiedExternalEvents(externalEvents, "2026-10-18").some((event) => event.id === id));
+  assert.ok(getVerifiedExternalEvents(externalEvents, "2026-10-27").some((event) => event.id === id));
+  assert.equal(getVerifiedExternalEvents(externalEvents, "2026-10-28").some((event) => event.id === id), false);
+});
+
 test("expired promotions disappear, while undated plans and contact links remain", () => {
   const current = linktreeLinks.filter((item) => !hasEnded(item, "2026-09-14"));
   assert.equal(current.some((item) => item.label === "2026 Pre-Health Fall Kickoff"), false);
