@@ -8,6 +8,12 @@ import { getUpcomingItems } from "@/lib/external-events";
 import { formatEventTime } from "@/lib/platform-dates";
 import { getPublicChapterEvents } from "@/server/public-events";
 import { FIRST_CHAPTER_EVENT, firstChapterEventHasEnded } from "@/lib/first-chapter-event";
+import { OpenOpportunityCard } from "@/components/OpenOpportunityCard";
+import {
+  getHomeOpenOpportunities,
+  getOpenNowOpportunities,
+  OPEN_OPPORTUNITIES_REVIEWED,
+} from "@/lib/open-opportunities";
 
 export const dynamic = "force-dynamic";
 
@@ -17,6 +23,8 @@ export default async function HomePage() {
     Promise.resolve(getUpcomingItems().filter((item) => item.sourceType !== "chapter")),
   ]);
   const firstMeetingEnded = firstChapterEventHasEnded();
+  const homeOpenOpportunities = getHomeOpenOpportunities();
+  const openOpportunityCount = getOpenNowOpportunities().length;
   const featuredEvent = chapterEvents.find(
     (event) => event.publicationStatus === "published",
   );
@@ -66,6 +74,40 @@ export default async function HomePage() {
           </div>
 
           <MedicalHero />
+        </div>
+      </section>
+
+      <section id="open-opportunities" className="section-shell bg-white" aria-labelledby="open-opportunities-heading">
+        <div className="mx-auto max-w-7xl">
+          <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+            <div className="max-w-3xl">
+              <p className="eyebrow">Updated {OPEN_OPPORTUNITIES_REVIEWED}</p>
+              <h2 id="open-opportunities-heading" className="mt-3 text-3xl font-bold text-gt-navy sm:text-4xl">
+                Open opportunities now
+              </h2>
+              <p className="mt-4 leading-7 text-slate-600">
+                Scholarships, research, internships, and leadership programs accepting applications. Check who can apply, what to prepare, and the deadline before you start.
+              </p>
+            </div>
+            <Link href="/opportunities#open-now" className="button button-secondary shrink-0">
+              See all {openOpportunityCount} open opportunities <span aria-hidden="true">→</span>
+            </Link>
+          </div>
+
+          {homeOpenOpportunities.length ? (
+            <div className="mt-8 grid gap-5 lg:grid-cols-2 xl:grid-cols-3">
+              {homeOpenOpportunities.map((opportunity) => (
+                <OpenOpportunityCard key={opportunity.id} opportunity={opportunity} compact />
+              ))}
+            </div>
+          ) : (
+            <p className="mt-8 rounded-xl border border-gt-gold/45 bg-gt-cream p-6 leading-7 text-slate-600">
+              No time-sensitive applications are currently listed as open. Visit the Opportunities page for recurring programs and upcoming application cycles.
+            </p>
+          )}
+          <Link href="/opportunities" className="text-link mt-6 inline-flex rounded-sm font-bold">
+            Browse scholarships, internships, service, and more <span aria-hidden="true" className="ml-2">→</span>
+          </Link>
         </div>
       </section>
 

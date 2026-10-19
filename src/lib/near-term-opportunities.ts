@@ -2,12 +2,12 @@ import type { ResourceCategory } from "./site-types";
 
 export const OPPORTUNITY_LINKS_REVIEWED = "October 19, 2026";
 
-/** Current official starting points for Summer 2027 and recurring opportunities. */
+/** Directories and recurring opportunities that complement the open-now list. */
 export const nearTermOpportunityCategories: ResourceCategory[] = [
   {
     category: "Summer 2027 internships and research",
     description:
-      "Some Summer 2027 applications are open now and others open in November. Check each program’s eligibility, materials, and dates before applying.",
+      "Use these directories and program pages to find current positions and watch for upcoming Summer 2027 application windows. Programs set their own eligibility and deadlines.",
     items: [
       {
         title: "Georgia Tech CareerBuzz internships and co-ops",
@@ -16,24 +16,6 @@ export const nearTermOpportunityCategories: ResourceCategory[] = [
         organization: "Georgia Tech Career Center",
         href: "https://career.gatech.edu/careerbuzz/",
         category: "Internships",
-        timeSensitive: true,
-      },
-      {
-        title: "Georgia Tech SURE 2027",
-        description:
-          "A summer research program in engineering, computing, and sciences. The application is open; the deadline is February 15, 2027, and program dates are May 23–July 30. Applicants must meet the rising-junior/senior, major, GPA, and U.S. citizenship/permanent-resident requirements listed on the official page.",
-        organization: "Georgia Tech College of Engineering",
-        href: "https://sure.gatech.edu/",
-        category: "Summer research",
-        timeSensitive: true,
-      },
-      {
-        title: "DOE Science Undergraduate Laboratory Internships (SULI)",
-        description:
-          "Paid 10-week science and research internships at U.S. Department of Energy national laboratories. The Summer 2027 application is open and due January 6, 2027 at 5 p.m. ET. Review the participating labs and program requirements before applying.",
-        organization: "U.S. Department of Energy",
-        href: "https://science.osti.gov/wdts/suli/how-to-apply",
-        category: "Summer internship",
         timeSensitive: true,
       },
       {
@@ -79,15 +61,6 @@ export const nearTermOpportunityCategories: ResourceCategory[] = [
     description:
       "Build leadership through campus programs and find local service projects; openings and commitments depend on the organizer.",
     items: [
-      {
-        title: "Georgia Tech LEAD Fellows",
-        description:
-          "AY 2026–27 student-coach applications are listed as open on a rolling basis. The program is for upper-level undergraduate and graduate students interested in coaching peers in leadership development; confirm role details and commitment on the official page.",
-        organization: "Georgia Tech Leadership Education and Development",
-        href: "https://leadership.gatech.edu/programs/lead-fellows-coaches",
-        category: "Leadership",
-        timeSensitive: true,
-      },
       {
         title: "Georgia Tech MOVE service opportunities",
         description:
@@ -147,15 +120,6 @@ export const nearTermOpportunityCategories: ResourceCategory[] = [
     description:
       "Start with Georgia Tech’s current aid applications and matching tool, then check national award cycles and their specific eligibility rules.",
     items: [
-      {
-        title: "Georgia Tech 2027–28 financial aid and scholarship application",
-        description:
-          "Georgia Tech reports that the 2027–28 FAFSA and GT Application for Scholarships and Financial Aid opened October 1, 2026. Current students should review the application steps and deadlines for their student type and submit each required form.",
-        organization: "Georgia Tech Office of Scholarships and Financial Aid",
-        href: "https://finaid.gatech.edu/",
-        category: "Georgia Tech scholarships",
-        timeSensitive: true,
-      },
       {
         title: "Scholarship Universe",
         description:

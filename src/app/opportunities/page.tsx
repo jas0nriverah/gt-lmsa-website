@@ -10,12 +10,19 @@ import {
 } from "@/lib/near-term-opportunities";
 import type { OpportunityStatus, ScholarshipOpportunity } from "@/lib/site-types";
 import { LAST_CONTENT_REVIEW } from "@/lib/source-registry";
+import { OpenOpportunityCard } from "@/components/OpenOpportunityCard";
+import {
+  getOpenNowOpportunities,
+  OPEN_OPPORTUNITIES_REVIEWED,
+} from "@/lib/open-opportunities";
 
 export const metadata: Metadata = {
   title: "Opportunities",
   description:
     "Scholarships, Summer 2027 internships and research, leadership, community service, and hospital volunteering for Georgia Tech pre-health students.",
 };
+
+export const dynamic = "force-dynamic";
 
 const STATUS_SORT_ORDER: Record<OpportunityStatus, number> = {
   open: 0,
@@ -32,6 +39,7 @@ function sortOpportunities(items: ScholarshipOpportunity[]) {
 }
 
 export default function OpportunitiesPage() {
+  const openNow = getOpenNowOpportunities();
   const preHealthOpportunities = sortOpportunities(
     scholarships.filter((item) => item.preMedRelevant),
   );
@@ -46,6 +54,29 @@ export default function OpportunitiesPage() {
         title="Support your pre-health journey."
         description="Explore scholarships, Summer 2027 research and internships, leadership, community service, and hospital volunteering."
       />
+
+      <Section
+        id="open-now"
+        eyebrow={`Reviewed ${OPEN_OPPORTUNITIES_REVIEWED}`}
+        title={`Open now · ${openNow.length} opportunities`}
+        description="Start with these currently accepting applications. Each listing includes the audience, requirements, materials to prepare, and deadline, with a link to the official program for full details."
+        className="bg-white"
+      >
+        {openNow.length ? (
+          <div className="grid gap-5 lg:grid-cols-2">
+            {openNow.map((opportunity) => (
+              <OpenOpportunityCard key={opportunity.id} opportunity={opportunity} />
+            ))}
+          </div>
+        ) : (
+          <p className="rounded-xl border border-gt-gold/45 bg-gt-cream p-6 leading-7 text-slate-600">
+            There are no dated opportunities currently listed as open. Browse the recurring resources and upcoming cycles below.
+          </p>
+        )}
+        <a href="#opportunity-group-summer-2027-internships-and-research" className="text-link mt-7 inline-flex rounded-sm font-bold">
+          Browse more internships, service, volunteering, and scholarship resources <span aria-hidden="true" className="ml-2">↓</span>
+        </a>
+      </Section>
 
       <Section
         eyebrow="Funding and enrichment"
@@ -80,7 +111,7 @@ export default function OpportunitiesPage() {
       <Section
         eyebrow="Summer 2027 and beyond"
         title="Find your next opportunity"
-        description={`These links were checked ${OPPORTUNITY_LINKS_REVIEWED}. Some Summer 2027 applications are open now; others open soon. Confirm eligibility, deadlines, and availability with each official program.`}
+        description={`These directories and recurring resources were checked ${OPPORTUNITY_LINKS_REVIEWED}. Some point to applications that open later, while others help you find current positions and programs. Check the official source for availability and requirements.`}
         className="bg-white"
       >
         <div className="space-y-14">
