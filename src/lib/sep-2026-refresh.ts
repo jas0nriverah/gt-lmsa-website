@@ -11,6 +11,7 @@ import {
   linktreeLinks as baseLinktreeLinks,
   resourceCategories as baseResourceCategories,
 } from "./site-data";
+import { nearTermOpportunityCategories } from "./near-term-opportunities";
 
 /** Mid–late September 2026 content refresh overlays (NC2026 archived after Sep 20; regional context). */
 
@@ -80,7 +81,7 @@ export const announcements: Announcement[] = [
 export const events: ChapterEvent[] = [nc2026Event, ...baseEvents];
 
 export const resourceCategories: ResourceCategory[] = (() => {
-  const categories = [...baseResourceCategories];
+  const categories = [...baseResourceCategories, ...nearTermOpportunityCategories];
   const lmsaIdx = categories.findIndex((c) => c.category === "LMSA network");
   if (lmsaIdx >= 0) {
     const lmsa = categories[lmsaIdx];

@@ -9,7 +9,7 @@ import { resourceCategories } from "@/lib/sep-2026-refresh";
 export const metadata: Metadata = {
   title: "Resources",
   description:
-    "Explore official Georgia Tech advising, LMSA, medical school application, and research resources for your pre-health journey.",
+    "Explore Georgia Tech pre-health scholarships, internships, research, leadership, community service, volunteering, and advising resources.",
 };
 
 export default function ResourcesPage() {
@@ -18,7 +18,7 @@ export default function ResourcesPage() {
       <PageHero
         eyebrow="Resources"
         title="Resources for your next step."
-        description="Find advising, application guidance, research opportunities, and support from Georgia Tech and the LMSA network."
+        description="Find advising, Summer 2027 programs, scholarships, service, volunteering, and support from Georgia Tech and the LMSA network."
       />
 
       <Section

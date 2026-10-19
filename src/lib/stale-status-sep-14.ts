@@ -11,7 +11,7 @@ import {
 import { faqs as baseFaqs, scholarships as baseScholarships, interestMeetingTiming } from "./site-data";
 import { LAST_CONTENT_REVIEW } from "./source-registry";
 
-/** October 6, 2026 weekday daily (Interest Meeting confirmed with Engage RSVP via first-chapter-event; YPI omitted per board decision in external-events; PURA Spring 2027 deadline Oct 12 — scholarship statuses have no deadline auto-close, flip manually after Oct 12). */
+/** October 19, 2026 content refresh: PURA Salary applications are closed; the official Spring 2027 deadline is listed as TBD. */
 
 const PAST_EVENT_IDS = new Set([
   "pre-health-fall-kickoff-2026",
@@ -56,12 +56,12 @@ export const scholarships: ScholarshipOpportunity[] = baseScholarships.map(
     if (opportunity.name === "President's Undergraduate Research Award \u2014 Salary") {
       return {
         ...opportunity,
-        status: "open",
-        deadline: "October 12, 2026",
+        status: "closed",
+        deadline: "Spring 2027 deadline TBD; applications closed when checked October 19",
         description:
-          "PURA Salary Awards fund eligible undergraduate research completed with a Georgia Tech or GTRI faculty mentor. The Spring 2027 funding cycle lists an October 12 application deadline on the official UROP page (applications open).",
+          "PURA Salary Awards fund eligible undergraduate research with a Georgia Tech or GTRI faculty mentor. The official page showed applications closed and the Spring 2027 deadline as TBD when checked October 19, 2026; monitor UROP for the next cycle.",
         sourceUrl: "https://experiential.learning.gatech.edu/urop/pura-salary/",
-        lastVerified: LAST_CONTENT_REVIEW,
+        lastVerified: "October 19, 2026",
       };
     }
     if (RECHECKED_CLOSED.has(opportunity.name)) {
