@@ -62,7 +62,7 @@ export const scholarships: ScholarshipOpportunity[] = baseScholarships.map(
         description:
           "PURA Salary Awards fund eligible undergraduate research completed with a Georgia Tech or GTRI faculty mentor. The Spring 2027 application deadline (extended to October 16, 2026) has passed. The official UROP page lists Summer 2027 and Fall 2027 deadlines as TBD — check there for the next cycle.",
         sourceUrl: "https://experiential.learning.gatech.edu/urop/pura-salary/",
-        lastVerified: LAST_CONTENT_REVIEW,
+        lastVerified: "October 19, 2026",
       };
     }
     if (RECHECKED_CLOSED.has(opportunity.name)) {
