@@ -5,7 +5,7 @@ import { BiomedicalBackground } from "@/components/BiomedicalBackground";
 import { ThisWeekCard } from "@/components/ThisWeekCard";
 import { SitePage } from "@/components/SitePage";
 import { getUpcomingItems } from "@/lib/external-events";
-import { formatEventTime } from "@/lib/platform-dates";
+import { eventHasEnded, formatEventTime } from "@/lib/platform-dates";
 import { getPublicChapterEvents } from "@/server/public-events";
 import { FIRST_CHAPTER_EVENT, firstChapterEventHasEnded } from "@/lib/first-chapter-event";
 import { OpenOpportunityCard } from "@/components/OpenOpportunityCard";
@@ -26,7 +26,7 @@ export default async function HomePage() {
   const homeOpenOpportunities = getHomeOpenOpportunities();
   const openOpportunityCount = getOpenNowOpportunities().length;
   const featuredEvent = chapterEvents.find(
-    (event) => event.publicationStatus === "published",
+    (event) => event.publicationStatus === "published" && !eventHasEnded(event),
   );
 
   return (

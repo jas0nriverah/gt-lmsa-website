@@ -18,7 +18,6 @@ export async function getPublicChapterEvents(): Promise<PublicEventsResult> {
     const page = await createPlatform(getPool()).listEvents({
       page: 1,
       pageSize: PUBLIC_CALENDAR_EVENT_LIMIT,
-      view: "upcoming",
     });
     return { events: page.items, availability: "ready" };
   } catch {
