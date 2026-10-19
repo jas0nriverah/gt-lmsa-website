@@ -86,7 +86,7 @@ export default async function HomePage() {
                 Open opportunities now
               </h2>
               <p className="mt-4 leading-7 text-slate-600">
-                Scholarships, research, internships, and leadership programs accepting applications. Check who can apply, what to prepare, and the deadline before you start.
+                Scholarships, research, internships, community health, volunteering, and leadership opportunities accepting applications. Check who can apply, what to prepare, and the deadline before you start.
               </p>
             </div>
             <Link href="/opportunities#open-now" className="button button-secondary shrink-0">
