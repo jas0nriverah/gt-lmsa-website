@@ -19,15 +19,6 @@ export const nearTermOpportunityCategories: ResourceCategory[] = [
         timeSensitive: true,
       },
       {
-        title: "NIH Summer Internship Program (SIP), 2027",
-        description:
-          "Summer research internships in the NIH Intramural Research Program. The 2027 application is expected to open in mid-November and close in mid-February. The NIH lists U.S. citizenship or permanent residency for 2027 applicants; check the program page for enrollment, age, and subprogram requirements.",
-        organization: "National Institutes of Health",
-        href: "https://www.training.nih.gov/research-training/pb/sip/",
-        category: "Biomedical research",
-        timeSensitive: true,
-      },
-      {
         title: "Fred Hutch Summer Undergraduate Research Program, 2027",
         description:
           "A nine-week biomedical research internship for undergraduates entering the summer before their final year. The 2027 application is expected on the program site in mid-to-late November; review eligibility and dates when it opens.",

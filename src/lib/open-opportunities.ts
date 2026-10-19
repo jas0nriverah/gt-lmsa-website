@@ -202,6 +202,219 @@ export const openOpportunities: OpenOpportunity[] = [
     deadline: "Rolling application · AY 2026–27",
     sourceUrl: "https://leadership.gatech.edu/programs/lead-fellows-coaches",
   },
+  {
+    id: "sharp-index-scholarships-2026-27",
+    title: "Sharp Index Scholarships, 2026–27",
+    organization: "Sharp Index",
+    category: "Health scholarship",
+    audience: "Undergraduate, graduate, professional, and medical students in health-related fields",
+    summary:
+      "Two scholarship tracks support work related to clinician well-being, healthcare workforce mental health, or health equity. The Health Equity Scholarship offers a $5,000 flexible-use educational grant and optional professional support.",
+    eligibility: [
+      "Pursuing a pathway related to medicine, healthcare, public health, mental health, medical education, healthcare research, or healthcare leadership.",
+      "Show a meaningful connection to the scholarship’s mission through education, service, advocacy, lived experience, research, or career goals.",
+      "The Health Equity track prioritizes eligible applicants from historically underrepresented or underserved populations; review both tracks’ requirements before applying.",
+    ],
+    applicationChecklist: [
+      "Prepare educational and career goals, a résumé or CV, a short mission-alignment statement, and relevant research, advocacy, service, or community experience.",
+      "Health Equity applicants also propose a topic and format for a knowledge-sharing contribution. Recommendation letters are not required for the initial application unless a track says otherwise.",
+    ],
+    deadline: "November 30, 2026 at 11:59 p.m. ET",
+    deadlineAt: "2026-11-30T23:59:59-05:00",
+    sourceUrl: "https://sharpindex.org/scholarship-extended-requirement",
+    featuredOnHome: true,
+  },
+  {
+    id: "noaa-hollings-scholarship-2027",
+    title: "NOAA Ernest F. Hollings Scholarship, 2027",
+    organization: "National Oceanic and Atmospheric Administration",
+    category: "Scholarship and paid internship",
+    audience: "Second-year undergraduates in NOAA mission-related fields",
+    summary:
+      "Up to $40,000 in support, including $9,500 per year for junior and senior year, a paid 10-week NOAA internship, and conference travel funding. Relevant areas include biological and social sciences as well as other NOAA mission disciplines.",
+    eligibility: [
+      "U.S. citizen enrolled full time as an undergraduate sophomore (or third year in a five-year program); anticipated bachelor's graduation date must be December 2028 through August 2029.",
+      "At least a 3.0 GPA and a major in a NOAA mission-relevant field. Community college students transferring to a four-year college in Fall 2027 may also be eligible.",
+    ],
+    applicationChecklist: [
+      "Submit the online application, essay responses, transcripts from every college attended, and an official document listing your anticipated graduation date.",
+      "Request two references through the application system; at least one must be an academic reference. Make sure both submit their forms before the deadline.",
+    ],
+    deadline: "January 31, 2027 at 11:59 p.m. ET",
+    deadlineAt: "2027-01-31T23:59:59-05:00",
+    sourceUrl: "https://www.noaa.gov/office-education/undergraduate-scholarships",
+    secondarySourceUrl: "https://www.noaa.gov/office-education/hollings-scholarship/prospective/faq",
+    featuredOnHome: true,
+  },
+  {
+    id: "nih-sip-summer-2027",
+    title: "NIH Summer Internship Program (SIP), Summer 2027",
+    organization: "National Institutes of Health",
+    category: "Paid biomedical and health research",
+    audience: "College, graduate, and professional students interested in full-time summer research",
+    summary:
+      "Full-time research placements across NIH biomedical, behavioral, and social-science labs. Stipends are set by education level. NIH does not provide housing, and interns must show proof of health insurance.",
+    eligibility: [
+      "U.S. citizen or permanent resident, at least 18 by September 30, 2027, and enrolled at least half time in an eligible high-school, college, graduate, or professional program when applying.",
+      "Able to commit to a full-time summer research appointment; specific NIH institutes and labs may have additional requirements.",
+    ],
+    applicationChecklist: [
+      "Apply through the NIH Application Center; provide coursework and grades, a CV or résumé, and a personal statement about research interests and goals.",
+      "Enter two references, then contact NIH principal investigators whose research interests you. Reference letters are due February 2, after the application closes.",
+    ],
+    deadline: "January 26, 2027 at 12:00 p.m. ET · references due February 2",
+    deadlineAt: "2027-01-26T12:00:00-05:00",
+    sourceUrl: "https://beta.nih.gov/research-training/pb/sip",
+    featuredOnHome: true,
+  },
+  {
+    id: "mount-sinai-surp4us-2027",
+    title: "Mount Sinai SURP4US, Summer 2027",
+    organization: "Icahn School of Medicine at Mount Sinai",
+    category: "Biomedical research · PhD and MD-PhD pathway",
+    audience: "Rising juniors and seniors with limited research access who plan to pursue a biomedical PhD or MD-PhD",
+    summary:
+      "A 10-week mentored biomedical-research program for students who are socioeconomically disadvantaged and/or have had limited access to research. Participants receive a $5,000 stipend and housing allowance. This program is for future PhD or MD-PhD applicants, not MD-only applicants.",
+    eligibility: [
+      "Currently a sophomore or junior at a four-year U.S. undergraduate institution, including U.S. territories.",
+      "Explain barriers to hands-on research access or relevant socioeconomic disadvantage; have a strong science background and a goal of pursuing biomedical research professionally.",
+    ],
+    applicationChecklist: [
+      "Complete the online application and provide copies of high-school and college transcripts.",
+      "Request three recommendation letters; the program recommends that at least two come from people who know your research interests or experience.",
+    ],
+    deadline: "January 15, 2027",
+    deadlineAt: "2027-01-16T00:00:00-05:00",
+    sourceUrl: "https://icahn.mssm.edu/education/non-degree/surp4us",
+    secondarySourceUrl: "https://icahn.mssm.edu/education/admissions/graduate-education/summer-undergraduate",
+  },
+  {
+    id: "bcm-smart-2027",
+    title: "Baylor SMART Program, Summer 2027",
+    organization: "Baylor College of Medicine",
+    category: "Paid biomedical research",
+    audience: "Undergraduates interested in research careers, especially PhD-oriented students",
+    summary:
+      "Nine weeks of mentored biomedical research and career development in Houston. The program offers about $5,400 in compensation, which may be split between salary and housing or travel support depending on funding.",
+    eligibility: [
+      "At least a 3.0 GPA, currently enrolled at a U.S. college or university, and returning to complete your undergraduate degree after the summer; no graduation before or during the program.",
+      "Previous research is valuable but not required, except for first-year students, who need prior research experience or a national or international science-fair award. International students need U.S. work authorization.",
+      "The program encourages students pursuing PhD research careers; it is not a clinical or medical-school preparation program.",
+    ],
+    applicationChecklist: [
+      "Submit the online application, an unofficial transcript, and two recommendation letters from math, science, or engineering faculty; at least one recommender must be from your university.",
+      "Commit to the full nine-week program and be ready to provide health-insurance and immunization records if selected.",
+    ],
+    deadline: "January 22, 2027 at 8:00 a.m. CT",
+    deadlineAt: "2027-01-22T09:00:00-05:00",
+    sourceUrl: "https://www.bcm.edu/education/graduate-school-of-biomedical-sciences/degree-programs-and-certificates/smart-program",
+    secondarySourceUrl: "https://www.bcm.edu/education/graduate-school-of-biomedical-sciences/degree-programs-and-certificates/smart-program/admissions",
+  },
+  {
+    id: "uic-surf-2027",
+    title: "UIC Summer Undergraduate Research Fellowship (SURF), 2027",
+    organization: "University of Illinois Chicago Retzky College of Pharmacy",
+    category: "Paid biomedical research",
+    audience: "Sophomores and juniors in biology, chemistry, biochemistry, or related fields pursuing research training",
+    summary:
+      "A 10-week biomedical-research fellowship with an independent mentored project, seminars, and career development. Participants receive $7,000 and travel support to and from Chicago.",
+    eligibility: [
+      "U.S. citizen or permanent resident, GPA of at least 3.2, and available for the full 10 weeks.",
+      "Strong interest in an advanced research degree such as a PhD or PharmD/PhD; the program is not aimed at MD-only applicants. Students from groups underrepresented in health-related sciences are encouraged to apply.",
+    ],
+    applicationChecklist: [
+      "Submit the application form, personal statement, and transcripts by January 25, 2027.",
+      "Request two letters from current or former professors, instructors, or advisers. Letters must be signed, on institutional letterhead, and emailed directly to the program by the deadline.",
+    ],
+    deadline: "January 25, 2027",
+    deadlineAt: "2027-01-26T00:00:00-06:00",
+    sourceUrl: "https://surf.pharmacy.uic.edu/apply/",
+    secondarySourceUrl: "https://surf.pharmacy.uic.edu/",
+    featuredOnHome: true,
+  },
+  {
+    id: "wake-forest-bme-informatics-summer-research-2027",
+    title: "Wake Forest Biomedical Engineering and Informatics Summer Research Program, 2027",
+    organization: "Wake Forest University School of Medicine",
+    category: "Paid summer research",
+    audience: "Undergraduate and master's students in biomedical engineering, computing, science, or related fields",
+    summary:
+      "A 10-week research program in areas such as cancer diagnostics, injury prevention, medical devices, biomedical informatics, and medical imaging. The program provides a stipend and funded shared campus housing for non-local participants.",
+    eligibility: [
+      "At least 18 by the start date, completed two semesters of undergraduate or master's education, GPA of at least 3.0, and actively enrolled at a U.S. institution; students graduating before May 25, 2027 are not eligible.",
+      "U.S. citizens, nationals, permanent residents, and students attending a U.S. institution on an F-1 or J-1 visa may apply; international places are limited.",
+    ],
+    applicationChecklist: [
+      "Submit the online application with a one-page personal statement, résumé or CV, transcripts, and one academic or professional reference.",
+      "Commit to the May 25–July 30, 2027 program; a recommendation letter is optional but encouraged.",
+    ],
+    deadline: "January 29, 2027",
+    deadlineAt: "2027-01-30T00:00:00-05:00",
+    sourceUrl: "https://school.wakehealth.edu/departments/biomedical-engineering/center-for-injury-biomechanics/summer-research-opportunities",
+    featuredOnHome: true,
+  },
+  {
+    id: "uva-srip-2027",
+    title: "UVA Summer Research Internship Program (SRIP), 2027",
+    organization: "University of Virginia School of Medicine",
+    category: "Paid biomedical research",
+    audience: "Undergraduates considering biomedical research; rising juniors and seniors are typical applicants",
+    summary:
+      "A 10-week mentored research experience with a $6,000 stipend, housing, and travel support. First-year students, non-science majors transitioning to science, and pre-med students moving toward research may also apply.",
+    eligibility: [
+      "Undergraduate student who is a U.S. citizen or permanent resident; some limited positions may consider international students under different funding.",
+      "No minimum GPA or prior research experience is required. Participants must commit full time for the 10 weeks and have health insurance.",
+    ],
+    applicationChecklist: [
+      "Submit the online application, an unofficial transcript, and personal statements about career goals and research interests.",
+      "Request two faculty or adviser recommendation letters. Applications are due February 1; recommendation letters are due within seven days after that deadline.",
+    ],
+    deadline: "February 1, 2027 at 11:59 p.m. ET",
+    deadlineAt: "2027-02-02T00:00:00-05:00",
+    sourceUrl: "https://med.virginia.edu/summer-research-internship-program/",
+    secondarySourceUrl: "https://med.virginia.edu/summer-research-internship-program/how-to-apply/",
+  },
+  {
+    id: "penn-suip-2027",
+    title: "Penn Summer Undergraduate Internship Program (SUIP), 2027",
+    organization: "University of Pennsylvania Perelman School of Medicine",
+    category: "Paid biomedical research",
+    audience: "Undergraduates aspiring to PhD or MD-PhD study in biomedical sciences",
+    summary:
+      "A 10-week biomedical research internship with a $5,500 stipend, campus housing, a meal plan, and one round-trip to Penn. The program is intended for doctoral research pathways rather than MD-only applicants.",
+    eligibility: [
+      "U.S. citizen or permanent resident enrolled in a four-year college for the fall after the program; graduating seniors and students unable to attend all 10 weeks are not eligible.",
+      "No prior research experience is required; preference is given to students who have completed sophomore or junior year, especially those with limited access to research opportunities.",
+    ],
+    applicationChecklist: [
+      "Submit a résumé or CV, unofficial transcript, two recommendation letters, a research and personal statement, and a 150–200 word community statement.",
+      "All materials, including recommendation letters, must arrive through Penn's application or the Leadership Alliance portal by the deadline.",
+    ],
+    deadline: "February 1, 2027 at 11:59 p.m. ET",
+    deadlineAt: "2027-02-02T00:00:00-05:00",
+    sourceUrl: "https://www.med.upenn.edu/research-trainee-affairs/suip/",
+  },
+  {
+    id: "udall-undergraduate-scholarship-2027",
+    title: "Udall Undergraduate Scholarship, 2027",
+    organization: "Morris K. Udall and Stewart L. Udall Foundation",
+    category: "Public-service and environmental scholarship",
+    audience: "Sophomores and juniors pursuing environmental careers, or enrolled Native/Alaska Native students pursuing health care or Tribal public policy",
+    summary:
+      "The 2027 online application is available. The Foundation anticipates awarding up to 65 scholarships of $7,500. Students must be nominated through their institution, and campus deadlines can be much earlier than the national deadline.",
+    eligibility: [
+      "For the environment category: U.S. citizen, national, or permanent resident; sophomore or junior at an accredited institution; and planning a career related to the environment.",
+      "For Native health care or Tribal public policy: U.S. citizen, national, or permanent resident; an enrolled member of a federally recognized tribe; and pursuing health care or Tribal public policy.",
+    ],
+    applicationChecklist: [
+      "Contact Georgia Tech Prestigious Fellowships Advising now about the campus nomination process, faculty representative, and internal deadline; students cannot access the application without a faculty representative.",
+      "Prepare the 11-question application, an 800-word essay, college transcripts, and three recommendation letters. Additional documents apply to Native health care/Tribal public policy applicants and some permanent residents.",
+    ],
+    deadline: "March 4, 2027 at 11:59 p.m. MST · campus deadline may be earlier",
+    deadlineAt: "2027-03-05T01:59:59-05:00",
+    sourceUrl: "https://www.udall.gov/ourprograms/scholarship/apply",
+    secondarySourceUrl: "https://www.udall.gov/OurPrograms/Scholarship/ImportantDates",
+  },
 ];
 
 function nowHasPassed(deadlineAt: string) {
@@ -209,9 +422,15 @@ function nowHasPassed(deadlineAt: string) {
 }
 
 export function getOpenNowOpportunities() {
-  return openOpportunities.filter(
-    (opportunity) => !opportunity.deadlineAt || !nowHasPassed(opportunity.deadlineAt),
-  );
+  return openOpportunities
+    .filter(
+      (opportunity) => !opportunity.deadlineAt || !nowHasPassed(opportunity.deadlineAt),
+    )
+    .sort((a, b) => {
+      const aDeadline = a.deadlineAt ? new Date(a.deadlineAt).getTime() : Number.POSITIVE_INFINITY;
+      const bDeadline = b.deadlineAt ? new Date(b.deadlineAt).getTime() : Number.POSITIVE_INFINITY;
+      return aDeadline - bDeadline;
+    });
 }
 
 export function getHomeOpenOpportunities() {
