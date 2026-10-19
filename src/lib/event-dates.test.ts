@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { chapterToday, currentWeek, eventsAsOf, hasEnded } from "./event-dates";
 import { events, announcements } from "./stale-status-sep-14";
-import { getThisWeekItems, getVerifiedExternalEvents, getUpcomingItems } from "./external-events";
+import { externalEvents, getThisWeekItems, getVerifiedExternalEvents, getUpcomingItems } from "./external-events";
 import { linktreeLinks } from "./opportunities-linktree";
 import type { ChapterEvent, ExternalEvent } from "./site-types";
 
@@ -54,6 +54,26 @@ test("this week retires completed events without hiding ongoing multi-day events
   assert.equal(getVerifiedExternalEvents(externalFixtures, "2026-09-17").length, 0);
   const spanning = { ...conferenceFixture, startDate: "2026-09-20", endDate: "2026-09-22" };
   assert.equal(getThisWeekItems([spanning], [], "2026-09-21").length, 1);
+});
+
+test("Would You Rather external listing is verified before Oct 20 and expires after it ends", () => {
+  const id = "ext-maps-would-you-rather-2026-10-20";
+  assert.ok(getVerifiedExternalEvents(externalEvents, "2026-10-08").some((event) => event.id === id));
+  assert.ok(getVerifiedExternalEvents(externalEvents, "2026-10-20").some((event) => event.id === id));
+  assert.equal(getVerifiedExternalEvents(externalEvents, "2026-10-21").some((event) => event.id === id), false);
+});
+
+test("MAPS Pre-Health Fair external listing is verified through Oct 27 and expires after it ends", () => {
+  const id = "ext-maps-pre-health-fair-2026-10-27";
+  assert.ok(getVerifiedExternalEvents(externalEvents, "2026-10-18").some((event) => event.id === id));
+  assert.ok(getVerifiedExternalEvents(externalEvents, "2026-10-27").some((event) => event.id === id));
+  assert.equal(getVerifiedExternalEvents(externalEvents, "2026-10-28").some((event) => event.id === id), false);
+});
+
+test("both MAPS externals remain verified as of Oct 19 daily maintenance", () => {
+  const ids = getVerifiedExternalEvents(externalEvents, "2026-10-19").map((event) => event.id);
+  assert.ok(ids.includes("ext-maps-would-you-rather-2026-10-20"));
+  assert.ok(ids.includes("ext-maps-pre-health-fair-2026-10-27"));
 });
 
 test("expired promotions disappear, while undated plans and contact links remain", () => {

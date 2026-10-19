@@ -8,7 +8,7 @@ import { PlatformError } from "@/server/errors";
 import { getPool } from "@/server/db";
 import { createPlatform } from "@/server/platform";
 import { uuid } from "@/server/validation";
-import { FIRST_CHAPTER_EVENT } from "@/lib/first-chapter-event";
+import { FIRST_CHAPTER_EVENT, firstChapterEventHasEnded } from "@/lib/first-chapter-event";
 
 export const dynamic = "force-dynamic";
 export const metadata = { title: "Chapter event" };
@@ -59,26 +59,40 @@ export default async function EventDetail({
               {event.description}
             </p>
             {event.id === FIRST_CHAPTER_EVENT.platformId && event.publicationStatus === "published" ? (
-              <aside className="card p-7" aria-labelledby="engage-rsvp-heading">
-                <h2 id="engage-rsvp-heading" className="text-2xl font-bold text-gt-navy">
-                  Join us
-                </h2>
-                <p className="mt-3 leading-7 text-slate-600">
-                  RSVP for this meeting through Georgia Tech Engage. Follow the instructions there to confirm your attendance.
-                </p>
-                <a
-                  href={FIRST_CHAPTER_EVENT.engageUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="button button-primary mt-5"
-                >
-                  RSVP on Georgia Tech Engage <span aria-hidden="true">↗</span>
-                  <span className="sr-only"> (opens in a new tab)</span>
-                </a>
-                <p className="mt-3 text-sm text-slate-600">
-                  Registration and attendance confirmation are handled on Engage.
-                </p>
-              </aside>
+              firstChapterEventHasEnded() ? (
+                <aside className="card p-7" aria-labelledby="meeting-ended-heading">
+                  <h2 id="meeting-ended-heading" className="text-2xl font-bold text-gt-navy">
+                    This meeting has ended
+                  </h2>
+                  <p className="mt-3 leading-7 text-slate-600">
+                    This event was scheduled for {FIRST_CHAPTER_EVENT.timing} at {FIRST_CHAPTER_EVENT.location} and is now past. New chapter dates will appear on the Events page when announced.
+                  </p>
+                  <Link href="/events" className="button button-secondary mt-5">
+                    Browse all events <span aria-hidden="true">→</span>
+                  </Link>
+                </aside>
+              ) : (
+                <aside className="card p-7" aria-labelledby="engage-rsvp-heading">
+                  <h2 id="engage-rsvp-heading" className="text-2xl font-bold text-gt-navy">
+                    Join us
+                  </h2>
+                  <p className="mt-3 leading-7 text-slate-600">
+                    RSVP for this meeting through Georgia Tech Engage. Follow the instructions there to confirm your attendance.
+                  </p>
+                  <a
+                    href={FIRST_CHAPTER_EVENT.engageUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="button button-primary mt-5"
+                  >
+                    RSVP on Georgia Tech Engage <span aria-hidden="true">↗</span>
+                    <span className="sr-only"> (opens in a new tab)</span>
+                  </a>
+                  <p className="mt-3 text-sm text-slate-600">
+                    Registration and attendance confirmation are handled on Engage.
+                  </p>
+                </aside>
+              )
             ) : (
               <EventRsvp key={id} event={event} initialState={state} />
             )}

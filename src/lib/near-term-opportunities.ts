@@ -66,7 +66,7 @@ export const nearTermOpportunityCategories: ResourceCategory[] = [
       {
         title: "Georgia Tech Undergraduate Research Opportunities Program",
         description:
-          "Find faculty-mentored research at Georgia Tech and check UROP for research credit, PURA awards, and upcoming funding cycles. The PURA Salary page showed applications closed and the Spring 2027 deadline as TBD when checked October 19, 2026.",
+          "Find faculty-mentored research at Georgia Tech and check UROP for research credit, PURA awards, and upcoming funding cycles. The Spring 2027 PURA Salary deadline (extended to October 16) has passed; UROP lists Summer 2027 and Fall 2027 deadlines as TBD.",
         organization: "Georgia Tech UROP",
         href: "https://experiential.learning.gatech.edu/urop/",
         category: "Undergraduate research",

@@ -8,20 +8,60 @@ import { chapterToday, currentWeek, hasEnded } from "./event-dates";
 
 /**
  * P0.3 — verified external / recommended pre-health events.
- * Rechecked October 6, 2026 (weekday daily) against official GT Campus Calendar,
+ * Rechecked October 19, 2026 (weekday daily maintenance) against official GT Campus Calendar,
  * Pre-Health Advising, Explore LLC, LMSA National, and LMSA Southeast sources.
- * Rolling window: October 6 – October 20, 2026.
- * Young Physicians Initiative on Oct 15 was omitted because it conflicts with
- * the LMSA Plus Interest Meeting (confirmed; RSVP via Georgia Tech Engage) at the same time.
+ * Rolling window: October 19 – November 2, 2026.
+ * Would You Rather? Pre-Health Edition (Oct 20, MAPS at Georgia Tech) kept — location still TBA (re-verified Oct 19); listing updated Oct 16 to welcome all GT students.
+ * MAPS Pre-Health Fair (Oct 27) kept from GT Campus Calendar (re-verified Oct 19).
+ * Young Physicians Initiative (Oct 15) is past and was never listed — it conflicted with
+ * the LMSA Plus Interest Meeting at the same time.
+ * The LMSA Plus Interest Meeting (Oct 15) is past — retired from upcoming surfaces via date checks.
  * NC2026 (Sep 17–20 Houston) concluded — archived via overlays / eventsAsOf.
- * LMSA SE 17th Regional Conference (Feb 27–Mar 1 2026) is past — no 2027 dates announced as of Oct 6.
- * SCENE College of Sciences event Oct 7 deliberately not listed (not dedicated pre-health).
+ * LMSA SE 17th Regional Conference (Feb 27–Mar 1 2026) is past — no 2027 dates announced as of Oct 19.
+ * No other ≥80 official-calendar dedicated pre-health events verified for the window.
+ * SCENE College of Sciences event Oct 7 is past; it was deliberately not listed (generic career expo, not dedicated pre-health).
  * Listings are recommendations only — not LMSA Plus partnerships or chapter programming.
  */
 
-export const EXTERNAL_EVENTS_CHECKED_AT = "October 6, 2026";
+export const EXTERNAL_EVENTS_CHECKED_AT = "October 19, 2026";
 
-export const externalEvents: ExternalEvent[] = [];
+export const externalEvents: ExternalEvent[] = [
+  {
+    id: "ext-maps-would-you-rather-2026-10-20",
+    title: "Would You Rather? Pre-Health Edition",
+    organization: "MAPS at Georgia Tech (student organization, @maps.gt)",
+    displayDate: "Tuesday, October 20, 2026",
+    startDate: "2026-10-20",
+    time: "6:00 PM – 7:00 PM ET",
+    location: "Location TBA (check the GT Campus Calendar listing)",
+    description:
+      "Student-sponsored game of would-you-rather based on pre-health topics; the GT Campus Calendar listing says all Georgia Tech students are welcome. Updates are shared via Instagram @maps.gt. Recommendation only — not LMSA Plus chapter programming or a partnership.",
+    sourceUrl:
+      "https://calendar.gatech.edu/event/2026/10/20/would-you-rather-pre-health-edition",
+    category: "Community",
+    verificationLevel: "official-calendar",
+    lastCheckedAt: EXTERNAL_EVENTS_CHECKED_AT,
+    relevanceScore: 82,
+    sourceType: "external",
+  },
+  {
+    id: "ext-maps-pre-health-fair-2026-10-27",
+    title: "MAPS Pre-Health Fair",
+    organization: "MAPS at Georgia Tech (Minority Association of Pre-Medical Students, @maps.gt)",
+    displayDate: "Tuesday, October 27, 2026",
+    startDate: "2026-10-27",
+    time: "1:00 PM – 5:00 PM ET",
+    location: "Atrium, Klaus Advanced Computing Building",
+    description:
+      "Annual student-organized pre-health fair. The GT Campus Calendar listing says several pre-health schools will attend, offering a chance to speak with admissions representatives, and that all students are welcome; more details will be shared via Instagram @maps.gt. Recommendation only — not LMSA Plus chapter programming or a partnership.",
+    sourceUrl: "https://calendar.gatech.edu/event/2026/10/27/maps-pre-health-fair",
+    category: "Pre-health fair",
+    verificationLevel: "official-calendar",
+    lastCheckedAt: EXTERNAL_EVENTS_CHECKED_AT,
+    relevanceScore: 90,
+    sourceType: "external",
+  },
+];
 
 /** Minimum relevance score for public listing (~80+). */
 export const EXTERNAL_RELEVANCE_THRESHOLD = 80;

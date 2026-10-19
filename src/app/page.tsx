@@ -7,7 +7,7 @@ import { SitePage } from "@/components/SitePage";
 import { getUpcomingItems } from "@/lib/external-events";
 import { formatEventTime } from "@/lib/platform-dates";
 import { getPublicChapterEvents } from "@/server/public-events";
-import { FIRST_CHAPTER_EVENT } from "@/lib/first-chapter-event";
+import { FIRST_CHAPTER_EVENT, firstChapterEventHasEnded } from "@/lib/first-chapter-event";
 
 export const dynamic = "force-dynamic";
 
@@ -16,6 +16,7 @@ export default async function HomePage() {
     getPublicChapterEvents(),
     Promise.resolve(getUpcomingItems().filter((item) => item.sourceType !== "chapter")),
   ]);
+  const firstMeetingEnded = firstChapterEventHasEnded();
   const featuredEvent = chapterEvents.find(
     (event) => event.publicationStatus === "published",
   );
@@ -34,18 +35,24 @@ export default async function HomePage() {
               Georgia Tech’s Latino Medical Student Association. Meet other pre-health students, find mentors, and give back to our community.
             </p>
             <p className="mt-5 text-sm font-semibold text-slate-600">
-              First meeting · {FIRST_CHAPTER_EVENT.shortTiming} · IC, Room 115
+              {firstMeetingEnded ? (
+                <>New chapter dates will appear on the <Link href="/events" className="text-link">Events page</Link> when announced.</>
+              ) : (
+                <>First meeting · {FIRST_CHAPTER_EVENT.shortTiming} · IC, Room 115</>
+              )}
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
-              <a
-                href={FIRST_CHAPTER_EVENT.engageUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="button button-primary"
-              >
-                RSVP on Georgia Tech Engage <span aria-hidden="true">↗</span>
-                <span className="sr-only"> (opens in a new tab)</span>
-              </a>
+              {firstMeetingEnded ? null : (
+                <a
+                  href={FIRST_CHAPTER_EVENT.engageUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="button button-primary"
+                >
+                  RSVP on Georgia Tech Engage <span aria-hidden="true">↗</span>
+                  <span className="sr-only"> (opens in a new tab)</span>
+                </a>
+              )}
               <Link href="/join" className="button button-primary">
                 Join LMSA+ <span aria-hidden="true">→</span>
               </Link>
@@ -105,17 +112,19 @@ export default async function HomePage() {
                     {availability === "ready"
                       ? "No upcoming chapter events are currently listed."
                       : availability === "unconfigured"
-                        ? FIRST_CHAPTER_EVENT.title
+                        ? firstMeetingEnded
+                          ? "No upcoming chapter events are currently listed."
+                          : FIRST_CHAPTER_EVENT.title
                         : "Chapter event details are temporarily unavailable."}
                   </p>
                   <p className="mt-2 leading-7 text-slate-600">
                     {availability === "unavailable"
                       ? "Please check the events page again soon for confirmed updates."
-                      : availability === "unconfigured"
+                      : availability === "unconfigured" && !firstMeetingEnded
                         ? `${FIRST_CHAPTER_EVENT.timing} · ${FIRST_CHAPTER_EVENT.location}. RSVP through Georgia Tech Engage.`
                         : "Check back here as plans and event details are confirmed."}
                   </p>
-                  {availability === "unconfigured" ? (
+                  {availability === "unconfigured" && !firstMeetingEnded ? (
                     <a
                       href={FIRST_CHAPTER_EVENT.engageUrl}
                       target="_blank"

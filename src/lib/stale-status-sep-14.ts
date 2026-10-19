@@ -8,10 +8,10 @@ import {
   announcements as refreshedAnnouncements,
   events as refreshedEvents,
 } from "./sep-2026-refresh";
-import { faqs as baseFaqs, scholarships as baseScholarships, interestMeetingTiming } from "./site-data";
+import { contactLinks, faqs as baseFaqs, scholarships as baseScholarships, interestMeetingTiming } from "./site-data";
 import { LAST_CONTENT_REVIEW } from "./source-registry";
 
-/** October 19, 2026 content refresh: PURA Salary applications are closed; the official Spring 2027 deadline is listed as TBD. */
+/** October 19, 2026 weekday daily maintenance (stamp-only; PURA Salary Spring 2027 remains closed — deadline Oct 16 passed; Interest Meeting Oct 15 past — retired via date checks; YPI omission unchanged; MAPS Would You Rather Oct 20 and MAPS Pre-Health Fair Oct 27 externals unchanged). */
 
 const PAST_EVENT_IDS = new Set([
   "pre-health-fall-kickoff-2026",
@@ -23,6 +23,7 @@ const PAST_ANNOUNCEMENT_IDS = new Set([
   "pre-health-fall-kickoff-2026",
   "student-org-fair-fall-2026",
   "nc2026-houston",
+  "interest-meeting-fall-2026",
 ]);
 
 const RECHECKED_CLOSED = new Set([
@@ -57,9 +58,9 @@ export const scholarships: ScholarshipOpportunity[] = baseScholarships.map(
       return {
         ...opportunity,
         status: "closed",
-        deadline: "Spring 2027 deadline TBD; applications closed when checked October 19",
+        deadline: "October 16, 2026",
         description:
-          "PURA Salary Awards fund eligible undergraduate research with a Georgia Tech or GTRI faculty mentor. The official page showed applications closed and the Spring 2027 deadline as TBD when checked October 19, 2026; monitor UROP for the next cycle.",
+          "PURA Salary Awards fund eligible undergraduate research completed with a Georgia Tech or GTRI faculty mentor. The Spring 2027 application deadline (extended to October 16, 2026) has passed. The official UROP page lists Summer 2027 and Fall 2027 deadlines as TBD — check there for the next cycle.",
         sourceUrl: "https://experiential.learning.gatech.edu/urop/pura-salary/",
         lastVerified: "October 19, 2026",
       };
@@ -90,30 +91,22 @@ export const events: ChapterEvent[] = refreshedEvents.map((event) => {
       ...event,
       displayDate: interestMeetingTiming,
       description:
-        "Meet the founding executive board, learn about LMSA+ at Georgia Tech, explore service and professional-development opportunities, and find ways to get involved. The meeting is scheduled for Thursday, October 15, 2026, from 6:30–7:30 PM EDT in Instructional Center (IC), Room 115. RSVP through Georgia Tech Engage.",
+        "Meet the founding executive board, learn about LMSA+ at Georgia Tech, explore service and professional-development opportunities, and find ways to get involved. Scheduled for Thursday, October 15, 2026, 6:30–7:30 PM EDT in Instructional Center (IC), Room 115 (Georgia Tech Engage).",
     };
   }
   return event;
 });
 
 export const announcements: Announcement[] = refreshedAnnouncements
-  .filter((announcement) => !PAST_ANNOUNCEMENT_IDS.has(announcement.id))
-  .map((announcement) => {
-    if (announcement.id === "interest-meeting-fall-2026") {
-      return {
-        ...announcement,
-        timing: `${interestMeetingTiming} · Instructional Center (IC), Room 115`,
-      };
-    }
-    return announcement;
-  });
+  .filter((announcement) => !PAST_ANNOUNCEMENT_IDS.has(announcement.id));
 
 export const faqs: FAQ[] = baseFaqs.map((faq) => {
   if (faq.question === "When will the first meeting occur?") {
     return {
       ...faq,
+      question: "When was the first chapter meeting?",
       answer:
-        "The first LMSA+ Interest Meeting is Thursday, October 15, 2026, from 6:30–7:30 PM EDT in Instructional Center (IC), Room 115. RSVP through the official Georgia Tech Engage event page.",
+        `The first LMSA+ Interest Meeting was scheduled for Thursday, October 15, 2026, from 6:30–7:30 PM EDT in Instructional Center (IC), Room 115. New chapter dates will appear on the Events page when announced; follow ${contactLinks.instagramHandle} on Instagram for updates.`,
     };
   }
   if (faq.question === "How can students hear about scholarships?") {
