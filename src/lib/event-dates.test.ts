@@ -70,6 +70,12 @@ test("MAPS Pre-Health Fair external listing is verified through Oct 27 and expir
   assert.equal(getVerifiedExternalEvents(externalEvents, "2026-10-28").some((event) => event.id === id), false);
 });
 
+test("both MAPS externals remain verified as of Oct 19 daily maintenance", () => {
+  const ids = getVerifiedExternalEvents(externalEvents, "2026-10-19").map((event) => event.id);
+  assert.ok(ids.includes("ext-maps-would-you-rather-2026-10-20"));
+  assert.ok(ids.includes("ext-maps-pre-health-fair-2026-10-27"));
+});
+
 test("expired promotions disappear, while undated plans and contact links remain", () => {
   const current = linktreeLinks.filter((item) => !hasEnded(item, "2026-09-14"));
   assert.equal(current.some((item) => item.label === "2026 Pre-Health Fall Kickoff"), false);
