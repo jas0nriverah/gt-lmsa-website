@@ -11,7 +11,7 @@ import {
 import { contactLinks, faqs as baseFaqs, scholarships as baseScholarships, interestMeetingTiming } from "./site-data";
 import { LAST_CONTENT_REVIEW } from "./source-registry";
 
-/** October 18, 2026 Sunday deep audit (PURA Salary Spring 2027 deadline Oct 16 passed — flipped to closed; Interest Meeting Oct 15 past — retired via date checks; YPI omission unchanged; MAPS Pre-Health Fair Oct 27 added as external). */
+/** October 19, 2026 weekday daily maintenance (stamp-only; PURA Salary Spring 2027 remains closed — deadline Oct 16 passed; Interest Meeting Oct 15 past — retired via date checks; YPI omission unchanged; MAPS Would You Rather Oct 20 and MAPS Pre-Health Fair Oct 27 externals unchanged). */
 
 const PAST_EVENT_IDS = new Set([
   "pre-health-fall-kickoff-2026",
