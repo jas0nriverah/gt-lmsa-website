@@ -193,6 +193,20 @@ export const sourceRegistry: SourceRecord[] = [
     timeSensitive: true,
   },
   {
+    name: "Goldwater Summer Research Internship Program",
+    url: "https://www.goldwaterinternship.gov/",
+    supports: ["Summer 2027 internship projects", "November 2, 2026 application deadline", "eligibility", "award amount"],
+    lastVerified: LAST_CONTENT_REVIEW,
+    timeSensitive: true,
+  },
+  {
+    name: "Georgia Tech first-year admission deadlines",
+    url: "https://admission.gatech.edu/first-year/deadlines",
+    supports: ["Early Action 2 deadline", "first-year application materials", "merit scholarship consideration"],
+    lastVerified: LAST_CONTENT_REVIEW,
+    timeSensitive: true,
+  },
+  {
     name: "U.S. Department of Energy SULI",
     url: "https://science.osti.gov/wdts/suli/how-to-apply",
     supports: ["Summer 2027 application status", "January 6, 2027 deadline"],
@@ -263,6 +277,13 @@ export const sourceRegistry: SourceRecord[] = [
     timeSensitive: true,
   },
   {
+    name: "Georgia Tech returning undergraduate financial aid",
+    url: "https://finaid.gatech.edu/apply/returning-undergraduate/",
+    supports: ["2027–28 GT App and FAFSA requirements", "January 31, 2027 on-time deadline", "HOPE and Zell Miller application options"],
+    lastVerified: LAST_CONTENT_REVIEW,
+    timeSensitive: true,
+  },
+  {
     name: "Georgia Tech Scholarship Universe",
     url: "https://news.em.gatech.edu/2026/06/23/financial-aid-scholarship-universe/",
     supports: ["availability and access requirements for Scholarship Universe"],
@@ -274,6 +295,27 @@ export const sourceRegistry: SourceRecord[] = [
     url: "https://national.lmsa.net/resources/awards/scholarships/",
     supports: ["scholarship cycles", "award-specific eligibility"],
     lastVerified: "October 19, 2026",
+    timeSensitive: true,
+  },
+  {
+    name: "Barry Goldwater Scholarship",
+    url: "https://goldwaterscholarship.gov/students/overview/",
+    supports: ["2027 competition eligibility", "institutional nomination requirement", "national application cycle"],
+    lastVerified: LAST_CONTENT_REVIEW,
+    timeSensitive: true,
+  },
+  {
+    name: "Georgia Tech Prestigious Fellowships Advising",
+    url: "https://www.success.gatech.edu/prestigious-fellowships/",
+    supports: ["Georgia Tech campus nomination and fellowship advising"],
+    lastVerified: LAST_CONTENT_REVIEW,
+    timeSensitive: true,
+  },
+  {
+    name: "Harry S. Truman Scholarship",
+    url: "https://www.truman.gov/apply/applying/2026-announcements",
+    supports: ["2027 competition announcement", "national deadline", "institutional nomination requirement"],
+    lastVerified: LAST_CONTENT_REVIEW,
     timeSensitive: true,
   },
   {
