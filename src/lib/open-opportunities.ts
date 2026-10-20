@@ -13,14 +13,16 @@ export interface OpenOpportunity {
   sourceUrl: string;
   secondarySourceUrl?: string;
   featuredOnHome?: boolean;
+  /** National cycle is open, but GT's required nomination window is unverified. */
+  requiresCampusConfirmation?: true;
 }
 
-export const OPEN_OPPORTUNITIES_REVIEWED = "October 19, 2026";
+export const OPEN_OPPORTUNITIES_REVIEWED = "October 20, 2026";
 
 /**
- * Curated opportunities whose current application window is open. The home
- * page and the top of /opportunities use this same list. Dated listings are
- * hidden automatically after their published deadline.
+ * Reviewed opportunities. Only confirmed open applications appear on the home
+ * page and at the top of /opportunities. Campus nomination windows awaiting
+ * confirmation appear separately; dated listings expire automatically.
  */
 export const openOpportunities: OpenOpportunity[] = [
   {
@@ -59,8 +61,8 @@ export const openOpportunities: OpenOpportunity[] = [
       "The admissions page lists November 2, 2026 as the Early Action 2 application deadline; all deadlines are 11:59 p.m. in the applicant’s time zone.",
     ],
     applicationChecklist: [
-      "Submit the Common Application and required admission materials by the Early Action 2 deadline.",
-      "Submit any remaining documents by the separate document deadline shown on the admissions page.",
+      "Submit the Common Application by November 2, 2026, at 11:59 p.m. in your time zone.",
+      "Additional documents are due November 16; self-reported test scores are due December 8. Follow Undergraduate Admission's deadlines; the Gold Scholars page currently lists a conflicting November 3 date.",
     ],
     deadline: "November 2, 2026 · Early Action 2 application",
     deadlineAt: "2026-11-02T23:59:59-05:00",
@@ -140,12 +142,13 @@ export const openOpportunities: OpenOpportunity[] = [
   },
   {
     id: "goldwater-scholarship-2027",
+    requiresCampusConfirmation: true,
     title: "Barry Goldwater Scholarship, 2027 competition",
     organization: "Barry Goldwater Scholarship and Excellence in Education Foundation",
     category: "Research scholarship",
     audience: "Sophomores and juniors pursuing research careers in science, math, or engineering",
     summary:
-      "The 2027 nomination cycle is open. Georgia Tech students must first contact the campus fellowship adviser because the institution sets an earlier internal selection deadline.",
+      "The national 2027 nomination cycle is open, but Georgia Tech’s internal nomination deadline and current availability could not be confirmed. Contact the campus fellowship adviser before preparing an application; the national deadline does not establish that GT nominations remain open.",
     eligibility: [
       "Sophomore or junior at an accredited U.S. two-year or four-year institution and full-time during funded terms.",
       "Cumulative college GPA of at least 3.0 and a research career goal in natural science, mathematics, or engineering; medicine qualifies when research is central to the career plan.",
@@ -162,22 +165,23 @@ export const openOpportunities: OpenOpportunity[] = [
   },
   {
     id: "truman-scholarship-2027",
+    requiresCampusConfirmation: true,
     title: "Harry S. Truman Scholarship, 2027 competition",
     organization: "Harry S. Truman Scholarship Foundation",
     category: "Leadership and public-service scholarship",
-    audience: "Full-time undergraduate juniors planning a career in public service",
+    audience: "Undergraduates nearing graduation and planning a career in public service",
     summary:
-      "The 2027 competition is underway and offers up to $30,000 for graduate or professional study. Students must be nominated by their institution.",
+      "The national 2027 competition is underway and offers up to $30,000 for graduate or professional study. Institutional nomination is required; Georgia Tech’s internal deadline and current nomination availability could not be confirmed.",
     eligibility: [
-      "Full-time junior-level student at a four-year institution during 2026–27; expected graduation generally December 2027–August 2028.",
-      "U.S. citizen or U.S. national from American Samoa, nominated by the institution, and in the upper quarter of the class.",
+      "In the penultimate year of an undergraduate degree lasting four years or more, or the final year of a degree lasting three years or fewer; enrolled at an accredited U.S. institution.",
+      "U.S. citizen, U.S. national resident of American Samoa, or expecting citizenship by the award date; institutional nomination is required.",
       "Strong public/community service and leadership record, with plans for a career in government or another public-service field.",
     ],
     applicationChecklist: [
       "Contact Georgia Tech Prestigious Fellowships Advising now for the campus nomination process and internal deadline.",
       "Nominees complete the application and supporting materials through the Foundation’s system.",
     ],
-    deadline: "February 2, 2027 · national nominee deadline",
+    deadline: "February 2, 2027 at 11:59 p.m. in your time zone · national deadline; GT deadline unverified",
     deadlineAt: "2027-02-02T23:59:59-05:00",
     sourceUrl: "https://www.truman.gov/apply/applying/2026-announcements",
     secondarySourceUrl: "https://www.truman.gov/apply/applying/bulletin-information",
@@ -213,7 +217,7 @@ export const openOpportunities: OpenOpportunity[] = [
     eligibility: [
       "Pursuing a pathway related to medicine, healthcare, public health, mental health, medical education, healthcare research, or healthcare leadership.",
       "Show a meaningful connection to the scholarship’s mission through education, service, advocacy, lived experience, research, or career goals.",
-      "The Health Equity track prioritizes eligible applicants from historically underrepresented or underserved populations; review both tracks’ requirements before applying.",
+      "The Health Equity track is for eligible applicants from historically underrepresented or underserved populations and identities; review both tracks’ requirements before applying.",
     ],
     applicationChecklist: [
       "Prepare educational and career goals, a résumé or CV, a short mission-alignment statement, and relevant research, advocacy, service, or community experience.",
@@ -255,14 +259,15 @@ export const openOpportunities: OpenOpportunity[] = [
     summary:
       "Full-time research placements across NIH biomedical, behavioral, and social-science labs. Stipends are set by education level. NIH does not provide housing, and interns must show proof of health insurance.",
     eligibility: [
-      "U.S. citizen or permanent resident, at least 18 by September 30, 2027, and enrolled at least half time in an eligible high-school, college, graduate, or professional program when applying.",
+      "U.S. citizen or permanent resident, at least 18 by September 30, 2027, and enrolled at least half time in college, graduate, or professional school when applying. Accepted fall graduate students may also qualify; permanent residents must attend or be accepted at a U.S. institution.",
+      "Graduating high-school seniors must meet NIH’s separate age and enrollment rules. Those who are 17 on June 1 and turn 18 by September 30 must live within 40 miles of an NIH campus.",
       "Able to commit to a full-time summer research appointment; specific NIH institutes and labs may have additional requirements.",
     ],
     applicationChecklist: [
       "Apply through the NIH Application Center; provide coursework and grades, a CV or résumé, and a personal statement about research interests and goals.",
       "Enter two references, then contact NIH principal investigators whose research interests you. Reference letters are due February 2, after the application closes.",
     ],
-    deadline: "January 26, 2027 at 12:00 p.m. ET · references due February 2",
+    deadline: "January 26, 2027 at 12:00 p.m. ET · references due February 2 at noon ET",
     deadlineAt: "2027-01-26T12:00:00-05:00",
     sourceUrl: "https://www.training.nih.gov/research-training/pb/sip/",
     featuredOnHome: true,
@@ -410,6 +415,7 @@ export const openOpportunities: OpenOpportunity[] = [
     applicationChecklist: [
       "Write a 500–800 word essay about one specific health gap affecting Black communities and cite a primary source such as a study, federal dataset, or published report.",
       "Write a 100–300 word response describing your next concrete career or education step and when you plan to take it.",
+      "Submit your own writing; AI-written essays are prohibited. Immediate family of Black Health staff are ineligible.",
     ],
     deadline: "December 1, 2026 at 11:59 p.m. ET",
     deadlineAt: "2026-12-01T23:59:59-05:00",
@@ -486,12 +492,13 @@ export const openOpportunities: OpenOpportunity[] = [
   },
   {
     id: "udall-undergraduate-scholarship-2027",
+    requiresCampusConfirmation: true,
     title: "Udall Undergraduate Scholarship, 2027",
     organization: "Morris K. Udall and Stewart L. Udall Foundation",
     category: "Public-service and environmental scholarship",
     audience: "Sophomores and juniors pursuing environmental careers, or enrolled Native/Alaska Native students pursuing health care or Tribal public policy",
     summary:
-      "The 2027 online application is available. The Foundation anticipates awarding up to 65 scholarships of $7,500. Students must be nominated through their institution, and campus deadlines can be much earlier than the national deadline.",
+      "The national 2027 application is available, but only a faculty representative can grant access. Georgia Tech’s internal nomination deadline and current availability could not be confirmed; check with campus advising before preparing materials.",
     eligibility: [
       "For the environment category: U.S. citizen, national, or permanent resident; sophomore or junior at an accredited institution; and planning a career related to the environment.",
       "For Native health care or Tribal public policy: U.S. citizen, national, or permanent resident; an enrolled member of a federally recognized tribe; and pursuing health care or Tribal public policy.",
@@ -499,11 +506,35 @@ export const openOpportunities: OpenOpportunity[] = [
     applicationChecklist: [
       "Contact Georgia Tech Prestigious Fellowships Advising now about the campus nomination process, faculty representative, and internal deadline; students cannot access the application without a faculty representative.",
       "Prepare the 11-question application, an 800-word essay, college transcripts, and three recommendation letters. Additional documents apply to Native health care/Tribal public policy applicants and some permanent residents.",
+      "Faculty representatives must register applicants by March 3, 2027, before the national submission deadline on March 4.",
     ],
     deadline: "March 4, 2027 at 11:59 p.m. MST · campus deadline may be earlier",
     deadlineAt: "2027-03-05T01:59:59-05:00",
     sourceUrl: "https://www.udall.gov/ourprograms/scholarship/apply",
     secondarySourceUrl: "https://www.udall.gov/OurPrograms/Scholarship/ImportantDates",
+  },
+  {
+    id: "pd-soros-fellowship-2027",
+    title: "Paul & Daisy Soros Fellowships for New Americans, 2027",
+    organization: "Paul & Daisy Soros Fellowships for New Americans",
+    category: "Graduate and professional-school fellowship",
+    audience: "Eligible immigrants and children of immigrants starting or continuing graduate or professional study",
+    summary:
+      "The 2027 fellowship application is open for full-time U.S. graduate and professional degrees, including medicine. Students applying to graduate school may apply before admission.",
+    eligibility: [
+      "Age 30 or younger on October 29, 2026, and meet the program’s specific New American criteria for immigrants or children of immigrants; read the official eligibility rules for your circumstances.",
+      "Have a bachelor’s degree by fall 2027 and plan full-time enrollment in an accredited U.S. graduate or professional degree during 2027–28. You must not have begun the third year of the degree being funded by the application deadline.",
+      "Executive, certificate, post-baccalaureate, and joint bachelor’s/master’s programs awarding both degrees simultaneously are ineligible.",
+    ],
+    applicationChecklist: [
+      "Submit the online application, résumé or CV, two essays, relevant transcripts, and any test scores required for admission to the degree being funded.",
+      "Register three to five recommenders; at least three recommendations and all application materials must arrive by the same 2 p.m. ET deadline.",
+    ],
+    deadline: "October 29, 2026 at 2:00 p.m. ET",
+    deadlineAt: "2026-10-29T14:00:00-04:00",
+    sourceUrl: "https://pdsoros.org/application-process/",
+    secondarySourceUrl: "https://pdsoros.org/eligibility/",
+    featuredOnHome: true,
   },
 ];
 
@@ -514,7 +545,8 @@ function nowHasPassed(deadlineAt: string) {
 export function getOpenNowOpportunities() {
   return openOpportunities
     .filter(
-      (opportunity) => !opportunity.deadlineAt || !nowHasPassed(opportunity.deadlineAt),
+      (opportunity) => !opportunity.requiresCampusConfirmation &&
+        (!opportunity.deadlineAt || !nowHasPassed(opportunity.deadlineAt)),
     )
     .sort((a, b) => {
       const aDeadline = a.deadlineAt ? new Date(a.deadlineAt).getTime() : Number.POSITIVE_INFINITY;
@@ -525,4 +557,9 @@ export function getOpenNowOpportunities() {
 
 export function getHomeOpenOpportunities() {
   return getOpenNowOpportunities().filter((opportunity) => opportunity.featuredOnHome);
+}
+
+export function getNominationOpportunities() {
+  return openOpportunities.filter((opportunity) => opportunity.requiresCampusConfirmation &&
+    (!opportunity.deadlineAt || !nowHasPassed(opportunity.deadlineAt)));
 }

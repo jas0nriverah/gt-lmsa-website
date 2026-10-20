@@ -10,8 +10,8 @@ export function OpenOpportunityCard({
   return (
     <article className="card flex h-full flex-col p-6">
       <div className="flex flex-wrap items-center gap-2">
-        <span className="rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-bold text-emerald-800 ring-1 ring-emerald-200">
-          Open now
+        <span className={`rounded-full px-2.5 py-1 text-xs font-bold ring-1 ${opportunity.requiresCampusConfirmation ? "bg-amber-50 text-amber-900 ring-amber-200" : "bg-emerald-50 text-emerald-800 ring-emerald-200"}`}>
+          {opportunity.requiresCampusConfirmation ? "Verify campus nomination" : "Open now"}
         </span>
         <span className="eyebrow">{opportunity.category}</span>
       </div>
