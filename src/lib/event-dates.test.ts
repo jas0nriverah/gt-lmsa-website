@@ -76,6 +76,14 @@ test("both MAPS externals remain verified as of Oct 19 daily maintenance", () =>
   assert.ok(ids.includes("ext-maps-pre-health-fair-2026-10-27"));
 });
 
+test("Oct 20 daily maintenance keeps same-day Would You Rather listed and retires it Oct 21 while the fair stays", () => {
+  const todayIds = getVerifiedExternalEvents(externalEvents, "2026-10-20").map((event) => event.id);
+  assert.ok(todayIds.includes("ext-maps-would-you-rather-2026-10-20"));
+  const tomorrowIds = getVerifiedExternalEvents(externalEvents, "2026-10-21").map((event) => event.id);
+  assert.equal(tomorrowIds.includes("ext-maps-would-you-rather-2026-10-20"), false);
+  assert.ok(tomorrowIds.includes("ext-maps-pre-health-fair-2026-10-27"));
+});
+
 test("expired promotions disappear, while undated plans and contact links remain", () => {
   const current = linktreeLinks.filter((item) => !hasEnded(item, "2026-09-14"));
   assert.equal(current.some((item) => item.label === "2026 Pre-Health Fall Kickoff"), false);

@@ -8,22 +8,22 @@ import { chapterToday, currentWeek, hasEnded } from "./event-dates";
 
 /**
  * P0.3 — verified external / recommended pre-health events.
- * Rechecked October 19, 2026 (weekday daily maintenance) against official GT Campus Calendar,
+ * Rechecked October 20, 2026 (weekday daily maintenance) against official GT Campus Calendar,
  * Pre-Health Advising, Explore LLC, LMSA National, and LMSA Southeast sources.
- * Rolling window: October 19 – November 2, 2026.
- * Would You Rather? Pre-Health Edition (Oct 20, MAPS at Georgia Tech) kept — location still TBA (re-verified Oct 19); listing updated Oct 16 to welcome all GT students.
- * MAPS Pre-Health Fair (Oct 27) kept from GT Campus Calendar (re-verified Oct 19).
+ * Rolling window: October 20 – November 3, 2026.
+ * Would You Rather? Pre-Health Edition (Oct 20, MAPS at Georgia Tech) kept — location still TBA (re-verified Oct 20; event is today, retires automatically after Oct 20); listing updated Oct 16 to welcome all GT students.
+ * MAPS Pre-Health Fair (Oct 27) kept from GT Campus Calendar (re-verified Oct 20).
  * Young Physicians Initiative (Oct 15) is past and was never listed — it conflicted with
  * the LMSA Plus Interest Meeting at the same time.
  * The LMSA Plus Interest Meeting (Oct 15) is past — retired from upcoming surfaces via date checks.
  * NC2026 (Sep 17–20 Houston) concluded — archived via overlays / eventsAsOf.
- * LMSA SE 17th Regional Conference (Feb 27–Mar 1 2026) is past — no 2027 dates announced as of Oct 19.
+ * LMSA SE 17th Regional Conference (Feb 27–Mar 1 2026) is past — no 2027 dates announced as of Oct 20.
  * No other ≥80 official-calendar dedicated pre-health events verified for the window.
  * SCENE College of Sciences event Oct 7 is past; it was deliberately not listed (generic career expo, not dedicated pre-health).
  * Listings are recommendations only — not LMSA Plus partnerships or chapter programming.
  */
 
-export const EXTERNAL_EVENTS_CHECKED_AT = "October 19, 2026";
+export const EXTERNAL_EVENTS_CHECKED_AT = "October 20, 2026";
 
 export const externalEvents: ExternalEvent[] = [
   {
