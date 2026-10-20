@@ -34,6 +34,24 @@ const RECHECKED_CLOSED = new Set([
 
 export const scholarships: ScholarshipOpportunity[] = baseScholarships.map(
   (opportunity) => {
+    if (opportunity.name === "AAMC Fee Assistance Program") {
+      return {
+        ...opportunity,
+        eligibility:
+          "U.S.-based home address; each reported household’s 2025 income at or below 400% of the 2025 national poverty level. Applicants must be preparing for medical school, not already accepted, enrolled, or graduated. Parental information applies to applicants under 26; review the 2026 Essentials and required financial documents.",
+        deadline: "Application available · closing date not stated on the reviewed program page",
+        lastVerified: "October 20, 2026",
+      };
+    }
+    if (opportunity.name === "President's Undergraduate Research Award — Travel") {
+      return {
+        ...opportunity,
+        eligibility:
+          "Georgia Tech undergraduate in good standing (GPA above 2.0), accepted to present work associated with a GT or GTRI faculty mentor. Faculty confirmation, a pre-travel workshop, and a post-conference reflection are required; limit one award per academic year.",
+        deadline: "Rolling · apply at least one month before your conference",
+        lastVerified: "October 20, 2026",
+      };
+    }
     if (opportunity.name === "LMSA National Fall Scholarship Cycle") {
       return {
         ...opportunity,

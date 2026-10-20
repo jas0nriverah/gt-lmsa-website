@@ -13,6 +13,7 @@ import { LAST_CONTENT_REVIEW } from "@/lib/source-registry";
 import { OpenOpportunityCard } from "@/components/OpenOpportunityCard";
 import {
   getOpenNowOpportunities,
+  getNominationOpportunities,
   OPEN_OPPORTUNITIES_REVIEWED,
 } from "@/lib/open-opportunities";
 
@@ -40,6 +41,7 @@ function sortOpportunities(items: ScholarshipOpportunity[]) {
 
 export default function OpportunitiesPage() {
   const openNow = getOpenNowOpportunities();
+  const nominationChecks = getNominationOpportunities();
   const preHealthOpportunities = sortOpportunities(
     scholarships.filter((item) => item.preMedRelevant),
   );
@@ -78,10 +80,27 @@ export default function OpportunitiesPage() {
         </a>
       </Section>
 
+      {nominationChecks.length > 0 ? <Section
+        eyebrow={`Checked ${OPEN_OPPORTUNITIES_REVIEWED}`}
+        title="Confirm Georgia Tech nomination availability"
+        description="These national scholarship cycles are open, but they require institutional nomination. Georgia Tech’s current internal deadlines could not be verified, so these are excluded from the open count. Check with Prestigious Fellowships Advising before preparing an application."
+        className="bg-white"
+      >
+        <a className="text-link mb-6 inline-flex font-bold" href="https://www.success.gatech.edu/prestigious-fellowships/" target="_blank" rel="noopener noreferrer">
+          Georgia Tech Prestigious Fellowships Advising <span aria-hidden="true" className="ml-2">↗</span>
+          <span className="sr-only"> (opens in a new tab)</span>
+        </a>
+        <div className="grid gap-5 lg:grid-cols-2">
+          {nominationChecks.map((opportunity) => (
+            <OpenOpportunityCard key={opportunity.id} opportunity={opportunity} />
+          ))}
+        </div>
+      </Section> : null}
+
       <Section
         eyebrow="Funding and enrichment"
         title="Find opportunities that fit you"
-        description={`Most scholarship listings were last reviewed ${LAST_CONTENT_REVIEW}; PURA Salary was rechecked October 19. Confirm current eligibility and deadlines on each official program page before applying.`}
+        description={`Most scholarship listings were last reviewed ${LAST_CONTENT_REVIEW}; AAMC Fee Assistance and PURA Travel were rechecked October 20, and PURA Salary October 19. Confirm current eligibility and deadlines on each official program page before applying.`}
         className="bg-gt-cream"
       >
         <h3 className="text-2xl font-bold text-gt-navy">
