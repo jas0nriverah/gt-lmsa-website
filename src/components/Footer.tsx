@@ -49,6 +49,10 @@ export function Footer() {
                 {link.label}
               </Link>
             ))}
+            <Link href="/join" className="footer-link">Join LMSA+</Link>
+            <Link href="/help" className="footer-link">Help &amp; feedback</Link>
+            <Link href="/opportunities" className="footer-link">Opportunities</Link>
+            <Link href="/links" className="footer-link">Quick links</Link>
             {memberNavLinks.map((link) => (
               <Link key={link.href} href={link.href} className="footer-link">
                 {link.label}

@@ -92,7 +92,7 @@ async function expectCanvasIdle(background: Locator) {
   await expect.poll(() => background.getAttribute("data-displacement").then(Number), { intervals: [16, 32, 50], timeout: 5500 }).toBe(0);
 }
 
-test("welcome hero fits mobile, presents a concise board, and keeps its canvas static", async ({ page }) => {
+test("welcome hero fits mobile, previews the board, and keeps its canvas static", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.emulateMedia({ reducedMotion: "no-preference" });
   await page.goto("/");
@@ -106,12 +106,24 @@ test("welcome hero fits mobile, presents a concise board, and keeps its canvas s
   await expectStaticCanvas(background);
 
   const board = page.locator("#executive-board .board-person");
-  await expect(board).toHaveCount(8);
+  await expect(board).toHaveCount(4);
+  await expect(page.getByRole("link", { name: "Meet the full board" })).toHaveAttribute("href", "/board");
   for (const card of await board.all()) {
     await expect(card.getByRole("heading", { level: 3 })).toBeVisible();
     await expect(card.locator("p")).toHaveCount(1);
   }
   await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth)).toBe(true);
+});
+
+test("executive board and help pages are available from the public site", async ({ page }) => {
+  await page.goto("/board");
+  await expect(page.getByRole("heading", { name: "Executive board" })).toBeVisible();
+  await expect(page.locator(".board-person")).toHaveCount(8);
+
+  await page.goto("/help");
+  await expect(page.getByRole("heading", { name: "How can we help?" })).toBeVisible();
+  await expect(page.getByRole("button", { name: "Open email to send" })).toBeVisible();
+  await expect(page.getByText(/does not submit or store your message/i)).toBeVisible();
 });
 
 test("reduced motion keeps the desktop canvas static without hiding chapter identity", async ({ page }) => {

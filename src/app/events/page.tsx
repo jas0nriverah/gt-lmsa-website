@@ -16,7 +16,7 @@ import { formatEventTime } from "@/lib/platform-dates";
 
 export const metadata: Metadata = {
   title: "Events",
-  description: "Find your next connection: chapter gatherings, service, mentorship, and pre-health events.",
+  description: "See upcoming LMSA+ at Georgia Tech events, locations, and RSVP information.",
 };
 export const dynamic = "force-dynamic";
 
@@ -52,15 +52,15 @@ export default async function EventsPage() {
   return (
     <SitePage>
       <PageHero
-        eyebrow="Find your people"
-        title="Make room for what’s next."
-        description="A conversation, a new connection, a chance to serve. Explore what’s happening with LMSA+ at Georgia Tech."
+        eyebrow="LMSA+ at Georgia Tech"
+        title="Upcoming events"
+        description="Find the next chapter gathering, location, and RSVP information. Event times are shown in Atlanta time."
       />
       <Section
         id="chapter-events"
         eyebrow="LMSA+ at Georgia Tech"
         title="Chapter gatherings"
-        description="Browse upcoming and past chapter gatherings and follow each event’s RSVP link."
+        description="The latest details and registration instructions are listed with each chapter event."
         className="bg-gt-cream"
       >
         <ChapterEventBrowser configured={Boolean(process.env.DATABASE_URL)} />

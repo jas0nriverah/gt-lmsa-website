@@ -18,7 +18,7 @@ const sora = Sora({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://gt-lmsa-website.vercel.app"),
+  metadataBase: new URL("https://www.gt-lmsa.com"),
   title: {
     default:
       "LMSA Plus Chapter at Georgia Tech | Latino Medical Student Association",
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     description:
       "Supporting Latino/Hispanic and underrepresented pre-health students through mentorship, preparation, service, and community.",
     type: "website",
-    url: "https://gt-lmsa-website.vercel.app",
+    url: "https://www.gt-lmsa.com",
     siteName: "LMSA Plus at Georgia Tech",
     images: [
       {
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
     card: "summary",
     title: "LMSA Plus at Georgia Tech",
     description:
-      "A Georgia Tech pre-health community launching public programming in Fall 2026.",
+      "A Georgia Tech community for pre-health students, focused on mentorship, service, and connection.",
     images: ["/lmsa-logo.png"],
   },
   icons: {

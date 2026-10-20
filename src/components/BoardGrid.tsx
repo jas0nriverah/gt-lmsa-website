@@ -1,5 +1,7 @@
 import Image from "next/image";
-import { boardMembers } from "@/lib/site-data";
+import Link from "next/link";
+import { boardMembers as allBoardMembers } from "@/lib/site-data";
+import type { BoardMember } from "@/lib/site-types";
 import { Section } from "@/components/Section";
 
 export function BoardGrid({
@@ -8,12 +10,18 @@ export function BoardGrid({
   title,
   description,
   className,
+  members = allBoardMembers,
+  ctaHref,
+  ctaLabel,
 }: {
   id?: string;
   eyebrow: string;
   title: string;
   description?: string;
   className?: string;
+  members?: BoardMember[];
+  ctaHref?: string;
+  ctaLabel?: string;
 }) {
   return (
     <Section
@@ -24,7 +32,7 @@ export function BoardGrid({
       className={className}
     >
       <div className="grid grid-cols-2 gap-x-4 gap-y-8 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-4 lg:gap-x-7">
-        {boardMembers.map((member) => (
+        {members.map((member) => (
           <article key={`${member.role}-${member.name}`} className="board-person min-w-0">
             <div className="board-portrait relative aspect-[4/5] overflow-hidden rounded-md border border-gt-gold/35 bg-gt-cream">
               {member.image ? (
@@ -53,6 +61,11 @@ export function BoardGrid({
           </article>
         ))}
       </div>
+      {ctaHref && ctaLabel ? (
+        <Link href={ctaHref} className="button button-secondary mt-8">
+          {ctaLabel} <span aria-hidden="true">→</span>
+        </Link>
+      ) : null}
     </Section>
   );
 }

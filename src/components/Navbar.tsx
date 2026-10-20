@@ -78,13 +78,6 @@ export function Navbar() {
 
         <div className="hidden shrink-0 items-center gap-2 lg:flex">
           <Link
-            href="/member"
-            aria-current={isCurrentPage(pathname, "/member") ? "page" : undefined}
-            className="rounded-md px-2 py-2 text-sm font-bold text-gt-navy underline decoration-gt-gold/70 underline-offset-4 hover:text-gt-dark-gold"
-          >
-            My membership
-          </Link>
-          <Link
             href="/join"
             aria-current={isCurrentPage(pathname, "/join") ? "page" : undefined}
             className="button button-primary min-h-10 px-4 py-2 text-sm"
@@ -133,19 +126,27 @@ export function Navbar() {
             );
           })}
           <div className="mt-3 grid gap-2 border-t border-slate-200 pt-4 sm:grid-cols-2">
+            <Link
+              href="/join"
+              aria-current={isCurrentPage(pathname, "/join") ? "page" : undefined}
+              onClick={() => setIsOpen(false)}
+              className="button button-primary justify-center"
+            >
+              Join LMSA+
+            </Link>
             {memberNavLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 aria-current={isCurrentPage(pathname, link.href) ? "page" : undefined}
                 onClick={() => setIsOpen(false)}
-                className={link.href === "/join" ? "button button-primary justify-center" : "button button-secondary justify-center"}
+                className="button button-secondary justify-center"
               >
                 {link.label}
               </Link>
             ))}
-            <Link href="/interest" onClick={() => setIsOpen(false)} className="text-link rounded-sm px-4 py-3 text-center font-bold sm:col-span-2">
-              Express interest
+            <Link href="/help" onClick={() => setIsOpen(false)} className="text-link rounded-sm px-4 py-3 text-center font-bold sm:col-span-2">
+              Help &amp; feedback
             </Link>
           </div>
         </div>

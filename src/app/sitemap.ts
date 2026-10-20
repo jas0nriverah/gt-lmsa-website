@@ -1,16 +1,17 @@
 import type { MetadataRoute } from "next";
 
-const baseUrl = "https://gt-lmsa-website.vercel.app";
+const baseUrl = "https://www.gt-lmsa.com";
 const routes = [
   "",
+  "/board",
   "/about",
-  "/programs",
   "/events",
   "/resources",
   "/opportunities",
   "/get-involved",
   "/interest",
   "/join",
+  "/help",
   "/privacy",
   "/links",
 ];

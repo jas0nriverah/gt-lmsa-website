@@ -33,7 +33,7 @@ export const chapterInfo: ChapterInfo = {
   fullName: "Latino Medical Student Association Plus Chapter at Georgia Tech",
   campusName: "Georgia Tech",
   foundingYear: "2026",
-  launchLabel: "Launching Fall 2026",
+  launchLabel: "Founded 2026",
   recognitionStatus: "Recognized by Georgia Tech and LMSA PLUS",
   description:
     "A student-led community for Georgia Tech students exploring medicine, health professions, mentorship, service, and Latino/Hispanic health.",
@@ -1060,7 +1060,7 @@ export const faqs: FAQ[] = [
   {
     question: "What is the Georgia Tech chapter?",
     answer:
-      "LMSA Plus at Georgia Tech is a recognized student organization and LMSA PLUS chapter preparing to launch public programming in Fall 2026. It is student-led and is not part of Georgia Tech itself; recognition does not mean that the Institute endorses every chapter statement or activity.",
+      "LMSA Plus at Georgia Tech is a recognized, student-led organization and LMSA PLUS chapter. It is not part of Georgia Tech itself; recognition does not mean that the Institute endorses every chapter statement or activity.",
   },
   {
     question: "Who can participate?",
@@ -1085,7 +1085,7 @@ export const faqs: FAQ[] = [
   {
     question: "Can first-year students participate?",
     answer:
-      "Yes. LMSA PLUS is designed to support students early in the journey, and first-year students are encouraged to complete the chapter interest form and attend launch events once details are confirmed.",
+      "Yes. LMSA PLUS supports students early in the health-professions journey. First-year students are welcome to join and attend chapter events.",
   },
   {
     question: "Can graduate students participate?",
@@ -1095,7 +1095,7 @@ export const faqs: FAQ[] = [
   {
     question: "Is local participation the same as national LMSA membership?",
     answer:
-      "No. Participating in a local chapter and purchasing an individual LMSA National membership are distinct. Some national scholarships, discounts, or other benefits require paid national membership; local Fall 2026 participation details are still being finalized.",
+      "No. Local chapter participation and individual LMSA National membership are separate. Some national scholarships, discounts, or other benefits require paid national membership; review the national site for current terms.",
   },
   {
     question: "Does national membership cost money?",
@@ -1144,9 +1144,9 @@ export const faqs: FAQ[] = [
       "LMSA Plus at Georgia Tech collaborates with LMSA PLUS at Emory, LMSA at Emory School of Medicine, LMSA at Morehouse School of Medicine, Next Generation Men & Women (Next Gen Atl), and other confirmed partners listed on the Get Involved page.",
   },
   {
-    question: "When will the first meeting occur?",
+    question: "When is the next chapter event?",
     answer:
-      "The first Interest Meeting is scheduled for Thursday, October 15, 2026, from 6:30–7:30 PM EDT in Instructional Center (IC), Room 115. RSVPs are not open yet. Check the Events page or follow the chapter Instagram for updates.",
+      "Medical Student Networking Night is November 4 at Emory University. Check the Events page for the latest time, location, and RSVP details.",
   },
 ];
 
@@ -1158,6 +1158,22 @@ export const involvementActions: ActionLink[] = [
     status: "active",
     category: "Membership",
     featured: true,
+  },
+  {
+    label: "Medical Student Networking Night",
+    endDate: "2026-11-04",
+    description: "Nov 4 · Emory University · Event details and RSVP",
+    href: "/events",
+    status: "active",
+    category: "Events",
+    featured: true,
+  },
+  {
+    label: "Executive Board",
+    description: "Meet LMSA+ at Georgia Tech's student leaders.",
+    href: "/board",
+    status: "active",
+    category: "Leadership",
   },
   {
     label: "Express interest",
@@ -1198,6 +1214,13 @@ export const involvementActions: ActionLink[] = [
     category: "Contact",
   },
   {
+    label: "Help & feedback",
+    description: "Ask a question or report a website issue.",
+    href: "/help",
+    status: "active",
+    category: "Feedback",
+  },
+  {
     label: "Partner with the chapter",
     description: "Email the chapter with a collaboration idea.",
     href: `mailto:${contactLinks.email}?subject=Collaboration%20with%20LMSA%20Plus%20at%20Georgia%20Tech`,
@@ -1230,6 +1253,22 @@ export const linktreeLinks: ActionLink[] = [
     status: "active",
     category: "Community",
     featured: true,
+  },
+  {
+    label: "Medical Student Networking Night",
+    endDate: "2026-11-04",
+    description: "Nov 4 · Emory University · Event details and RSVP",
+    href: "/events",
+    status: "active",
+    category: "Events",
+    featured: true,
+  },
+  {
+    label: "Executive Board",
+    description: "Meet LMSA+ at Georgia Tech's student leaders.",
+    href: "/board",
+    status: "active",
+    category: "Leadership",
   },
   {
     label: "2026 Pre-Health Fall Kickoff",
@@ -1281,6 +1320,13 @@ export const linktreeLinks: ActionLink[] = [
     href: `mailto:${contactLinks.email}`,
     status: "active",
     category: "Contact",
+  },
+  {
+    label: "Help & feedback",
+    description: "Ask a question or report a website issue.",
+    href: "/help",
+    status: "active",
+    category: "Feedback",
   },
   {
     label: "LMSA National",

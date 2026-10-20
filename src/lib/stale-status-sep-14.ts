@@ -8,7 +8,7 @@ import {
   announcements as refreshedAnnouncements,
   events as refreshedEvents,
 } from "./sep-2026-refresh";
-import { contactLinks, faqs as baseFaqs, scholarships as baseScholarships, interestMeetingTiming } from "./site-data";
+import { faqs as baseFaqs, scholarships as baseScholarships, interestMeetingTiming } from "./site-data";
 import { LAST_CONTENT_REVIEW } from "./source-registry";
 
 /** October 20, 2026 weekday daily maintenance (stamp-only; PURA Salary Spring 2027 remains closed — deadline Oct 16 passed; Interest Meeting Oct 15 past — retired via date checks; YPI omission unchanged; MAPS Would You Rather Oct 20 (today) and MAPS Pre-Health Fair Oct 27 externals unchanged). */
@@ -119,12 +119,11 @@ export const announcements: Announcement[] = refreshedAnnouncements
   .filter((announcement) => !PAST_ANNOUNCEMENT_IDS.has(announcement.id));
 
 export const faqs: FAQ[] = baseFaqs.map((faq) => {
-  if (faq.question === "When will the first meeting occur?") {
+  if (faq.question === "When is the next chapter event?") {
     return {
       ...faq,
-      question: "When was the first chapter meeting?",
       answer:
-        `The first LMSA+ Interest Meeting was scheduled for Thursday, October 15, 2026, from 6:30–7:30 PM EDT in Instructional Center (IC), Room 115. New chapter dates will appear on the Events page when announced; follow ${contactLinks.instagramHandle} on Instagram for updates.`,
+        "Medical Student Networking Night is November 4 at Emory University. Check the Events page for the latest time, location, and RSVP details.",
     };
   }
   if (faq.question === "How can students hear about scholarships?") {

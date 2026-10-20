@@ -5,17 +5,13 @@ import type { NavLink } from "./site-types";
  * Kept separate from site-data.ts so nav updates can ship without rewriting the large content file.
  */
 export const navLinks: NavLink[] = [
-  { label: "About", href: "/about" },
-  { label: "Programs", href: "/programs" },
+  { label: "Executive Board", href: "/board" },
   { label: "Events", href: "/events" },
   { label: "Resources", href: "/resources" },
-  { label: "Opportunities", href: "/opportunities" },
-  { label: "Get Involved", href: "/get-involved" },
-  { label: "Links", href: "/links" },
+  { label: "About", href: "/about" },
 ];
 
-/** Membership routes remain distinct from national paid LMSA membership. */
+/** Private member tools stay available without competing with public navigation. */
 export const memberNavLinks: NavLink[] = [
-  { label: "My membership", href: "/member" },
-  { label: "Join LMSA+", href: "/join" },
+  { label: "Member sign-in", href: "/member" },
 ];

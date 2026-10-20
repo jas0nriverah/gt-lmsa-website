@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import type { Page, PlatformEvent } from "@/lib/platform-contracts";
 import { eventHasEnded, formatEventTime, registrationState } from "@/lib/platform-dates";
 import { FIRST_CHAPTER_EVENT, firstChapterEventHasEnded } from "@/lib/first-chapter-event";
+import { NETWORKING_NIGHT } from "@/lib/upcoming-chapter-event";
+import { chapterToday } from "@/lib/event-dates";
 
 type EventsResponse = {
   data?: Page<PlatformEvent>;
@@ -66,8 +68,20 @@ export function ChapterEventBrowser({ configured }: { configured: boolean }) {
   if (!configured) {
     // Date-only check so the static fallback renders the same on server and client.
     if (firstChapterEventHasEnded()) {
+      if (chapterToday() > NETWORKING_NIGHT.endDate) {
+        return <p className="card p-7">New chapter dates will appear here when announced.</p>;
+      }
       return (
-        <p className="card p-7">New chapter dates will appear here when announced.</p>
+        <div className="card p-8">
+          <p className="eyebrow">Upcoming chapter event</p>
+          <h3 className="mt-3 text-2xl font-bold text-gt-navy">{NETWORKING_NIGHT.title}</h3>
+          <p className="mt-3 font-semibold">{NETWORKING_NIGHT.date}</p>
+          <p className="mt-2 text-slate-600">{NETWORKING_NIGHT.location} · Time and room details coming soon</p>
+          <p className="mt-3 text-slate-600">
+            Event details and RSVP instructions will be posted here when confirmed.
+          </p>
+          <Link href="/help" className="text-link mt-5 inline-block font-bold">Ask about this event →</Link>
+        </div>
       );
     }
     return (

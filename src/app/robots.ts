@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: ["/api/", "/member", "/officer"],
     },
-    sitemap: "https://gt-lmsa-website.vercel.app/sitemap.xml",
+    sitemap: "https://www.gt-lmsa.com/sitemap.xml",
   };
 }

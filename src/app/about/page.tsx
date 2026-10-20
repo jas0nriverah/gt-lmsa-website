@@ -1,13 +1,11 @@
 import type { Metadata } from "next";
 import { ValueCard } from "@/components/Cards";
 import { AboutDnaAccent } from "@/components/AboutDnaAccent";
-import { BoardGrid } from "@/components/BoardGrid";
 import { FAQList } from "@/components/FAQList";
 import { PageHero } from "@/components/PageHero";
 import { Section } from "@/components/Section";
 import { SitePage } from "@/components/SitePage";
 import {
-  chapterInfo,
   coreValues,
   lmsaHistory,
   mission,
@@ -18,7 +16,7 @@ import { faqs } from "@/lib/stale-status-sep-14";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Learn about LMSA, LMSA PLUS, the Georgia Tech chapter mission, founding board, values, and participation frequently asked questions.",
+    "Learn about the LMSA+ chapter at Georgia Tech, its mission, and its connection to the national organization.",
 };
 
 export default function AboutPage() {
@@ -27,8 +25,8 @@ export default function AboutPage() {
       <div className="relative isolate">
         <PageHero
           eyebrow="About the chapter"
-          title="A local chapter connected to a national pre-health network."
-          description={`${chapterInfo.fullName} is preparing an inclusive Fall 2026 launch for students interested in medicine, health professions, service, and Latino/Hispanic health.`}
+          title="A Georgia Tech chapter of LMSA+"
+          description="We connect students exploring healthcare with community, mentorship, service, and the broader LMSA network."
         />
         <AboutDnaAccent />
       </div>
@@ -97,14 +95,6 @@ export default function AboutPage() {
           </div>
         </div>
       </Section>
-
-      <BoardGrid
-        id="executive-board"
-        eyebrow="Founding executive board"
-        title="The students preparing the chapter launch"
-        description="Meet the founding officers of LMSA PLUS at Georgia Tech. All eight Fall founding roles are filled."
-        className="bg-gt-cream"
-      />
 
       <Section
         id="frequently-asked-questions"

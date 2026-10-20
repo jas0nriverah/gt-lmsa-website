@@ -88,6 +88,8 @@ test("expired promotions disappear, while undated plans and contact links remain
   const current = linktreeLinks.filter((item) => !hasEnded(item, "2026-09-14"));
   assert.equal(current.some((item) => item.label === "2026 Pre-Health Fall Kickoff"), false);
   assert.equal(current.some((item) => item.label === "Fall Student Organizations Fair"), false);
+  assert.ok(current.some((item) => item.label === "Medical Student Networking Night"));
+  assert.equal(linktreeLinks.some((item) => item.label === "Medical Student Networking Night" && !hasEnded(item, "2026-11-05")), false);
   assert.ok(current.some((item) => item.status === "active" && item.href === "/interest"));
   assert.ok(announcements.filter((item) => !hasEnded(item, "2026-09-21"))
     .every((item) => item.id !== "nc2026-houston"));
