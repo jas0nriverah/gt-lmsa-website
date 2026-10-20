@@ -4,7 +4,6 @@ import { MedicalHero } from "@/components/MedicalHero";
 import { BiomedicalBackground } from "@/components/BiomedicalBackground";
 import { OpenOpportunityCard } from "@/components/OpenOpportunityCard";
 import { SitePage } from "@/components/SitePage";
-import { boardMembers } from "@/lib/site-data";
 import { chapterToday } from "@/lib/event-dates";
 import { NETWORKING_NIGHT } from "@/lib/upcoming-chapter-event";
 import { eventHasEnded, formatEventTime } from "@/lib/platform-dates";
@@ -114,9 +113,6 @@ export default async function HomePage() {
         id="executive-board"
         eyebrow="LMSA+ at Georgia Tech"
         title="Executive board"
-        members={boardMembers.slice(0, 4)}
-        ctaHref="/board"
-        ctaLabel="Meet the full board"
         className="bg-gt-cream"
       />
 

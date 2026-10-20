@@ -106,8 +106,7 @@ test("welcome hero fits mobile, previews the board, and keeps its canvas static"
   await expectStaticCanvas(background);
 
   const board = page.locator("#executive-board .board-person");
-  await expect(board).toHaveCount(4);
-  await expect(page.getByRole("link", { name: "Meet the full board" })).toHaveAttribute("href", "/board");
+  await expect(board).toHaveCount(8);
   for (const card of await board.all()) {
     await expect(card.getByRole("heading", { level: 3 })).toBeVisible();
     await expect(card.locator("p")).toHaveCount(1);
