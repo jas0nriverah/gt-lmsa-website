@@ -125,6 +125,19 @@ test("executive board and help pages are available from the public site", async 
   await expect(page.getByText(/does not submit or store your message/i)).toBeVisible();
 });
 
+test("home is an explicit link in desktop navigation and the mobile menu", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto("/");
+  const navigation = page.getByRole("navigation", { name: "Main navigation" });
+  const desktopHome = navigation.getByRole("link", { name: "Home", exact: true });
+  await expect(desktopHome).toHaveAttribute("href", "/");
+  await expect(desktopHome).toHaveAttribute("aria-current", "page");
+
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.getByRole("button", { name: "Open navigation menu" }).click();
+  await expect(page.locator("#mobile-menu").getByRole("link", { name: "Home", exact: true })).toBeVisible();
+});
+
 test("reduced motion keeps the desktop canvas static without hiding chapter identity", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.emulateMedia({ reducedMotion: "reduce" });

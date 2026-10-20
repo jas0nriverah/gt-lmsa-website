@@ -5,6 +5,7 @@ import type { NavLink } from "./site-types";
  * Kept separate from site-data.ts so nav updates can ship without rewriting the large content file.
  */
 export const navLinks: NavLink[] = [
+  { label: "Home", href: "/" },
   { label: "Executive Board", href: "/board" },
   { label: "Events", href: "/events" },
   { label: "Resources", href: "/resources" },
