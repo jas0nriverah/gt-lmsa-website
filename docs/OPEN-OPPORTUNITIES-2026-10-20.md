@@ -60,4 +60,6 @@ Every row below was checked October 20, 2026 against the linked official primary
 - Full ESLint, TypeScript checks, 51 unit tests (including four new opportunity selection/expiration cases), and optimized Next.js production build passed locally. `git diff --check` passed.
 - Local checks use the existing dependency installation through a checkout-local symlink; `NODE_PATH` points to its existing pnpm plugin directory for ESLint resolution. No dependency or lockfile changes were needed. An initial build reported that plugin resolution issue; it was rerun successfully with the corrected environment.
 - Database integration and browser journeys will run through the existing GitHub CI matrix (PostgreSQL 17/18). Local production credentials and real member data were not used.
-- Release status will be recorded after the normal PR checks and Vercel deployment. No email was created or sent.
+- Release PR: [#47](https://github.com/jas0nriverah/gt-lmsa-website/pull/47). GitHub CI runs the existing PostgreSQL 17/18 matrix; Vercel deploys from main after merge. Final observed release status belongs in this automation's run memory/inbox report, avoiding a report-only deployment after verification.
+- Neither `codex` nor `codex-automation` exists in this repository's label list; no labels were created.
+- No email was created or sent.
