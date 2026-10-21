@@ -194,11 +194,14 @@ test("desktop lens reveals and magnifies tissue beneath the pointer, then settle
   const right = { x: bounds.width - 100, y: 150 };
   const rightPoint = await heroPoint(background, right.x, right.y);
   const rightBefore = await cropInk(background, "right");
-  const leftAtFirst = await cropInk(background, "left");
   await page.mouse.move(rightPoint.x, rightPoint.y);
   await expectCoords(background, right.x, right.y);
   await expect.poll(() => cropInk(background, "right"), { intervals: [16, 32, 50] }).toBeGreaterThan(rightBefore);
-  await expect.poll(() => cropInk(background, "left"), { intervals: [16, 32, 50] }).toBeLessThan(leftAtFirst);
+  // The reveal fully settles 1.5s after the pointer stops, so on a slow runner a
+  // "left ink right now" snapshot may already equal the idle baseline, making a
+  // strict decrease impossible. The lens left the left crop, so its reveal must
+  // decay back to the pre-interaction baseline measured before any pointer moved.
+  await expect.poll(() => cropInk(background, "left"), { intervals: [16, 32, 50] }).toBeLessThanOrEqual(leftBefore);
   await background.screenshot({ path: testInfo.outputPath("biomedical-right.png") });
 
   await expectCanvasIdle(background);
