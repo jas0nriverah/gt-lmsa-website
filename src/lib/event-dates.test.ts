@@ -84,6 +84,12 @@ test("Oct 20 daily maintenance keeps same-day Would You Rather listed and retire
   assert.ok(tomorrowIds.includes("ext-maps-pre-health-fair-2026-10-27"));
 });
 
+test("Oct 21 daily maintenance: Would You Rather stays retired while the fair remains listed same-day Oct 27 and retires Oct 28", () => {
+  assert.equal(getVerifiedExternalEvents(externalEvents, "2026-10-21").some((event) => event.id === "ext-maps-would-you-rather-2026-10-20"), false);
+  assert.ok(getVerifiedExternalEvents(externalEvents, "2026-10-27").some((event) => event.id === "ext-maps-pre-health-fair-2026-10-27"));
+  assert.equal(getVerifiedExternalEvents(externalEvents, "2026-10-28").some((event) => event.id === "ext-maps-pre-health-fair-2026-10-27"), false);
+});
+
 test("expired promotions disappear, while undated plans and contact links remain", () => {
   const current = linktreeLinks.filter((item) => !hasEnded(item, "2026-09-14"));
   assert.equal(current.some((item) => item.label === "2026 Pre-Health Fall Kickoff"), false);
