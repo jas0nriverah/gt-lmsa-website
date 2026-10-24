@@ -100,7 +100,7 @@ export default function OpportunitiesPage() {
       <Section
         eyebrow="Funding and enrichment"
         title="Find opportunities that fit you"
-        description={`Most scholarship listings were last reviewed ${LAST_CONTENT_REVIEW}; AAMC Fee Assistance and PURA Travel were rechecked October 20, and PURA Salary October 19. Confirm current eligibility and deadlines on each official program page before applying.`}
+        description={`Most scholarship listings were last reviewed ${LAST_CONTENT_REVIEW}; AAMC Fee Assistance and PURA Travel were rechecked October 24, and PURA Salary October 19. Confirm current eligibility and deadlines on each official program page before applying.`}
         className="bg-gt-cream"
       >
         <h3 className="text-2xl font-bold text-gt-navy">

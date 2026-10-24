@@ -17,7 +17,7 @@ export interface OpenOpportunity {
   requiresCampusConfirmation?: true;
 }
 
-export const OPEN_OPPORTUNITIES_REVIEWED = "October 20, 2026";
+export const OPEN_OPPORTUNITIES_REVIEWED = "October 24, 2026";
 
 /**
  * Reviewed opportunities. Only confirmed open applications appear on the home
@@ -218,6 +218,7 @@ export const openOpportunities: OpenOpportunity[] = [
       "Pursuing a pathway related to medicine, healthcare, public health, mental health, medical education, healthcare research, or healthcare leadership.",
       "Show a meaningful connection to the scholarship’s mission through education, service, advocacy, lived experience, research, or career goals.",
       "The Health Equity track is for eligible applicants from historically underrepresented or underserved populations and identities; review both tracks’ requirements before applying.",
+      "Current Sharp Index directors, officers, employees, and their immediate family or household members are ineligible.",
     ],
     applicationChecklist: [
       "Prepare educational and career goals, a résumé or CV, a short mission-alignment statement, and relevant research, advocacy, service, or community experience.",
@@ -393,7 +394,7 @@ export const openOpportunities: OpenOpportunity[] = [
     ],
     applicationChecklist: [
       "Submit a résumé or CV, unofficial transcript, two recommendation letters, a research and personal statement, and a 150–200 word community statement.",
-      "All materials, including recommendation letters, must arrive through Penn's application or the Leadership Alliance portal by the deadline.",
+      "Use Penn's application for Summer 2027; all materials, including letters, must arrive by the deadline. The Leadership Alliance portal's opening and closing dates remain unannounced on Penn's page.",
     ],
     deadline: "February 1, 2027 at 11:59 p.m. ET",
     deadlineAt: "2027-02-02T00:00:00-05:00",
@@ -435,15 +436,16 @@ export const openOpportunities: OpenOpportunity[] = [
       "Currently attending a four-year college or university as a second-, third-, or fourth-year student; high-school, AP, and IB credits do not count toward class standing.",
       "Interested in healthcare, health equity, community health, primary care, and serving historically excluded communities, including Asian American communities.",
       "Available June 1–August 6, 2027, weekdays 9 a.m.–5 p.m., with some early mornings, evenings, and weekends; the role requires travel around New York City.",
+      "The application page excludes international students and students studying temporarily in the United States who plan to return home after their studies. Housing, food, and travel expenses are not covered.",
     ],
     applicationChecklist: [
-      "Submit the preliminary application through the program's official application page by the deadline.",
-      "Confirm that you can attend the full in-person program schedule in New York City.",
+      "Submit the preliminary form, résumé, and academic transcripts by December 13, 2026 at 11:59 p.m. ET. Prepare everything first: the form has no save-and-return option.",
+      "After submitting the preliminary form, follow the program's instructions for short-answer responses and one recommendation letter; both are due January 17, 2027 at 11:59 p.m. ET.",
     ],
     deadline: "December 13, 2026 at 11:59 p.m. ET · preliminary application",
     deadlineAt: "2026-12-13T23:59:59-05:00",
     sourceUrl: "https://www.cbwchc.org/chi/project-ahead-internships",
-    secondarySourceUrl: "https://bit.ly/ProjectAHEAD2027",
+    secondarySourceUrl: "https://cbwchc.applicantstack.com/x/detail/a23gs1h9nllu?preview=1",
     featuredOnHome: true,
   },
   {
@@ -512,6 +514,28 @@ export const openOpportunities: OpenOpportunity[] = [
     deadlineAt: "2027-03-05T01:59:59-05:00",
     sourceUrl: "https://www.udall.gov/ourprograms/scholarship/apply",
     secondarySourceUrl: "https://www.udall.gov/OurPrograms/Scholarship/ImportantDates",
+  },
+  {
+    id: "nyu-grossman-surp-2027",
+    title: "NYU Grossman Summer Undergraduate Research Program (SURP), 2027",
+    organization: "NYU Grossman School of Medicine · Vilcek Institute",
+    category: "Paid biomedical research",
+    audience: "Undergraduates with bench-laboratory experience pursuing biomedical research",
+    summary:
+      "Full-time research in New York City, June 1–July 30, 2027, with $5,000, housing, and round-trip travel reimbursement. Students cover food and other living costs.",
+    eligibility: [
+      "U.S. citizen or permanent resident; completed sophomore or junior year of college.",
+      "At least one full semester of bench-laboratory research and commitment to the entire program.",
+    ],
+    applicationChecklist: [
+      "Submit materials through NYU's application portal. Selection considers research experience, academic record, and recommendations from faculty advisers or research supervisors.",
+      "Check the portal's full materials instructions; the public pages do not specify the number of recommendation letters.",
+    ],
+    deadline: "February 2, 2027 at 5:00 p.m. ET",
+    deadlineAt: "2027-02-02T17:00:00-05:00",
+    sourceUrl: "https://med.nyu.edu/research/vilcek-institute-graduate-biomedical-sciences/summer-undergraduate-research-program",
+    secondarySourceUrl: "https://med.nyu.edu/research/vilcek-institute-graduate-biomedical-sciences/summer-undergraduate-research-program/admissions",
+    featuredOnHome: true,
   },
   {
     id: "pd-soros-fellowship-2027",
