@@ -98,7 +98,7 @@ export const nearTermOpportunityCategories: ResourceCategory[] = [
       {
         title: "Emory University Hospital College Volunteer Program",
         description:
-          "The official page describes nonclinical service for enrolled college students age 18+, September–April, four hours weekly and at least 80 hours. Checked October 20: its application links led to a program at capacity and a different program whose October 9 deadline passed. Confirm the correct college application with Emory Volunteer Services before applying; no open college application was verified.",
+          "The official page describes nonclinical service for enrolled college students age 18+, September–April, four hours weekly and at least 80 hours. Rechecked October 24: its application links still lead to a program at capacity and a different program whose October 9 deadline passed. Confirm the correct college application with Emory Volunteer Services before applying; no open college application was verified.",
         organization: "Emory Healthcare",
         href: "https://www.emoryhealthcare.org/locations/hospitals/emory-university-hospital/volunteer",
         category: "Clinic and hospital volunteering",
