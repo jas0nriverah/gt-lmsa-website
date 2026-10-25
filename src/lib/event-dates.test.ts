@@ -98,6 +98,12 @@ test("Oct 23 daily maintenance: MAPS Pre-Health Fair remains listed", () => {
   assert.ok(getVerifiedExternalEvents(externalEvents, "2026-10-23").some((event) => event.id === "ext-maps-pre-health-fair-2026-10-27"));
 });
 
+test("Oct 25 Sunday deep audit: MAPS Pre-Health Fair remains listed and Would You Rather stays retired", () => {
+  const ids = getVerifiedExternalEvents(externalEvents, "2026-10-25").map((event) => event.id);
+  assert.ok(ids.includes("ext-maps-pre-health-fair-2026-10-27"));
+  assert.equal(ids.includes("ext-maps-would-you-rather-2026-10-20"), false);
+});
+
 test("expired promotions disappear, while undated plans and contact links remain", () => {
   const current = linktreeLinks.filter((item) => !hasEnded(item, "2026-09-14"));
   assert.equal(current.some((item) => item.label === "2026 Pre-Health Fall Kickoff"), false);
