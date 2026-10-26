@@ -104,6 +104,10 @@ test("Oct 25 Sunday deep audit: MAPS Pre-Health Fair remains listed and Would Yo
   assert.equal(ids.includes("ext-maps-would-you-rather-2026-10-20"), false);
 });
 
+test("Oct 26 daily maintenance: MAPS Pre-Health Fair remains listed", () => {
+  assert.ok(getVerifiedExternalEvents(externalEvents, "2026-10-26").some((event) => event.id === "ext-maps-pre-health-fair-2026-10-27"));
+});
+
 test("expired promotions disappear, while undated plans and contact links remain", () => {
   const current = linktreeLinks.filter((item) => !hasEnded(item, "2026-09-14"));
   assert.equal(current.some((item) => item.label === "2026 Pre-Health Fall Kickoff"), false);
