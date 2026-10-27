@@ -8,22 +8,23 @@ import { chapterToday, currentWeek, hasEnded } from "./event-dates";
 
 /**
  * P0.3 — verified external / recommended pre-health events.
- * Rechecked October 26, 2026 (weekday daily maintenance) against official GT Campus Calendar,
+ * Rechecked October 27, 2026 (weekday daily maintenance) against official GT Campus Calendar,
  * Pre-Health Advising, Explore LLC, LMSA National, and LMSA Southeast sources.
- * Rolling window: October 26 – November 9, 2026.
+ * Rolling window: October 27 – November 10, 2026.
  * MAPS Would You Rather? Pre-Health Edition (Oct 20) ended — retired automatically via hasEnded from Oct 21 (object kept for history).
- * MAPS Pre-Health Fair (Oct 27) kept from GT Campus Calendar (re-verified Oct 26).
+ * MAPS Pre-Health Fair (Oct 27) kept from GT Campus Calendar (re-verified Oct 27; it is today and date logic retires it tomorrow).
+ * Ethics and Healthcare (Nov 6, GT Ethics Week) added from the GT Campus Calendar listing.
  * Young Physicians Initiative (Oct 15) is past and was never listed — it conflicted with
  * the LMSA Plus Interest Meeting at the same time.
  * The LMSA Plus Interest Meeting (Oct 15) is past — retired from upcoming surfaces via date checks.
  * NC2026 (Sep 17–20 Houston) concluded — archived via overlays / eventsAsOf.
- * LMSA SE 17th Regional Conference (Feb 27–Mar 1 2026) is past — no 2027 dates announced as of Oct 26.
+ * LMSA SE 17th Regional Conference (Feb 27–Mar 1 2026) is past — no 2027 dates announced as of Oct 27.
  * No other ≥80 official-calendar dedicated pre-health events verified for the window.
  * SCENE College of Sciences event Oct 7 is past; it was deliberately not listed (generic career expo, not dedicated pre-health).
  * Listings are recommendations only — not LMSA Plus partnerships or chapter programming.
  */
 
-export const EXTERNAL_EVENTS_CHECKED_AT = "October 26, 2026";
+export const EXTERNAL_EVENTS_CHECKED_AT = "October 27, 2026";
 
 export const externalEvents: ExternalEvent[] = [
   {
@@ -59,6 +60,23 @@ export const externalEvents: ExternalEvent[] = [
     verificationLevel: "official-calendar",
     lastCheckedAt: EXTERNAL_EVENTS_CHECKED_AT,
     relevanceScore: 90,
+    sourceType: "external",
+  },
+  {
+    id: "ext-ethics-and-healthcare-2026-11-06",
+    title: "Ethics and Healthcare (GT Ethics Week)",
+    organization: "Georgia Tech Ethics Week (Office of General Counsel, Ethics & Compliance)",
+    displayDate: "Friday, November 6, 2026",
+    startDate: "2026-11-06",
+    time: "2:00 PM – 3:00 PM ET",
+    location: "Kendeda Building Auditorium (Room 152)",
+    description:
+      "Ethics Week session hosted by Dr. Jason Lesandrini (PUBP 4630: Law, Medicine, and Ethics) on ethical considerations in healthcare, including decisions that balance patient needs, professional responsibilities, and institutional policies. The GT Campus Calendar lists undergraduates as invited; RSVP via the listing. Recommendation only — not LMSA Plus chapter programming or a partnership.",
+    sourceUrl: "https://calendar.gatech.edu/event/2026/11/06/ethics-and-healthcare",
+    category: "Talk",
+    verificationLevel: "official-calendar",
+    lastCheckedAt: EXTERNAL_EVENTS_CHECKED_AT,
+    relevanceScore: 82,
     sourceType: "external",
   },
 ];
