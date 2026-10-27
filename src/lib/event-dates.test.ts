@@ -108,6 +108,18 @@ test("Oct 26 daily maintenance: MAPS Pre-Health Fair remains listed", () => {
   assert.ok(getVerifiedExternalEvents(externalEvents, "2026-10-26").some((event) => event.id === "ext-maps-pre-health-fair-2026-10-27"));
 });
 
+test("Oct 27 daily maintenance: same-day MAPS Pre-Health Fair and new Ethics and Healthcare listing are both verified", () => {
+  const ids = getVerifiedExternalEvents(externalEvents, "2026-10-27").map((event) => event.id);
+  assert.ok(ids.includes("ext-maps-pre-health-fair-2026-10-27"));
+  assert.ok(ids.includes("ext-ethics-and-healthcare-2026-11-06"));
+});
+
+test("Ethics and Healthcare external listing stays verified same-day Nov 6 and retires Nov 7", () => {
+  const id = "ext-ethics-and-healthcare-2026-11-06";
+  assert.ok(getVerifiedExternalEvents(externalEvents, "2026-11-06").some((event) => event.id === id));
+  assert.equal(getVerifiedExternalEvents(externalEvents, "2026-11-07").some((event) => event.id === id), false);
+});
+
 test("expired promotions disappear, while undated plans and contact links remain", () => {
   const current = linktreeLinks.filter((item) => !hasEnded(item, "2026-09-14"));
   assert.equal(current.some((item) => item.label === "2026 Pre-Health Fall Kickoff"), false);
