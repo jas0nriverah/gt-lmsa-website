@@ -11,7 +11,7 @@ import {
 import { faqs as baseFaqs, scholarships as baseScholarships, interestMeetingTiming } from "./site-data";
 import { LAST_CONTENT_REVIEW } from "./source-registry";
 
-/** October 27, 2026 weekday daily maintenance (stamp-only; PURA Salary Spring 2027 remains closed — deadline Oct 16 passed; Interest Meeting Oct 15 past — retired via date checks; YPI omission unchanged; MAPS Would You Rather Oct 20 ended — retired via hasEnded; MAPS Pre-Health Fair Oct 27 external unchanged; Ethics and Healthcare Nov 6 added as external). */
+/** October 28, 2026 weekday daily maintenance (stamp-only; PURA Salary Spring 2027 remains closed — deadline Oct 16 passed; Interest Meeting Oct 15 past — retired via date checks; YPI omission unchanged; MAPS Would You Rather Oct 20 ended — retired via hasEnded; MAPS Pre-Health Fair Oct 27 external unchanged; Ethics and Healthcare Nov 6 added as external). */
 
 const PAST_EVENT_IDS = new Set([
   "pre-health-fall-kickoff-2026",
