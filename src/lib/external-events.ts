@@ -8,9 +8,9 @@ import { chapterToday, currentWeek, hasEnded } from "./event-dates";
 
 /**
  * P0.3 — verified external / recommended pre-health events.
- * Rechecked October 28, 2026 (weekday daily maintenance) against official GT Campus Calendar,
+ * Rechecked October 29, 2026 (weekday daily maintenance) against official GT Campus Calendar,
  * Pre-Health Advising, Explore LLC, LMSA National, and LMSA Southeast sources.
- * Rolling window: October 28 – November 11, 2026.
+ * Rolling window: October 29 – November 12, 2026.
  * MAPS Would You Rather? Pre-Health Edition (Oct 20) ended — retired automatically via hasEnded from Oct 21 (object kept for history).
  * MAPS Pre-Health Fair was held Oct 27 — now past; hidden automatically by date logic (object kept for history).
  * Ethics and Healthcare (Nov 6, GT Ethics Week) added from the GT Campus Calendar listing.
@@ -18,13 +18,13 @@ import { chapterToday, currentWeek, hasEnded } from "./event-dates";
  * the LMSA Plus Interest Meeting at the same time.
  * The LMSA Plus Interest Meeting (Oct 15) is past — retired from upcoming surfaces via date checks.
  * NC2026 (Sep 17–20 Houston) concluded — archived via overlays / eventsAsOf.
- * LMSA SE 17th Regional Conference (Feb 27–Mar 1 2026) is past — no 2027 dates announced as of Oct 28.
+ * LMSA SE 17th Regional Conference (Feb 27–Mar 1 2026) is past — no 2027 dates announced as of Oct 29.
  * No other ≥80 official-calendar dedicated pre-health events verified for the window.
  * SCENE College of Sciences event Oct 7 is past; it was deliberately not listed (generic career expo, not dedicated pre-health).
  * Listings are recommendations only — not LMSA Plus partnerships or chapter programming.
  */
 
-export const EXTERNAL_EVENTS_CHECKED_AT = "October 28, 2026";
+export const EXTERNAL_EVENTS_CHECKED_AT = "October 29, 2026";
 
 export const externalEvents: ExternalEvent[] = [
   {
