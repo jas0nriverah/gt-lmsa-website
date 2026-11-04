@@ -4,6 +4,7 @@ import { PlatformError } from "@/server/errors";
 import { body, handle, json, privateHeaders, rateLimit, verifyOrigin } from "@/server/http";
 import { createPlatform } from "@/server/platform";
 import { FIRST_CHAPTER_EVENT } from "@/lib/first-chapter-event";
+import { externalEventRsvpUrl } from "@/lib/external-event-rsvp";
 import { auditQuery, checkInInput, eventInput, eventUpdateInput, listQuery, memberInput, membershipStatus, object, uuid } from "@/server/validation";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -34,12 +35,14 @@ async function dispatch(request: Request, context: Context) {
       // Identity and ownership come exclusively from the verified session.
       if (request.body) object(await body(request), []);
       if (
-        id === FIRST_CHAPTER_EVENT.platformId &&
-        ((path[2] === "rsvp" && method === "POST") || (path[2] === "ticket" && method === "POST"))
+        ((id === FIRST_CHAPTER_EVENT.platformId || externalEventRsvpUrl(id)) &&
+          ((path[2] === "rsvp" && method === "POST") || (path[2] === "ticket" && method === "POST")))
       ) {
         throw new PlatformError(
           "EXTERNAL_REGISTRATION",
-          "This event's RSVP is handled by Georgia Tech Engage.",
+          id === FIRST_CHAPTER_EVENT.platformId
+            ? "This event's RSVP is handled by Georgia Tech Engage."
+            : "This event's RSVP is handled through its external registration form.",
           409,
         );
       }

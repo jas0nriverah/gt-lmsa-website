@@ -7,6 +7,7 @@ import { eventHasEnded, formatEventTime, registrationState } from "@/lib/platfor
 import { FIRST_CHAPTER_EVENT, firstChapterEventHasEnded } from "@/lib/first-chapter-event";
 import { NETWORKING_NIGHT } from "@/lib/upcoming-chapter-event";
 import { chapterToday } from "@/lib/event-dates";
+import { externalEventRsvpUrl } from "@/lib/external-event-rsvp";
 
 type EventsResponse = {
   data?: Page<PlatformEvent>;
@@ -159,6 +160,9 @@ export function ChapterEventBrowser({ configured }: { configured: boolean }) {
                   && event.publicationStatus === "published";
                 const ended = eventHasEnded(event);
                 const engageRsvp = firstChapter && !ended;
+                const formRsvpUrl = event.publicationStatus === "published" && !ended
+                  ? externalEventRsvpUrl(event.id)
+                  : null;
                 return (
                   <article id={event.id} key={event.id} className="card flex flex-col p-6">
                     <p className="eyebrow">{event.category}</p>
@@ -175,7 +179,9 @@ export function ChapterEventBrowser({ configured }: { configured: boolean }) {
                         ? "RSVP through Georgia Tech Engage"
                         : firstChapter
                           ? "Past event"
-                          : registrationState(event)}
+                          : formRsvpUrl
+                            ? "RSVP through the online form"
+                            : registrationState(event)}
                     </p>
                     {engageRsvp ? (
                       <a
@@ -188,8 +194,19 @@ export function ChapterEventBrowser({ configured }: { configured: boolean }) {
                         <span className="sr-only"> (opens in a new tab)</span>
                       </a>
                     ) : null}
+                    {formRsvpUrl ? (
+                      <a
+                        className="button button-primary mt-4 self-start"
+                        href={formRsvpUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        RSVP on Google Forms <span aria-hidden="true">↗</span>
+                        <span className="sr-only"> (opens in a new tab)</span>
+                      </a>
+                    ) : null}
                     <Link className="text-link mt-5 font-bold" href={`/events/${event.id}`}>
-                      {firstChapter ? "Event details →" : "Event details & RSVP →"}
+                      {firstChapter || formRsvpUrl ? "Event details →" : "Event details & RSVP →"}
                     </Link>
                   </article>
                 );

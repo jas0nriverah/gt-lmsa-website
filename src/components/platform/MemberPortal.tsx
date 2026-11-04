@@ -18,6 +18,7 @@ import { GoogleSignInAction, SignOutAction } from "./AuthActions";
 import { formatAtlantaDateTime } from "./date-time";
 import { eventHasEnded, formatEventTime } from "@/lib/platform-dates";
 import { FIRST_CHAPTER_EVENT, firstChapterEventHasEnded } from "@/lib/first-chapter-event";
+import { externalEventRsvpUrl } from "@/lib/external-event-rsvp";
 import {
   FieldLabel,
   InlineAlert,
@@ -459,15 +460,18 @@ export function MemberPortal({ authEnabled }: { authEnabled: boolean }) {
           <div className="grid gap-4">
             {events.items.map((event) => {
               const current = registrations?.items.find((row) => row.eventId === event.id && row.status === "registered");
+              const now = Date.now();
               const engageRsvp = event.id === FIRST_CHAPTER_EVENT.platformId
                 && event.publicationStatus === "published";
-              const now = Date.now();
+              const formRsvpUrl = event.publicationStatus === "published" && !eventHasEnded(event, now)
+                ? externalEventRsvpUrl(event.id)
+                : null;
               const engageEnded = engageRsvp && (eventHasEnded(event, now) || firstChapterEventHasEnded());
               const registrationNotStarted = Boolean(event.registrationOpensAt && Date.parse(event.registrationOpensAt) > now);
               const registrationEnded = Boolean(event.registrationClosesAt && Date.parse(event.registrationClosesAt) < now);
               const eventAlreadyStarted = Boolean(event.startsAt && Date.parse(event.startsAt) <= now);
               const eventFull = event.capacity !== null && event.registeredCount >= event.capacity;
-              const canRegister = memberStatus === "active" && event.publicationStatus === "published" && event.registrationStatus === "open" && !registrationNotStarted && !registrationEnded && !eventAlreadyStarted && !eventFull;
+              const canRegister = !formRsvpUrl && memberStatus === "active" && event.publicationStatus === "published" && event.registrationStatus === "open" && !registrationNotStarted && !registrationEnded && !eventAlreadyStarted && !eventFull;
               return (
                 <article key={event.id} className="rounded-2xl border border-slate-200 p-4 sm:p-5">
                   <div className="flex flex-wrap items-start justify-between gap-3">
@@ -477,14 +481,14 @@ export function MemberPortal({ authEnabled }: { authEnabled: boolean }) {
                     </div>
                     <div className="flex flex-wrap gap-2">
                       <PlatformStatus status={event.publicationStatus} />
-                      {engageRsvp ? null : <PlatformStatus status={event.registrationStatus} />}
+                      {engageRsvp || formRsvpUrl ? null : <PlatformStatus status={event.registrationStatus} />}
                     </div>
                   </div>
                   <p className="mt-3 whitespace-pre-line leading-7 text-slate-600">{event.description}</p>
                   <dl className="mt-4 grid gap-2 text-sm text-slate-600 sm:grid-cols-2">
                     <div><dt className="inline font-bold text-gt-navy">When: </dt><dd className="inline">{formatEventTime(event)}</dd></div>
                     <div><dt className="inline font-bold text-gt-navy">Where: </dt><dd className="inline">{event.location}</dd></div>
-                    {engageRsvp ? null : (
+                    {engageRsvp || formRsvpUrl ? null : (
                       <div><dt className="inline font-bold text-gt-navy">Registered: </dt><dd className="inline">{event.registeredCount}{event.capacity === null ? "" : ` of ${event.capacity}`}</dd></div>
                     )}
                   </dl>
@@ -504,6 +508,19 @@ export function MemberPortal({ authEnabled }: { authEnabled: boolean }) {
                           </button>
                         ) : null}
                       </>
+                    ) : formRsvpUrl ? (
+                      <>
+                        <span className="text-sm text-slate-600">RSVP through the LMSA+ Mixer form.</span>
+                        <a className="button button-primary text-sm" href={formRsvpUrl} target="_blank" rel="noopener noreferrer">
+                          RSVP on Google Forms <span aria-hidden="true">↗</span>
+                          <span className="sr-only"> (opens in a new tab)</span>
+                        </a>
+                        {current ? (
+                          <button type="button" className="button button-secondary text-sm disabled:opacity-60" disabled={busyKey === `rsvp:${event.id}`} onClick={() => void changeRsvp(event.id, true)}>
+                            {busyKey === `rsvp:${event.id}` ? "Removing…" : "Remove website RSVP"}
+                          </button>
+                        ) : null}
+                      </>
                     ) : current ? (
                       <>
                         <span className="text-sm font-bold text-emerald-800">You’re registered</span>
@@ -516,7 +533,7 @@ export function MemberPortal({ authEnabled }: { authEnabled: boolean }) {
                         {busyKey === `rsvp:${event.id}` ? "Saving RSVP…" : "RSVP"}
                       </button>
                     )}
-                    {!engageRsvp && !canRegister && !current ? (
+                    {!engageRsvp && !formRsvpUrl && !canRegister && !current ? (
                       <span className="text-sm text-slate-500">
                         {memberStatus !== "active" ? "An active membership is required to RSVP." : event.publicationStatus !== "published" ? "This event is not currently accepting RSVPs." : event.registrationStatus !== "open" || registrationEnded ? "Registration is closed." : registrationNotStarted ? `Registration opens ${formatAtlantaDateTime(event.registrationOpensAt)}.` : eventAlreadyStarted ? "This event is already in progress." : eventFull ? "This event has reached capacity." : "Registration is unavailable."}
                       </span>

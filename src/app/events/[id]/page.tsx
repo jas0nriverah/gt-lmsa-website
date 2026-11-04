@@ -3,12 +3,13 @@ import { notFound } from "next/navigation";
 import { EventRsvp } from "@/components/EventRsvp";
 import { SitePage } from "@/components/SitePage";
 import type { PlatformEvent } from "@/lib/platform-contracts";
-import { formatEventTime, registrationState } from "@/lib/platform-dates";
+import { eventHasEnded, formatEventTime, registrationState } from "@/lib/platform-dates";
 import { PlatformError } from "@/server/errors";
 import { getPool } from "@/server/db";
 import { createPlatform } from "@/server/platform";
 import { uuid } from "@/server/validation";
 import { FIRST_CHAPTER_EVENT, firstChapterEventHasEnded } from "@/lib/first-chapter-event";
+import { externalEventRsvpUrl } from "@/lib/external-event-rsvp";
 
 export const dynamic = "force-dynamic";
 export const metadata = { title: "Chapter event" };
@@ -35,6 +36,9 @@ export default async function EventDetail({
   }
 
   const state = registrationState(event);
+  const externalRsvpUrl = event.publicationStatus === "published" && !eventHasEnded(event)
+    ? externalEventRsvpUrl(event.id)
+    : null;
 
   return (
     <SitePage>
@@ -58,7 +62,25 @@ export default async function EventDetail({
             <p className="whitespace-pre-line leading-8 text-slate-700">
               {event.description}
             </p>
-            {event.id === FIRST_CHAPTER_EVENT.platformId && event.publicationStatus === "published" ? (
+            {externalRsvpUrl ? (
+              <aside className="card p-7" aria-labelledby="external-rsvp-heading">
+                <h2 id="external-rsvp-heading" className="text-2xl font-bold text-gt-navy">
+                  Join us
+                </h2>
+                <p className="mt-3 leading-7 text-slate-600">
+                  RSVP through the LMSA+ Mixer form to reserve your place.
+                </p>
+                <a
+                  href={externalRsvpUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="button button-primary mt-5"
+                >
+                  RSVP on Google Forms <span aria-hidden="true">↗</span>
+                  <span className="sr-only"> (opens in a new tab)</span>
+                </a>
+              </aside>
+            ) : event.id === FIRST_CHAPTER_EVENT.platformId && event.publicationStatus === "published" ? (
               firstChapterEventHasEnded() ? (
                 <aside className="card p-7" aria-labelledby="meeting-ended-heading">
                   <h2 id="meeting-ended-heading" className="text-2xl font-bold text-gt-navy">
