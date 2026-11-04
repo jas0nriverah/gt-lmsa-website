@@ -17,7 +17,7 @@ export interface OpenOpportunity {
   requiresCampusConfirmation?: true;
 }
 
-export const OPEN_OPPORTUNITIES_REVIEWED = "November 3, 2026";
+export const OPEN_OPPORTUNITIES_REVIEWED = "November 4, 2026";
 
 /**
  * Reviewed opportunities. Only confirmed open applications appear on the home
@@ -602,6 +602,54 @@ export const openOpportunities: OpenOpportunity[] = [
     deadlineAt: "2027-01-09T00:00:00-08:00",
     sourceUrl: "https://www.fredhutch.org/en/education-training/undergraduate-students/summer-undergraduate-research-program.html",
     secondarySourceUrl: "https://www.fredhutch.org/en/education-training/undergraduate-students/summer-undergraduate-research-program/faqs.html",
+    featuredOnHome: true,
+  },
+  {
+    id: "mayo-surf-2027",
+    title: "Mayo Clinic Summer Undergraduate Research Fellowship (SURF), 2027",
+    organization: "Mayo Clinic College of Medicine and Science",
+    category: "Biomedical research · PhD and MD-PhD pathway",
+    audience: "Undergraduates at U.S. colleges who will have completed sophomore year",
+    summary:
+      "A full-time, 10-week laboratory research fellowship in Jacksonville, Scottsdale, or Rochester, June 1–August 6, 2027. Participants must begin June 1 and work at least 40 hours weekly.",
+    eligibility: [
+      "Currently enrolled at an accredited U.S. college or university; completed sophomore year before the program; cumulative GPA of at least 3.0. Students who will have earned their first bachelor's degree before the program are ineligible.",
+      "Seriously considering a biomedical research career through a PhD or MD-PhD.",
+      "International students enrolled full time at a U.S. institution may apply, but must obtain required employment authorization through their institution. Mayo Clinic does not sponsor visas for SURF.",
+    ],
+    applicationChecklist: [
+      "Use Mayo's admissions portal; select the Graduate School of Biomedical Sciences and Summer Undergraduate Research Fellowship. Only one application per season is allowed.",
+      "After submitting the application, upload a one- to two-page career-goals statement and unofficial transcripts from every college attended in Supplemental Items and Documents.",
+      "Request two recommendation letters from research mentors or science instructors through the portal. Review all supplemental requirements before the deadline.",
+    ],
+    deadline: "February 3, 2027 · closing time not published",
+    deadlineAt: "2027-02-03T23:59:59-05:00",
+    sourceUrl: "https://college.mayo.edu/academics/biomedical-research-training/summer-undergraduate-research-fellowship-surf/application-process/",
+    secondarySourceUrl: "https://mccms.elluciancrmrecruit.com/Apply/Account/Login",
+    featuredOnHome: true,
+  },
+  {
+    id: "mayo-crisp-2027",
+    title: "Mayo Clinic Clinical Research Internship Study Program (CRISP), 2027",
+    organization: "Mayo Clinic College of Medicine and Science",
+    category: "Paid clinical research internship",
+    audience: "College students and eligible recent graduates exploring healthcare and research",
+    summary:
+      "A clinical research internship, June 1–August 6, 2027, with a $3,500 stipend and approximately 20 hours weekly. Mandatory orientation, weekly lectures, and final presentations are in person; participants cover housing and transportation.",
+    eligibility: [
+      "At least 18 by the start; GPA of at least 3.5; completed freshman year; currently enrolled at an accredited U.S. college or university, or graduated within 13 months of the start date. A limited number of exceptional graduate students may qualify.",
+      "Applicants already matriculated in a professional degree such as MD, DO, DDS, PharmD, or PhD, and applicants who completed two CRISP summers, are ineligible.",
+      "U.S. citizens, permanent residents, refugees, asylees, and foreign nationals who do not require visa sponsorship now or in the future may apply. F-1 students should confirm their institution's work-authorization requirements; acceptance does not guarantee authorization.",
+    ],
+    applicationChecklist: [
+      "Use Mayo's admissions portal; select Office of Non-Clinical Education Programs and Clinical Research Internship Study Program, then create a Mayo Clinic College of Medicine and Science Experience Application.",
+      "After submitting, provide a healthcare/research-career essay of no more than 500 words, unofficial college transcripts with GPA, a recent CV or résumé, and one recommendation letter.",
+      "Submit a video response using the program's prompt and guidelines (no more than two minutes), an accessible video link, and a 16-digit ORCID identifier in Supplemental Items and Documents.",
+    ],
+    deadline: "January 15, 2027 at 11:59 p.m. EST",
+    deadlineAt: "2027-01-15T23:59:59-05:00",
+    sourceUrl: "https://college.mayo.edu/academics/non-clinical-education/clinical-research-internship-study-program-florida/application-process/",
+    secondarySourceUrl: "https://college.mayo.edu/academics/non-clinical-education/clinical-research-internship-study-program-florida/",
     featuredOnHome: true,
   },
   {
