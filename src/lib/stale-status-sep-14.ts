@@ -38,7 +38,7 @@ export const scholarships: ScholarshipOpportunity[] = baseScholarships.map(
       return {
         ...opportunity,
         eligibility:
-          "U.S.-based home address; each reported household’s 2025 income at or below 400% of the 2025 national poverty level. Applicants must be preparing for medical school, not already accepted, enrolled, or graduated. Parental information applies to applicants under 26; review the 2026 Essentials and required financial documents.",
+          "U.S.-based home address; each reported household’s 2025 income at or below 400% of the 2025 national poverty level. Applicants must be preparing for medical school and not currently accepted or enrolled; medical-school graduates are ineligible. Previously accepted applicants who formally withdrew may qualify. Parental information applies to applicants under 26; review the 2026 Essentials and required financial documents.",
         deadline: "Application available · closing date not stated on the reviewed program page",
         lastVerified: "November 3, 2026",
       };
