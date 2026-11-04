@@ -17,7 +17,7 @@ export interface OpenOpportunity {
   requiresCampusConfirmation?: true;
 }
 
-export const OPEN_OPPORTUNITIES_REVIEWED = "October 24, 2026";
+export const OPEN_OPPORTUNITIES_REVIEWED = "November 3, 2026";
 
 /**
  * Reviewed opportunities. Only confirmed open applications appear on the home
@@ -42,8 +42,8 @@ export const openOpportunities: OpenOpportunity[] = [
       "Submit the online application and choose up to two projects.",
       "Review the selected projects for any additional materials and logistics.",
     ],
-    deadline: "November 2, 2026",
-    deadlineAt: "2026-11-02T23:59:59-05:00",
+    deadline: "November 2, 2026 at 5:00 p.m. CT · deadline passed",
+    deadlineAt: "2026-11-02T17:00:00-06:00",
     sourceUrl: "https://www.goldwaterinternship.gov/",
     featuredOnHome: true,
   },
@@ -377,8 +377,8 @@ export const openOpportunities: OpenOpportunity[] = [
     ],
     deadline: "February 1, 2027 at 11:59 p.m. ET",
     deadlineAt: "2027-02-02T00:00:00-05:00",
-    sourceUrl: "https://med.virginia.edu/summer-research-internship-program/",
-    secondarySourceUrl: "https://med.virginia.edu/summer-research-internship-program/how-to-apply/",
+    sourceUrl: "https://med.virginia.edu/education/biomedical-sciences/summer-research-internship-program",
+    secondarySourceUrl: "https://med.virginia.edu/education/biomedical-sciences/summer-research-internship-program/how-to-apply",
   },
   {
     id: "penn-suip-2027",
@@ -535,6 +535,73 @@ export const openOpportunities: OpenOpportunity[] = [
     deadlineAt: "2027-02-02T17:00:00-05:00",
     sourceUrl: "https://med.nyu.edu/research/vilcek-institute-graduate-biomedical-sciences/summer-undergraduate-research-program",
     secondarySourceUrl: "https://med.nyu.edu/research/vilcek-institute-graduate-biomedical-sciences/summer-undergraduate-research-program/admissions",
+    featuredOnHome: true,
+  },
+  {
+    id: "case-cansur-2027",
+    title: "Case Western Reserve Cancer-focused Summer Undergraduate Research (CanSUR), 2027",
+    organization: "Case Comprehensive Cancer Center",
+    category: "Paid cancer research",
+    audience: "Undergraduates interested in cancer research, medicine, and biomedical science",
+    summary:
+      "A 10-week mentored cancer research experience in Cleveland with a $5,000 stipend. Housing and travel allowances are available for selected participants.",
+    eligibility: [
+      "Undergraduate student at a college or university; U.S. citizen or permanent resident.",
+      "Interested in biomedical, clinical, behavioral, or social sciences and able to participate in the summer research program.",
+    ],
+    applicationChecklist: [
+      "Submit the application through the InfoReady portal linked from the official program page, including transcripts and responses to three essay questions.",
+      "Provide contact information for two references, including one science teacher or professor, and rank five preferred mentors. References may be contacted for more information.",
+    ],
+    deadline: "January 15, 2027 · closing time not published",
+    deadlineAt: "2027-01-15T23:59:59-05:00",
+    sourceUrl: "https://case.edu/cancer/training-education/cansur",
+    secondarySourceUrl: "https://case.edu/cancer/training-education/cansur/application-instructions",
+    featuredOnHome: true,
+  },
+  {
+    id: "iowa-bsurp-2027",
+    title: "Iowa Biomedical Scholars Summer Undergraduate Research Program (BSURP), 2027",
+    organization: "University of Iowa",
+    category: "Paid biomedical research",
+    audience: "Biological-sciences undergraduates who will have completed sophomore or junior year",
+    summary:
+      "A full-time, 10-week residential research program, expected May 24–July 30, 2027. Iowa anticipates a stipend of at least $5,500, dormitory housing, up to $500 for travel, and a $500 food allowance.",
+    eligibility: [
+      "U.S. citizen or permanent resident majoring in a biological science at an accredited four-year college or university; completed sophomore or junior year before the program.",
+      "Commit full time for the program's duration. Students with limited research experience and an interest in graduate school are encouraged to apply.",
+    ],
+    applicationChecklist: [
+      "Complete the online application, upload an academic transcript including Fall 2026 grades when available, and rank graduate programs matching your research interests.",
+      "Provide contact information for two faculty members familiar with your skills and aptitudes, particularly in biological sciences, so they can submit recommendation letters.",
+    ],
+    deadline: "February 1, 2027 · closing time not published",
+    deadlineAt: "2027-02-01T23:59:59-06:00",
+    sourceUrl: "https://grad.uiowa.edu/biomedical-scholars-summer-undergraduate-research-program",
+    secondarySourceUrl: "https://webapps1.healthcare.uiowa.edu/ISURP/",
+    featuredOnHome: true,
+  },
+  {
+    id: "fred-hutch-surp-2027",
+    title: "Fred Hutch Summer Undergraduate Research Program (SURP), 2027",
+    organization: "Fred Hutch Cancer Center",
+    category: "Paid biomedical and public-health research",
+    audience: "Undergraduates entering the summer before their final year, semester, or quarter",
+    summary:
+      "Nine weeks of full-time research in Seattle, June 21–August 20, 2027, with $7,304 before taxes and up to $450 in round-trip travel support. Participants pay for housing, meals, and local transportation.",
+    eligibility: [
+      "Entering the summer before the final year, semester, or quarter of undergraduate study; the 2027 form specifies graduation in December 2027 or May/June 2028. Strong science background or related interests required.",
+      "The main page lists U.S. citizenship or permanent residence. The program FAQ also describes F-1 students with CPT and J-1 students with Academic Training authorization; confirm your eligibility with program staff if relying on these routes or DACA status, because funding can change annually.",
+      "Available for the entire June 21–August 20 program.",
+    ],
+    applicationChecklist: [
+      "Submit the online application, a current transcript (unofficial accepted), a one-page research-interests and career-goals statement, and a 200-word reflection about overcoming a challenge.",
+      "Identify up to three faculty mentors and explain your research interests. Provide one required recommender and optionally a second; letters are due January 15, 2027 at midnight PST.",
+    ],
+    deadline: "January 8, 2027 at midnight PST · letters due January 15 at midnight PST",
+    deadlineAt: "2027-01-09T00:00:00-08:00",
+    sourceUrl: "https://www.fredhutch.org/en/education-training/undergraduate-students/summer-undergraduate-research-program.html",
+    secondarySourceUrl: "https://www.fredhutch.org/en/education-training/undergraduate-students/summer-undergraduate-research-program/faqs.html",
     featuredOnHome: true,
   },
   {
