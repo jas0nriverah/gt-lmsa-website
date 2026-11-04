@@ -21,7 +21,7 @@ export const nearTermOpportunityCategories: ResourceCategory[] = [
       {
         title: "Fred Hutch Summer Undergraduate Research Program, 2027",
         description:
-          "A nine-week biomedical research internship for undergraduates entering the summer before their final year. The 2027 application is expected on the program site in mid-to-late November; review eligibility and dates when it opens.",
+          "Applications for Summer 2027 are open, due January 8 at midnight PST; recommendation letters are due January 15. The nine-week Seattle program runs June 21–August 20 for undergraduates entering the summer before their final year, semester, or quarter. Review the verified open listing above for eligibility, materials, and costs.",
         organization: "Fred Hutch Cancer Center",
         href: "https://www.fredhutch.org/en/education-training/undergraduate-students/summer-undergraduate-research-program.html",
         category: "Biomedical research",
@@ -98,7 +98,7 @@ export const nearTermOpportunityCategories: ResourceCategory[] = [
       {
         title: "Emory University Hospital College Volunteer Program",
         description:
-          "The official page describes nonclinical service for enrolled college students age 18+, September–April, four hours weekly and at least 80 hours. Rechecked October 24: its application links still lead to a program at capacity and a different program whose October 9 deadline passed. Confirm the correct college application with Emory Volunteer Services before applying; no open college application was verified.",
+          "The official page describes nonclinical service for enrolled college students age 18+, September–April, four hours weekly and at least 80 hours. Rechecked November 3: its application links still lead to a program at capacity and a different program whose October 9 deadline passed. Confirm the correct college application with Emory Volunteer Services before applying; no open college application was verified.",
         organization: "Emory Healthcare",
         href: "https://www.emoryhealthcare.org/locations/hospitals/emory-university-hospital/volunteer",
         category: "Clinic and hospital volunteering",
