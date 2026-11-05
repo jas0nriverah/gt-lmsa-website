@@ -17,7 +17,7 @@ export interface OpenOpportunity {
   requiresCampusConfirmation?: true;
 }
 
-export const OPEN_OPPORTUNITIES_REVIEWED = "November 4, 2026";
+export const OPEN_OPPORTUNITIES_REVIEWED = "November 5, 2026";
 
 /**
  * Reviewed opportunities. Only confirmed open applications appear on the home
@@ -650,6 +650,29 @@ export const openOpportunities: OpenOpportunity[] = [
     deadlineAt: "2027-01-15T23:59:59-05:00",
     sourceUrl: "https://college.mayo.edu/academics/non-clinical-education/clinical-research-internship-study-program-florida/application-process/",
     secondarySourceUrl: "https://college.mayo.edu/academics/non-clinical-education/clinical-research-internship-study-program-florida/",
+    featuredOnHome: true,
+  },
+  {
+    id: "rockefeller-surf-2027",
+    title: "Rockefeller Chemers Neustein Summer Undergraduate Research Fellowship (SURF), 2027",
+    organization: "The Rockefeller University",
+    category: "Paid biomedical research",
+    audience: "College sophomores and juniors studying life or physical sciences",
+    summary:
+      "Ten weeks of laboratory research in New York City, June 7–August 13, 2027, with a $6,500 stipend. Free housing is provided for students who cannot commute.",
+    eligibility: [
+      "College sophomore or junior majoring in the life or physical sciences; international students may apply.",
+      "Participate in the 10-week summer research program. Laboratory placement is arranged centrally; applicants are not expected to secure their own lab.",
+    ],
+    applicationChecklist: [
+      "Complete the official online application and upload a CV or résumé and a personal statement of no more than two single-spaced pages covering academic background, scientific interests, research experience if any, career goals, and your contribution to and benefit from SURF.",
+      "Upload a scanned official transcript from every college or university attended as an unencrypted PDF; unofficial transcripts are not accepted.",
+      "Arrange two recommendation letters, preferably from professors or research mentors, and ensure all required materials arrive by February 1. State laboratory or research-area preferences in the application.",
+    ],
+    deadline: "February 1, 2027 · all materials; closing time not published",
+    deadlineAt: "2027-02-01T23:59:59-05:00",
+    sourceUrl: "https://www.rockefeller.edu/education-and-training/surf/application-information/",
+    secondarySourceUrl: "https://surfapplication.rockefeller.edu/",
     featuredOnHome: true,
   },
   {
