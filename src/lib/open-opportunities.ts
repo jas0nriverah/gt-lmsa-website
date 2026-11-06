@@ -17,7 +17,7 @@ export interface OpenOpportunity {
   requiresCampusConfirmation?: true;
 }
 
-export const OPEN_OPPORTUNITIES_REVIEWED = "November 5, 2026";
+export const OPEN_OPPORTUNITIES_REVIEWED = "November 6, 2026";
 
 /**
  * Reviewed opportunities. Only confirmed open applications appear on the home
@@ -676,13 +676,61 @@ export const openOpportunities: OpenOpportunity[] = [
     featuredOnHome: true,
   },
   {
+    id: "cincinnati-childrens-surf-2027",
+    title: "Cincinnati Children’s Summer Undergraduate Research Fellowship (SURF), 2027",
+    organization: "Cincinnati Children’s Hospital Medical Center",
+    category: "Paid biomedical research",
+    audience: "Students who will be undergraduates in Fall 2027 and are interested in research or medicine",
+    summary:
+      "Ten weeks of full-time, in-person research in Cincinnati, paid at $13 per hour. Participants arrange their own housing and health insurance.",
+    eligibility: [
+      "Will be an undergraduate freshman, sophomore, junior, or senior in Fall 2027; GPA of at least 3.0; U.S. citizen or permanent resident with an interest in biomedical research or medicine.",
+      "International applicants must live in Cincinnati, attend a Cincinnati-area college, hold an F-1 visa, and obtain their own CPT authorization; contact the program to confirm this route.",
+      "Available for a 40-hour weekly research commitment. Selected participants provide vaccination records and pass an in-person pre-employment urine drug screen.",
+    ],
+    applicationChecklist: [
+      "Complete the eligibility quiz and online application, including career/research essays, a current résumé, and an official or unofficial transcript showing your name.",
+      "Arrange one required recommendation letter before submitting; at most two letters are accepted. Identify up to three potential faculty mentors in the application.",
+      "Follow the updated 2027 instructions: do not contact faculty before or during initial selection. Return to the application and press the final submit button by the deadline; submission is not automatic.",
+    ],
+    deadline: "February 1, 2027 at 5:00 p.m. EST",
+    deadlineAt: "2027-02-01T17:00:00-05:00",
+    sourceUrl: "https://www.cincinnatichildrens.org/education/research/surf/apply",
+    secondarySourceUrl: "https://www.cincinnatichildrens.org/education/research/surf/program",
+    featuredOnHome: true,
+  },
+  {
+    id: "ucsf-srtp-2027",
+    title: "UCSF Summer Research Training Program (SRTP), 2027",
+    organization: "University of California San Francisco",
+    category: "Biomedical research · PhD pathway",
+    audience: "Current undergraduates planning a life- or health-sciences PhD",
+    summary:
+      "Research in San Francisco, May 30–August 7, 2027, with a summer stipend, public-transportation support, round-trip travel, housing, and program health insurance. Participants must live in the provided housing.",
+    eligibility: [
+      "Currently enrolled undergraduate who will not earn a bachelor’s degree by the end of Spring 2027; at least four semesters or six quarters of undergraduate study before the program.",
+      "U.S. citizen or permanent resident at a four-year U.S. college or university, including U.S. territories. The program page says DACA/AB540 applicants should contact staff about possible eligibility; international students are ineligible.",
+      "Plan to pursue a PhD in a UCSF life- or health-sciences discipline and participate in the full program. The FAQ excludes professional-school career goals; prior research experience is needed to be competitive.",
+    ],
+    applicationChecklist: [
+      "Submit the online application and personal statement, two recommendation letters, and college transcripts; copies or unofficial transcripts are accepted when applying, with official transcripts required after admission.",
+      "Indicate research interests and potential mentors in the application; do not contact faculty directly for placement.",
+      "Apply early: the main page and FAQ timeline list 11:59 p.m. PST, but another FAQ answer says 11:58 p.m. PST on the same date. Confirm the cutoff with the program before relying on the final minute.",
+    ],
+    deadline: "February 1, 2027 · published cutoff differs: 11:58 / 11:59 p.m. PST",
+    deadlineAt: "2027-02-01T23:58:00-08:00",
+    sourceUrl: "https://graduate.ucsf.edu/academics/srtp",
+    secondarySourceUrl: "https://graduate.ucsf.edu/academics/srtp/srtp-faq",
+    featuredOnHome: true,
+  },
+  {
     id: "pd-soros-fellowship-2027",
     title: "Paul & Daisy Soros Fellowships for New Americans, 2027",
     organization: "Paul & Daisy Soros Fellowships for New Americans",
     category: "Graduate and professional-school fellowship",
     audience: "Eligible immigrants and children of immigrants starting or continuing graduate or professional study",
     summary:
-      "The 2027 fellowship application is open for full-time U.S. graduate and professional degrees, including medicine. Students applying to graduate school may apply before admission.",
+      "The 2027 fellowship application is closed. The next application is expected to open in April 2027; check the official source for the next cycle.",
     eligibility: [
       "Age 30 or younger on October 29, 2026, and meet the program’s specific New American criteria for immigrants or children of immigrants; read the official eligibility rules for your circumstances.",
       "Have a bachelor’s degree by fall 2027 and plan full-time enrollment in an accredited U.S. graduate or professional degree during 2027–28. You must not have begun the third year of the degree being funded by the application deadline.",
