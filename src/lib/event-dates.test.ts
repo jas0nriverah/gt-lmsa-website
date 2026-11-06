@@ -168,6 +168,12 @@ test("Ethics and Healthcare external listing stays verified same-day Nov 6 and r
   assert.equal(getVerifiedExternalEvents(externalEvents, "2026-11-07").some((event) => event.id === id), false);
 });
 
+test("Nov 6 daily maintenance: MAPS Pre-Health Fair stays hidden while same-day Ethics and Healthcare remains listed", () => {
+  const ids = getVerifiedExternalEvents(externalEvents, "2026-11-06").map((event) => event.id);
+  assert.equal(ids.includes("ext-maps-pre-health-fair-2026-10-27"), false);
+  assert.ok(ids.includes("ext-ethics-and-healthcare-2026-11-06"));
+});
+
 test("expired promotions disappear, while undated plans and contact links remain", () => {
   const current = linktreeLinks.filter((item) => !hasEnded(item, "2026-09-14"));
   assert.equal(current.some((item) => item.label === "2026 Pre-Health Fall Kickoff"), false);
