@@ -174,6 +174,12 @@ test("Nov 6 daily maintenance: MAPS Pre-Health Fair stays hidden while same-day 
   assert.ok(ids.includes("ext-ethics-and-healthcare-2026-11-06"));
 });
 
+test("Nov 8 Sunday deep audit: MAPS Pre-Health Fair and Ethics and Healthcare stay hidden", () => {
+  const ids = getVerifiedExternalEvents(externalEvents, "2026-11-08").map((event) => event.id);
+  assert.equal(ids.includes("ext-maps-pre-health-fair-2026-10-27"), false);
+  assert.equal(ids.includes("ext-ethics-and-healthcare-2026-11-06"), false);
+});
+
 test("expired promotions disappear, while undated plans and contact links remain", () => {
   const current = linktreeLinks.filter((item) => !hasEnded(item, "2026-09-14"));
   assert.equal(current.some((item) => item.label === "2026 Pre-Health Fall Kickoff"), false);

@@ -8,23 +8,23 @@ import { chapterToday, currentWeek, hasEnded } from "./event-dates";
 
 /**
  * P0.3 — verified external / recommended pre-health events.
- * Rechecked November 6, 2026 (weekday daily maintenance) against official GT Campus Calendar,
+ * Rechecked November 8, 2026 (Sunday deep audit) against official GT Campus Calendar,
  * Pre-Health Advising, Explore LLC, LMSA National, and LMSA Southeast sources.
- * Rolling window: November 6 – November 20, 2026.
+ * Rolling window: November 8 – November 22, 2026.
  * MAPS Would You Rather? Pre-Health Edition (Oct 20) ended — retired automatically via hasEnded from Oct 21 (object kept for history).
  * MAPS Pre-Health Fair was held Oct 27 — now past; hidden automatically by date logic (object kept for history).
- * Ethics and Healthcare (Nov 6, GT Ethics Week) added from the GT Campus Calendar listing.
+ * Ethics and Healthcare (Nov 6, GT Ethics Week) added from the GT Campus Calendar listing — now past; hidden automatically by date logic (object kept for history).
  * Young Physicians Initiative (Oct 15) is past and was never listed — it conflicted with
  * the LMSA Plus Interest Meeting at the same time.
  * The LMSA Plus Interest Meeting (Oct 15) is past — retired from upcoming surfaces via date checks.
  * NC2026 (Sep 17–20 Houston) concluded — archived via overlays / eventsAsOf.
- * LMSA SE 17th Regional Conference (Feb 27–Mar 1 2026) is past — no 2027 dates announced as of Nov 6.
+ * LMSA SE 17th Regional Conference (Feb 27–Mar 1 2026) is past — no 2027 dates announced as of Nov 8.
  * No other ≥80 official-calendar dedicated pre-health events verified for the window.
  * SCENE College of Sciences event Oct 7 is past; it was deliberately not listed (generic career expo, not dedicated pre-health).
  * Listings are recommendations only — not LMSA Plus partnerships or chapter programming.
  */
 
-export const EXTERNAL_EVENTS_CHECKED_AT = "November 6, 2026";
+export const EXTERNAL_EVENTS_CHECKED_AT = "November 8, 2026";
 
 export const externalEvents: ExternalEvent[] = [
   {
